@@ -1,0 +1,3 @@
+# Editor/search tools (ripgrep, fd, telescope) read this file. Un-hide the work
+# overlay so it shows in neovim, even though .gitignore keeps it out of git.
+!overlays/
