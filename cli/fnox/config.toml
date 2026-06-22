@@ -1,0 +1,19 @@
+default_provider = "age"
+
+[providers.age]
+type = "age"
+recipients = [
+  "age1n4udyn72eqf87c6pa2z7px3n5y3w38kpdutanjhsuz5888k6xphqkatrqk", # hyperion
+  "age1dpan0pmg7falqsh6swj69awlxpt7rvajt7rjrq7xccsy03swqy0sc6uy0g", # atlas
+]
+key_file = "~/.config/fnox/age-identity.txt"
+
+[daemon]
+enabled = false
+idle_timeout = "8h"
+
+[secrets]
+
+[profiles.work.secrets]
+DOTFILES_GIT_USER_NAME= { provider = "age", value = "YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBkTlV1Ry85Vzd2RjVYV00vRnNsYWduVzh1ZmVYVE52NC93YmVBTkFQZUQ0CndVSHJxWmRKZkZnU0lBVG5ycjdQd1A1Y2wzdlVGTkhYbTd4OVRkMC9tRFkKLT4gWDI1NTE5IEp0NXBYV0lpQ1pPNDg0SkdDVjEzeFpnazZxSTVFMjI1MXRqQ1RkYkEzMWsKcEFUOVg1TmpxL1hmVFFxTXhtVDJBN1l4b2lJeGhtbU85Y2JBUGN2M0dnUQotPiBSTENhT2ctZ3JlYXNlIDYgO0A1MH4zIGJtUD1pYicgQgp1VGlxTlpHT3NPZEsxZwotLS0gc2xRRUg3RzZhMDZ4YzBzVjlHK0kxSnY1SDQ1SUdXVTJMbkNlNms1UktYSQrEha8Mbsqf0tRSm8JmzZwiGQhOz9gU2GTFkbaVFQ6GrGCPG//FFxc/V5N/Sn6nzeI=", description = "Work Git user name for rendered dotfiles" }
+DOTFILES_GIT_USER_EMAIL= { provider = "age", value = "YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA5RXlPTE9tNVFzMVY2bFFyUTF0cmU2Z2FaUUFwQ3VaUDBSYldlWS83S1RFCkVrenpHMVU3N0VpZnlHRklYdENZZTRscTNSZWpHT3JoMHlqWi9IeUdwL2cKLT4gWDI1NTE5IFJ1Y09nSmJLSTdiRm9kT2xDWmUvajVNTllyQktrL2NFRlVoTi9zQlBtM1EKU2ZwUHZQK2J3cmtudWFDeXpYcm5IUkh0cmt0dkFpQVZVSXlBL242ZktWQQotPiBEU0YtZ3JlYXNlCm9peVhSdWZOa1ZrcjRJcldCQ1p6K280a1c4Q21xZnIyNk80NVVCV0NkNzNmdDZnUjc1WWIzdDdZcG5iMXhEWkIKODdLTlJwdkZubnBKVm5Wdlh4NWI5dGhHQm1DMnJSQQotLS0gdjMxdGlOTFQxeXVMWWdyblBBTlErUnlwblR4RG5melBoN2xvYkVmYnQwZwq4qoY388EJwV9ub4ySDwsYTUbHr77OeLI2L04ZcM8osh7zToHGOTfnN7mze8Qc", description = "Work Git user email for rendered dotfiles" }

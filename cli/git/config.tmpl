@@ -1,0 +1,62 @@
+{% set fnox_profile = vars.fnox_profile -%}
+{% set fnox_git_user_name = exec(command='$HOME/.local/share/mise/shims/fnox --non-interactive -P ' ~ fnox_profile ~ ' get DOTFILES_GIT_USER_NAME 2>/dev/null || true') | trim -%}
+{% set fnox_git_user_email = exec(command='$HOME/.local/share/mise/shims/fnox --non-interactive -P ' ~ fnox_profile ~ ' get DOTFILES_GIT_USER_EMAIL 2>/dev/null || true') | trim -%}
+[user]
+  name = {% if fnox_git_user_name != "" -%}{{ fnox_git_user_name }}{% else -%}{{ vars.git_user_name }}{% endif %}
+  email = {% if fnox_git_user_email != "" -%}{{ fnox_git_user_email }}{% else -%}{{ vars.git_user_email }}{% endif %}
+
+[init]
+  defaultBranch = main
+
+[pull]
+  ff = only
+
+[push]
+  autoSetupRemote = true
+
+[fetch]
+  prune = true
+
+[rerere]
+  enabled = true
+
+[diff]
+  algorithm = histogram
+
+[color]
+  ui = auto
+
+[core]
+  excludesFile = ~/.config/git/ignore
+
+# Keep every repository's history concise, regardless of which client commits.
+[hook "commit-message-policy"]
+  command = /bin/bash "$HOME/.config/hk/commit-message-policy.sh"
+  event = commit-msg
+
+# Global gitleaks secret scan on every commit (git 2.54+ native config hooks).
+# The wrapper prefers a repo-local .gitleaks.toml, else the fnox-managed policy.
+# Two events: the staged diff, and the commit message gitleaks never sees.
+[hook "gitleaks"]
+  command = /bin/bash "$HOME/.config/hk/gitleaks-fnox.sh"
+  event = pre-commit
+[hook "gitleaks-msg"]
+  command = /bin/bash "$HOME/.config/hk/gitleaks-fnox.sh" --commit-msg
+  event = commit-msg
+# Machine-local overrides deployed by an overlay (signing key, agent, identity).
+# git ignores the include when the file does not exist. Kept above the personal
+# includeIf so personal remotes still win.
+[include]
+  path = ~/.config/git/config.local
+
+{% if vars.git_include_personal_globally -%}
+[include]
+  path = ~/.config/git/config.personal
+{% elif vars.git_include_if_personal -%}
+[includeIf "hasconfig:remote.*.url:git@github:*/**"]
+  path = ~/.config/git/config.personal
+[includeIf "hasconfig:remote.*.url:git@github.com:*/**"]
+  path = ~/.config/git/config.personal
+[includeIf "hasconfig:remote.*.url:https://github.com/*/**"]
+  path = ~/.config/git/config.personal
+{% endif -%}

@@ -1,0 +1,112 @@
+[settings]
+dotfiles.root = "~/src/dotfiles"
+dotfiles.default_mode = "symlink"
+experimental = true
+lockfile = true
+
+[bootstrap.packages]
+"brew:git" = "latest"
+
+[tools]
+"aqua:str4d/rage" = "0.11.2"
+"aqua:jdx/hk" = "1.49.0"
+"aqua:gitleaks/gitleaks" = "8.30.1"
+fnox = "1.29.0"
+
+[vars]
+git_user_name = "solforged"
+git_user_email = "sol@sowilo.io"
+git_include_if_personal = false
+git_include_personal_globally = false
+fnox_profile = "default"
+gitleaks_profile_only = ""
+
+[dotfiles]
+"~/.config/git/config" = { source = "~/src/dotfiles/cli/git/config.tmpl", mode = "template" }
+"~/.config/git/ignore" = { source = "~/src/dotfiles/cli/git/ignore", mode = "symlink" }
+"~/.config/hk/commit-message-policy.sh" = { source = "~/src/dotfiles/cli/hk/commit-message-policy.sh.tmpl", mode = "template" }
+"~/.config/hk/gitleaks-fnox.sh" = { source = "~/src/dotfiles/cli/hk/gitleaks-fnox.sh.tmpl", mode = "template" }
+"~/.config/hk/fnox.toml" = { source = "~/src/dotfiles/cli/fnox/config.toml", mode = "template" }
+"~/.config/fnox/config.toml" = { source = "~/src/dotfiles/cli/fnox/config.toml", mode = "template" }
+"~/.config/mise/config.toml" = { source = "~/src/dotfiles/mise.toml", mode = "symlink" }
+"~/.config/mise/mise.lock" = { source = "~/src/dotfiles/mise.lock", mode = "symlink" }
+
+[bootstrap.hooks.post-defaults]
+run = "killall Dock || true"
+
+[bootstrap.macos.dock]
+autohide = true
+magnification = false
+mru_spaces = false
+show_recents = false
+tilesize = 36
+
+[bootstrap.macos.finder]
+show_all_files = true
+show_pathbar = true
+show_status_bar = true
+show_extensions_warning = false
+preferred_view_style = "list"
+
+[bootstrap.macos.keyboard]
+key_repeat = 1
+initial_key_repeat = 10
+press_and_hold = false
+
+[bootstrap.macos.trackpad]
+tap_to_click = true
+
+[bootstrap.macos.defaults.dock]
+"autohide-delay" = 0.0
+"autohide-time-modifier" = 0.0
+"expose-animation-duration" = 0.1
+launchanim = false
+mineffect = "scale"
+"minimize-to-application" = true
+"mouse-over-hilite-stack" = true
+"show-process-indicators" = true
+showhidden = true
+"size-immutable" = true
+
+[bootstrap.macos.defaults."com.apple.finder"]
+AppleShowAllExtensions = true
+FXDefaultSearchScope = "SCcf"
+QuitMenuItem = true
+_FXSortFoldersFirst = true
+
+[bootstrap.macos.defaults."NSGlobalDomain"]
+AppleKeyboardUIMode = 3
+AppleShowAllExtensions = true
+NSAutomaticCapitalizationEnabled = false
+NSAutomaticDashSubstitutionEnabled = false
+NSAutomaticPeriodSubstitutionEnabled = false
+NSAutomaticQuoteSubstitutionEnabled = false
+NSAutomaticSpellingCorrectionEnabled = false
+NSDocumentSaveNewDocumentsToCloud = false
+NSNavPanelExpandedStateForSaveMode = true
+NSNavPanelExpandedStateForSaveMode2 = true
+NSWindowResizeTime = 0.001
+PMPrintingExpandedStateForPrint = true
+PMPrintingExpandedStateForPrint2 = true
+"com.apple.springing.delay" = 0.0
+"com.apple.springing.enabled" = true
+
+[bootstrap.macos.defaults."com.apple.screencapture"]
+"disable-shadow" = true
+type = "png"
+
+[bootstrap.macos.defaults."com.apple.ActivityMonitor"]
+OpenMainWindow = true
+ShowCategory = 0
+SortColumn = "CPUUsage"
+SortDirection = 0
+
+[bootstrap.macos.defaults."com.apple.ImageCapture"]
+disableHotPlug = true
+
+[bootstrap.macos.defaults."com.apple.desktopservices"]
+DSDontWriteNetworkStores = true
+DSDontWriteUSBStores = true
+
+[bootstrap.macos.defaults."com.apple.print.PrintingPrefs"]
+"Quit When Finished" = true
