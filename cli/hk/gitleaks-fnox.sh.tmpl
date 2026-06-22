@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+# Secret-scan every commit. Registered as two global git hooks in the
+# [hook "gitleaks"] blocks of cli/git/config.tmpl. Both executables resolve at
+# deployment, before a rebase can load an old mise config that predates them.
+set -euo pipefail
+{% set fnox_path = exec(command='mise which fnox') | trim -%}
+{% set gitleaks_path = exec(command='mise which gitleaks') | trim -%}
+
+fnox="{{ fnox_path }}"
+# Keep hook configuration available while rebasing commits that predate cli/fnox.
+fnox_config="$HOME/.config/hk/fnox.toml"
+fnox_profile="{{ vars.fnox_profile }}"
+profile_only="{{ vars.gitleaks_profile_only }}"
+gitleaks="{{ gitleaks_path }}"
+
+hook="pre-commit"
+msg_file=""
+if [ "${1:-}" = "--commit-msg" ]; then
+  hook="commit-msg"
+  msg_file="${2:-$(git rev-parse --git-path COMMIT_EDITMSG)}"
+fi
+
+# Replaying an unchanged historical message must not make a new global policy
+# retroactively reject a rebase. Any reword still goes through the scanner.
+if [ -n "$msg_file" ] && [ -f "$msg_file" ]; then
+  rebase_head="$(git rev-parse -q --verify REBASE_HEAD 2>/dev/null || true)"
+  message="$(sed -e '/^#.*>8/,$d' -e '/^#/d' "$msg_file" | git stripspace)"
+  if [ -n "$rebase_head" ]; then
+    rebase_message="$(git log -1 --format=%B "$rebase_head" | git stripspace)"
+    if [ "$message" = "$rebase_message" ]; then
+      exit 0
+    fi
+  fi
+fi
+
+if [ -z "$gitleaks" ]; then
+  echo "$hook: gitleaks is not installed, refusing to commit unguarded." >&2
+  echo "$hook: install it with: mise install (aqua:gitleaks/gitleaks)." >&2
+  exit 1
+fi
+
+scan() {
+  if [ -n "$msg_file" ]; then
+    [ -f "$msg_file" ] || return 0
+    sed -e '/^#.*>8/,$d' -e '/^#/d' "$msg_file" |
+      "$gitleaks" stdin --redact --no-banner "$@"
+  else
+    "$gitleaks" git --staged --redact --no-banner "$@"
+  fi
+}
+
+toplevel="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+# The host policy is mandatory; a repository policy runs as an additive second scan.
+fnox_args=(--config "$fnox_config" --profile "$fnox_profile")
+if [ -n "$profile_only" ]; then
+  fnox_args+=(--no-defaults)
+fi
+policy="$("$fnox" "${fnox_args[@]}" get GITLEAKS_CONFIG_TOML --no-daemon 2>/dev/null || true)"
+if [ -z "$policy" ]; then
+  echo "$hook: could not load GITLEAKS_CONFIG_TOML for profile $fnox_profile," >&2
+  echo "$hook: refusing to commit. Check the fnox profile." >&2
+  exit 1
+fi
+
+export GITLEAKS_CONFIG_TOML="$policy"
+scan
+
+if [ -n "$toplevel" ] && [ -f "$toplevel/.gitleaks.toml" ]; then
+  unset GITLEAKS_CONFIG_TOML
+  scan -c "$toplevel/.gitleaks.toml"
+fi
