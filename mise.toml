@@ -29,6 +29,8 @@ gitleaks_profile_only = ""
 "~/.config/hk/fnox.toml" = { source = "~/src/dotfiles/cli/fnox/config.toml", mode = "template" }
 "~/.config/fnox/config.toml" = { source = "~/src/dotfiles/cli/fnox/config.toml", mode = "template" }
 "~/.config/mise/config.toml" = { source = "~/src/dotfiles/mise.toml", mode = "symlink" }
+"~/.config/mise/config.personal.toml" = { source = "~/src/dotfiles/.config/mise/config.personal.toml", mode = "symlink" }
+"~/.config/mise/config.work.toml" = { source = "~/src/dotfiles/.config/mise/config.work.toml", mode = "symlink" }
 "~/.config/mise/mise.lock" = { source = "~/src/dotfiles/mise.lock", mode = "symlink" }
 
 [bootstrap.hooks.post-defaults]
