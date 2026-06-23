@@ -1,0 +1,2 @@
+[env]
+SSH_AUTH_SOCK = "{{ env.HOME }}/.local/state/1password/agent.sock"

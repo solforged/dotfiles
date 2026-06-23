@@ -1,0 +1,6 @@
+[env]
+FNOX_PROFILE = "work"
+
+[vars]
+fnox_profile = "work"
+gitleaks_profile_only = ""
