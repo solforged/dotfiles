@@ -4,14 +4,28 @@ dotfiles.default_mode = "symlink"
 experimental = true
 lockfile = true
 
+[env]
+RUSTUP_HOME = "{{ env.HOME }}/.local/share/rustup"
+CARGO_HOME = "{{ env.HOME }}/.local/share/cargo"
+
 [bootstrap.packages]
 "brew:git" = "latest"
+"brew:coreutils" = "latest"
 
 [tools]
 "aqua:str4d/rage" = "0.11.2"
 "aqua:jdx/hk" = "1.49.0"
 "aqua:gitleaks/gitleaks" = "8.30.1"
+"aqua:atuinsh/atuin" = "18.16.1"
+"aqua:starship/starship" = "1.26.0"
+"aqua:ajeetdsouza/zoxide" = "0.10.0"
+"aqua:junegunn/fzf" = "0.73.1"
+"github:zimfw/zimfw" = { version = "1.20.0", asset_pattern = "zimfw.zsh", bin = "zimfw" }
 fnox = "1.29.0"
+node = "26.4.0"
+bun = "1.3.14"
+go = "1.26.4"
+rust = "1.96.0"
 
 [vars]
 git_user_name = "solforged"
@@ -22,6 +36,8 @@ fnox_profile = "default"
 gitleaks_profile_only = ""
 
 [dotfiles]
+"~/.zshenv" = { source = "~/src/dotfiles/shells/zsh/.zshenv", mode = "symlink" }
+"~/.hushlogin" = { source = "~/src/dotfiles/shells/hushlogin", mode = "symlink" }
 "~/.config/git/config" = { source = "~/src/dotfiles/cli/git/config.tmpl", mode = "template" }
 "~/.config/git/ignore" = { source = "~/src/dotfiles/cli/git/ignore", mode = "symlink" }
 "~/.config/hk/commit-message-policy.sh" = { source = "~/src/dotfiles/cli/hk/commit-message-policy.sh.tmpl", mode = "template" }
@@ -32,6 +48,8 @@ gitleaks_profile_only = ""
 "~/.config/mise/config.personal.toml" = { source = "~/src/dotfiles/.config/mise/config.personal.toml", mode = "symlink" }
 "~/.config/mise/config.work.toml" = { source = "~/src/dotfiles/.config/mise/config.work.toml", mode = "symlink" }
 "~/.config/mise/mise.lock" = { source = "~/src/dotfiles/mise.lock", mode = "symlink" }
+"~/.config/starship.toml" = { source = "~/src/dotfiles/shells/starship.toml", mode = "symlink" }
+"~/.config/zsh" = { source = "~/src/dotfiles/shells/zsh/config", mode = "symlink-each" }
 
 [bootstrap.hooks.post-defaults]
 run = "killall Dock || true"

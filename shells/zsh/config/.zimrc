@@ -1,0 +1,6 @@
+zmodule zsh-users/zsh-completions --fpath src
+zmodule completion
+zmodule Aloxaf/fzf-tab --source fzf-tab.plugin.zsh
+zmodule zsh-users/zsh-autosuggestions --source zsh-autosuggestions.zsh
+zmodule zsh-users/zsh-syntax-highlighting --source zsh-syntax-highlighting.zsh
+zmodule zsh-users/zsh-history-substring-search --source zsh-history-substring-search.zsh
