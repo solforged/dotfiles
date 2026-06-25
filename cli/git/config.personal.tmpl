@@ -1,0 +1,21 @@
+[user]
+  name = {{ vars.git_user_name }}
+  email = {{ vars.git_user_email }}
+{% if vars.git_signing_key != "" -%}
+  signingkey = {{ vars.git_signing_key }}
+{% endif -%}
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+{% if vars.git_signing_key != "" -%}
+  allowedSignersFile = ~/.config/git/allowed_signers
+{% endif -%}
+
+[commit]
+  gpgsign = {% if vars.git_signing_key != "" %}true{% else %}false{% endif %}
+
+[tag]
+  gpgsign = {% if vars.git_signing_key != "" %}true{% else %}false{% endif %}

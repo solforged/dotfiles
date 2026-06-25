@@ -1,0 +1,28 @@
+Host github.com
+  HostName github.com
+  User git
+  IdentityAgent "{{ vars.onepassword_agent_sock }}"
+  IdentitiesOnly no
+  AddKeysToAgent yes
+  IgnoreUnknown UseKeychain
+  ServerAliveInterval 60
+  ServerAliveCountMax 3
+
+{% if vars.ssh_auth_sock != "" -%}
+Host *
+  IdentityAgent "{{ vars.ssh_auth_sock }}"
+  IgnoreUnknown UseKeychain
+  AddKeysToAgent yes
+  UseKeychain yes
+  ServerAliveInterval 60
+  ServerAliveCountMax 3
+  HashKnownHosts yes
+{% else -%}
+Host *
+  IgnoreUnknown UseKeychain
+  AddKeysToAgent yes
+  UseKeychain yes
+  ServerAliveInterval 60
+  ServerAliveCountMax 3
+  HashKnownHosts yes
+{% endif -%}
