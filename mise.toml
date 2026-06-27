@@ -20,6 +20,8 @@ CARGO_HOME = "{{ env.HOME }}/.local/share/cargo"
 "aqua:starship/starship" = "1.26.0"
 "aqua:ajeetdsouza/zoxide" = "0.10.0"
 "aqua:junegunn/fzf" = "0.73.1"
+"aqua:dprint/dprint" = "0.55.1"
+"aqua:gh" = "2.96.0"
 "github:zimfw/zimfw" = { version = "1.20.0", asset_pattern = "zimfw.zsh", bin = "zimfw" }
 fnox = "1.29.0"
 node = "26.4.0"
@@ -50,6 +52,9 @@ git_signing_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIErof9IMxQpX5/SSsZeJ8cH6
 "~/.config/hk/gitleaks-fnox.sh" = { source = "~/src/dotfiles/cli/hk/gitleaks-fnox.sh.tmpl", mode = "template" }
 "~/.config/hk/fnox.toml" = { source = "~/src/dotfiles/cli/fnox/config.toml", mode = "template" }
 "~/.config/fnox/config.toml" = { source = "~/src/dotfiles/cli/fnox/config.toml", mode = "template" }
+"~/.config/atuin" = { source = "~/src/dotfiles/cli/atuin", mode = "symlink-each" }
+"~/.config/dprint" = { source = "~/src/dotfiles/cli/dprint", mode = "symlink-each" }
+"~/.config/gh" = { source = "~/src/dotfiles/cli/gh", mode = "symlink-each" }
 "~/.config/mise/config.toml" = { source = "~/src/dotfiles/mise.toml", mode = "symlink" }
 "~/.config/mise/config.personal.toml" = { source = "~/src/dotfiles/.config/mise/config.personal.toml", mode = "symlink" }
 "~/.config/mise/config.work.toml" = { source = "~/src/dotfiles/.config/mise/config.work.toml", mode = "symlink" }
