@@ -12,6 +12,7 @@ CARGO_HOME = "{{ env.HOME }}/.local/share/cargo"
 "brew:git" = "latest"
 "brew:coreutils" = "latest"
 "brew-cask:ghostty" = "latest"
+"brew-cask:zed" = "latest"
 
 [tools]
 "aqua:str4d/rage" = "0.11.2"
@@ -69,6 +70,7 @@ git_signing_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIErof9IMxQpX5/SSsZeJ8cH6
 "~/.config/mise/mise.lock" = { source = "~/src/dotfiles/mise.lock", mode = "symlink" }
 "~/.config/nvim" = { source = "~/src/dotfiles/editors/nvim", mode = "symlink-each" }
 "~/.config/starship.toml" = { source = "~/src/dotfiles/shells/starship.toml", mode = "symlink" }
+"~/.config/zed" = { source = "~/src/dotfiles/editors/zed", mode = "symlink-each" }
 "~/.config/zsh" = { source = "~/src/dotfiles/shells/zsh/config", mode = "symlink-each" }
 
 [bootstrap.hooks.post-dotfiles]
