@@ -9,6 +9,8 @@ la() { command gls "${_gls_defaults[@]}" --almost-all "$@"; }
 ll() { command gls "${_gls_defaults[@]}" -l --human-readable --time-style=long-iso "$@"; }
 le() { ll --almost-all "$@"; }
 
+alias e='nvim'
+
 alias b='brew'
 alias bi='brew install'
 alias bz='brew uninstall --zap'
