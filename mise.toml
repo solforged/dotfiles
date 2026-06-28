@@ -23,6 +23,12 @@ CARGO_HOME = "{{ env.HOME }}/.local/share/cargo"
 "aqua:junegunn/fzf" = "0.73.1"
 "aqua:dprint/dprint" = "0.55.1"
 "aqua:gh" = "2.96.0"
+"aqua:BurntSushi/ripgrep" = "15.1.0"
+"aqua:sharkdp/fd" = "10.4.2"
+"aqua:neovim/neovim" = "0.12.3"
+"aqua:realm/SwiftLint" = "0.65.0"
+"spm:nicklockwood/SwiftFormat" = "0.61.1"
+"conda:clang-format" = "22.1.8"
 "github:zimfw/zimfw" = { version = "1.20.0", asset_pattern = "zimfw.zsh", bin = "zimfw" }
 fnox = "1.29.0"
 node = "26.4.0"
@@ -61,6 +67,7 @@ git_signing_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIErof9IMxQpX5/SSsZeJ8cH6
 "~/.config/mise/config.personal.toml" = { source = "~/src/dotfiles/.config/mise/config.personal.toml", mode = "symlink" }
 "~/.config/mise/config.work.toml" = { source = "~/src/dotfiles/.config/mise/config.work.toml", mode = "symlink" }
 "~/.config/mise/mise.lock" = { source = "~/src/dotfiles/mise.lock", mode = "symlink" }
+"~/.config/nvim" = { source = "~/src/dotfiles/editors/nvim", mode = "symlink-each" }
 "~/.config/starship.toml" = { source = "~/src/dotfiles/shells/starship.toml", mode = "symlink" }
 "~/.config/zsh" = { source = "~/src/dotfiles/shells/zsh/config", mode = "symlink-each" }
 
