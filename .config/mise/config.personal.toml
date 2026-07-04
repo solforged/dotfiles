@@ -3,3 +3,9 @@ SSH_AUTH_SOCK = "{{ env.HOME }}/.local/state/1password/agent.sock"
 
 [vars]
 ssh_auth_sock = "~/.local/state/1password/agent.sock"
+
+[tools]
+"aqua:openai/codex" = "0.142.5"
+
+[dotfiles]
+"~/.codex/AGENTS.md" = { source = "~/src/dotfiles/agents/omp/AGENTS.md", mode = "symlink" }
