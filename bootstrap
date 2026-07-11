@@ -1,0 +1,120 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# curl -fsSL https://raw.githubusercontent.com/solforged/dotfiles/main/bootstrap | /bin/bash
+
+readonly repo_url="https://github.com/solforged/dotfiles.git"
+readonly repo_dir="$HOME/src/dotfiles"
+readonly tty="/dev/tty"
+
+die() {
+  printf 'bootstrap: %s\n' "$*" >&2
+  exit 1
+}
+
+say() {
+  printf 'bootstrap: %s\n' "$*" >&2
+}
+
+if ! exec 3<>"$tty"; then
+  die "run this command from an interactive terminal"
+fi
+
+if [ "$(uname -s)" != "Darwin" ]; then
+  die "macOS is required"
+fi
+
+if [ "$(uname -m)" != "arm64" ]; then
+  die "Apple silicon is required"
+fi
+
+have_developer_tools() {
+  local developer_dir
+
+  developer_dir="$(xcode-select --print-path 2>/dev/null)" || return 1
+  [ -d "$developer_dir" ] || return 1
+  xcrun --find git >/dev/null 2>&1 || return 1
+  xcrun --find clang >/dev/null 2>&1
+}
+
+ensure_developer_tools() {
+  have_developer_tools && return
+
+  say "requesting the Xcode Command Line Tools installer"
+  xcode-select --install >&3 2>&3 || true
+  printf '%s\n' \
+    "Complete Apple's installer dialog, including accepting the license." \
+    "Press Return here after the installation finishes." >&3
+  IFS= read -r _answer <&3 || die "could not read from the terminal"
+
+  have_developer_tools ||
+    die "Command Line Tools are unavailable; finish the installation and rerun this command"
+}
+
+ensure_checkout() {
+  local origin
+
+  if [ ! -e "$repo_dir" ]; then
+    say "cloning $repo_url into $repo_dir"
+    mkdir -p "$(dirname "$repo_dir")"
+    GIT_TERMINAL_PROMPT=0 git clone "$repo_url" "$repo_dir"
+    return
+  fi
+
+  git -C "$repo_dir" rev-parse --is-inside-work-tree >/dev/null 2>&1 ||
+    die "$repo_dir exists but is not a Git checkout"
+  origin="$(git -C "$repo_dir" remote get-url origin 2>/dev/null)" ||
+    die "$repo_dir has no origin remote"
+  case "$origin" in
+    "$repo_url"|git@github.com:solforged/dotfiles.git)
+      ;;
+    *)
+      die "$repo_dir is not a solforged/dotfiles checkout"
+      ;;
+  esac
+}
+
+ensure_mise() {
+  local installer
+
+  if command -v mise >/dev/null 2>&1; then
+    mise_bin="$(command -v mise)"
+    return
+  fi
+
+  if [ -x "$HOME/.local/bin/mise" ]; then
+    mise_bin="$HOME/.local/bin/mise"
+    return
+  fi
+
+  say "installing mise"
+  installer="$(mktemp "${TMPDIR:-/tmp}/mise-install.XXXXXX")"
+  trap 'rm -f "$installer"' EXIT
+  curl --proto '=https' --tlsv1.2 --fail --show-error --silent --location \
+    https://mise.run --output "$installer"
+  MISE_INSTALL_HELP=0 MISE_INSTALL_PATH="$HOME/.local/bin/mise" \
+    /bin/sh "$installer" </dev/null
+  rm -f "$installer"
+  trap - EXIT
+  mise_bin="$HOME/.local/bin/mise"
+}
+
+ensure_developer_tools
+ensure_checkout
+ensure_mise
+
+"$mise_bin" version >/dev/null 2>&1 || die "mise is installed but cannot run"
+"$mise_bin" trust --yes "$repo_dir/mise.toml" </dev/null
+
+host="$( (hostname -s 2>/dev/null || hostname 2>/dev/null || true) | tr '[:upper:]' '[:lower:]' )"
+case "$host" in
+  atlas)
+    export MISE_ENV=work
+    ;;
+  *)
+    export MISE_ENV=personal
+    ;;
+esac
+
+cd "$repo_dir"
+exec "$mise_bin" bootstrap "$@" <&3
