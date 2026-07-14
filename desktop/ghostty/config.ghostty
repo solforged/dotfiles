@@ -17,3 +17,4 @@ split-inherit-working-directory = true
 
 # Make selection-copy explicit.
 copy-on-select = clipboard
+auto-update-channel = tip
