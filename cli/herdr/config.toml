@@ -1,0 +1,27 @@
+onboarding = false
+
+[theme]
+name = "tokyo-night"
+auto_switch = true
+dark_name = "tokyo-night"
+light_name = "catppuccin-latte"
+
+[terminal]
+default_shell = "zsh"
+shell_mode = "auto"
+
+[keys]
+reload_config = "prefix+shift+r"
+previous_workspace = "ctrl+alt+["
+next_workspace = "ctrl+alt+]"
+switch_workspace = "prefix+shift+1..9"
+
+[ui.toast]
+delivery = "system"
+
+[ui.sound]
+enabled = true
+
+[experimental]
+kitty_graphics = true
+pane_history = false
