@@ -1,7 +1,9 @@
 Host github.com
   HostName github.com
   User git
+{% if vars.onepassword_agent_sock != "" -%}
   IdentityAgent "{{ vars.onepassword_agent_sock }}"
+{% endif -%}
   IdentitiesOnly no
   AddKeysToAgent yes
   IgnoreUnknown UseKeychain

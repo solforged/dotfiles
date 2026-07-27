@@ -1,6 +1,10 @@
 {% set host = exec(command='(hostname -s 2>/dev/null || hostname 2>/dev/null || true) | tr "[:upper:]" "[:lower:]"') | trim -%}
 # Generated from dotfiles for host: {{ host }}
-{% if host == "atlas" -%}
+{% if host == "hyperion" -%}
+env = ["personal", "desktop", "hyperion"]
+{% elif host == "sigil" -%}
+env = ["personal", "server"]
+{% elif host == "atlas" -%}
 env = ["work"]
 {% else -%}
 env = ["personal"]

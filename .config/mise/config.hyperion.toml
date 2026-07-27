@@ -1,0 +1,8 @@
+[bootstrap.packages]
+"brew:chromaprint" = "latest"
+
+[tools]
+"pipx:beets" = { version = "2.12.0", extras = "chroma,embedart,fetchart,lastgenre,lyrics" }
+
+[dotfiles]
+"~/.config/beets" = { source = "~/src/dotfiles/cli/beets", mode = "symlink-each" }

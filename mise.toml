@@ -11,8 +11,6 @@ CARGO_HOME = "{{ env.HOME }}/.local/share/cargo"
 [bootstrap.packages]
 "brew:git" = "latest"
 "brew:coreutils" = "latest"
-"brew-cask:ghostty" = "latest"
-"brew-cask:zed" = "latest"
 
 [tools]
 "aqua:str4d/rage" = "0.11.2"
@@ -67,18 +65,20 @@ git_signing_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIErof9IMxQpX5/SSsZeJ8cH6
 "~/.config/atuin" = { source = "~/src/dotfiles/cli/atuin", mode = "symlink-each" }
 "~/.config/dprint" = { source = "~/src/dotfiles/cli/dprint", mode = "symlink-each" }
 "~/.config/gh" = { source = "~/src/dotfiles/cli/gh", mode = "symlink-each" }
-"~/.config/ghostty" = { source = "~/src/dotfiles/desktop/ghostty", mode = "symlink-each" }
 "~/.config/herdr" = { source = "~/src/dotfiles/cli/herdr", mode = "symlink-each" }
 "~/.config/mise/config.toml" = { source = "~/src/dotfiles/mise.toml", mode = "symlink" }
 "~/.config/mise/miserc.toml" = { source = "~/src/dotfiles/.config/mise/miserc.toml.tmpl", mode = "template" }
+"~/.config/mise/config.desktop.toml" = { source = "~/src/dotfiles/.config/mise/config.desktop.toml", mode = "symlink" }
+"~/.config/mise/config.hyperion.toml" = { source = "~/src/dotfiles/.config/mise/config.hyperion.toml", mode = "symlink" }
 "~/.config/mise/config.personal.toml" = { source = "~/src/dotfiles/.config/mise/config.personal.toml", mode = "symlink" }
+"~/.config/mise/config.server.toml" = { source = "~/src/dotfiles/.config/mise/config.server.toml", mode = "symlink" }
 "~/.config/mise/config.work.toml" = { source = "~/src/dotfiles/.config/mise/config.work.toml", mode = "symlink" }
 "~/.config/mise/mise.lock" = { source = "~/src/dotfiles/mise.lock", mode = "symlink" }
+"~/.config/mise/mise.hyperion.lock" = { source = "~/src/dotfiles/.config/mise/mise.hyperion.lock", mode = "symlink" }
 "~/.config/mise/mise.personal.lock" = { source = "~/src/dotfiles/.config/mise/mise.personal.lock", mode = "symlink" }
 "~/.config/nvim" = { source = "~/src/dotfiles/editors/nvim", mode = "symlink-each" }
 "~/.config/starship.toml" = { source = "~/src/dotfiles/shells/starship.toml", mode = "symlink" }
 "~/.config/yazi" = { source = "~/src/dotfiles/cli/yazi", mode = "symlink-each" }
-"~/.config/zed" = { source = "~/src/dotfiles/editors/zed", mode = "symlink-each" }
 "~/.config/zsh" = { source = "~/src/dotfiles/shells/zsh/config", mode = "symlink-each" }
 
 [bootstrap.hooks.post-dotfiles]
