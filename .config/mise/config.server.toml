@@ -1,0 +1,4 @@
+[vars]
+git_signing_key = ""
+onepassword_agent_sock = ""
+ssh_auth_sock = ""
