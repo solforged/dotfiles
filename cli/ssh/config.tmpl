@@ -10,6 +10,15 @@ Host github.com
   ServerAliveInterval 60
   ServerAliveCountMax 3
 
+Host sigil
+  HostName sigil
+  User admin
+{% if vars.onepassword_agent_sock != "" -%}
+  IdentityAgent "{{ vars.onepassword_agent_sock }}"
+{% endif -%}
+  IdentitiesOnly no
+  ForwardAgent yes
+
 {% if vars.ssh_auth_sock != "" -%}
 Host *
   IdentityAgent "{{ vars.ssh_auth_sock }}"
