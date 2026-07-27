@@ -1,0 +1,7 @@
+[bootstrap.packages]
+"brew-cask:ghostty" = "latest"
+"brew-cask:zed" = "latest"
+
+[dotfiles]
+"~/.config/ghostty" = { source = "~/src/dotfiles/desktop/ghostty", mode = "symlink-each" }
+"~/.config/zed" = { source = "~/src/dotfiles/editors/zed", mode = "symlink-each" }

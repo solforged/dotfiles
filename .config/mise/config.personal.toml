@@ -1,17 +1,9 @@
-[env]
-SSH_AUTH_SOCK = "{{ env.HOME }}/.local/state/1password/agent.sock"
-
-[bootstrap.packages]
-"brew:chromaprint" = "latest"
-
 [vars]
 git_include_personal_globally = true
 ssh_auth_sock = "~/.local/state/1password/agent.sock"
 
 [tools]
 "aqua:openai/codex" = "0.142.5"
-"pipx:beets" = { version = "2.12.0", extras = "chroma,embedart,fetchart,lastgenre,lyrics" }
 
 [dotfiles]
 "~/.codex/AGENTS.md" = { source = "~/src/dotfiles/agents/omp/AGENTS.md", mode = "symlink" }
-"~/.config/beets" = { source = "~/src/dotfiles/cli/beets", mode = "symlink-each" }

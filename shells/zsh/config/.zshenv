@@ -43,11 +43,18 @@ export LLM_WIKI_DIR="$HOME/wiki"
 if [[ -z "${MISE_ENV:-}" ]]; then
   _mise_host="${HOST%%.*}"
   [[ -z "$_mise_host" ]] && _mise_host="$(hostname -s 2>/dev/null)"
+  _mise_host="${_mise_host:l}"
   case "$_mise_host" in
+    hyperion) export MISE_ENV=personal,desktop,hyperion ;;
+    sigil) export MISE_ENV=personal,server ;;
     atlas) export MISE_ENV=work ;;
     *) export MISE_ENV=personal ;;
   esac
   unset _mise_host
+fi
+
+if [[ ",$MISE_ENV," == *,personal,* && ",$MISE_ENV," != *,server,* ]]; then
+  export SSH_AUTH_SOCK="${SSH_AUTH_SOCK:-$XDG_STATE_HOME/1password/agent.sock}"
 fi
 
 # Source local env overrides (provided by overlay modules)

@@ -108,6 +108,12 @@ ensure_mise
 
 host="$( (hostname -s 2>/dev/null || hostname 2>/dev/null || true) | tr '[:upper:]' '[:lower:]' )"
 case "$host" in
+  hyperion)
+    export MISE_ENV=personal,desktop,hyperion
+    ;;
+  sigil)
+    export MISE_ENV=personal,server
+    ;;
   atlas)
     export MISE_ENV=work
     ;;
