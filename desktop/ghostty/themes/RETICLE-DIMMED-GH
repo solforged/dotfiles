@@ -1,0 +1,27 @@
+# USGC RETICLE DIMMED. RETICLE (PN 5200-020) on a lifted neutral ground for
+# when #000000 is too harsh; accents desaturated to sit on #1c1c1c rather than
+# pure black. Same hue roles as the black variant.
+
+palette = 0=#333333
+palette = 1=#d1524d
+palette = 2=#d9b45f
+palette = 3=#d9b45f
+palette = 4=#8b6ef0
+palette = 5=#dd6ba0
+palette = 6=#5b8fe6
+palette = 7=#d8d8d6
+palette = 8=#565656
+palette = 9=#d1524d
+palette = 10=#c9a552
+palette = 11=#d9b45f
+palette = 12=#d98a58
+palette = 13=#dd6ba0
+palette = 14=#5b8fe6
+palette = 15=#e6e6e4
+
+background = #1c1c1c
+foreground = #6fa886
+cursor-color = #9aa0a8
+cursor-text = #1c1c1c
+selection-background = #2a3560
+selection-foreground = #d9b45f
