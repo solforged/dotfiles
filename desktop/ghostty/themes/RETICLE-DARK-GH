@@ -1,0 +1,28 @@
+# USGC RETICLE, PN 5200-020. Ported from usgraphics/usgc-themes (PR #4).
+# `cursor-color` and `selection-background` come from the authoritative
+# USGC-RETICLE-IT.itermcolors (#868d96, #010c7b); PR #4 mistranscribed both.
+# ANSI green (2/10) is amber by design: RETICLE reserves green for the foreground.
+
+palette = 0=#262626
+palette = 1=#cd0400
+palette = 2=#f5c442
+palette = 3=#f5c442
+palette = 4=#6a3fef
+palette = 5=#ea3d8d
+palette = 6=#3376f6
+palette = 7=#feffff
+palette = 8=#484747
+palette = 9=#cd0400
+palette = 10=#ebbc3f
+palette = 11=#f5c442
+palette = 12=#ed7b3a
+palette = 13=#ea3d8d
+palette = 14=#3376f6
+palette = 15=#fefefe
+
+background = #000000
+foreground = #459a64
+cursor-color = #868d96
+cursor-text = #feffff
+selection-background = #010c7b
+selection-foreground = #f5c442
