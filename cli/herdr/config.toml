@@ -1,10 +1,29 @@
 onboarding = false
 
 [theme]
-name = "tokyo-night"
+name = "terminal"
 auto_switch = true
-dark_name = "tokyo-night"
-light_name = "catppuccin-latte"
+dark_name = "terminal"
+light_name = "terminal"
+
+# Inherit Ghostty's active Reticle ANSI palette.
+[theme.custom]
+accent = "yellow"
+panel_bg = "reset"
+surface0 = "black"
+surface1 = "darkgray"
+surface_dim = "black"
+overlay0 = "gray"
+overlay1 = "white"
+text = "reset"
+subtext0 = "gray"
+mauve = "magenta"
+green = "reset"
+yellow = "yellow"
+red = "red"
+blue = "cyan"
+teal = "cyan"
+peach = "lightblue"
 
 [terminal]
 default_shell = "zsh"
