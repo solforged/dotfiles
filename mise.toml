@@ -12,32 +12,39 @@ CARGO_HOME = "{{ env.HOME }}/.local/share/cargo"
 "brew:git" = "latest"
 "brew:coreutils" = "latest"
 
+# Resolved versions live in the lockfiles. Leaf tools follow latest while
+# runtimes retain compatibility guardrails.
 [tools]
-"aqua:str4d/rage" = "0.11.2"
-"aqua:jdx/hk" = "1.49.0"
-"aqua:gitleaks/gitleaks" = "8.30.1"
-"aqua:atuinsh/atuin" = "18.16.1"
-"aqua:starship/starship" = "1.26.0"
-"aqua:ajeetdsouza/zoxide" = "0.10.0"
-"aqua:junegunn/fzf" = "0.73.1"
-"aqua:dprint/dprint" = "0.55.1"
-"aqua:gh" = "2.96.0"
-"aqua:BurntSushi/ripgrep" = "15.1.0"
-"aqua:sharkdp/fd" = "10.4.2"
-"aqua:neovim/neovim" = "0.12.3"
-"aqua:sxyazi/yazi" = "26.5.6"
-"aqua:ogulcancelik/herdr" = "0.7.4"
-"aqua:realm/SwiftLint" = "0.65.0"
-"spm:nicklockwood/SwiftFormat" = "0.61.1"
-"conda:clang-format" = "22.1.8"
-"github:zimfw/zimfw" = { version = "1.20.0", asset_pattern = "zimfw.zsh", bin = "zimfw" }
-fnox = "1.29.0"
-python = "3.14.6"
-uv = "0.11.28"
-node = "26.4.0"
-bun = "1.3.14"
-go = "1.26.4"
-rust = "1.96.0"
+"aqua:str4d/rage" = "latest"
+"aqua:jdx/hk" = "latest"
+"aqua:gitleaks/gitleaks" = "latest"
+"aqua:atuinsh/atuin" = "latest"
+"aqua:starship/starship" = "latest"
+"aqua:ajeetdsouza/zoxide" = "latest"
+"aqua:junegunn/fzf" = "latest"
+"aqua:dprint/dprint" = "latest"
+"aqua:gh" = "latest"
+"aqua:BurntSushi/ripgrep" = "latest"
+"aqua:sharkdp/fd" = "latest"
+"aqua:neovim/neovim" = "latest"
+"aqua:sxyazi/yazi" = "latest"
+"aqua:ogulcancelik/herdr" = "latest"
+"aqua:realm/SwiftLint" = "latest"
+"spm:nicklockwood/SwiftFormat" = "latest"
+"conda:clang-format" = "latest"
+"github:zimfw/zimfw" = { version = "latest", asset_pattern = "zimfw.zsh", bin = "zimfw" }
+fnox = "latest"
+python = "3.14"
+uv = "latest"
+node = "26"
+bun = "1"
+go = "1.26"
+rust = "1"
+
+[tasks."tools:bump"]
+description = "Re-resolve active global tool lockfiles, then install"
+dir = "{{ env.HOME }}"
+run = ["mise lock --global --bump", "mise install"]
 
 [vars]
 git_user_name = "solforged"
@@ -73,6 +80,8 @@ git_signing_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIErof9IMxQpX5/SSsZeJ8cH6
 "~/.config/mise/config.personal.toml" = { source = "~/src/dotfiles/.config/mise/config.personal.toml", mode = "symlink" }
 "~/.config/mise/config.server.toml" = { source = "~/src/dotfiles/.config/mise/config.server.toml", mode = "symlink" }
 "~/.config/mise/config.work.toml" = { source = "~/src/dotfiles/.config/mise/config.work.toml", mode = "symlink" }
+# Mise keys each lockfile to the config path that loaded it, so deploy them
+# beside the global profiles to keep `latest` locked outside this repository.
 "~/.config/mise/mise.lock" = { source = "~/src/dotfiles/mise.lock", mode = "symlink" }
 "~/.config/mise/mise.hyperion.lock" = { source = "~/src/dotfiles/.config/mise/mise.hyperion.lock", mode = "symlink" }
 "~/.config/mise/mise.personal.lock" = { source = "~/src/dotfiles/.config/mise/mise.personal.lock", mode = "symlink" }
