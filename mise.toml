@@ -85,6 +85,7 @@ git_signing_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIErof9IMxQpX5/SSsZeJ8cH6
 # Mise keys each lockfile to the config path that loaded it, so deploy them
 # beside the global profiles to keep `latest` locked outside this repository.
 "~/.config/mise/mise.lock" = { source = "~/src/dotfiles/mise.lock", mode = "symlink" }
+"~/.config/mise/mise.desktop.lock" = { source = "~/src/dotfiles/.config/mise/mise.desktop.lock", mode = "symlink" }
 "~/.config/mise/mise.hyperion.lock" = { source = "~/src/dotfiles/.config/mise/mise.hyperion.lock", mode = "symlink" }
 "~/.config/mise/mise.personal.lock" = { source = "~/src/dotfiles/.config/mise/mise.personal.lock", mode = "symlink" }
 "~/.config/nvim" = { source = "~/src/dotfiles/editors/nvim", mode = "symlink-each" }
