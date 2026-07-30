@@ -34,6 +34,8 @@ export PAGER="${PAGER:-less}"
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export npm_config_cache="${npm_config_cache:-$XDG_CACHE_HOME/npm}"
+export TASKRC="${TASKRC:-$XDG_CONFIG_HOME/task/taskrc}"
+export TASKDATA="${TASKDATA:-$XDG_DATA_HOME/task}"
 
 if [[ "$(uname -s)" == Darwin && -z "${NODE_OPTIONS:-}" ]]; then
   # macOS 27 aborts on a second process.title assignment.
