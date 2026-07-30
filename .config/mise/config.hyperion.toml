@@ -2,7 +2,7 @@
 "brew:chromaprint" = "latest"
 
 [tools]
-"pipx:beets" = { version = "2.12.0", extras = "chroma,embedart,fetchart,lastgenre,lyrics" }
+"pipx:beets" = { version = "latest", extras = "chroma,embedart,fetchart,lastgenre,lyrics" }
 
 [dotfiles]
 "~/.config/beets" = { source = "~/src/dotfiles/cli/beets", mode = "symlink-each" }

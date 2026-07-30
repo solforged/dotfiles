@@ -3,7 +3,7 @@ git_include_personal_globally = true
 ssh_auth_sock = "~/.local/state/1password/agent.sock"
 
 [tools]
-"aqua:openai/codex" = "0.142.5"
+"aqua:openai/codex" = "latest"
 
 [dotfiles]
 "~/.codex/AGENTS.md" = { source = "~/src/dotfiles/agents/omp/AGENTS.md", mode = "symlink" }
