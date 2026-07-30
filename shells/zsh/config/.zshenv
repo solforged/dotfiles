@@ -33,6 +33,14 @@ export PAGER="${PAGER:-less}"
 
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+export npm_config_cache="${npm_config_cache:-$XDG_CACHE_HOME/npm}"
+
+if [[ "$(uname -s)" == Darwin && -z "${NODE_OPTIONS:-}" ]]; then
+  # macOS 27 aborts on a second process.title assignment.
+  _node_title_shim="$XDG_CONFIG_HOME/node/no-process-title.cjs"
+  [[ -r "$_node_title_shim" ]] && export NODE_OPTIONS="--require $_node_title_shim"
+  unset _node_title_shim
+fi
 
 export HOMEBREW_NO_ENV_HINTS=1
 export MISE_EXPERIMENTAL=1
