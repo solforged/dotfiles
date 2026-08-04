@@ -30,13 +30,26 @@ default_shell = "zsh"
 shell_mode = "auto"
 
 [keys]
+prefix = "ctrl+b"
 reload_config = "prefix+shift+r"
-previous_workspace = "ctrl+alt+["
-next_workspace = "ctrl+alt+]"
-switch_workspace = "prefix+shift+1..9"
+new_workspace = "prefix+n"
+rename_workspace = "prefix+shift+n"
+previous_workspace = "ctrl+shift+tab"
+next_workspace = "ctrl+tab"
+new_tab = "prefix+t"
+previous_tab = "ctrl+alt+shift+tab"
+next_tab = "ctrl+alt+tab"
+switch_tab = "alt+1..9"
+switch_workspace = "ctrl+shift+1..9"
+close_tab = "prefix+shift+w"
+cycle_pane_next = "prefix+u"
+cycle_pane_previous = "prefix+i"
+
+[ui]
+agent_panel_sort = "spaces"
 
 [ui.toast]
-delivery = "system"
+delivery = "terminal"
 
 [ui.sound]
 enabled = true
