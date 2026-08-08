@@ -10,6 +10,12 @@ _zimfw_candidates=(
   "${ZIM_HOME}/zimfw.zsh"
 )
 [[ -n "${HOMEBREW_PREFIX:-}" ]] && _zimfw_candidates=("${HOMEBREW_PREFIX}/opt/zimfw/share/zimfw.zsh" $_zimfw_candidates)
+if (( $+commands[mise] )); then
+  _zimfw_mise_script="$(mise which zimfw 2>/dev/null)"
+  [[ -r "$_zimfw_mise_script" ]] && _zimfw_candidates=(
+    "$_zimfw_mise_script" $_zimfw_candidates
+  )
+fi
 
 _zimfw_script=
 for _zimfw_candidate in $_zimfw_candidates; do
@@ -30,4 +36,4 @@ else
   compinit -d "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump"
 fi
 
-unset _zimfw_candidate _zimfw_candidates _zimfw_script
+unset _zimfw_candidate _zimfw_candidates _zimfw_mise_script _zimfw_script

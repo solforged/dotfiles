@@ -1,6 +1,12 @@
 typeset -U path
 
-path=("$HOME/.local/bin" "$HOME/.local/share/mise/shims" $path)
+base_paths=("$HOME/.local/bin" "$HOME/.local/share/mise/shims")
+if [[ "$OSTYPE" == darwin* ]]; then
+  [[ -d /opt/homebrew/bin ]] && base_paths+=(/opt/homebrew/bin)
+  [[ -d /opt/homebrew/sbin ]] && base_paths+=(/opt/homebrew/sbin)
+fi
+path=($base_paths $path)
+unset base_paths
 
 export PATH
 export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
