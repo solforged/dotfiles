@@ -11,8 +11,13 @@ for keymap in viins vicmd; do
   bindkey -M "$keymap" '^[[D' vi-backward-char
   bindkey -M "$keymap" '^[OD' vi-backward-char
 
-  bindkey -M "$keymap" '^[[A' up-line-or-beginning-search
-  bindkey -M "$keymap" '^[OA' up-line-or-beginning-search
+  if (( $+widgets[atuin-up-search-$keymap] )); then
+    bindkey -M "$keymap" '^[[A' "atuin-up-search-$keymap"
+    bindkey -M "$keymap" '^[OA' "atuin-up-search-$keymap"
+  else
+    bindkey -M "$keymap" '^[[A' up-line-or-beginning-search
+    bindkey -M "$keymap" '^[OA' up-line-or-beginning-search
+  fi
   bindkey -M "$keymap" '^[[B' down-line-or-beginning-search
   bindkey -M "$keymap" '^[OB' down-line-or-beginning-search
 
