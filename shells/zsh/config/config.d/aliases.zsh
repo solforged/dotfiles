@@ -10,6 +10,7 @@ ll() { command gls "${_gls_defaults[@]}" -l --human-readable --time-style=long-i
 le() { ll --almost-all "$@"; }
 
 alias e='nvim'
+alias gg='lazygit'
 
 alias b='brew'
 alias bi='brew install'
