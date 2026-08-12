@@ -1,0 +1,62 @@
+modelRoles:
+  default: openai-codex/gpt-5.6-sol
+  smol: openai-codex/gpt-5.6-luna:medium
+  plan: openai-codex/gpt-5.6-sol:xhigh
+  commit: openai-codex/gpt-5.6-luna:low
+  task: openai-codex/gpt-5.6-luna:medium
+  advisor: openai-codex/gpt-5.6-luna:xhigh
+symbolPreset: nerd
+theme:
+  dark: reticle-dark
+  light: reticle-light
+setupVersion: 1
+hideThinkingBlock: true
+memory:
+  backend: mnemopi
+autolearn:
+  enabled: true
+  autoContinue: true
+mnemopi:
+  polyphonicRecall: true
+  enhancedRecall: true
+  proactiveLinking: true
+  noEmbeddings: false
+  scoping: per-project-tagged
+astGrep:
+  enabled: true
+speechgen:
+  enabled: true
+generate_image:
+  enabled: true
+computer:
+  enabled: true
+checkpoint:
+  enabled: true
+vault:
+  enabled: true
+github:
+  enabled: true
+security:
+  enabled: true
+dev:
+  autoqa: false
+task:
+  isolation:
+    mode: auto
+  enableEffort: true
+commands:
+  enableClaudeUser: false
+  enableClaudeProject: false
+  enableOpencodeUser: false
+  enableOpencodeProject: false
+providers:
+  memoryModel: llama3.2:3b
+display:
+  shimmer: kitt
+bashInterceptor:
+  enabled: true
+startup:
+  checkUpdate: false
+terminal:
+  showProgress: true
+autocompleteMaxVisible: 15
