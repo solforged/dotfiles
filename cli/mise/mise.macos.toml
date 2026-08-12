@@ -2,7 +2,6 @@
 
 [bootstrap.packages]
 "brew:git" = "latest"
-"brew:coreutils" = "latest"
 
 [tools]
 "aqua:ogulcancelik/herdr" = "latest"
