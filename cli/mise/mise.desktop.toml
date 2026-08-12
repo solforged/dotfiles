@@ -6,3 +6,53 @@
 [dotfiles]
 "~/.config/task" = { source = "~/src/dotfiles/cli/task", mode = "symlink-each" }
 "~/.config/zed" = { source = "~/src/dotfiles/editors/zed", mode = "symlink-each" }
+
+[tasks."fonts:install-berkeley"]
+description = "Decrypt, install, and select the bundled Berkeley Mono Variable font"
+dir = "{{ env.HOME }}/src/dotfiles"
+run = '''
+set -eu
+
+encrypted="assets/fonts/berkeley-mono-variable.otf.gz.age"
+identity="$HOME/.config/fnox/age-identity.txt"
+expected_sha256="cbb8c0c9d0dab3ace7c641af08e549d6e77e530e0cd3f481816fb5dabd8d8b55"
+
+case "$(uname -s)" in
+  Darwin) font_dir="$HOME/Library/Fonts" ;;
+  Linux) font_dir="${XDG_DATA_HOME:-$HOME/.local/share}/fonts" ;;
+  *) echo "Unsupported operating system" >&2; exit 1 ;;
+esac
+
+font="$font_dir/Berkeley Mono Variable.otf"
+mkdir -p "$font_dir"
+tmp="$(mktemp "$font_dir/.berkeley-mono.XXXXXX")"
+trap 'rm -f "$tmp"' EXIT HUP INT TERM
+
+rage --decrypt --identity "$identity" "$encrypted" | gzip -dc >"$tmp"
+if command -v sha256sum >/dev/null 2>&1; then
+  actual_sha256="$(sha256sum "$tmp" | awk '{print $1}')"
+else
+  actual_sha256="$(shasum -a 256 "$tmp" | awk '{print $1}')"
+fi
+
+if [ "$actual_sha256" != "$expected_sha256" ]; then
+  echo "Berkeley Mono checksum mismatch" >&2
+  exit 1
+fi
+
+if [ -f "$font" ] && cmp -s "$tmp" "$font"; then
+  echo "Berkeley Mono Variable is already installed"
+else
+  chmod 0644 "$tmp"
+  mv "$tmp" "$font"
+  echo "Installed $font"
+fi
+trap - EXIT HUP INT TERM
+
+if command -v fc-cache >/dev/null 2>&1; then
+  fc-cache -f "$font_dir"
+fi
+if command -v omarchy >/dev/null 2>&1; then
+  omarchy font set "Berkeley Mono Variable"
+fi
+'''
