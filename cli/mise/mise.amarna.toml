@@ -27,6 +27,8 @@ curl --proto '=https' --tlsv1.2 --fail --show-error --silent --location \
 [dotfiles]
 # Preserve Omarchy's interaction model while layering portable preferences.
 "~/.config/herdr" = { source = "~/src/dotfiles/desktop/omarchy/herdr", mode = "symlink-each" }
+"~/.config/omarchy/themes/reticle-dark" = { source = "~/src/dotfiles/desktop/omarchy/themes/reticle-dark", mode = "symlink-each" }
+"~/.config/omarchy/themes/reticle-light" = { source = "~/src/dotfiles/desktop/omarchy/themes/reticle-light", mode = "symlink-each" }
 "~/.config/starship.toml" = { source = "~/src/dotfiles/desktop/omarchy/starship.toml", mode = "symlink" }
 
 [bootstrap.user]

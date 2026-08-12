@@ -1,0 +1,32 @@
+# USGC RETICLE dark, PN 5200-020.
+mode = "dark"
+
+accent = "#f5c442"
+selection = "#010c7b"
+muted = "#484747"
+
+background = "#000000"
+dark_background = "#000000"
+darker_background = "#000000"
+lighter_background = "#262626"
+
+foreground = "#459a64"
+dark_foreground = "#6d6c6a"
+light_foreground = "#999999"
+bright_foreground = "#fefefe"
+
+red = "#cd0400"
+yellow = "#f5c442"
+orange = "#ed7b3a"
+green = "#f5c442"
+cyan = "#3376f6"
+blue = "#6a3fef"
+magenta = "#ea3d8d"
+brown = "#ed7b3a"
+
+bright_red = "#cd0400"
+bright_yellow = "#f5c442"
+bright_green = "#ebbc3f"
+bright_cyan = "#3376f6"
+bright_blue = "#ed7b3a"
+bright_magenta = "#ea3d8d"

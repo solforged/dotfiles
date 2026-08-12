@@ -1,10 +1,10 @@
--- Follow the macOS appearance: `usgc-reticle` picks its variant from
--- 'background', so only re-source it when that colorscheme is the active one.
-local function sync_macos_appearance()
-  if vim.fn.has("mac") ~= 1 then
-    return
-  end
+-- Omarchy owns Neovim's colorscheme on Linux through plugins/theme.lua.
+-- On macOS, follow the system appearance directly instead.
+if vim.fn.has("mac") ~= 1 then
+  return {}
+end
 
+local function sync_macos_appearance()
   local result = vim.system({ "defaults", "read", "-g", "AppleInterfaceStyle" }, { text = true }):wait()
   local background = result.code == 0 and vim.trim(result.stdout or "") == "Dark" and "dark" or "light"
 

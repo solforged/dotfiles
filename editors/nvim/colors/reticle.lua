@@ -1,1 +1,1 @@
-require("colors.reticle").load(nil, "reticle")
+require("reticle").load(nil, "reticle")
