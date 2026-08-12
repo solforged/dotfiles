@@ -1,0 +1,8 @@
+# Applications and tools shared by desktop hosts.
+
+[tools]
+"cargo:himalaya" = "latest"
+
+[dotfiles]
+"~/.config/task" = { source = "~/src/dotfiles/cli/task", mode = "symlink-each" }
+"~/.config/zed" = { source = "~/src/dotfiles/editors/zed", mode = "symlink-each" }

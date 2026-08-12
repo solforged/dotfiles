@@ -5,6 +5,7 @@ set -euo pipefail
 
 readonly repo_url="https://github.com/solforged/dotfiles.git"
 readonly repo_dir="$HOME/src/dotfiles"
+readonly mise_dir="$repo_dir/cli/mise"
 readonly tty="/dev/tty"
 
 die() {
@@ -20,13 +21,21 @@ if ! exec 3<>"$tty"; then
   die "run this command from an interactive terminal"
 fi
 
-if [ "$(uname -s)" != "Darwin" ]; then
-  die "macOS is required"
-fi
-
-if [ "$(uname -m)" != "arm64" ]; then
-  die "Apple silicon is required"
-fi
+os="$(uname -s)"
+arch="$(uname -m)"
+case "$os" in
+  Darwin)
+    [ "$arch" = "arm64" ] || die "Apple silicon is required"
+    ;;
+  Linux)
+    command -v omarchy >/dev/null 2>&1 || die "Omarchy is required on Linux"
+    command -v git >/dev/null 2>&1 || die "git is required"
+    command -v curl >/dev/null 2>&1 || die "curl is required"
+    ;;
+  *)
+    die "only macOS and Omarchy Linux are supported"
+    ;;
+esac
 
 have_developer_tools() {
   local developer_dir
@@ -99,28 +108,40 @@ ensure_mise() {
   mise_bin="$HOME/.local/bin/mise"
 }
 
-ensure_developer_tools
+if [ "$os" = "Darwin" ]; then
+  ensure_developer_tools
+fi
 ensure_checkout
 ensure_mise
+export MISE_AUTO_ENV=1
 
 "$mise_bin" version >/dev/null 2>&1 || die "mise is installed but cannot run"
-"$mise_bin" trust --yes "$repo_dir/mise.toml" </dev/null
+"$mise_bin" trust --all --yes --cd "$mise_dir" </dev/null
 
 host="$( (hostname -s 2>/dev/null || hostname 2>/dev/null || true) | tr '[:upper:]' '[:lower:]' )"
 case "$host" in
   hyperion)
-    export MISE_ENV=personal,desktop,hyperion
+    host_env=personal,desktop,hyperion
     ;;
   sigil)
-    export MISE_ENV=personal,server
+    host_env=personal,sigil
     ;;
   atlas)
-    export MISE_ENV=work
+    host_env=atlas
+    ;;
+  amarna)
+    host_env=personal,desktop,amarna
     ;;
   *)
-    export MISE_ENV=personal
+    host_env=personal
     ;;
 esac
 
-cd "$repo_dir"
+if [ "$os" = "Darwin" ]; then
+  export MISE_ENV="base,macos,$host_env"
+else
+  export MISE_ENV="base,$host_env"
+fi
+
+cd "$mise_dir"
 exec "$mise_bin" bootstrap "$@" <&3
