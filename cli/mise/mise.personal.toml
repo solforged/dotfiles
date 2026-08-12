@@ -4,6 +4,10 @@ ssh_auth_sock = "~/.local/state/1password/agent.sock"
 
 [tools]
 "aqua:openai/codex" = "latest"
+"github:can1357/oh-my-pi" = "latest"
 
 [dotfiles]
 "~/.codex/AGENTS.md" = { source = "~/src/dotfiles/agents/omp/AGENTS.md", mode = "symlink" }
+"~/.omp/config.yml" = { source = "~/src/dotfiles/agents/omp/config.yml", mode = "symlink" }
+"~/.omp/agent/AGENTS.md" = { source = "~/src/dotfiles/agents/omp/AGENTS.md", mode = "symlink" }
+"~/.omp/agent/themes" = { source = "~/src/dotfiles/agents/omp/themes", mode = "symlink-each" }
