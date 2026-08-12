@@ -1,12 +1,14 @@
 alias ..='cd ..'
 alias ...='cd ../..'
 alias grep='grep --color=auto'
-_gls_defaults=(--color=auto --group-directories-first --classify=auto)
+_eza_defaults=(--color=auto --group-directories-first --classify=auto)
+_eza_long_defaults=(-l --time-style=long-iso)
+[[ $OSTYPE == darwin* ]] && _eza_long_defaults+=(--extended)
 
-ls() { command gls "${_gls_defaults[@]}" "$@"; }
+ls() { command eza "${_eza_defaults[@]}" "$@"; }
 l() { ll --all "$@"; }
-la() { command gls "${_gls_defaults[@]}" --almost-all "$@"; }
-ll() { command gls "${_gls_defaults[@]}" -l --human-readable --time-style=long-iso "$@"; }
+la() { command eza "${_eza_defaults[@]}" --almost-all "$@"; }
+ll() { command eza "${_eza_defaults[@]}" "${_eza_long_defaults[@]}" "$@"; }
 le() { ll --almost-all "$@"; }
 
 alias e='nvim'
