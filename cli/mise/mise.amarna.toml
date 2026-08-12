@@ -24,6 +24,11 @@ curl --proto '=https' --tlsv1.2 --fail --show-error --silent --location \
 "pacman:task" = "latest"
 "pacman:zsh" = "latest"
 
+[dotfiles]
+# Preserve Omarchy's interaction model while layering portable preferences.
+"~/.config/herdr" = { source = "~/src/dotfiles/desktop/omarchy/herdr", mode = "symlink-each" }
+"~/.config/starship.toml" = { source = "~/src/dotfiles/desktop/omarchy/starship.toml", mode = "symlink" }
+
 [bootstrap.user]
 login_shell = "/usr/bin/zsh"
 
