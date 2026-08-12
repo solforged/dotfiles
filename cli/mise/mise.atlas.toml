@@ -1,6 +1,9 @@
 [env]
 FNOX_PROFILE = "work"
 
+[tools]
+oh-my-pi = { version = "latest", rename_exe = "omp" }
+
 [vars]
 fnox_profile = "work"
 gitleaks_profile_only = ""

@@ -8,8 +8,10 @@
 [gpg]
   format = ssh
 
+{% if vars.git_signing_program != "" -%}
 [gpg "ssh"]
-  program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+  program = {{ vars.git_signing_program }}
+{% endif -%}
 {% if vars.git_signing_key != "" -%}
   allowedSignersFile = ~/.config/git/allowed_signers
 {% endif -%}

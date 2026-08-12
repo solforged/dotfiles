@@ -1,0 +1,53 @@
+# Amarna runs Omarchy, which owns the desktop and base system. Declare only
+# dependencies required by the portable dotfiles layered over its defaults.
+
+[tasks."moshi:hook"]
+description = "Install, pair, and configure the Moshi agent hook"
+dir = "{{ env.HOME }}"
+run = '''
+set -eu
+
+: "${MOSHI_PAIRING_TOKEN:?set MOSHI_PAIRING_TOKEN to the token from Moshi Settings → Hooks}"
+
+installer="$(mktemp "${TMPDIR:-/tmp}/moshi-hook-install.XXXXXX")"
+trap 'rm -f "$installer"' EXIT HUP INT TERM
+
+curl --proto '=https' --tlsv1.2 --fail --show-error --silent --location \
+  https://getmoshi.app/install.sh --output "$installer"
+/bin/sh "$installer"
+
+"$HOME/.local/bin/moshi-hook" pair --token "$MOSHI_PAIRING_TOKEN"
+"$HOME/.local/bin/moshi-hook" install
+'''
+
+[bootstrap.packages]
+"pacman:task" = "latest"
+"pacman:zsh" = "latest"
+
+[bootstrap.user]
+login_shell = "/usr/bin/zsh"
+
+[bootstrap.hooks.post-dotfiles]
+run = '''
+state_home="${XDG_STATE_HOME:-$HOME/.local/state}"
+agent_dir="$state_home/1password"
+
+if [ -e "$HOME/.1password" ] && [ ! -L "$HOME/.1password" ]; then
+  if [ -e "$agent_dir" ]; then
+    printf '%s\n' "1Password agent migration: both $HOME/.1password and $agent_dir exist" >&2
+    exit 1
+  fi
+  mkdir -p "$state_home"
+  mv "$HOME/.1password" "$agent_dir"
+fi
+
+mkdir -p "$agent_dir"
+if [ ! -e "$HOME/.1password" ] && [ ! -L "$HOME/.1password" ]; then
+  ln -s "$agent_dir" "$HOME/.1password"
+fi
+'''
+
+[vars]
+git_signing_program = "/opt/1Password/op-ssh-sign"
+onepassword_agent_sock = "~/.local/state/1password/agent.sock"
+ssh_auth_sock = "~/.local/state/1password/agent.sock"
