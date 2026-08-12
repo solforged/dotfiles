@@ -62,6 +62,23 @@ if [ -z "$policy" ]; then
   exit 1
 fi
 
+# The host policy exists to keep work identity and internal vocabulary out of
+# repositories that can publish them. A repository with no remote on a public
+# forge cannot, and there the same words are ordinary working vocabulary, so
+# that one rule is relaxed. Every other rule still applies, and a repository
+# that gains a public remote is strict again from its next commit.
+if ! git remote -v 2>/dev/null |
+  grep -qiE '(github|gitlab)\.com|bitbucket\.org|codeberg\.org|git\.sr\.ht'; then
+  relaxation="$("$fnox" "${fnox_args[@]}" get GITLEAKS_INTERNAL_ALLOWLIST_TOML --no-daemon 2>/dev/null || true)"
+  if [ -z "$relaxation" ]; then
+    echo "$hook: could not load GITLEAKS_INTERNAL_ALLOWLIST_TOML for profile $fnox_profile," >&2
+    echo "$hook: refusing to commit. Check the fnox profile." >&2
+    exit 1
+  fi
+  policy="$policy
+$relaxation"
+fi
+
 export GITLEAKS_CONFIG_TOML="$policy"
 scan
 
