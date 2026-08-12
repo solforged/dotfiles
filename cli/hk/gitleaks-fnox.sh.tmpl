@@ -50,39 +50,67 @@ scan() {
 }
 
 toplevel="$(git rev-parse --show-toplevel 2>/dev/null || true)"
-# The host policy is mandatory; a repository policy runs as an additive second scan.
+
 fnox_args=(--config "$fnox_config" --profile "$fnox_profile")
 if [ -n "$profile_only" ]; then
   fnox_args+=(--no-defaults)
 fi
-policy="$("$fnox" "${fnox_args[@]}" get GITLEAKS_CONFIG_TOML --no-daemon 2>/dev/null || true)"
-if [ -z "$policy" ]; then
-  echo "$hook: could not load GITLEAKS_CONFIG_TOML for profile $fnox_profile," >&2
-  echo "$hook: refusing to commit. Check the fnox profile." >&2
-  exit 1
+
+# Detect work repositories by origin URL. The pattern that names the internal
+# forges lives in the fnox profile, never in this file, because the file is
+# published. No pattern means no repository is a work repository. Work repos
+# skip the identity denylist (internal vocabulary is legitimate there) and use
+# only gitleaks built-in detection, plus any repo-local .gitleaks.toml.
+is_work_repo=0
+work_remote_regex="$("$fnox" "${fnox_args[@]}" get GITLEAKS_WORK_REMOTE_REGEX --no-daemon 2>/dev/null || true)"
+if [ -n "$toplevel" ] && [ -n "$work_remote_regex" ]; then
+  remote_url="$(git -C "$toplevel" remote get-url origin 2>/dev/null || true)"
+  if [ -n "$remote_url" ] &&
+    printf '%s\n' "$remote_url" | grep -qiE "$work_remote_regex"; then
+    is_work_repo=1
+  fi
 fi
 
-# The host policy exists to keep work identity and internal vocabulary out of
-# repositories that can publish them. A repository with no remote on a public
-# forge cannot, and there the same words are ordinary working vocabulary, so
-# that one rule is relaxed. Every other rule still applies, and a repository
-# that gains a public remote is strict again from its next commit.
-if ! git remote -v 2>/dev/null |
-  grep -qiE '(github|gitlab)\.com|bitbucket\.org|codeberg\.org|git\.sr\.ht'; then
-  relaxation="$("$fnox" "${fnox_args[@]}" get GITLEAKS_INTERNAL_ALLOWLIST_TOML --no-daemon 2>/dev/null || true)"
-  if [ -z "$relaxation" ]; then
-    echo "$hook: could not load GITLEAKS_INTERNAL_ALLOWLIST_TOML for profile $fnox_profile," >&2
+# Personal repos: the identity policy is mandatory. Work repos skip it.
+if [ "$is_work_repo" -eq 0 ]; then
+  policy="$("$fnox" "${fnox_args[@]}" get GITLEAKS_CONFIG_TOML --no-daemon 2>/dev/null || true)"
+  if [ -z "$policy" ]; then
+    echo "$hook: could not load GITLEAKS_CONFIG_TOML for profile $fnox_profile," >&2
     echo "$hook: refusing to commit. Check the fnox profile." >&2
     exit 1
   fi
-  policy="$policy
+
+  # The host policy exists to keep work identity and internal vocabulary out of
+  # repositories that can publish them. A repository with no remote on a public
+  # forge cannot, and there the same words are ordinary working vocabulary, so
+  # that one rule is relaxed. Every other rule still applies, and a repository
+  # that gains a public remote is strict again from its next commit.
+  if ! git remote -v 2>/dev/null |
+    grep -qiE '(github|gitlab)\.com|bitbucket\.org|codeberg\.org|git\.sr\.ht'; then
+    relaxation="$("$fnox" "${fnox_args[@]}" get GITLEAKS_INTERNAL_ALLOWLIST_TOML --no-daemon 2>/dev/null || true)"
+    if [ -z "$relaxation" ]; then
+      echo "$hook: could not load GITLEAKS_INTERNAL_ALLOWLIST_TOML for profile $fnox_profile," >&2
+      echo "$hook: refusing to commit. Check the fnox profile." >&2
+      exit 1
+    fi
+    policy="$policy
 $relaxation"
+  fi
+
+  export GITLEAKS_CONFIG_TOML="$policy"
+  scan
+  unset GITLEAKS_CONFIG_TOML
 fi
 
-export GITLEAKS_CONFIG_TOML="$policy"
-scan
+# Ensure the identity policy env var does not leak into the second scan.
+# fnox activate (in .zshrc) exports GITLEAKS_CONFIG_TOML into the shell, so
+# work repos inherit it even though the personal-repo branch above was skipped.
+unset GITLEAKS_CONFIG_TOML
 
+# Repo-local policy runs as an additive second scan in every repo.
+# Work repos without a repo-local config still get a bare defaults scan.
 if [ -n "$toplevel" ] && [ -f "$toplevel/.gitleaks.toml" ]; then
-  unset GITLEAKS_CONFIG_TOML
   scan -c "$toplevel/.gitleaks.toml"
+elif [ "$is_work_repo" -eq 1 ]; then
+  scan
 fi
