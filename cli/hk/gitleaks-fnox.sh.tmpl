@@ -98,6 +98,22 @@ $relaxation"
   fi
 
   export GITLEAKS_CONFIG_TOML="$policy"
+
+  # The staged diff cannot reveal who is committing: author and committer are
+  # not part of it, so no content rule can ever match them. That blind spot is
+  # what lets a work identity reach a repository whose remote can publish it,
+  # because git resolves identity by includeIf on the remote URL while this
+  # policy is chosen by the same URL a step later. Resolve the full chain and
+  # scan it as ordinary text. A repository with no publishing remote already
+  # merged the relaxation above, so scratch work is unaffected.
+  if [ -z "$msg_file" ]; then
+    if ! { git var GIT_AUTHOR_IDENT; git var GIT_COMMITTER_IDENT; } |
+      "$gitleaks" stdin --redact --no-banner >/dev/null 2>&1; then
+      echo "$hook: commit identity violates the identifier policy." >&2
+      echo "$hook: locate it with: git config --show-origin --get user.email" >&2
+      exit 1
+    fi
+  fi
   scan
   unset GITLEAKS_CONFIG_TOML
 fi
