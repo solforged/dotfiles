@@ -35,6 +35,10 @@ url = "https://github.com/openai/codex/releases/download/rust-v0.142.5/codex-pac
 url_api = "https://api.github.com/repos/openai/codex/releases/assets/462701026"
 
 [tools."aqua:openai/codex"."platforms.windows-x64"]
-checksum = "sha256:93441b46d405037cf8a437a464076198e1da854b52b574575fec719d466a0cb2"
-url = "https://github.com/openai/codex/releases/download/rust-v0.142.5/codex-package-x86_64-pc-windows-msvc.tar.gz"
-url_api = "https://api.github.com/repos/openai/codex/releases/assets/462701012"
+checksum = "sha256:c156c8feb8cb20197bf74d2c6daffed1fec0a8c21a03bc2ca90d7ff81927b0c5"
+url = "https://github.com/openai/codex/releases/download/rust-v0.147.0/codex-package-x86_64-pc-windows-msvc.tar.gz"
+url_api = "https://api.github.com/repos/openai/codex/releases/assets/504450421"
+
+[[tools."github:can1357/oh-my-pi"]]
+version = "17.2.14"
+backend = "github:can1357/oh-my-pi"
