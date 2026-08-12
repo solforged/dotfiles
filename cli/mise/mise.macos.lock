@@ -99,5 +99,10 @@ url = "https://github.com/realm/SwiftLint/releases/download/0.65.0/portable_swif
 url_api = "https://api.github.com/repos/realm/SwiftLint/releases/assets/459315152"
 
 [[tools."spm:nicklockwood/SwiftFormat"]]
-version = "0.61.1"
+version = "0.62.1"
 backend = "spm:nicklockwood/SwiftFormat"
+
+[tools."spm:nicklockwood/SwiftFormat"."platforms.macos-arm64"]
+checksum = "sha256:6595f3121e657438a24dabd9f8fecb648d3f362e5106df0968f734f5863fe404"
+url = "https://github.com/nicklockwood/SwiftFormat/releases/download/0.62.1/swiftformat.artifactbundle.zip"
+url_api = "https://api.github.com/repos/nicklockwood/SwiftFormat/releases/assets/469280381"
