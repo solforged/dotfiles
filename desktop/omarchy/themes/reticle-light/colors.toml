@@ -1,0 +1,32 @@
+# USGC RETICLE light, PN 5200-010.
+mode = "light"
+
+accent = "#8a6a00"
+selection = "#d6dcf7"
+muted = "#b8b6b0"
+
+background = "#ffffff"
+dark_background = "#ecebe5"
+darker_background = "#dedcd5"
+lighter_background = "#f5f4f0"
+
+foreground = "#0b6b39"
+dark_foreground = "#6f6d68"
+light_foreground = "#3f3f3d"
+bright_foreground = "#000000"
+
+red = "#b30300"
+yellow = "#8a6a00"
+orange = "#b4531a"
+green = "#8a6a00"
+cyan = "#1f4fd0"
+blue = "#4b23c4"
+magenta = "#b81f6a"
+brown = "#b4531a"
+
+bright_red = "#b30300"
+bright_yellow = "#8a6a00"
+bright_green = "#7a5d00"
+bright_cyan = "#1f4fd0"
+bright_blue = "#b4531a"
+bright_magenta = "#b81f6a"
