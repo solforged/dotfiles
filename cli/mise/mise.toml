@@ -1,0 +1,94 @@
+[settings]
+dotfiles.root = "~/src/dotfiles"
+dotfiles.default_mode = "symlink"
+experimental = true
+lockfile = true
+
+[env]
+RUSTUP_HOME = "{{ env.HOME }}/.local/share/rustup"
+CARGO_HOME = "{{ env.HOME }}/.local/share/cargo"
+
+# Resolved versions live in the lockfiles. Leaf tools follow latest while
+# runtimes retain compatibility guardrails.
+[tools]
+"aqua:str4d/rage" = "latest"
+"aqua:jdx/hk" = "latest"
+"aqua:gitleaks/gitleaks" = "latest"
+"aqua:atuinsh/atuin" = "latest"
+"aqua:starship/starship" = "latest"
+"aqua:ajeetdsouza/zoxide" = "latest"
+"aqua:charmbracelet/glow" = "latest"
+"aqua:junegunn/fzf" = "latest"
+"aqua:dprint/dprint" = "latest"
+"aqua:gh" = "latest"
+"aqua:jesseduffield/lazygit" = "latest"
+"aqua:BurntSushi/ripgrep" = "latest"
+"aqua:sharkdp/fd" = "latest"
+"aqua:neovim/neovim" = "latest"
+"aqua:sxyazi/yazi" = "latest"
+"conda:clang-format" = "latest"
+"github:zimfw/zimfw" = { version = "latest", asset_pattern = "zimfw.zsh", bin = "zimfw" }
+fnox = "latest"
+python = "3.14"
+uv = "latest"
+node = "26"
+bun = "1"
+go = "1.26"
+rust = "1"
+
+[tasks."tools:bump"]
+description = "Re-resolve active global tool lockfiles, then install"
+dir = "{{ env.HOME }}"
+run = ["mise lock --global --bump", "mise install"]
+
+[vars]
+git_user_name = "solforged"
+git_user_email = "sol@sowilo.io"
+git_include_if_personal = true
+git_include_personal_globally = false
+fnox_profile = "default"
+gitleaks_profile_only = ""
+ssh_auth_sock = ""
+onepassword_agent_sock = "~/.local/state/1password/agent.sock"
+git_signing_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIErof9IMxQpX5/SSsZeJ8cH6h6WYOiiIBURVUZFkd4r GitHub"
+git_signing_program = ""
+
+[dotfiles]
+"~/.zshenv" = { source = "~/src/dotfiles/shells/zsh/.zshenv", mode = "symlink" }
+"~/.hushlogin" = { source = "~/src/dotfiles/shells/hushlogin", mode = "symlink" }
+"~/.config/git/config" = { source = "~/src/dotfiles/cli/git/config.tmpl", mode = "template" }
+"~/.config/git/config.personal" = { source = "~/src/dotfiles/cli/git/config.personal.tmpl", mode = "template" }
+"~/.config/git/allowed_signers" = { source = "~/src/dotfiles/cli/git/allowed_signers.tmpl", mode = "template" }
+"~/.config/git/ignore" = { source = "~/src/dotfiles/cli/git/ignore", mode = "symlink" }
+"~/.ssh/config" = { source = "~/src/dotfiles/cli/ssh/config.tmpl", mode = "template" }
+"~/.config/hk/commit-message-policy.sh" = { source = "~/src/dotfiles/cli/hk/commit-message-policy.sh.tmpl", mode = "template" }
+"~/.config/hk/gitleaks-fnox.sh" = { source = "~/src/dotfiles/cli/hk/gitleaks-fnox.sh.tmpl", mode = "template" }
+"~/.config/hk/fnox.toml" = { source = "~/src/dotfiles/cli/fnox/config.toml", mode = "template" }
+"~/.config/fnox/config.toml" = { source = "~/src/dotfiles/cli/fnox/config.toml", mode = "template" }
+"~/.config/atuin" = { source = "~/src/dotfiles/cli/atuin", mode = "symlink-each" }
+"~/.config/dprint" = { source = "~/src/dotfiles/cli/dprint", mode = "symlink-each" }
+"~/.config/gh" = { source = "~/src/dotfiles/cli/gh", mode = "symlink-each" }
+"~/.config/herdr" = { source = "~/src/dotfiles/cli/herdr", mode = "symlink-each" }
+"~/.config/node" = { source = "~/src/dotfiles/cli/node", mode = "symlink-each" }
+# Keep config.toml mutable for host-managed tools such as Omarchy's agent
+# wrappers; load the portable base as a separate mise environment instead.
+"~/.config/mise/config.base.toml" = { source = "~/src/dotfiles/cli/mise/mise.toml", mode = "symlink" }
+"~/.config/mise/miserc.toml" = { source = "~/src/dotfiles/cli/mise/miserc.toml.tmpl", mode = "template" }
+"~/.config/mise/config.amarna.toml" = { source = "~/src/dotfiles/cli/mise/mise.amarna.toml", mode = "symlink" }
+"~/.config/mise/config.atlas.toml" = { source = "~/src/dotfiles/cli/mise/mise.atlas.toml", mode = "symlink" }
+"~/.config/mise/config.desktop.toml" = { source = "~/src/dotfiles/cli/mise/mise.desktop.toml", mode = "symlink" }
+"~/.config/mise/config.hyperion.toml" = { source = "~/src/dotfiles/cli/mise/mise.hyperion.toml", mode = "symlink" }
+"~/.config/mise/config.macos.toml" = { source = "~/src/dotfiles/cli/mise/mise.macos.toml", mode = "symlink" }
+"~/.config/mise/config.personal.toml" = { source = "~/src/dotfiles/cli/mise/mise.personal.toml", mode = "symlink" }
+"~/.config/mise/config.sigil.toml" = { source = "~/src/dotfiles/cli/mise/mise.sigil.toml", mode = "symlink" }
+# Mise keys each lockfile to the config path that loaded it, so deploy them
+# beside the global profiles to keep `latest` locked outside this repository.
+"~/.config/mise/mise.base.lock" = { source = "~/src/dotfiles/cli/mise/mise.lock", mode = "symlink" }
+"~/.config/mise/mise.desktop.lock" = { source = "~/src/dotfiles/cli/mise/mise.desktop.lock", mode = "symlink" }
+"~/.config/mise/mise.hyperion.lock" = { source = "~/src/dotfiles/cli/mise/mise.hyperion.lock", mode = "symlink" }
+"~/.config/mise/mise.macos.lock" = { source = "~/src/dotfiles/cli/mise/mise.macos.lock", mode = "symlink" }
+"~/.config/mise/mise.personal.lock" = { source = "~/src/dotfiles/cli/mise/mise.personal.lock", mode = "symlink" }
+"~/.config/nvim" = { source = "~/src/dotfiles/editors/nvim", mode = "symlink-each" }
+"~/.config/starship.toml" = { source = "~/src/dotfiles/shells/starship.toml", mode = "symlink" }
+"~/.config/yazi" = { source = "~/src/dotfiles/cli/yazi", mode = "symlink-each" }
+"~/.config/zsh" = { source = "~/src/dotfiles/shells/zsh/config", mode = "symlink-each" }

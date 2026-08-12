@@ -1,5 +1,12 @@
 typeset -U path
 
+# Keep Omarchy's exported paths and desktop CLI environment when zsh replaces
+# its default bash login shell. User preferences below still take precedence.
+if [[ -r /usr/share/omarchy/default/bash/env-bootstrap ]]; then
+  source /usr/share/omarchy/default/bash/env-bootstrap
+  [[ -r /usr/share/omarchy/default/bash/envs ]] && source /usr/share/omarchy/default/bash/envs
+fi
+
 base_paths=("$HOME/.local/bin" "$HOME/.local/share/mise/shims")
 if [[ "$OSTYPE" == darwin* ]]; then
   [[ -d /opt/homebrew/bin ]] && base_paths+=(/opt/homebrew/bin)
@@ -56,21 +63,8 @@ export MISE_EXPERIMENTAL=1
 export DOTFILES_DIR="$HOME/src/dotfiles"
 export LLM_WIKI_DIR="$HOME/wiki"
 
-if [[ -z "${MISE_ENV:-}" ]]; then
-  _mise_host="${HOST%%.*}"
-  [[ -z "$_mise_host" ]] && _mise_host="$(hostname -s 2>/dev/null)"
-  _mise_host="${_mise_host:l}"
-  case "$_mise_host" in
-    hyperion) export MISE_ENV=personal,desktop,hyperion ;;
-    sigil) export MISE_ENV=personal,server ;;
-    atlas) export MISE_ENV=work ;;
-    *) export MISE_ENV=personal ;;
-  esac
-  unset _mise_host
-fi
-
-if [[ ",$MISE_ENV," == *,personal,* && ",$MISE_ENV," != *,server,* ]]; then
-  export SSH_AUTH_SOCK="${SSH_AUTH_SOCK:-$XDG_STATE_HOME/1password/agent.sock}"
+if [[ -z "${SSH_AUTH_SOCK:-}" && -S "$XDG_STATE_HOME/1password/agent.sock" ]]; then
+  export SSH_AUTH_SOCK="$XDG_STATE_HOME/1password/agent.sock"
 fi
 
 # Source local env overrides (provided by overlay modules)

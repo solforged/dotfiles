@@ -1,0 +1,104 @@
+# Packages, tools, and defaults shared by macOS hosts.
+
+[bootstrap.packages]
+"brew:git" = "latest"
+"brew:coreutils" = "latest"
+
+[tools]
+"aqua:ogulcancelik/herdr" = "latest"
+"aqua:realm/SwiftLint" = "latest"
+"spm:nicklockwood/SwiftFormat" = "latest"
+
+[dotfiles]
+"~/.config/ghostty" = { source = "~/src/dotfiles/desktop/ghostty", mode = "symlink-each" }
+
+[vars]
+git_signing_program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[bootstrap.hooks.post-dotfiles]
+run = '''
+if [ "$(uname -s)" = "Darwin" ] && [ -x "/Applications/1Password.app/Contents/MacOS/op-ssh-sign" ]; then
+  mkdir -p "$HOME/.local/state/1password"
+  ln -sfn "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock" "$HOME/.local/state/1password/agent.sock"
+fi
+'''
+
+[bootstrap.hooks.post-defaults]
+run = '[ "$(uname -s)" != "Darwin" ] || killall Dock || true'
+
+[bootstrap.macos.dock]
+autohide = true
+magnification = false
+mru_spaces = false
+show_recents = false
+tilesize = 36
+
+[bootstrap.macos.finder]
+show_all_files = true
+show_pathbar = true
+show_status_bar = true
+show_extensions_warning = false
+preferred_view_style = "list"
+
+[bootstrap.macos.keyboard]
+key_repeat = 1
+initial_key_repeat = 10
+press_and_hold = false
+
+[bootstrap.macos.trackpad]
+tap_to_click = true
+
+[bootstrap.macos.defaults.dock]
+"autohide-delay" = 0.0
+"autohide-time-modifier" = 0.0
+"expose-animation-duration" = 0.1
+launchanim = false
+mineffect = "scale"
+"minimize-to-application" = true
+"mouse-over-hilite-stack" = true
+"show-process-indicators" = true
+showhidden = true
+"size-immutable" = true
+
+[bootstrap.macos.defaults."com.apple.finder"]
+AppleShowAllExtensions = true
+FXDefaultSearchScope = "SCcf"
+QuitMenuItem = true
+_FXSortFoldersFirst = true
+
+[bootstrap.macos.defaults."NSGlobalDomain"]
+AppleKeyboardUIMode = 3
+AppleShowAllExtensions = true
+NSAutomaticCapitalizationEnabled = false
+NSAutomaticDashSubstitutionEnabled = false
+NSAutomaticPeriodSubstitutionEnabled = false
+NSAutomaticQuoteSubstitutionEnabled = false
+NSAutomaticSpellingCorrectionEnabled = false
+NSDocumentSaveNewDocumentsToCloud = false
+NSNavPanelExpandedStateForSaveMode = true
+NSNavPanelExpandedStateForSaveMode2 = true
+NSWindowResizeTime = 0.001
+PMPrintingExpandedStateForPrint = true
+PMPrintingExpandedStateForPrint2 = true
+"com.apple.springing.delay" = 0.0
+"com.apple.springing.enabled" = true
+
+[bootstrap.macos.defaults."com.apple.screencapture"]
+"disable-shadow" = true
+type = "png"
+
+[bootstrap.macos.defaults."com.apple.ActivityMonitor"]
+OpenMainWindow = true
+ShowCategory = 0
+SortColumn = "CPUUsage"
+SortDirection = 0
+
+[bootstrap.macos.defaults."com.apple.ImageCapture"]
+disableHotPlug = true
+
+[bootstrap.macos.defaults."com.apple.desktopservices"]
+DSDontWriteNetworkStores = true
+DSDontWriteUSBStores = true
+
+[bootstrap.macos.defaults."com.apple.print.PrintingPrefs"]
+"Quit When Finished" = true
