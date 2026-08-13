@@ -70,6 +70,7 @@ git_signing_program = ""
 "~/.config/atuin" = { source = "~/src/dotfiles/cli/atuin", mode = "symlink-each" }
 "~/.config/dprint" = { source = "~/src/dotfiles/cli/dprint", mode = "symlink-each" }
 "~/.config/gh" = { source = "~/src/dotfiles/cli/gh", mode = "symlink-each" }
+"~/.config/lazygit" = { source = "~/src/dotfiles/cli/lazygit", mode = "symlink-each" }
 "~/.config/herdr" = { source = "~/src/dotfiles/cli/herdr", mode = "symlink-each" }
 "~/.config/node" = { source = "~/src/dotfiles/cli/node", mode = "symlink-each" }
 # Keep config.toml mutable for host-managed tools such as Omarchy's agent
