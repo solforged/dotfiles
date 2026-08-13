@@ -42,7 +42,8 @@ fi
 
 
 export EDITOR="${EDITOR:-nvim}"
-export PAGER="${PAGER:-less}"
+export PAGER="${PAGER:-moor}"
+export MOOR="${MOOR:---no-linenumbers}"
 
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
