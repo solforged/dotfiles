@@ -8,6 +8,7 @@ ssh_auth_sock = "~/.local/state/1password/agent.sock"
 
 [dotfiles]
 "~/.codex/AGENTS.md" = { source = "~/src/dotfiles/agents/omp/AGENTS.md", mode = "symlink" }
-"~/.omp/config.yml" = { source = "~/src/dotfiles/agents/omp/config.yml", mode = "symlink" }
+"~/.omp/agent/config.yml" = { source = "~/src/dotfiles/agents/omp/config.yml", mode = "symlink" }
 "~/.omp/agent/AGENTS.md" = { source = "~/src/dotfiles/agents/omp/AGENTS.md", mode = "symlink" }
 "~/.omp/agent/themes" = { source = "~/src/dotfiles/agents/omp/themes", mode = "symlink-each" }
+"~/.omp/agent/commands" = { source = "~/src/dotfiles/agents/omp/commands", mode = "symlink-each" }
