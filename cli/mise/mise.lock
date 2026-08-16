@@ -1423,53 +1423,53 @@ url = "https://github.com/sxyazi/yazi/releases/download/v26.8.15/yazi-x86_64-pc-
 url_api = "https://api.github.com/repos/sxyazi/yazi/releases/assets/515472935"
 
 [[tools."aqua:walles/moor"]]
-version = "2.16.3"
+version = "2.17.0"
 backend = "aqua:walles/moor"
 
 [tools."aqua:walles/moor"."platforms.linux-x64"]
-checksum = "sha256:250fc9596b723c7e1e1e5157860d586cfaeb1afdcc31505ed66c512c2dfe56e5"
-url = "https://github.com/walles/moor/releases/download/v2.16.3/moor-v2.16.3-linux-amd64"
-url_api = "https://api.github.com/repos/walles/moor/releases/assets/509887359"
+checksum = "sha256:f6f6672cf4b9561212d80f0bb2dcc9656cc7b225c6941169505fd1c76bfce44d"
+url = "https://github.com/walles/moor/releases/download/v2.17.0/moor-v2.17.0-linux-amd64"
+url_api = "https://api.github.com/repos/walles/moor/releases/assets/516669028"
 
 [tools."aqua:walles/moor"."platforms.linux-x64-baseline"]
-checksum = "sha256:250fc9596b723c7e1e1e5157860d586cfaeb1afdcc31505ed66c512c2dfe56e5"
-url = "https://github.com/walles/moor/releases/download/v2.16.3/moor-v2.16.3-linux-amd64"
-url_api = "https://api.github.com/repos/walles/moor/releases/assets/509887359"
+checksum = "sha256:f6f6672cf4b9561212d80f0bb2dcc9656cc7b225c6941169505fd1c76bfce44d"
+url = "https://github.com/walles/moor/releases/download/v2.17.0/moor-v2.17.0-linux-amd64"
+url_api = "https://api.github.com/repos/walles/moor/releases/assets/516669028"
 
 [tools."aqua:walles/moor"."platforms.linux-x64-musl"]
-checksum = "sha256:250fc9596b723c7e1e1e5157860d586cfaeb1afdcc31505ed66c512c2dfe56e5"
-url = "https://github.com/walles/moor/releases/download/v2.16.3/moor-v2.16.3-linux-amd64"
-url_api = "https://api.github.com/repos/walles/moor/releases/assets/509887359"
+checksum = "sha256:f6f6672cf4b9561212d80f0bb2dcc9656cc7b225c6941169505fd1c76bfce44d"
+url = "https://github.com/walles/moor/releases/download/v2.17.0/moor-v2.17.0-linux-amd64"
+url_api = "https://api.github.com/repos/walles/moor/releases/assets/516669028"
 
 [tools."aqua:walles/moor"."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:250fc9596b723c7e1e1e5157860d586cfaeb1afdcc31505ed66c512c2dfe56e5"
-url = "https://github.com/walles/moor/releases/download/v2.16.3/moor-v2.16.3-linux-amd64"
-url_api = "https://api.github.com/repos/walles/moor/releases/assets/509887359"
+checksum = "sha256:f6f6672cf4b9561212d80f0bb2dcc9656cc7b225c6941169505fd1c76bfce44d"
+url = "https://github.com/walles/moor/releases/download/v2.17.0/moor-v2.17.0-linux-amd64"
+url_api = "https://api.github.com/repos/walles/moor/releases/assets/516669028"
 
 [tools."aqua:walles/moor"."platforms.macos-arm64"]
-checksum = "sha256:3b6c5a309a668f28c75ac3f9e1dcc4e4cf70eff1da22dd3f99ab79df27feacd6"
-url = "https://github.com/walles/moor/releases/download/v2.16.3/moor-v2.16.3-darwin-arm64"
-url_api = "https://api.github.com/repos/walles/moor/releases/assets/509887325"
+checksum = "sha256:ee2dd3ce0efe17f414339d7648a4e718c5da53017af494ac948b638289489c4a"
+url = "https://github.com/walles/moor/releases/download/v2.17.0/moor-v2.17.0-darwin-arm64"
+url_api = "https://api.github.com/repos/walles/moor/releases/assets/516668960"
 
 [tools."aqua:walles/moor"."platforms.macos-x64"]
-checksum = "sha256:d07b4911757f8c6563e24beaf4f2457bc969fb3b23db0138d80179b54f4d863f"
-url = "https://github.com/walles/moor/releases/download/v2.16.3/moor-v2.16.3-darwin-amd64"
-url_api = "https://api.github.com/repos/walles/moor/releases/assets/509887254"
+checksum = "sha256:b6b28575f3095f7bea2c39fbdb201c0d1ce2a966ad00f90d58ffacd3bb6468b4"
+url = "https://github.com/walles/moor/releases/download/v2.17.0/moor-v2.17.0-darwin-amd64"
+url_api = "https://api.github.com/repos/walles/moor/releases/assets/516668925"
 
 [tools."aqua:walles/moor"."platforms.macos-x64-baseline"]
-checksum = "sha256:d07b4911757f8c6563e24beaf4f2457bc969fb3b23db0138d80179b54f4d863f"
-url = "https://github.com/walles/moor/releases/download/v2.16.3/moor-v2.16.3-darwin-amd64"
-url_api = "https://api.github.com/repos/walles/moor/releases/assets/509887254"
+checksum = "sha256:b6b28575f3095f7bea2c39fbdb201c0d1ce2a966ad00f90d58ffacd3bb6468b4"
+url = "https://github.com/walles/moor/releases/download/v2.17.0/moor-v2.17.0-darwin-amd64"
+url_api = "https://api.github.com/repos/walles/moor/releases/assets/516668925"
 
 [tools."aqua:walles/moor"."platforms.windows-x64"]
-checksum = "sha256:f1a4848167d5ff7e5c88668b35267ac9c05ab5d750de813c9976458ab1d2e7f4"
-url = "https://github.com/walles/moor/releases/download/v2.16.3/moor-v2.16.3-windows-amd64.exe"
-url_api = "https://api.github.com/repos/walles/moor/releases/assets/509887380"
+checksum = "sha256:688c4406f4c0ddb70f6dd8909c0fc040d0b257872bbe4e6cca617dc81dc8e04b"
+url = "https://github.com/walles/moor/releases/download/v2.17.0/moor-v2.17.0-windows-amd64.exe"
+url_api = "https://api.github.com/repos/walles/moor/releases/assets/516669091"
 
 [tools."aqua:walles/moor"."platforms.windows-x64-baseline"]
-checksum = "sha256:f1a4848167d5ff7e5c88668b35267ac9c05ab5d750de813c9976458ab1d2e7f4"
-url = "https://github.com/walles/moor/releases/download/v2.16.3/moor-v2.16.3-windows-amd64.exe"
-url_api = "https://api.github.com/repos/walles/moor/releases/assets/509887380"
+checksum = "sha256:688c4406f4c0ddb70f6dd8909c0fc040d0b257872bbe4e6cca617dc81dc8e04b"
+url = "https://github.com/walles/moor/releases/download/v2.17.0/moor-v2.17.0-windows-amd64.exe"
+url_api = "https://api.github.com/repos/walles/moor/releases/assets/516669091"
 
 [[tools.bun]]
 version = "1.3.14"
