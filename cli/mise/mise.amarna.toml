@@ -2,6 +2,9 @@
 # dependencies required by the portable dotfiles layered over its defaults.
 
 [tasks."moshi:hook"]
+# binary, pairing, and agent hooks only. `service install` writes
+# ~/.config/systemd/user/moshi-hook.service and fights
+# [bootstrap.linux.systemd.units.moshi-hook] for the same socket.
 description = "Install, pair, and configure the Moshi agent hook"
 dir = "{{ env.HOME }}"
 run = '''
@@ -18,14 +21,38 @@ curl --proto '=https' --tlsv1.2 --fail --show-error --silent --location \
 
 "$HOME/.local/bin/moshi-hook" pair --token "$MOSHI_PAIRING_TOKEN"
 "$HOME/.local/bin/moshi-hook" install
+if [ -e "$HOME/.config/systemd/user/moshi-hook.service" ]; then
+  "$HOME/.local/bin/moshi-hook" service uninstall
+fi
+'''
+
+[tasks."qwen:install"]
+description = "install qwen's vllm runtime"
+run = "uv tool install --force --python 3.12 --torch-backend=cu130 'vllm>=0.19.0'"
+
+[tasks."qwen:serve"]
+description = "serve qwen3.8 27b fp8 for local coding"
+run = '''
+exec vllm serve Qwen/Qwen3.8-27B-FP8 \
+  --served-model-name qwen3.8-27b \
+  --port 8000 \
+  --max-model-len 262144 \
+  --kv-cache-dtype fp8 \
+  --reasoning-parser qwen3 \
+  --enable-auto-tool-choice \
+  --tool-call-parser qwen3_coder \
+  --language-model-only
 '''
 
 [bootstrap.packages]
+"pacman:chromaprint" = "latest"
 "pacman:task" = "latest"
 "pacman:zsh" = "latest"
 
 [dotfiles]
 # Preserve Omarchy's interaction model while layering portable preferences.
+"~/.omp/agent/models.yml" = { source = "~/src/dotfiles/agents/omp/models.yml", mode = "symlink" }
+"~/.config/beets" = { source = "~/src/dotfiles/cli/beets/", mode = "symlink-each" }
 "~/.config/herdr" = { source = "~/src/dotfiles/desktop/omarchy/herdr", mode = "symlink-each" }
 "~/.config/omarchy/themes/reticle-dark" = { source = "~/src/dotfiles/desktop/omarchy/themes/reticle-dark", mode = "symlink-each" }
 "~/.config/omarchy/themes/reticle-light" = { source = "~/src/dotfiles/desktop/omarchy/themes/reticle-light", mode = "symlink-each" }
@@ -33,6 +60,17 @@ curl --proto '=https' --tlsv1.2 --fail --show-error --silent --location \
 
 [bootstrap.user]
 login_shell = "/usr/bin/zsh"
+
+# moshi-hook serve owns /run/user/$uid/moshi-hook.sock. a second unit of the
+# same binary makes phone approvals miss this host.
+[bootstrap.linux.systemd.units.moshi-hook]
+description = "Moshi hook daemon"
+exec_start = "~/.local/bin/moshi-hook serve"
+after = ["network-online.target"]
+environment = { PATH = "/usr/local/bin:/usr/bin:/bin" }
+working_directory = "~"
+restart = "on-failure"
+restart_sec = "5s"
 
 [bootstrap.hooks.post-dotfiles]
 run = '''
@@ -58,3 +96,7 @@ fi
 git_signing_program = "/opt/1Password/op-ssh-sign"
 onepassword_agent_sock = "~/.local/state/1password/agent.sock"
 ssh_auth_sock = "~/.local/state/1password/agent.sock"
+
+[tools]
+"pipx:beets" = { version = "latest", extras = "chroma,embedart,fetchart,lastgenre,lyrics" }
+"pipx:streamrip" = "latest"

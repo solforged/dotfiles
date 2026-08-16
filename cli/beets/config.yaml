@@ -1,4 +1,4 @@
-directory: /Volumes/Data/Media/Music
+directory: ~/Music/beets
 library: ~/.local/share/beets.db
 
 plugins:
@@ -38,7 +38,7 @@ embedart:
   auto: true
 
 lyrics:
-  auto: true
+  auto: false
 
 lastgenre:
   auto: true
