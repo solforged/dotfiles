@@ -19,7 +19,8 @@ split-inherit-working-directory = true
 copy-on-select = clipboard
 auto-update-channel = tip
 
-# Translate native macOS chords into Herdr's ctrl+b prefix and CSI-u inputs.
+# Translate native macOS chords into Herdr CSI-u / prefix inputs.
+# herdr: ctrl+tab tabs, ctrl+alt+tab workspaces, ctrl+shift+1..9 workspace jump.
 keybind = cmd+KeyT=text:\x02t
 keybind = cmd+t=unbind
 keybind = cmd+KeyN=text:\x02n
