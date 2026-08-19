@@ -783,63 +783,63 @@ url_api = "https://api.github.com/repos/charmbracelet/glow/releases/assets/51046
 provenance = "cosign"
 
 [[tools."aqua:dprint/dprint"]]
-version = "0.55.2"
+version = "0.56.0"
 backend = "aqua:dprint/dprint"
 
 [tools."aqua:dprint/dprint"."platforms.linux-arm64"]
-checksum = "sha256:f0101217dd0abc94f1ac01b83d306d0288aeee8a501e8614a5e2bbe037500be0"
-url = "https://github.com/dprint/dprint/releases/download/0.55.2/dprint-aarch64-unknown-linux-musl.zip"
-url_api = "https://api.github.com/repos/dprint/dprint/releases/assets/477041358"
+checksum = "sha256:2e7d50e342d9d9d85b811635a04f3d49abdf7ec96d5b346cda932a7c4d42a7ab"
+url = "https://github.com/dprint/dprint/releases/download/0.56.0/dprint-aarch64-unknown-linux-musl.zip"
+url_api = "https://api.github.com/repos/dprint/dprint/releases/assets/519466726"
 
 [tools."aqua:dprint/dprint"."platforms.linux-arm64-musl"]
-checksum = "sha256:f0101217dd0abc94f1ac01b83d306d0288aeee8a501e8614a5e2bbe037500be0"
-url = "https://github.com/dprint/dprint/releases/download/0.55.2/dprint-aarch64-unknown-linux-musl.zip"
-url_api = "https://api.github.com/repos/dprint/dprint/releases/assets/477041358"
+checksum = "sha256:2e7d50e342d9d9d85b811635a04f3d49abdf7ec96d5b346cda932a7c4d42a7ab"
+url = "https://github.com/dprint/dprint/releases/download/0.56.0/dprint-aarch64-unknown-linux-musl.zip"
+url_api = "https://api.github.com/repos/dprint/dprint/releases/assets/519466726"
 
 [tools."aqua:dprint/dprint"."platforms.linux-x64"]
-checksum = "sha256:45fc0eef3216af21c4c22c6e7e233aa45c3080fac07b6e94db7008a5c8e5c67a"
-url = "https://github.com/dprint/dprint/releases/download/0.55.2/dprint-x86_64-unknown-linux-musl.zip"
-url_api = "https://api.github.com/repos/dprint/dprint/releases/assets/477041351"
+checksum = "sha256:e958bfa3fec5256e72c2e4e028fa5674e43023eaff80d704ca96827af2eba240"
+url = "https://github.com/dprint/dprint/releases/download/0.56.0/dprint-x86_64-unknown-linux-musl.zip"
+url_api = "https://api.github.com/repos/dprint/dprint/releases/assets/519466719"
 
 [tools."aqua:dprint/dprint"."platforms.linux-x64-baseline"]
-checksum = "sha256:45fc0eef3216af21c4c22c6e7e233aa45c3080fac07b6e94db7008a5c8e5c67a"
-url = "https://github.com/dprint/dprint/releases/download/0.55.2/dprint-x86_64-unknown-linux-musl.zip"
-url_api = "https://api.github.com/repos/dprint/dprint/releases/assets/477041351"
+checksum = "sha256:e958bfa3fec5256e72c2e4e028fa5674e43023eaff80d704ca96827af2eba240"
+url = "https://github.com/dprint/dprint/releases/download/0.56.0/dprint-x86_64-unknown-linux-musl.zip"
+url_api = "https://api.github.com/repos/dprint/dprint/releases/assets/519466719"
 
 [tools."aqua:dprint/dprint"."platforms.linux-x64-musl"]
-checksum = "sha256:45fc0eef3216af21c4c22c6e7e233aa45c3080fac07b6e94db7008a5c8e5c67a"
-url = "https://github.com/dprint/dprint/releases/download/0.55.2/dprint-x86_64-unknown-linux-musl.zip"
-url_api = "https://api.github.com/repos/dprint/dprint/releases/assets/477041351"
+checksum = "sha256:e958bfa3fec5256e72c2e4e028fa5674e43023eaff80d704ca96827af2eba240"
+url = "https://github.com/dprint/dprint/releases/download/0.56.0/dprint-x86_64-unknown-linux-musl.zip"
+url_api = "https://api.github.com/repos/dprint/dprint/releases/assets/519466719"
 
 [tools."aqua:dprint/dprint"."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:45fc0eef3216af21c4c22c6e7e233aa45c3080fac07b6e94db7008a5c8e5c67a"
-url = "https://github.com/dprint/dprint/releases/download/0.55.2/dprint-x86_64-unknown-linux-musl.zip"
-url_api = "https://api.github.com/repos/dprint/dprint/releases/assets/477041351"
+checksum = "sha256:e958bfa3fec5256e72c2e4e028fa5674e43023eaff80d704ca96827af2eba240"
+url = "https://github.com/dprint/dprint/releases/download/0.56.0/dprint-x86_64-unknown-linux-musl.zip"
+url_api = "https://api.github.com/repos/dprint/dprint/releases/assets/519466719"
 
 [tools."aqua:dprint/dprint"."platforms.macos-arm64"]
-checksum = "sha256:e9ba8ed7988f3350501a8cf8af92da616cdec8d9d5c831c069293c587311b49d"
-url = "https://github.com/dprint/dprint/releases/download/0.55.2/dprint-aarch64-apple-darwin.zip"
-url_api = "https://api.github.com/repos/dprint/dprint/releases/assets/477041350"
+checksum = "sha256:79f5c80a3ddebb4717a89a25a79ec1c50947d4cef141df243757925cb47d32e1"
+url = "https://github.com/dprint/dprint/releases/download/0.56.0/dprint-aarch64-apple-darwin.zip"
+url_api = "https://api.github.com/repos/dprint/dprint/releases/assets/519466721"
 
 [tools."aqua:dprint/dprint"."platforms.macos-x64"]
-checksum = "sha256:b7074cf6c814f995b783b5baa7e516b34e783c42c9baf7af553dbad731adb3a7"
-url = "https://github.com/dprint/dprint/releases/download/0.55.2/dprint-x86_64-apple-darwin.zip"
-url_api = "https://api.github.com/repos/dprint/dprint/releases/assets/477041364"
+checksum = "sha256:466dd67e15fca266f3749008ef5d23ea7a6c657ef8204257dbb8c23636fc9aca"
+url = "https://github.com/dprint/dprint/releases/download/0.56.0/dprint-x86_64-apple-darwin.zip"
+url_api = "https://api.github.com/repos/dprint/dprint/releases/assets/519466717"
 
 [tools."aqua:dprint/dprint"."platforms.macos-x64-baseline"]
-checksum = "sha256:b7074cf6c814f995b783b5baa7e516b34e783c42c9baf7af553dbad731adb3a7"
-url = "https://github.com/dprint/dprint/releases/download/0.55.2/dprint-x86_64-apple-darwin.zip"
-url_api = "https://api.github.com/repos/dprint/dprint/releases/assets/477041364"
+checksum = "sha256:466dd67e15fca266f3749008ef5d23ea7a6c657ef8204257dbb8c23636fc9aca"
+url = "https://github.com/dprint/dprint/releases/download/0.56.0/dprint-x86_64-apple-darwin.zip"
+url_api = "https://api.github.com/repos/dprint/dprint/releases/assets/519466717"
 
 [tools."aqua:dprint/dprint"."platforms.windows-x64"]
-checksum = "sha256:12e8c26abc8c436223e70f5a30a2864001c92fa356a859eb93e06b97ab7dbd12"
-url = "https://github.com/dprint/dprint/releases/download/0.55.2/dprint-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/dprint/dprint/releases/assets/477041355"
+checksum = "sha256:cbcb0c6fdbb72289e895c3857720eb769046d42069973f38655b6aee16c01c73"
+url = "https://github.com/dprint/dprint/releases/download/0.56.0/dprint-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/dprint/dprint/releases/assets/519466712"
 
 [tools."aqua:dprint/dprint"."platforms.windows-x64-baseline"]
-checksum = "sha256:12e8c26abc8c436223e70f5a30a2864001c92fa356a859eb93e06b97ab7dbd12"
-url = "https://github.com/dprint/dprint/releases/download/0.55.2/dprint-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/dprint/dprint/releases/assets/477041355"
+checksum = "sha256:cbcb0c6fdbb72289e895c3857720eb769046d42069973f38655b6aee16c01c73"
+url = "https://github.com/dprint/dprint/releases/download/0.56.0/dprint-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/dprint/dprint/releases/assets/519466712"
 
 [[tools."aqua:gh"]]
 version = "2.97.0"
@@ -1079,63 +1079,63 @@ url = "https://github.com/jesseduffield/lazygit/releases/download/v0.64.1/lazygi
 url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/511894165"
 
 [[tools."aqua:junegunn/fzf"]]
-version = "0.74.2"
+version = "0.74.3"
 backend = "aqua:junegunn/fzf"
 
 [tools."aqua:junegunn/fzf"."platforms.linux-arm64"]
-checksum = "sha256:1373e3f5ed3c468179d4529942ddd96c234bcad1bcacaf238916e26a5234b5b2"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.2/fzf-0.74.2-linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/497342620"
+checksum = "sha256:4a17a17b46bd0c4873e995533de508995c11572c0be0664a5dbcf13f60463046"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.3/fzf-0.74.3-linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/517537065"
 
 [tools."aqua:junegunn/fzf"."platforms.linux-arm64-musl"]
-checksum = "sha256:1373e3f5ed3c468179d4529942ddd96c234bcad1bcacaf238916e26a5234b5b2"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.2/fzf-0.74.2-linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/497342620"
+checksum = "sha256:4a17a17b46bd0c4873e995533de508995c11572c0be0664a5dbcf13f60463046"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.3/fzf-0.74.3-linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/517537065"
 
 [tools."aqua:junegunn/fzf"."platforms.linux-x64"]
-checksum = "sha256:b3648f48675612b69ee35371cf6dc99ca96d767e89b912d079080916ac8ba8bd"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.2/fzf-0.74.2-linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/497342478"
+checksum = "sha256:3501a595e4b5c40a6b047340a0e8f805c46fd4e61ef95ef8a136ba8c61cf6f22"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.3/fzf-0.74.3-linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/517537066"
 
 [tools."aqua:junegunn/fzf"."platforms.linux-x64-baseline"]
-checksum = "sha256:b3648f48675612b69ee35371cf6dc99ca96d767e89b912d079080916ac8ba8bd"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.2/fzf-0.74.2-linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/497342478"
+checksum = "sha256:3501a595e4b5c40a6b047340a0e8f805c46fd4e61ef95ef8a136ba8c61cf6f22"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.3/fzf-0.74.3-linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/517537066"
 
 [tools."aqua:junegunn/fzf"."platforms.linux-x64-musl"]
-checksum = "sha256:b3648f48675612b69ee35371cf6dc99ca96d767e89b912d079080916ac8ba8bd"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.2/fzf-0.74.2-linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/497342478"
+checksum = "sha256:3501a595e4b5c40a6b047340a0e8f805c46fd4e61ef95ef8a136ba8c61cf6f22"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.3/fzf-0.74.3-linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/517537066"
 
 [tools."aqua:junegunn/fzf"."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:b3648f48675612b69ee35371cf6dc99ca96d767e89b912d079080916ac8ba8bd"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.2/fzf-0.74.2-linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/497342478"
+checksum = "sha256:3501a595e4b5c40a6b047340a0e8f805c46fd4e61ef95ef8a136ba8c61cf6f22"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.3/fzf-0.74.3-linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/517537066"
 
 [tools."aqua:junegunn/fzf"."platforms.macos-arm64"]
-checksum = "sha256:d60ddb36356566ac69bae7c3504e888916cf747c9ad2132141c09229b1e28dee"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.2/fzf-0.74.2-darwin_arm64.tar.gz"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/497342630"
+checksum = "sha256:1f8501cea4f9c0c2d6110d0ff75d0ec9451cd9d7524d9a26244a154ea89f3bd5"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.3/fzf-0.74.3-darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/517537091"
 
 [tools."aqua:junegunn/fzf"."platforms.macos-x64"]
-checksum = "sha256:b019ae8bcca33945a2ffbbbf8369705405cd1406fc4d74267e712797010e3676"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.2/fzf-0.74.2-darwin_amd64.tar.gz"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/497342631"
+checksum = "sha256:b8a231250eedec244539ade3dc437bcd60e545a099c6cc0c8a11bdbd8574b9bc"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.3/fzf-0.74.3-darwin_amd64.tar.gz"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/517537094"
 
 [tools."aqua:junegunn/fzf"."platforms.macos-x64-baseline"]
-checksum = "sha256:b019ae8bcca33945a2ffbbbf8369705405cd1406fc4d74267e712797010e3676"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.2/fzf-0.74.2-darwin_amd64.tar.gz"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/497342631"
+checksum = "sha256:b8a231250eedec244539ade3dc437bcd60e545a099c6cc0c8a11bdbd8574b9bc"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.3/fzf-0.74.3-darwin_amd64.tar.gz"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/517537094"
 
 [tools."aqua:junegunn/fzf"."platforms.windows-x64"]
-checksum = "sha256:a5a3b27dd203469139d10669721952335b9b46f19346e3d1abc102a67ea60804"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.2/fzf-0.74.2-windows_amd64.zip"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/497342617"
+checksum = "sha256:cf5c137d9b391c3988c54af8f5fc490ffbef6f70444651e7d57fdb45ad04c8bd"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.3/fzf-0.74.3-windows_amd64.zip"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/517537078"
 
 [tools."aqua:junegunn/fzf"."platforms.windows-x64-baseline"]
-checksum = "sha256:a5a3b27dd203469139d10669721952335b9b46f19346e3d1abc102a67ea60804"
-url = "https://github.com/junegunn/fzf/releases/download/v0.74.2/fzf-0.74.2-windows_amd64.zip"
-url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/497342617"
+checksum = "sha256:cf5c137d9b391c3988c54af8f5fc490ffbef6f70444651e7d57fdb45ad04c8bd"
+url = "https://github.com/junegunn/fzf/releases/download/v0.74.3/fzf-0.74.3-windows_amd64.zip"
+url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/517537078"
 
 [[tools."aqua:neovim/neovim"]]
 version = "0.12.4"
@@ -1731,137 +1731,137 @@ conda_deps = [
 ]
 
 [[tools.fnox]]
-version = "1.33.0"
+version = "1.33.1"
 backend = "github:jdx/fnox"
 
 [tools.fnox."platforms.linux-arm64"]
-checksum = "sha256:a7ac3a996d1dacc68bb795f252e89fe0a4a6a56e3cfa6188c10978f950f5532e"
-url = "https://github.com/jdx/fnox/releases/download/v1.33.0/fnox-aarch64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/507397658"
+checksum = "sha256:ddb2bd1514a2a415f8cbd9113e260ad068a14a418b3534045e23525c60d0fae5"
+url = "https://github.com/jdx/fnox/releases/download/v1.33.1/fnox-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/517968664"
 provenance = "github-attestations"
 
 [tools.fnox."platforms.linux-arm64-musl"]
-checksum = "sha256:eccecb4ac6ef66ca003bcb43431518cfdbc357abbcf3b5b6f32f96bf47187969"
-url = "https://github.com/jdx/fnox/releases/download/v1.33.0/fnox-aarch64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/507397655"
+checksum = "sha256:4afa354751a4977c564485c1eec8f202965e9055c83f03ae40356bfaf9f4657e"
+url = "https://github.com/jdx/fnox/releases/download/v1.33.1/fnox-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/517968661"
 provenance = "github-attestations"
 
 [tools.fnox."platforms.linux-x64"]
-checksum = "sha256:f1248d5c721daae2dca440c278396de1e6ebddc3d5f1f427a958115f3a1d97e7"
-url = "https://github.com/jdx/fnox/releases/download/v1.33.0/fnox-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/507397683"
+checksum = "sha256:548ba556f15c3f4046a33fe91b4d3eea15872de5fcdbe7d38a7dac6a9eab34c2"
+url = "https://github.com/jdx/fnox/releases/download/v1.33.1/fnox-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/517968687"
 provenance = "github-attestations"
-provenance_verified = true
 
 [tools.fnox."platforms.linux-x64-baseline"]
-checksum = "sha256:f1248d5c721daae2dca440c278396de1e6ebddc3d5f1f427a958115f3a1d97e7"
-url = "https://github.com/jdx/fnox/releases/download/v1.33.0/fnox-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/507397683"
+checksum = "sha256:548ba556f15c3f4046a33fe91b4d3eea15872de5fcdbe7d38a7dac6a9eab34c2"
+url = "https://github.com/jdx/fnox/releases/download/v1.33.1/fnox-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/517968687"
 provenance = "github-attestations"
 
 [tools.fnox."platforms.linux-x64-musl"]
-checksum = "sha256:730fa4e79c2270f873fb883018909f6945cddd86cf745a9b8feed39fa7553a10"
-url = "https://github.com/jdx/fnox/releases/download/v1.33.0/fnox-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/507397684"
+checksum = "sha256:d4956442c00fbdc314b7463cabbd0d1c656de943638ba13d5a486d2283be521e"
+url = "https://github.com/jdx/fnox/releases/download/v1.33.1/fnox-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/517968695"
 provenance = "github-attestations"
 
 [tools.fnox."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:730fa4e79c2270f873fb883018909f6945cddd86cf745a9b8feed39fa7553a10"
-url = "https://github.com/jdx/fnox/releases/download/v1.33.0/fnox-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/507397684"
+checksum = "sha256:d4956442c00fbdc314b7463cabbd0d1c656de943638ba13d5a486d2283be521e"
+url = "https://github.com/jdx/fnox/releases/download/v1.33.1/fnox-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/517968695"
 provenance = "github-attestations"
 
 [tools.fnox."platforms.macos-arm64"]
-checksum = "sha256:282046a3b760b623cd41ee4dcd9aba73a6b54474b2d4ea033b25a39f7c7b5fa7"
-url = "https://github.com/jdx/fnox/releases/download/v1.33.0/fnox-aarch64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/507397661"
+checksum = "sha256:80a3002841e69aa0be87820e49d25776a5c3ef96c22942aee28f910bf8aba5f6"
+url = "https://github.com/jdx/fnox/releases/download/v1.33.1/fnox-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/517968663"
 provenance = "github-attestations"
+provenance_verified = true
 
 [tools.fnox."platforms.macos-x64"]
-checksum = "sha256:4b1af1d3a960de3a14a8cf6bf9f66670cfeadd6ab41c18f96e2ffc1240c45691"
-url = "https://github.com/jdx/fnox/releases/download/v1.33.0/fnox-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/507397660"
+checksum = "sha256:1e6f40faf1cc0aa8406a131de755ac9fad8d87c8ccea7bcbc9b8bfdad861ed5f"
+url = "https://github.com/jdx/fnox/releases/download/v1.33.1/fnox-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/517968665"
 provenance = "github-attestations"
 
 [tools.fnox."platforms.macos-x64-baseline"]
-checksum = "sha256:4b1af1d3a960de3a14a8cf6bf9f66670cfeadd6ab41c18f96e2ffc1240c45691"
-url = "https://github.com/jdx/fnox/releases/download/v1.33.0/fnox-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/507397660"
+checksum = "sha256:1e6f40faf1cc0aa8406a131de755ac9fad8d87c8ccea7bcbc9b8bfdad861ed5f"
+url = "https://github.com/jdx/fnox/releases/download/v1.33.1/fnox-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/517968665"
 provenance = "github-attestations"
 
 [tools.fnox."platforms.windows-x64"]
-checksum = "sha256:e185feb2d126866d1f22e66483762662a2ce7d391a13ac5791675c98b282bc35"
-url = "https://github.com/jdx/fnox/releases/download/v1.33.0/fnox-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/507397674"
+checksum = "sha256:b59d04c326315cacbded505685205e501a0cee106a01d92fd860cb6661f9aacb"
+url = "https://github.com/jdx/fnox/releases/download/v1.33.1/fnox-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/517968685"
 provenance = "github-attestations"
 
 [tools.fnox."platforms.windows-x64-baseline"]
-checksum = "sha256:e185feb2d126866d1f22e66483762662a2ce7d391a13ac5791675c98b282bc35"
-url = "https://github.com/jdx/fnox/releases/download/v1.33.0/fnox-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/507397674"
+checksum = "sha256:b59d04c326315cacbded505685205e501a0cee106a01d92fd860cb6661f9aacb"
+url = "https://github.com/jdx/fnox/releases/download/v1.33.1/fnox-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/517968685"
 provenance = "github-attestations"
 
 [[tools."github:zimfw/zimfw"]]
-version = "1.20.0"
+version = "1.20.1"
 backend = "github:zimfw/zimfw"
 
 [tools."github:zimfw/zimfw".options]
 asset_pattern = "zimfw.zsh"
 
 [tools."github:zimfw/zimfw"."platforms.linux-arm64"]
-checksum = "sha256:f9362a5c5a1cfd9b54e45b9dbb651986908f838bc68cb487dec33a0c79069f84"
-url = "https://github.com/zimfw/zimfw/releases/download/v1.20.0/zimfw.zsh"
-url_api = "https://api.github.com/repos/zimfw/zimfw/releases/assets/330659006"
+checksum = "sha256:730f7a86f7aac9c87b137e85ecf0ebec19530ab6af065289bcd0d60cb13d8689"
+url = "https://github.com/zimfw/zimfw/releases/download/v1.20.1/zimfw.zsh"
+url_api = "https://api.github.com/repos/zimfw/zimfw/releases/assets/517289428"
 
 [tools."github:zimfw/zimfw"."platforms.linux-arm64-musl"]
-checksum = "sha256:f9362a5c5a1cfd9b54e45b9dbb651986908f838bc68cb487dec33a0c79069f84"
-url = "https://github.com/zimfw/zimfw/releases/download/v1.20.0/zimfw.zsh"
-url_api = "https://api.github.com/repos/zimfw/zimfw/releases/assets/330659006"
+checksum = "sha256:730f7a86f7aac9c87b137e85ecf0ebec19530ab6af065289bcd0d60cb13d8689"
+url = "https://github.com/zimfw/zimfw/releases/download/v1.20.1/zimfw.zsh"
+url_api = "https://api.github.com/repos/zimfw/zimfw/releases/assets/517289428"
 
 [tools."github:zimfw/zimfw"."platforms.linux-x64"]
-checksum = "sha256:f9362a5c5a1cfd9b54e45b9dbb651986908f838bc68cb487dec33a0c79069f84"
-url = "https://github.com/zimfw/zimfw/releases/download/v1.20.0/zimfw.zsh"
-url_api = "https://api.github.com/repos/zimfw/zimfw/releases/assets/330659006"
+checksum = "sha256:730f7a86f7aac9c87b137e85ecf0ebec19530ab6af065289bcd0d60cb13d8689"
+url = "https://github.com/zimfw/zimfw/releases/download/v1.20.1/zimfw.zsh"
+url_api = "https://api.github.com/repos/zimfw/zimfw/releases/assets/517289428"
 
 [tools."github:zimfw/zimfw"."platforms.linux-x64-baseline"]
-checksum = "sha256:f9362a5c5a1cfd9b54e45b9dbb651986908f838bc68cb487dec33a0c79069f84"
-url = "https://github.com/zimfw/zimfw/releases/download/v1.20.0/zimfw.zsh"
-url_api = "https://api.github.com/repos/zimfw/zimfw/releases/assets/330659006"
+checksum = "sha256:730f7a86f7aac9c87b137e85ecf0ebec19530ab6af065289bcd0d60cb13d8689"
+url = "https://github.com/zimfw/zimfw/releases/download/v1.20.1/zimfw.zsh"
+url_api = "https://api.github.com/repos/zimfw/zimfw/releases/assets/517289428"
 
 [tools."github:zimfw/zimfw"."platforms.linux-x64-musl"]
-checksum = "sha256:f9362a5c5a1cfd9b54e45b9dbb651986908f838bc68cb487dec33a0c79069f84"
-url = "https://github.com/zimfw/zimfw/releases/download/v1.20.0/zimfw.zsh"
-url_api = "https://api.github.com/repos/zimfw/zimfw/releases/assets/330659006"
+checksum = "sha256:730f7a86f7aac9c87b137e85ecf0ebec19530ab6af065289bcd0d60cb13d8689"
+url = "https://github.com/zimfw/zimfw/releases/download/v1.20.1/zimfw.zsh"
+url_api = "https://api.github.com/repos/zimfw/zimfw/releases/assets/517289428"
 
 [tools."github:zimfw/zimfw"."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:f9362a5c5a1cfd9b54e45b9dbb651986908f838bc68cb487dec33a0c79069f84"
-url = "https://github.com/zimfw/zimfw/releases/download/v1.20.0/zimfw.zsh"
-url_api = "https://api.github.com/repos/zimfw/zimfw/releases/assets/330659006"
+checksum = "sha256:730f7a86f7aac9c87b137e85ecf0ebec19530ab6af065289bcd0d60cb13d8689"
+url = "https://github.com/zimfw/zimfw/releases/download/v1.20.1/zimfw.zsh"
+url_api = "https://api.github.com/repos/zimfw/zimfw/releases/assets/517289428"
 
 [tools."github:zimfw/zimfw"."platforms.macos-arm64"]
-checksum = "sha256:f9362a5c5a1cfd9b54e45b9dbb651986908f838bc68cb487dec33a0c79069f84"
-url = "https://github.com/zimfw/zimfw/releases/download/v1.20.0/zimfw.zsh"
-url_api = "https://api.github.com/repos/zimfw/zimfw/releases/assets/330659006"
+checksum = "sha256:730f7a86f7aac9c87b137e85ecf0ebec19530ab6af065289bcd0d60cb13d8689"
+url = "https://github.com/zimfw/zimfw/releases/download/v1.20.1/zimfw.zsh"
+url_api = "https://api.github.com/repos/zimfw/zimfw/releases/assets/517289428"
 
 [tools."github:zimfw/zimfw"."platforms.macos-x64"]
-checksum = "sha256:f9362a5c5a1cfd9b54e45b9dbb651986908f838bc68cb487dec33a0c79069f84"
-url = "https://github.com/zimfw/zimfw/releases/download/v1.20.0/zimfw.zsh"
-url_api = "https://api.github.com/repos/zimfw/zimfw/releases/assets/330659006"
+checksum = "sha256:730f7a86f7aac9c87b137e85ecf0ebec19530ab6af065289bcd0d60cb13d8689"
+url = "https://github.com/zimfw/zimfw/releases/download/v1.20.1/zimfw.zsh"
+url_api = "https://api.github.com/repos/zimfw/zimfw/releases/assets/517289428"
 
 [tools."github:zimfw/zimfw"."platforms.macos-x64-baseline"]
-checksum = "sha256:f9362a5c5a1cfd9b54e45b9dbb651986908f838bc68cb487dec33a0c79069f84"
-url = "https://github.com/zimfw/zimfw/releases/download/v1.20.0/zimfw.zsh"
-url_api = "https://api.github.com/repos/zimfw/zimfw/releases/assets/330659006"
+checksum = "sha256:730f7a86f7aac9c87b137e85ecf0ebec19530ab6af065289bcd0d60cb13d8689"
+url = "https://github.com/zimfw/zimfw/releases/download/v1.20.1/zimfw.zsh"
+url_api = "https://api.github.com/repos/zimfw/zimfw/releases/assets/517289428"
 
 [tools."github:zimfw/zimfw"."platforms.windows-x64"]
-checksum = "sha256:f9362a5c5a1cfd9b54e45b9dbb651986908f838bc68cb487dec33a0c79069f84"
-url = "https://github.com/zimfw/zimfw/releases/download/v1.20.0/zimfw.zsh"
-url_api = "https://api.github.com/repos/zimfw/zimfw/releases/assets/330659006"
+checksum = "sha256:730f7a86f7aac9c87b137e85ecf0ebec19530ab6af065289bcd0d60cb13d8689"
+url = "https://github.com/zimfw/zimfw/releases/download/v1.20.1/zimfw.zsh"
+url_api = "https://api.github.com/repos/zimfw/zimfw/releases/assets/517289428"
 
 [tools."github:zimfw/zimfw"."platforms.windows-x64-baseline"]
-checksum = "sha256:f9362a5c5a1cfd9b54e45b9dbb651986908f838bc68cb487dec33a0c79069f84"
-url = "https://github.com/zimfw/zimfw/releases/download/v1.20.0/zimfw.zsh"
-url_api = "https://api.github.com/repos/zimfw/zimfw/releases/assets/330659006"
+checksum = "sha256:730f7a86f7aac9c87b137e85ecf0ebec19530ab6af065289bcd0d60cb13d8689"
+url = "https://github.com/zimfw/zimfw/releases/download/v1.20.1/zimfw.zsh"
+url_api = "https://api.github.com/repos/zimfw/zimfw/releases/assets/517289428"
 
 [[tools.go]]
 version = "1.26.6"
@@ -2091,3 +2091,62 @@ checksum = "sha256:4c4d49d8738847d9b71ba319e49a5688c93eac0fe6204b1df24e98528dddf
 url = "https://github.com/astral-sh/uv/releases/download/0.12.5/uv-x86_64-pc-windows-msvc.zip"
 url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/514851084"
 provenance = "github-attestations"
+
+[[tools.zoxide]]
+version = "0.10.0"
+backend = "aqua:ajeetdsouza/zoxide"
+
+[tools.zoxide."platforms.linux-arm64"]
+checksum = "sha256:f1f16c5d6298d63dee467eedea1cdcd8490e43e493bea43acd416dc9033ef641"
+url = "https://github.com/ajeetdsouza/zoxide/releases/download/v0.10.0/zoxide-0.10.0-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/ajeetdsouza/zoxide/releases/assets/466316402"
+
+[tools.zoxide."platforms.linux-arm64-musl"]
+checksum = "sha256:f1f16c5d6298d63dee467eedea1cdcd8490e43e493bea43acd416dc9033ef641"
+url = "https://github.com/ajeetdsouza/zoxide/releases/download/v0.10.0/zoxide-0.10.0-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/ajeetdsouza/zoxide/releases/assets/466316402"
+
+[tools.zoxide."platforms.linux-x64"]
+checksum = "sha256:2d93385b99f3e82cf2701609a1bffcad863fbeb75aa3fe7eb6be4d29be68b1ae"
+url = "https://github.com/ajeetdsouza/zoxide/releases/download/v0.10.0/zoxide-0.10.0-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/ajeetdsouza/zoxide/releases/assets/466316293"
+
+[tools.zoxide."platforms.linux-x64-baseline"]
+checksum = "sha256:2d93385b99f3e82cf2701609a1bffcad863fbeb75aa3fe7eb6be4d29be68b1ae"
+url = "https://github.com/ajeetdsouza/zoxide/releases/download/v0.10.0/zoxide-0.10.0-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/ajeetdsouza/zoxide/releases/assets/466316293"
+
+[tools.zoxide."platforms.linux-x64-musl"]
+checksum = "sha256:2d93385b99f3e82cf2701609a1bffcad863fbeb75aa3fe7eb6be4d29be68b1ae"
+url = "https://github.com/ajeetdsouza/zoxide/releases/download/v0.10.0/zoxide-0.10.0-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/ajeetdsouza/zoxide/releases/assets/466316293"
+
+[tools.zoxide."platforms.linux-x64-musl-baseline"]
+checksum = "sha256:2d93385b99f3e82cf2701609a1bffcad863fbeb75aa3fe7eb6be4d29be68b1ae"
+url = "https://github.com/ajeetdsouza/zoxide/releases/download/v0.10.0/zoxide-0.10.0-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/ajeetdsouza/zoxide/releases/assets/466316293"
+
+[tools.zoxide."platforms.macos-arm64"]
+checksum = "sha256:b55ae6f2f5f23d0a6ccb3bd4eeb2af9c7e0a6556e5255c82100e40305129bbb0"
+url = "https://github.com/ajeetdsouza/zoxide/releases/download/v0.10.0/zoxide-0.10.0-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/ajeetdsouza/zoxide/releases/assets/466316174"
+
+[tools.zoxide."platforms.macos-x64"]
+checksum = "sha256:18ab7ae2633ad6e2ab79a4e665cbba1e95b7c872d44523326efb793202451dad"
+url = "https://github.com/ajeetdsouza/zoxide/releases/download/v0.10.0/zoxide-0.10.0-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/ajeetdsouza/zoxide/releases/assets/466316167"
+
+[tools.zoxide."platforms.macos-x64-baseline"]
+checksum = "sha256:18ab7ae2633ad6e2ab79a4e665cbba1e95b7c872d44523326efb793202451dad"
+url = "https://github.com/ajeetdsouza/zoxide/releases/download/v0.10.0/zoxide-0.10.0-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/ajeetdsouza/zoxide/releases/assets/466316167"
+
+[tools.zoxide."platforms.windows-x64"]
+checksum = "sha256:f465ae548f8754c8e7edbc60b45fbf58c92bfe123db83d790252d6810fa5daf1"
+url = "https://github.com/ajeetdsouza/zoxide/releases/download/v0.10.0/zoxide-0.10.0-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/ajeetdsouza/zoxide/releases/assets/466316769"
+
+[tools.zoxide."platforms.windows-x64-baseline"]
+checksum = "sha256:f465ae548f8754c8e7edbc60b45fbf58c92bfe123db83d790252d6810fa5daf1"
+url = "https://github.com/ajeetdsouza/zoxide/releases/download/v0.10.0/zoxide-0.10.0-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/ajeetdsouza/zoxide/releases/assets/466316769"
