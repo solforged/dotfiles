@@ -32,27 +32,24 @@ shell_mode = "auto"
 [keys]
 prefix = "ctrl+b"
 reload_config = "prefix+shift+r"
-
-# Tabs: browser-style cycle (ghostty already emits these as CSI-u).
+new_workspace = "prefix+n"
+rename_workspace = "prefix+shift+n"
+previous_workspace = "ctrl+shift+tab"
+next_workspace = "ctrl+tab"
 new_tab = "prefix+t"
-close_tab = "prefix+shift+w"
-previous_tab = ["ctrl+shift+tab", "prefix+p"]
-next_tab = ["ctrl+tab", "prefix+n"]
-switch_tab = ["alt+1..9", "prefix+1..9"]
-
-# Workspaces: one modifier family up from tabs + numbered jumps.
-new_workspace = "prefix+shift+n"
-rename_workspace = "prefix+n"
-previous_workspace = "ctrl+alt+shift+tab"
-next_workspace = "ctrl+alt+tab"
+previous_tab = "ctrl+alt+shift+tab"
+next_tab = "ctrl+alt+tab"
+switch_tab = "alt+1..9"
 switch_workspace = "ctrl+shift+1..9"
-
+close_tab = "prefix+shift+w"
 cycle_pane_next = "prefix+u"
 cycle_pane_previous = "prefix+i"
 
 [ui]
 agent_panel_sort = "spaces"
 
+status_indicators = "symbols"
+show_agent_labels_on_pane_borders = true
 [ui.toast]
 delivery = "terminal"
 

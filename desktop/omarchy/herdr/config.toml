@@ -31,10 +31,6 @@ split_vertical = ["prefix+v", "alt+shift+enter"]
 close_pane = ["prefix+x", "alt+esc"]
 zoom = "prefix+z"
 last_pane = "prefix+;"
-swap_pane_left = "prefix+shift+h"
-swap_pane_down = "prefix+shift+j"
-swap_pane_up = "prefix+shift+up"
-swap_pane_right = "prefix+shift+l"
 
 focus_pane_left = "ctrl+alt+left"
 focus_pane_down = "ctrl+alt+down"
@@ -42,35 +38,28 @@ focus_pane_up = "ctrl+alt+up"
 focus_pane_right = "ctrl+alt+right"
 
 resize_mode = "prefix+ctrl+r"
-resize_pane_left = "ctrl+alt+shift+left"
-resize_pane_down = "ctrl+alt+shift+down"
-resize_pane_up = "ctrl+alt+shift+up"
-resize_pane_right = "ctrl+alt+shift+right"
 rename_pane = "prefix+shift+o"
 
-# Tabs: keep Omarchy prefix/alt arrows, add browser-style cycle.
+# Windows -> tabs
 new_tab = "prefix+c"
 rename_tab = "prefix+r"
 close_tab = "prefix+k"
 switch_tab = ["prefix+1..9", "alt+1..9"]
-previous_tab = ["prefix+p", "alt+left", "ctrl+shift+tab"]
-next_tab = ["prefix+n", "alt+right", "ctrl+tab"]
-move_tab_previous = "alt+shift+left"
-move_tab_next = "alt+shift+right"
+previous_tab = ["prefix+p", "alt+left"]
+next_tab = ["prefix+n", "alt+right"]
 
-# Workspaces: Omarchy arrows + ctrl+alt tab cycle + numbered jumps.
+# Sessions -> workspaces
 new_workspace = "prefix+shift+c"
 rename_workspace = "prefix+shift+r"
 close_workspace = "prefix+shift+k"
-previous_workspace = ["prefix+shift+p", "alt+up", "ctrl+alt+shift+tab"]
-next_workspace = ["prefix+shift+n", "alt+down", "ctrl+alt+tab"]
-switch_workspace = "ctrl+shift+1..9"
+previous_workspace = ["prefix+shift+p", "alt+up"]
+next_workspace = ["prefix+shift+n", "alt+down"]
 
 [ui]
 accent = "yellow"
 pane_borders = true
-pane_gaps = true
-pane_scrollbars = true
+pane_gaps = false
+pane_scrollbars = false
 confirm_close = false
 prompt_new_tab_name = false
 mouse_capture = true
