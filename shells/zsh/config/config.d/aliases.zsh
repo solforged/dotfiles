@@ -28,3 +28,8 @@ alias eal="cd $DOTFILES_DIR && $EDITOR $DOTFILES_DIR/shells/zsh/config/aliases.z
 alias gl="glow -t"
 
 alias omr="omp --resume"
+
+hash -d df="${DOTFILES_DIR:-$HOME/src/dotfiles}"
+hash -d an="$HOME/work/analysis"
+hash -d lst="${XDG_STATE_HOME:-$HOME/.local/state}"
+hash -d lsh="${XDG_DATA_HOME:-$HOME/.local/share}"

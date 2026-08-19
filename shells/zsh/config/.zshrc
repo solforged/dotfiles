@@ -18,4 +18,4 @@ if command -v "fnox" >/dev/null 2>&1; then
   eval "$(fnox activate zsh)"
 fi
 
-[[ -r "$ZDOTDIR/zoxide.zsh" ]] && source "$ZDOTDIR/zoxide.zsh"
+[[ -r "$ZDOTDIR/config.d/zoxide.zsh" ]] && source "$ZDOTDIR/config.d/zoxide.zsh"
