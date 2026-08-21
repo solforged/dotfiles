@@ -9,7 +9,7 @@ symbolPreset: nerd
 theme: 
   dark: reticle-dark
   light: reticle-light
-setupVersion: 1
+setupVersion: 2
 hideThinkingBlock: false
 memory: 
   backend: mnemopi
