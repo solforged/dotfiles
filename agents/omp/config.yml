@@ -1,10 +1,14 @@
 modelRoles: 
-  default: openai-codex/gpt-5.6-sol
   smol: openai-codex/gpt-5.6-luna:medium
   plan: openai-codex/gpt-5.6-sol:xhigh
   commit: openai-codex/gpt-5.6-luna:low
   task: openai-codex/gpt-5.6-luna:medium
   advisor: openai-codex/gpt-5.6-luna:xhigh
+  default: openai-codex/gpt-5.6-terra
+  slow: openai-codex/gpt-5.6-sol:high
+disabledProviders:
+  - ollama
+  - vllm
 symbolPreset: nerd
 theme: 
   dark: reticle-dark
@@ -60,3 +64,6 @@ startup:
 terminal: 
   showProgress: true
 autocompleteMaxVisible: 15
+composer:
+  shape: claude
+defaultThinkingLevel: auto
