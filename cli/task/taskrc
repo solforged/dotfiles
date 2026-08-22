@@ -1,2 +1,3 @@
 # Keep non-shell callers on the same XDG data path as $TASKDATA.
 data.location=~/.local/share/task
+news.version=3.5.0
