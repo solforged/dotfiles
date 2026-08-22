@@ -51,7 +51,6 @@ exec vllm serve Qwen/Qwen3.8-27B-FP8 \
 
 [dotfiles]
 # Preserve Omarchy's interaction model while layering portable preferences.
-"~/.omp/agent/models.yml" = { source = "~/src/dotfiles/agents/omp/models.yml", mode = "symlink" }
 "~/.config/beets" = { source = "~/src/dotfiles/cli/beets/", mode = "symlink-each" }
 "~/.config/herdr" = { source = "~/src/dotfiles/desktop/omarchy/herdr", mode = "symlink-each" }
 "~/.config/hypr/bindings.lua" = { source = "~/src/dotfiles/desktop/omarchy/hypr/bindings.lua", mode = "symlink" }
@@ -59,6 +58,7 @@ exec vllm serve Qwen/Qwen3.8-27B-FP8 \
 "~/.config/hypr/looknfeel.lua" = { source = "~/src/dotfiles/desktop/omarchy/hypr/looknfeel.lua", mode = "symlink" }
 "~/.config/hypr/monitors.lua" = { source = "~/src/dotfiles/desktop/omarchy/hypr/monitors.lua", mode = "symlink" }
 "~/.config/omarchy/shell.json" = { source = "~/src/dotfiles/desktop/omarchy/shell.json", mode = "symlink" }
+"~/.config/omarchy/plugins/sol.lock" = { source = "~/src/dotfiles/desktop/omarchy/plugins/sol.lock", mode = "symlink-each" }
 "~/.config/autostart/1password.desktop" = { source = "~/src/dotfiles/desktop/omarchy/autostart/1password.desktop", mode = "symlink" }
 "~/.config/omarchy/themes/reticle-dark" = { source = "~/src/dotfiles/desktop/omarchy/themes/reticle-dark", mode = "symlink-each" }
 "~/.config/omarchy/themes/reticle-light" = { source = "~/src/dotfiles/desktop/omarchy/themes/reticle-light", mode = "symlink-each" }
