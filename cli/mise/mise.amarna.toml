@@ -48,9 +48,11 @@ exec vllm serve Qwen/Qwen3.8-27B-FP8 \
 "pacman:chromaprint" = "latest"
 "pacman:task" = "latest"
 "pacman:zsh" = "latest"
+"pacman:ttf-ibm-plex" = "latest"
 
 [dotfiles]
 # Preserve Omarchy's interaction model while layering portable preferences.
+"~/.config/fontconfig/conf.d" = { source = "~/src/dotfiles/desktop/fontconfig/conf.d", mode = "symlink-each" }
 "~/.config/beets" = { source = "~/src/dotfiles/cli/beets/", mode = "symlink-each" }
 "~/.config/herdr" = { source = "~/src/dotfiles/desktop/omarchy/herdr", mode = "symlink-each" }
 "~/.config/hypr/bindings.lua" = { source = "~/src/dotfiles/desktop/omarchy/hypr/bindings.lua", mode = "symlink" }
