@@ -28,6 +28,9 @@
 
 [core]
   excludesFile = ~/.config/git/ignore
+  # System editor: lazygit consults core.editor first for commit messages and
+  # file editing, so pin it here rather than relying on shell EDITOR.
+  editor = nvim
 
 # Keep every repository's history concise, regardless of which client commits.
 [hook "commit-message-policy"]
