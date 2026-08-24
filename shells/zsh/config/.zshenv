@@ -41,7 +41,12 @@ if [[ -z "${XDG_DATA_DIRS:-}" ]]; then
 fi
 
 
-export EDITOR="${EDITOR:-nvim}"
+if [[ "$OSTYPE" != darwin* ]]; then
+  export EDITOR="${EDITOR:-omarchy-launch-editor --inline}"
+else
+  export EDITOR="${EDITOR:-nvim}"
+fi
+export SUDO_EDITOR="$EDITOR"
 export PAGER="${PAGER:-moor}"
 export MOOR="${MOOR:---no-linenumbers}"
 

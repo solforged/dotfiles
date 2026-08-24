@@ -73,7 +73,7 @@ git_signing_program = ""
 "~/.config/gh" = { source = "~/src/dotfiles/cli/gh", mode = "symlink-each" }
 "~/.config/lazygit" = { source = "~/src/dotfiles/cli/lazygit", mode = "symlink-each" }
 "~/.config/cliamp/config.toml" = { source = "~/src/dotfiles/cli/cliamp/config.toml.tmpl", mode = "template" }
-"~/.config/herdr" = { source = "~/src/dotfiles/cli/herdr", mode = "symlink-each" }
+"~/.config/herdr/config.toml" = { source = "~/src/dotfiles/cli/herdr/config.toml", mode = "symlink" }
 "~/.config/node" = { source = "~/src/dotfiles/cli/node", mode = "symlink-each" }
 # Keep config.toml mutable for host-managed tools such as Omarchy's agent
 # wrappers; load the portable base as a separate mise environment instead.
