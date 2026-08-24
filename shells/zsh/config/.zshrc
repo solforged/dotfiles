@@ -1,3 +1,5 @@
+[[ -r "$ZDOTDIR/config.d/omarchy.zsh" ]] && source "$ZDOTDIR/config.d/omarchy.zsh"
+
 [[ -r "$ZDOTDIR/config.d/options.zsh" ]] && source "$ZDOTDIR/config.d/options.zsh"
 [[ -r "$ZDOTDIR/config.d/functions.zsh" ]] && source "$ZDOTDIR/config.d/functions.zsh"
 [[ -r "$ZDOTDIR/config.d/aliases.zsh" ]] && source "$ZDOTDIR/config.d/aliases.zsh"
