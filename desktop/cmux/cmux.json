@@ -1,0 +1,45 @@
+{
+  "$schema": "https://raw.githubusercontent.com/manaflow-ai/cmux/main/web/data/cmux.schema.json",
+  "schemaVersion": 1,
+  "app": {
+    "appearance": "system",
+    "confirmQuit": "never",
+    "preferredEditor": "nvim",
+    "sendAnonymousTelemetry": false,
+    "warnBeforeQuit": false
+  },
+  "automation": {
+    "ampIntegration": false,
+    "autoNamingAgent": "auto",
+    "claudeCodeIntegration": true,
+    "cursorIntegration": false,
+    "geminiIntegration": false,
+    "kiroIntegration": false,
+    "workspaceAutoNaming": true
+  },
+  "fileEditor": {
+    "wordWrap": true
+  },
+  "sidebar": {
+    "beta": {
+      "workspaceTodos": {
+        "controls": {
+          "enabled": true
+        }
+      }
+    },
+    "showAgentActivity": false,
+    "showBranchDirectory": true,
+    "showNotificationMessage": false,
+    "showWorkspaceDescription": true,
+    "wrapWorkspaceTitles": true
+  },
+  "sidebarAppearance": {
+    "matchTerminalBackground": true,
+    "tintColor": "#000000",
+    "tintOpacity": 0.18
+  },
+  "terminal": {
+    "copyOnSelect": true
+  }
+}
