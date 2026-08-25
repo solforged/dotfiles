@@ -53,17 +53,13 @@ exec vllm serve Qwen/Qwen3.8-27B-FP8 \
 [dotfiles]
 # Preserve Omarchy's interaction model while layering portable preferences.
 "~/.config/fontconfig/conf.d" = { source = "~/src/dotfiles/desktop/fontconfig/conf.d", mode = "symlink-each" }
-"~/.config/beets" = { source = "~/src/dotfiles/cli/beets/", mode = "symlink-each" }
-"~/.config/herdr/config.toml" = { source = "~/src/dotfiles/cli/herdr/config.omarchy.toml", mode = "symlink" }
-"~/.config/hypr/bindings.lua" = { source = "~/src/dotfiles/desktop/omarchy/hypr/bindings.lua", mode = "symlink" }
-"~/.config/hypr/input.lua" = { source = "~/src/dotfiles/desktop/omarchy/hypr/input.lua", mode = "symlink" }
-"~/.config/hypr/looknfeel.lua" = { source = "~/src/dotfiles/desktop/omarchy/hypr/looknfeel.lua", mode = "symlink" }
-"~/.config/hypr/monitors.lua" = { source = "~/src/dotfiles/desktop/omarchy/hypr/monitors.lua", mode = "symlink" }
-"~/.config/omarchy/shell.json" = { source = "~/src/dotfiles/desktop/omarchy/shell.json", mode = "symlink" }
+"~/.config/beets" = { source = "~/src/dotfiles/cli/beets", mode = "symlink-each" }
+"~/.config/herdr/config.toml" = "~/src/dotfiles/cli/herdr/config.omarchy.toml"
+"~/.config/hypr/*.lua" = "~/src/dotfiles/desktop/omarchy/hypr/*.lua"
+"~/.config/omarchy/shell.json" = "~/src/dotfiles/desktop/omarchy/shell.json"
 "~/.config/omarchy/plugins/sol.lock" = { source = "~/src/dotfiles/desktop/omarchy/plugins/sol.lock", mode = "symlink-each" }
-"~/.config/autostart/1password.desktop" = { source = "~/src/dotfiles/desktop/autostart/1password.desktop", mode = "symlink" }
-"~/.config/omarchy/themes/reticle-dark" = { source = "~/src/dotfiles/desktop/omarchy/themes/reticle-dark", mode = "symlink-each" }
-"~/.config/omarchy/themes/reticle-light" = { source = "~/src/dotfiles/desktop/omarchy/themes/reticle-light", mode = "symlink-each" }
+"~/.config/autostart/1password.desktop" = "~/src/dotfiles/desktop/autostart/1password.desktop"
+"~/.config/omarchy/themes" = { source = "~/src/dotfiles/desktop/omarchy/themes", mode = "symlink-each" }
 
 [bootstrap.user]
 login_shell = "/usr/bin/zsh"

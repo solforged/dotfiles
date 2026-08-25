@@ -121,7 +121,7 @@ export MISE_AUTO_ENV=1
 host="$( (hostname -s 2>/dev/null || hostname 2>/dev/null || true) | tr '[:upper:]' '[:lower:]' )"
 case "$host" in
   hyperion)
-    host_env=personal,desktop,hyperion
+    host_env=personal,hyperion
     ;;
   sigil)
     host_env=personal,sigil
@@ -130,18 +130,14 @@ case "$host" in
     host_env=atlas
     ;;
   amarna)
-    host_env=personal,desktop,amarna
+    host_env=personal,amarna
     ;;
   *)
     host_env=personal
     ;;
 esac
 
-if [ "$os" = "Darwin" ]; then
-  export MISE_ENV="base,macos,$host_env"
-else
-  export MISE_ENV="base,$host_env"
-fi
+export MISE_ENV="base,$host_env"
 
 cd "$mise_dir"
 exec "$mise_bin" bootstrap "$@" <&3

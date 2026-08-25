@@ -7,8 +7,8 @@ ssh_auth_sock = "~/.local/state/1password/agent.sock"
 "github:can1357/oh-my-pi" = "latest"
 
 [dotfiles]
-"~/.codex/AGENTS.md" = { source = "~/src/dotfiles/agents/omp/AGENTS.md", mode = "symlink" }
-"~/.omp/agent/config.yml" = { source = "~/src/dotfiles/agents/omp/config.yml", mode = "symlink" }
-"~/.omp/agent/AGENTS.md" = { source = "~/src/dotfiles/agents/omp/AGENTS.md", mode = "symlink" }
+"~/.codex/AGENTS.md" = "~/src/dotfiles/agents/omp/AGENTS.md"
+"~/.omp/agent/config.yml" = "~/src/dotfiles/agents/omp/config.yml"
+"~/.omp/agent/AGENTS.md" = "~/src/dotfiles/agents/omp/AGENTS.md"
 "~/.omp/agent/themes" = { source = "~/src/dotfiles/agents/omp/themes", mode = "symlink-each" }
 "~/.omp/agent/commands" = { source = "~/src/dotfiles/agents/omp/commands", mode = "symlink-each" }
