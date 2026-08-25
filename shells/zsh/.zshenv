@@ -1,3 +1,5 @@
 export ZDOTDIR="${ZDOTDIR:-$HOME/.config/zsh}"
 
-[[ -r "$ZDOTDIR/.zshenv" ]] && source "$ZDOTDIR/.zshenv"
+if [[ -r "$ZDOTDIR/.zshenv" ]]; then
+  source "$ZDOTDIR/.zshenv"
+fi
