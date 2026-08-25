@@ -120,12 +120,13 @@ git_signing_program = ""
 "~/.config/hk/fnox.toml" = { source = "~/src/dotfiles/cli/fnox/config.toml", mode = "template" }
 "~/.config/fnox/config.toml" = { source = "~/src/dotfiles/cli/fnox/config.toml", mode = "template" }
 "~/.config/atuin" = { source = "~/src/dotfiles/cli/atuin", mode = "symlink-each" }
+"~/.config/cliamp/config.toml" = { source = "~/src/dotfiles/cli/cliamp/config.toml.tmpl", mode = "template" }
+"~/.config/cmux" = { source = "~/src/dotfiles/desktop/cmux", mode = "symlink-each" }
 "~/.config/dprint" = { source = "~/src/dotfiles/cli/dprint", mode = "symlink-each" }
 "~/.config/gh" = { source = "~/src/dotfiles/cli/gh", mode = "symlink-each" }
 "~/.config/ghostty" = { source = "~/src/dotfiles/desktop/ghostty", mode = "symlink-each" }
-"~/.config/lazygit" = { source = "~/src/dotfiles/cli/lazygit", mode = "symlink-each" }
-"~/.config/cliamp/config.toml" = { source = "~/src/dotfiles/cli/cliamp/config.toml.tmpl", mode = "template" }
 "~/.config/herdr/config.toml" = "~/src/dotfiles/cli/herdr/config.toml"
+"~/.config/lazygit" = { source = "~/src/dotfiles/cli/lazygit", mode = "symlink-each" }
 "~/.config/node" = { source = "~/src/dotfiles/cli/node", mode = "symlink-each" }
 # Keep config.toml mutable for host-managed tools such as Omarchy's agent
 # wrappers; load the portable base as a separate mise environment instead.
