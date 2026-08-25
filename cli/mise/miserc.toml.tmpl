@@ -1,19 +1,14 @@
 {% set host = exec(command='(hostname -s 2>/dev/null || hostname 2>/dev/null || true) | tr "[:upper:]" "[:lower:]"') | trim -%}
-{% set os = exec(command='uname -s 2>/dev/null || true') | trim -%}
 # Generated from dotfiles for host: {{ host }}
 auto_env = true
 {% if host == "hyperion" -%}
-env = ["base", "macos", "personal", "desktop", "hyperion"]
+env = ["base", "personal", "hyperion"]
 {% elif host == "sigil" -%}
 env = ["base", "personal", "sigil"]
-{% elif host == "atlas" and os == "Darwin" -%}
-env = ["base", "macos", "atlas"]
 {% elif host == "atlas" -%}
 env = ["base", "atlas"]
 {% elif host == "amarna" -%}
-env = ["base", "personal", "desktop", "amarna"]
-{% elif os == "Darwin" -%}
-env = ["base", "macos", "personal"]
+env = ["base", "personal", "amarna"]
 {% else -%}
 env = ["base", "personal"]
 {% endif -%}
