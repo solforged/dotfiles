@@ -27,6 +27,7 @@ CARGO_HOME = "{{ env.HOME }}/.local/share/cargo"
 "aqua:BurntSushi/ripgrep" = "latest"
 "aqua:sharkdp/fd" = "latest"
 "cargo:eza" = "latest"
+"cargo:himalaya" = "latest"
 "aqua:neovim/neovim" = "latest"
 "aqua:sxyazi/yazi" = "latest"
 "conda:clang-format" = "latest"
@@ -44,6 +45,56 @@ description = "Re-resolve active global tool lockfiles, then install"
 dir = "{{ env.HOME }}"
 run = ["mise lock --global --bump", "mise install"]
 
+[tasks."fonts:install-berkeley"]
+description = "Decrypt, install, and select the bundled Berkeley Mono Variable font"
+dir = "{{ env.HOME }}/src/dotfiles"
+run = '''
+set -eu
+
+encrypted="assets/fonts/berkeley-mono-variable.otf.gz.age"
+identity="$HOME/.config/fnox/age-identity.txt"
+expected_sha256="cbb8c0c9d0dab3ace7c641af08e549d6e77e530e0cd3f481816fb5dabd8d8b55"
+
+case "$(uname -s)" in
+  Darwin) font_dir="$HOME/Library/Fonts" ;;
+  Linux) font_dir="${XDG_DATA_HOME:-$HOME/.local/share}/fonts" ;;
+  *) echo "Unsupported operating system" >&2; exit 1 ;;
+esac
+
+font="$font_dir/Berkeley Mono Variable.otf"
+mkdir -p "$font_dir"
+tmp="$(mktemp "$font_dir/.berkeley-mono.XXXXXX")"
+trap 'rm -f "$tmp"' EXIT HUP INT TERM
+
+rage --decrypt --identity "$identity" "$encrypted" | gzip -dc >"$tmp"
+if command -v sha256sum >/dev/null 2>&1; then
+  actual_sha256="$(sha256sum "$tmp" | awk '{print $1}')"
+else
+  actual_sha256="$(shasum -a 256 "$tmp" | awk '{print $1}')"
+fi
+
+if [ "$actual_sha256" != "$expected_sha256" ]; then
+  echo "Berkeley Mono checksum mismatch" >&2
+  exit 1
+fi
+
+if [ -f "$font" ] && cmp -s "$tmp" "$font"; then
+  echo "Berkeley Mono Variable is already installed"
+else
+  chmod 0644 "$tmp"
+  mv "$tmp" "$font"
+  echo "Installed $font"
+fi
+trap - EXIT HUP INT TERM
+
+if command -v fc-cache >/dev/null 2>&1; then
+  fc-cache -f "$font_dir"
+fi
+if command -v omarchy >/dev/null 2>&1; then
+  omarchy font set "Berkeley Mono Variable"
+fi
+'''
+
 [vars]
 git_user_name = "solforged"
 git_user_email = "sol@sowilo.io"
@@ -57,12 +108,12 @@ git_signing_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIErof9IMxQpX5/SSsZeJ8cH6
 git_signing_program = ""
 
 [dotfiles]
-"~/.zshenv" = { source = "~/src/dotfiles/shells/zsh/.zshenv", mode = "symlink" }
-"~/.hushlogin" = { source = "~/src/dotfiles/shells/hushlogin", mode = "symlink" }
+"~/.zshenv" = "~/src/dotfiles/shells/zsh/.zshenv"
+"~/.hushlogin" = "~/src/dotfiles/shells/hushlogin"
 "~/.config/git/config" = { source = "~/src/dotfiles/cli/git/config.tmpl", mode = "template" }
 "~/.config/git/config.personal" = { source = "~/src/dotfiles/cli/git/config.personal.tmpl", mode = "template" }
 "~/.config/git/allowed_signers" = { source = "~/src/dotfiles/cli/git/allowed_signers.tmpl", mode = "template" }
-"~/.config/git/ignore" = { source = "~/src/dotfiles/cli/git/ignore", mode = "symlink" }
+"~/.config/git/ignore" = "~/src/dotfiles/cli/git/ignore"
 "~/.ssh/config" = { source = "~/src/dotfiles/cli/ssh/config.tmpl", mode = "template" }
 "~/.config/hk/commit-message-policy.sh" = { source = "~/src/dotfiles/cli/hk/commit-message-policy.sh.tmpl", mode = "template" }
 "~/.config/hk/gitleaks-fnox.sh" = { source = "~/src/dotfiles/cli/hk/gitleaks-fnox.sh.tmpl", mode = "template" }
@@ -71,29 +122,23 @@ git_signing_program = ""
 "~/.config/atuin" = { source = "~/src/dotfiles/cli/atuin", mode = "symlink-each" }
 "~/.config/dprint" = { source = "~/src/dotfiles/cli/dprint", mode = "symlink-each" }
 "~/.config/gh" = { source = "~/src/dotfiles/cli/gh", mode = "symlink-each" }
+"~/.config/ghostty" = { source = "~/src/dotfiles/desktop/ghostty", mode = "symlink-each" }
 "~/.config/lazygit" = { source = "~/src/dotfiles/cli/lazygit", mode = "symlink-each" }
 "~/.config/cliamp/config.toml" = { source = "~/src/dotfiles/cli/cliamp/config.toml.tmpl", mode = "template" }
-"~/.config/herdr/config.toml" = { source = "~/src/dotfiles/cli/herdr/config.toml", mode = "symlink" }
+"~/.config/herdr/config.toml" = "~/src/dotfiles/cli/herdr/config.toml"
 "~/.config/node" = { source = "~/src/dotfiles/cli/node", mode = "symlink-each" }
 # Keep config.toml mutable for host-managed tools such as Omarchy's agent
 # wrappers; load the portable base as a separate mise environment instead.
-"~/.config/mise/config.base.toml" = { source = "~/src/dotfiles/cli/mise/mise.toml", mode = "symlink" }
+"~/.config/mise/config.base.toml" = "~/src/dotfiles/cli/mise/mise.toml"
 "~/.config/mise/miserc.toml" = { source = "~/src/dotfiles/cli/mise/miserc.toml.tmpl", mode = "template" }
-"~/.config/mise/config.amarna.toml" = { source = "~/src/dotfiles/cli/mise/mise.amarna.toml", mode = "symlink" }
-"~/.config/mise/config.atlas.toml" = { source = "~/src/dotfiles/cli/mise/mise.atlas.toml", mode = "symlink" }
-"~/.config/mise/config.desktop.toml" = { source = "~/src/dotfiles/cli/mise/mise.desktop.toml", mode = "symlink" }
-"~/.config/mise/config.hyperion.toml" = { source = "~/src/dotfiles/cli/mise/mise.hyperion.toml", mode = "symlink" }
-"~/.config/mise/config.macos.toml" = { source = "~/src/dotfiles/cli/mise/mise.macos.toml", mode = "symlink" }
-"~/.config/mise/config.personal.toml" = { source = "~/src/dotfiles/cli/mise/mise.personal.toml", mode = "symlink" }
-"~/.config/mise/config.sigil.toml" = { source = "~/src/dotfiles/cli/mise/mise.sigil.toml", mode = "symlink" }
+"~/.config/mise/config.*.toml" = "~/src/dotfiles/cli/mise/mise.*.toml"
 # Mise keys each lockfile to the config path that loaded it, so deploy them
 # beside the global profiles to keep `latest` locked outside this repository.
-"~/.config/mise/mise.base.lock" = { source = "~/src/dotfiles/cli/mise/mise.lock", mode = "symlink" }
-"~/.config/mise/mise.desktop.lock" = { source = "~/src/dotfiles/cli/mise/mise.desktop.lock", mode = "symlink" }
-"~/.config/mise/mise.hyperion.lock" = { source = "~/src/dotfiles/cli/mise/mise.hyperion.lock", mode = "symlink" }
-"~/.config/mise/mise.macos.lock" = { source = "~/src/dotfiles/cli/mise/mise.macos.lock", mode = "symlink" }
-"~/.config/mise/mise.personal.lock" = { source = "~/src/dotfiles/cli/mise/mise.personal.lock", mode = "symlink" }
+"~/.config/mise/mise.base.lock" = "~/src/dotfiles/cli/mise/mise.lock"
+"~/.config/mise/mise.*.lock" = "~/src/dotfiles/cli/mise/mise.*.lock"
 "~/.config/nvim" = { source = "~/src/dotfiles/editors/nvim", mode = "symlink-each" }
-"~/.config/starship.toml" = { source = "~/src/dotfiles/shells/starship.toml", mode = "symlink" }
+"~/.config/task" = { source = "~/src/dotfiles/cli/task", mode = "symlink-each" }
+"~/.config/zed" = { source = "~/src/dotfiles/editors/zed", mode = "symlink-each" }
+"~/.config/starship.toml" = "~/src/dotfiles/shells/starship.toml"
 "~/.config/yazi" = { source = "~/src/dotfiles/cli/yazi", mode = "symlink-each" }
 "~/.config/zsh" = { source = "~/src/dotfiles/shells/zsh/config", mode = "symlink-each" }

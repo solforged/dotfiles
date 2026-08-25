@@ -8,9 +8,6 @@
 "aqua:realm/SwiftLint" = "latest"
 "spm:nicklockwood/SwiftFormat" = "latest"
 
-[dotfiles]
-"~/.config/ghostty" = { source = "~/src/dotfiles/desktop/ghostty", mode = "symlink-each" }
-
 [vars]
 git_signing_program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 
