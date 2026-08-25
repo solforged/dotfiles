@@ -41,7 +41,7 @@ if [[ -z "${XDG_DATA_DIRS:-}" ]]; then
 fi
 
 
-if [[ "$OSTYPE" != darwin* ]]; then
+if command -v omarchy-launch-editor >/dev/null 2>&1; then
   export EDITOR="${EDITOR:-omarchy-launch-editor --inline}"
 else
   export EDITOR="${EDITOR:-nvim}"
@@ -56,7 +56,7 @@ export npm_config_cache="${npm_config_cache:-$XDG_CACHE_HOME/npm}"
 export TASKRC="${TASKRC:-$XDG_CONFIG_HOME/task/taskrc}"
 export TASKDATA="${TASKDATA:-$XDG_DATA_HOME/task}"
 
-if [[ "$(uname -s)" == Darwin && -z "${NODE_OPTIONS:-}" ]]; then
+if [[ "$OSTYPE" == darwin* && -z "${NODE_OPTIONS:-}" ]]; then
   # macOS 27 aborts on a second process.title assignment.
   _node_title_shim="$XDG_CONFIG_HOME/node/no-process-title.cjs"
   [[ -r "$_node_title_shim" ]] && export NODE_OPTIONS="--require $_node_title_shim"
@@ -74,4 +74,6 @@ if [[ -z "${SSH_AUTH_SOCK:-}" && -S "$XDG_STATE_HOME/1password/agent.sock" ]]; t
 fi
 
 # Source local env overrides (provided by overlay modules)
-[[ -r "$ZDOTDIR/env.local.zsh" ]] && source "$ZDOTDIR/env.local.zsh"
+if [[ -r "$ZDOTDIR/env.local.zsh" ]]; then
+  source "$ZDOTDIR/env.local.zsh"
+fi

@@ -5,7 +5,7 @@
 # platform-specific pieces are guarded inline.
 
 # --- Tools --------------------------------------------------------------------
-[[ $OSTYPE == darwin* ]] || alias a='omarchy-agent --inline'
+command -v omarchy-agent >/dev/null 2>&1 && alias a='omarchy-agent --inline'
 alias c='opencode --auto'
 alias cx='printf "\033[2J\033[3J\033[H" && claude --permission-mode auto'
 alias cy='codex --approve-for-me'
@@ -14,8 +14,13 @@ alias r='rails'
 command -v tmux &>/dev/null && alias t='tmux attach || tmux new -s Work'
 command -v herdr &>/dev/null && alias h='herdr'
 alias mup='MISE_MINIMUM_RELEASE_AGE=0 mise up'
-n() { if [ "$#" -eq 0 ]; then command nvim . ; else command nvim "$@"; fi; }
-
+n() {
+  if (( $# == 0 )); then
+    command nvim .
+  else
+    command nvim "$@"
+  fi
+}
 # Fuzzy-find a file with an image-aware preview (kitty graphics protocol only).
 if [[ "$TERM" == "xterm-kitty" ]]; then
   alias ff="fzf --preview 'case \$(file --mime-type -b {}) in image/*) kitty icat --clear --transfer-mode=memory --stdin=no --place=\${FZF_PREVIEW_COLUMNS}x\${FZF_PREVIEW_LINES}@0x0 {} ;; *) bat --style=numbers --color=always {} ;; esac'"
@@ -24,12 +29,24 @@ else
 fi
 alias eff='$EDITOR "$(ff)"'
 # GNU find only; macOS find lacks -printf.
-[[ $OSTYPE != darwin* ]] && sff() { if [ $# -eq 0 ]; then echo "Usage: sff <destination> (e.g. sff host:/tmp/)"; return 1; fi; local file; file=$(find . -type f -printf '%T@\t%p\n' | sort -rn | cut -f2- | ff) && [ -n "$file" ] && scp "$file" "$1"; }
+if [[ $OSTYPE != darwin* ]] && command -v scp >/dev/null 2>&1; then
+  sff() {
+    if (( $# == 0 )); then
+      echo "Usage: sff <destination> (e.g. sff host:/tmp/)"
+      return 1
+    fi
+    local file
+    file=$(find . -type f -printf '%T@\t%p\n' 2>/dev/null | sort -rn | cut -f2- | ff)
+    [[ -n "$file" ]] && scp "$file" "$1"
+  }
+fi
 
 # Detach GUI opens from the shell. On macOS /usr/bin/open already does this.
-[[ $OSTYPE != darwin* ]] && open() (
-  xdg-open "$@" >/dev/null 2>&1 &
-)
+if [[ $OSTYPE != darwin* ]] && command -v xdg-open >/dev/null 2>&1; then
+  open() {
+    xdg-open "$@" >/dev/null 2>&1 &
+  }
+fi
 
 # --- Directories ---------------------------------------------------------------
 alias ..='cd ..'
@@ -56,15 +73,16 @@ if command -v zoxide &> /dev/null; then
 fi
 
 # --- Listing (eza) --------------------------------------------------------------
-_eza_defaults=(--color=auto --group-directories-first --classify=auto)
-_eza_long_defaults=(-lh --time-style=long-iso)
-[[ $OSTYPE == darwin* ]] && _eza_long_defaults+=(--extended)
+if command -v eza >/dev/null 2>&1; then
+  _eza_defaults=(--color=auto --group-directories-first --classify=auto)
+  _eza_long_defaults=(-lh --time-style=long-iso)
+  [[ $OSTYPE == darwin* ]] && _eza_long_defaults+=(--extended)
 
-ls() { command eza "${_eza_defaults[@]}" "${_eza_long_defaults[@]}" "$@"; }
-lsa() { ls -a "$@"; }
-lt() { command eza "${_eza_defaults[@]}" -l --time-style=long-iso --tree --level=2 --icons --git "$@"; }
-lta() { lt -a "$@"; }
-
+  ls() { command eza "${_eza_defaults[@]}" "${_eza_long_defaults[@]}" "$@"; }
+  lsa() { ls -a "$@"; }
+  lt() { command eza "${_eza_defaults[@]}" -l --time-style=long-iso --tree --level=2 --icons --git "$@"; }
+  lta() { lt -a "$@"; }
+fi
 # --- Compression -----------------------------------------------------------------
 compress() { tar -czf "${1%/}.tar.gz" "${1%/}"; }
 alias decompress="tar -xzf"
@@ -88,28 +106,37 @@ ga() {
   local wt_path="../${base}--${branch}"
 
   git worktree add -b "$branch" "$wt_path"
-  mise trust "$wt_path"
+  command -v mise >/dev/null 2>&1 && mise trust "$wt_path"
   cd "$wt_path"
 }
 
 # Remove worktree and branch from within active worktree directory.
 gd() {
-  if gum confirm "Remove worktree and branch?"; then
-    local cwd base branch root worktree
+  local confirm=n
+  if command -v gum >/dev/null 2>&1; then
+    gum confirm "Remove worktree and branch?" || return 0
+  else
+    read -r "confirm?Remove worktree and branch? (y/N): "
+    [[ "$confirm" != [Yy] ]] && return 0
+  fi
 
-    cwd="$(pwd)"
-    worktree="$(basename "$cwd")"
+  local cwd base branch root worktree
 
-    # split on first `--`
-    root="${worktree%%--*}"
-    branch="${worktree#*--}"
+  cwd="$(pwd)"
+  worktree="$(basename "$cwd")"
 
-    # Protect against accidentally nuking a non-worktree directory
-    if [[ "$root" != "$worktree" ]]; then
-      cd "../$root"
-      git worktree remove "$cwd" --force || return 1
-      git branch -D "$branch"
-    fi
+  # split on first `--`
+  root="${worktree%%--*}"
+  branch="${worktree#*--}"
+
+  # Protect against accidentally nuking a non-worktree directory
+  if [[ "$root" != "$worktree" ]]; then
+    cd "../$root"
+    git worktree remove "$cwd" --force || return 1
+    git branch -D "$branch"
+  else
+    echo "Current directory is not a worktree (does not match <root>--<branch> pattern)"
+    return 1
   fi
 }
 
@@ -265,7 +292,7 @@ tdl() {
   tmux send-keys -t "$editor_pane" "$EDITOR ." C-m
 
   # Select the nvim pane for focus
-  tmux select-pane -t "$opencode_pane"
+  tmux select-pane -t "$editor_pane"
 }
 
 # Create a Tmux Dev Square layout with editor, diff watch, terminal, and opencode
@@ -519,14 +546,21 @@ if [[ $OSTYPE == linux* ]]; then
     local drive="$2"
 
     if [[ -z $drive ]]; then
-      local available_sds=$(lsblk -dpno NAME | grep -E '/dev/sd')
+      local available_sds
+      available_sds=$(lsblk -dpno NAME 2>/dev/null | grep -E '/dev/sd')
 
       if [[ -z $available_sds ]]; then
         echo "No SD drives found and no drive specified"
         return 1
       fi
 
-      drive=$(omarchy-drive-select "$available_sds")
+      if command -v omarchy-drive-select >/dev/null 2>&1; then
+        drive=$(omarchy-drive-select "$available_sds")
+      else
+        print -P "\n%BAvailable drives:%b"
+        echo "$available_sds"
+        read -r "drive?Select drive (e.g. /dev/sda): "
+      fi
 
       if [[ -z $drive ]]; then
         echo "No drive selected"
@@ -550,6 +584,9 @@ if [[ $OSTYPE == linux* ]]; then
       read -r "confirm?Are you sure you want to continue? (y/N): "
 
       if [[ $confirm == [Yy] ]]; then
+        local partition="${1}1"
+        [[ "$1" =~ [0-9]$ ]] && partition="${1}p1"
+
         sudo wipefs -a "$1"
         sudo dd if=/dev/zero of="$1" bs=1M count=100 status=progress
         sudo parted -s "$1" mklabel gpt
