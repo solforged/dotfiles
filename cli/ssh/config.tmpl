@@ -19,6 +19,15 @@ Host sigil
   IdentitiesOnly no
   ForwardAgent yes
 
+Host agent-vm
+  HostName agent-vm
+  User vmadmin
+{%- if vars.onepassword_agent_sock != "" %}
+  IdentityAgent "{{ vars.onepassword_agent_sock }}"
+{%- endif %}
+  IdentitiesOnly no
+  ForwardAgent yes
+
 {% if vars.ssh_auth_sock != "" -%}
 Host *
   IdentityAgent "{{ vars.ssh_auth_sock }}"
