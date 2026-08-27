@@ -1,20 +1,7 @@
 {% set fnox_profile = vars.fnox_profile -%}
 {% set jellyfin_token = exec(command='$HOME/.local/share/mise/shims/fnox --non-interactive -P ' ~ fnox_profile ~ ' get CLIAMP_JELLYFIN_TOKEN 2>/dev/null || true') | trim -%}
-# Local library lives under beets on hyperion (`/Volumes/Data/Media/Music`).
-# cliamp has no beets provider; the file browser opens this path with `o`.
-initial_directory = "/Volumes/Data/Media/Music"
-
-# Prefer the library already indexed in jellyfin when available.
+initial_directory = "/home/sol/Music"
 provider = "jellyfin"
 
 [jellyfin]
 url = "https://jellyfin.ussuri-alphard.ts.net"
-{% if jellyfin_token != "" -%}
-token = "{{ jellyfin_token }}"
-{% else -%}
-# Set with: fnox set CLIAMP_JELLYFIN_TOKEN
-token = ""
-{% endif %}
-
-[ytmusic]
-enabled = true
