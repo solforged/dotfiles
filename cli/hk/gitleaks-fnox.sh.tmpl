@@ -80,11 +80,11 @@ if [ "$is_work_repo" -eq 0 ]; then
     exit 1
   fi
 
-  # The host policy exists to keep work identity and internal vocabulary out of
-  # repositories that can publish them. A repository with no remote on a public
-  # forge cannot, and there the same words are ordinary working vocabulary, so
-  # that one rule is relaxed. Every other rule still applies, and a repository
-  # that gains a public remote is strict again from its next commit.
+  # A repository with no remote on a public forge cannot publish work
+  # vocabulary, and there those words are ordinary working vocabulary, so the
+  # allowlist relaxes them. It covers only the work terms; the personal-name
+  # rule has no exemption anywhere. A repository that gains a public remote is
+  # strict again from its next commit.
   if ! git remote -v 2>/dev/null |
     grep -qiE '(github|gitlab)\.com|bitbucket\.org|codeberg\.org|git\.sr\.ht'; then
     relaxation="$("$fnox" "${fnox_args[@]}" get GITLEAKS_INTERNAL_ALLOWLIST_TOML --no-daemon 2>/dev/null || true)"
@@ -104,8 +104,7 @@ $relaxation"
   # what lets a work identity reach a repository whose remote can publish it,
   # because git resolves identity by includeIf on the remote URL while this
   # policy is chosen by the same URL a step later. Resolve the full chain and
-  # scan it as ordinary text. A repository with no publishing remote already
-  # merged the relaxation above, so scratch work is unaffected.
+  # scan it as ordinary text.
   if [ -z "$msg_file" ]; then
     if ! { git var GIT_AUTHOR_IDENT; git var GIT_COMMITTER_IDENT; } |
       "$gitleaks" stdin --redact --no-banner >/dev/null 2>&1; then
