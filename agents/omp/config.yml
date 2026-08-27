@@ -1,4 +1,4 @@
-modelRoles: 
+modelRoles:
   smol: openai-codex/gpt-5.6-luna:medium
   plan: openai-codex/gpt-5.6-sol:xhigh
   commit: openai-codex/gpt-5.6-luna:low
@@ -6,62 +6,63 @@ modelRoles:
   advisor: openai-codex/gpt-5.6-luna:xhigh
   default: openai-codex/gpt-5.6-terra
   slow: openai-codex/gpt-5.6-sol:high
+  tiny: llama.cpp/qwen38-256k:auto
 disabledProviders:
   - ollama
   - vllm
 symbolPreset: nerd
-theme: 
-  dark: reticle-dark
-  light: reticle-light
+theme:
+  dark: titanium
+  light: light
 setupVersion: 2
 hideThinkingBlock: false
-memory: 
+memory:
   backend: mnemopi
-autolearn: 
+autolearn:
   enabled: true
   autoContinue: true
-mnemopi: 
+mnemopi:
   polyphonicRecall: true
   enhancedRecall: true
   proactiveLinking: true
   noEmbeddings: false
   scoping: per-project-tagged
-astGrep: 
+astGrep:
   enabled: true
-speechgen: 
+speechgen:
   enabled: true
-generate_image: 
+generate_image:
   enabled: true
-computer: 
+computer:
   enabled: true
-checkpoint: 
+checkpoint:
   enabled: true
-vault: 
+vault:
   enabled: true
-github: 
+github:
   enabled: true
-security: 
+security:
   enabled: true
-dev: 
+dev:
   autoqa: false
-task: 
-  isolation: 
+task:
+  isolation:
     mode: auto
   enableEffort: true
-commands: 
+commands:
   enableClaudeUser: false
   enableClaudeProject: false
   enableOpencodeUser: false
   enableOpencodeProject: false
-providers: 
+providers:
   memoryModel: llama3.2:3b
-display: 
+display:
   shimmer: kitt
-bashInterceptor: 
+bashInterceptor:
   enabled: true
-startup: 
+startup:
   checkUpdate: false
-terminal: 
+terminal:
   showProgress: true
 autocompleteMaxVisible: 15
 composer:
