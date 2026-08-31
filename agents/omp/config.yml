@@ -68,3 +68,5 @@ autocompleteMaxVisible: 15
 composer:
   shape: claude
 defaultThinkingLevel: auto
+spelling:
+  typoDetection: false

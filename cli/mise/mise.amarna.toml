@@ -44,6 +44,10 @@ exec vllm serve Qwen/Qwen3.8-27B-FP8 \
   --language-model-only
 '''
 
+[tasks."qwen:expose"]
+description = "publish localhost llama-server on the tailnet via Tailscale Serve"
+run = "tailscale serve --bg --https=443 http://127.0.0.1:8081"
+
 [bootstrap.packages]
 "pacman:chromaprint" = "latest"
 "pacman:task" = "latest"

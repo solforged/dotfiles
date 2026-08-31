@@ -19,6 +19,15 @@ Host sigil
   IdentitiesOnly no
   ForwardAgent yes
 
+Host amarna
+  HostName amarna
+  User sol
+{% if vars.onepassword_agent_sock != "" -%}
+  IdentityAgent "{{ vars.onepassword_agent_sock }}"
+{% endif -%}
+  IdentitiesOnly no
+  ForwardAgent no
+
 Host agent-vm
   HostName agent-vm
   User vmadmin
