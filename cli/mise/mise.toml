@@ -3,7 +3,8 @@ dotfiles.root = "~/src/dotfiles"
 dotfiles.default_mode = "symlink"
 experimental = true
 lockfile = true
-minimum_release_age_excludes = ["oh-my-pi", "github:can1357/oh-my-pi"]
+minimum_release_age = "0s"
+github.credential_command = "gh auth token"
 
 [env]
 RUSTUP_HOME = "{{ env.HOME }}/.local/share/rustup"
@@ -120,6 +121,7 @@ git_signing_program = ""
 "~/.config/hk/fnox.toml" = { source = "~/src/dotfiles/cli/fnox/config.toml", mode = "template" }
 "~/.config/fnox/config.toml" = { source = "~/src/dotfiles/cli/fnox/config.toml", mode = "template" }
 "~/.config/atuin" = { source = "~/src/dotfiles/cli/atuin", mode = "symlink-each" }
+"~/.config/brew" = { source = "~/src/dotfiles/cli/brew", mode = "symlink-each" }
 "~/.config/cliamp/config.toml" = { source = "~/src/dotfiles/cli/cliamp/config.toml.tmpl", mode = "template" }
 "~/.config/cmux" = { source = "~/src/dotfiles/desktop/cmux", mode = "symlink-each" }
 "~/.config/dprint" = { source = "~/src/dotfiles/cli/dprint", mode = "symlink-each" }
