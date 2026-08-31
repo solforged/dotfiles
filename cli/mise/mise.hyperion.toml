@@ -33,25 +33,6 @@
 [tools]
 "aqua:apple/container" = "latest"
 "pipx:beets" = { version = "latest", extras = "chroma,embedart,fetchart,lastgenre,lyrics" }
-# "npm:remnote-mcp-server" = "latest"
 
 [dotfiles]
 "~/.config/beets" = { source = "~/src/dotfiles/cli/beets", mode = "symlink-each" }
-
-# [tasks."remnote:enable"]
-# description = "Install login LaunchAgent for remnote-mcp-server"
-# run = [
-#   "remnote-mcp-server daemon install-launchd",
-#   "remnote-mcp-server daemon status",
-# ]
-#
-# [tasks."remnote:status"]
-# description = "Check daemon and RemNote bridge connectivity"
-# run = "remnote-cli status --text"
-#
-# [tasks."remnote:disable"]
-# description = "Stop and uninstall remnote-mcp-server LaunchAgent"
-# run = [
-#   "remnote-mcp-server daemon stop || true",
-#   "remnote-mcp-server daemon uninstall-launchd || true",
-# ]
