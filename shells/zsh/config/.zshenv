@@ -69,7 +69,8 @@ export MISE_EXPERIMENTAL=1
 export DOTFILES_DIR="$HOME/src/dotfiles"
 export LLM_WIKI_DIR="$HOME/wiki"
 
-if [[ -z "${SSH_AUTH_SOCK:-}" && -S "$XDG_STATE_HOME/1password/agent.sock" ]]; then
+# Prefer 1Password's agent over macOS's empty launchd-provided agent.
+if [[ -S "$XDG_STATE_HOME/1password/agent.sock" ]]; then
   export SSH_AUTH_SOCK="$XDG_STATE_HOME/1password/agent.sock"
 fi
 
