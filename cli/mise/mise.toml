@@ -46,6 +46,16 @@ description = "Re-resolve active global tool lockfiles, then install"
 dir = "{{ env.HOME }}"
 run = ["mise lock --global --bump", "mise install"]
 
+[tasks."themes:generate"]
+description = "Regenerate Reticle themes from the shared palette"
+dir = "{{ env.HOME }}/src/dotfiles"
+run = "python3 desktop/reticle/generate.py"
+
+[tasks."themes:check"]
+description = "Check Reticle contrast and generated theme consistency"
+dir = "{{ env.HOME }}/src/dotfiles"
+run = "python3 desktop/reticle/generate.py --check"
+
 [tasks."fonts:install-berkeley"]
 description = "Decrypt, install, and select the bundled Berkeley Mono Variable font"
 dir = "{{ env.HOME }}/src/dotfiles"

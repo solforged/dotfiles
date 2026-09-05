@@ -2,15 +2,15 @@
 
 [colors.primary]
 background = "#000000"
-foreground = "#64b580"
+foreground = "#ffbf00"
 
 [colors.cursor]
 text = "#000000"
-cursor = "#868d96"
+cursor = "#00a645"
 
 [colors.vi_mode_cursor]
 text = "#000000"
-cursor = "#868d96"
+cursor = "#00a645"
 
 [colors.search.matches]
 foreground = "#000000"
@@ -22,11 +22,11 @@ background = "#ed716b"
 
 [colors.footer_bar]
 foreground = "#000000"
-background = "#64b580"
+background = "#ffbf00"
 
 [colors.selection]
-text = "#f5c442"
-background = "#010c7b"
+text = "#00ffff"
+background = "#000066"
 
 [colors.normal]
 black = "#262626"

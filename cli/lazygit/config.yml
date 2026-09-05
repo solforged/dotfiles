@@ -1,2 +1,17 @@
 git:
   overrideGpg: true
+# ANSI colors follow the terminal's Reticle variant, including light mode.
+gui:
+  theme:
+    activeBorderColor: [yellow, bold]
+    inactiveBorderColor: [black, bold]
+    searchingActiveBorderColor: [yellow, bold]
+    optionsTextColor: [blue]
+    selectedLineBgColor: [reverse]
+    inactiveViewSelectedLineBgColor: [bold]
+    cherryPickedCommitFgColor: [green]
+    cherryPickedCommitBgColor: [default]
+    markedBaseCommitFgColor: [yellow]
+    markedBaseCommitBgColor: [default]
+    unstagedChangesColor: [yellow]
+    defaultFgColor: [default]
