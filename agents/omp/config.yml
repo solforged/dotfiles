@@ -12,8 +12,8 @@ disabledProviders:
   - vllm
 symbolPreset: nerd
 theme:
-  dark: titanium
-  light: light
+  dark: reticle-dimmed
+  light: reticle-light
 setupVersion: 2
 hideThinkingBlock: false
 memory:

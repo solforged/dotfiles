@@ -1,0 +1,56 @@
+# ANSI roles follow the active terminal palette in both appearances.
+# Reverse video keeps labels readable without assuming a dark background.
+[mgr]
+cwd = { fg = "blue" }
+find_keyword = { fg = "yellow", bold = true, italic = false, underline = true }
+find_position = { fg = "yellow", bg = "reset", bold = true, italic = false }
+symlink_target = { fg = "cyan", italic = false }
+count_copied = { fg = "green", bg = "reset", reversed = true }
+count_cut = { fg = "red", bg = "reset", reversed = true }
+count_selected = { fg = "yellow", bg = "reset", reversed = true }
+border_style = { fg = "darkgray" }
+
+[tabs]
+active = { fg = "yellow", bg = "reset", reversed = true, bold = true }
+inactive = { fg = "darkgray", bg = "reset" }
+
+[mode]
+normal_main = { fg = "blue", bg = "reset", reversed = true, bold = true }
+normal_alt = { fg = "blue", bg = "reset" }
+select_main = { fg = "yellow", bg = "reset", reversed = true, bold = true }
+select_alt = { fg = "yellow", bg = "reset" }
+unset_main = { fg = "red", bg = "reset", reversed = true, bold = true }
+unset_alt = { fg = "red", bg = "reset" }
+
+[status]
+progress_normal = { fg = "green", bg = "reset" }
+progress_error = { fg = "red", bg = "reset" }
+
+[notify]
+title_info = { fg = "blue" }
+title_warn = { fg = "yellow" }
+title_error = { fg = "red" }
+
+[which]
+border = { fg = "yellow" }
+cand = { fg = "blue" }
+rest = { fg = "darkgray" }
+desc = { fg = "reset" }
+
+[pick]
+border = { fg = "yellow" }
+active = { fg = "yellow", bold = true }
+
+[input]
+border = { fg = "yellow" }
+
+[cmp]
+border = { fg = "yellow" }
+
+[tasks]
+border = { fg = "yellow" }
+hovered = { fg = "yellow", bold = true }
+
+[help]
+border = { fg = "yellow" }
+chord = { fg = "blue" }
