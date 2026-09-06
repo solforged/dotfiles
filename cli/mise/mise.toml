@@ -7,12 +7,15 @@ minimum_release_age = "0s"
 github.credential_command = "gh auth token"
 
 [env]
+_.path = ["{{ env.HOME }}/.local/share/nvim/mason/bin"]
 RUSTUP_HOME = "{{ env.HOME }}/.local/share/rustup"
 CARGO_HOME = "{{ env.HOME }}/.local/share/cargo"
 
 # Resolved versions live in the lockfiles. Leaf tools follow latest while
 # runtimes retain compatibility guardrails.
 [tools]
+"aqua:nushell/nushell" = "latest"
+helix = "latest"
 "aqua:str4d/rage" = "latest"
 "aqua:jdx/hk" = "latest"
 "aqua:gitleaks/gitleaks" = "latest"
@@ -55,6 +58,11 @@ run = "python3 desktop/reticle/generate.py"
 description = "Check Reticle contrast and generated theme consistency"
 dir = "{{ env.HOME }}/src/dotfiles"
 run = "python3 desktop/reticle/generate.py --check"
+
+[tasks."places:check"]
+description = "Check shared places and workspace selection"
+dir = "{{ env.HOME }}/src/dotfiles"
+run = "PYTHONDONTWRITEBYTECODE=1 python3 cli/places/test_places.py"
 
 [tasks."fonts:install-berkeley"]
 description = "Decrypt, install, and select the bundled Berkeley Mono Variable font"
@@ -119,6 +127,10 @@ git_signing_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIErof9IMxQpX5/SSsZeJ8cH6
 git_signing_program = ""
 
 [dotfiles]
+"~/.local/bin/places" = "~/src/dotfiles/cli/places/places.py"
+"~/.config/places" = { source = "~/src/dotfiles/cli/places", mode = "symlink-each" }
+"~/.config/nushell" = { source = "~/src/dotfiles/shells/nu", mode = "symlink-each" }
+"~/.config/helix" = { source = "~/src/dotfiles/editors/helix", mode = "symlink-each" }
 "~/.zshenv" = "~/src/dotfiles/shells/zsh/.zshenv"
 "~/.hushlogin" = "~/src/dotfiles/shells/hushlogin"
 "~/.config/git/config" = { source = "~/src/dotfiles/cli/git/config.tmpl", mode = "template" }
