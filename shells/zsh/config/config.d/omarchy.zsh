@@ -23,11 +23,17 @@ n() {
 }
 # Fuzzy-find a file with an image-aware preview (kitty graphics protocol only).
 if [[ "$TERM" == "xterm-kitty" ]]; then
-  alias ff="fzf --preview 'case \$(file --mime-type -b {}) in image/*) kitty icat --clear --transfer-mode=memory --stdin=no --place=\${FZF_PREVIEW_COLUMNS}x\${FZF_PREVIEW_LINES}@0x0 {} ;; *) bat --style=numbers --color=always {} ;; esac'"
+  alias ff="fzf --preview 'case \$(file --mime-type -b -- {}) in image/*) kitty icat --clear --transfer-mode=memory --stdin=no --place=\${FZF_PREVIEW_COLUMNS}x\${FZF_PREVIEW_LINES}@0x0 -- {} ;; *) bat --style=numbers --color=always --theme=ansi --paging=never -- {} ;; esac'"
 else
-  alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
+  alias ff="fzf --preview 'bat --style=numbers --color=always --theme=ansi --paging=never -- {}'"
 fi
-alias eff='$EDITOR "$(ff)"'
+eff() {
+  local selected
+  selected=$(ff "$@") || return
+  [[ -n "$selected" ]] || return
+  local -a editor=( ${(z)${EDITOR:-nvim}} )
+  "${(@Q)editor}" -- "$selected"
+}
 # GNU find only; macOS find lacks -printf.
 if [[ $OSTYPE != darwin* ]] && command -v scp >/dev/null 2>&1; then
   sff() {
@@ -51,26 +57,6 @@ fi
 # --- Directories ---------------------------------------------------------------
 alias ..='cd ..'
 alias ...='cd ../..'
-
-# Smart cd via zoxide: real paths go straight there, anything else jumps
-# through zoxide's database.
-if command -v zoxide &> /dev/null; then
-  alias cd="zd"
-  zd() {
-    if (( $# == 0 )); then
-      builtin cd ~ || return
-    elif [[ -d $1 ]]; then
-      builtin cd "$1" || return
-    else
-      if ! z "$@"; then
-        echo "Error: Directory not found"
-        return 1
-      fi
-
-      print "\U000F17A9 $PWD"
-    fi
-  }
-fi
 
 # --- Listing (eza) --------------------------------------------------------------
 if command -v eza >/dev/null 2>&1; then
