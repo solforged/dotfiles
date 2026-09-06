@@ -1,12 +1,6 @@
 add_newline = true
 command_timeout = 200
-format = '$hostname${custom.place}$directory([\[$git_branch$git_commit$git_status$git_state\]](blue) )$line_break$character'
-
-[custom.place]
-command = 'printf "%s" "${PLACE_PATH:-$PWD}"'
-when = true
-shell = ["sh"]
-format = "[$output](blue) "
+format = '$hostname$directory([\[$git_branch$git_commit$git_status$git_state\]](blue) )$line_break$character'
 
 [hostname]
 ssh_only = false
@@ -14,8 +8,12 @@ format = "[$hostname]($style) "
 style = "bright-black"
 
 [directory]
-format = "[$read_only]($read_only_style)"
-read_only = "ro "
+format = "[$path]($style)[$read_only]($read_only_style) "
+style = "blue"
+truncation_length = 3
+truncate_to_repo = false
+truncation_symbol = "…/"
+read_only = " ro"
 read_only_style = "red"
 
 [git_branch]
