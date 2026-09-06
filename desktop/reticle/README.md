@@ -133,7 +133,7 @@ palette.
 ## Interface conventions
 
 The prompt separates context from command entry. Its first line has three parts:
-host, path, and branch with compact Git symbols, such as `hyperion ~df [main +!?]`.
+host, path, and branch with compact Git symbols, such as `hyperion ~/src/dotfiles [main +!?]`.
 The second begins with `>`, which turns red after a failed command. Git status
 counts, stash indicators, and command durations are omitted. Detached commits
 use `@hash`; an active merge or rebase appears inside the branch brackets.
@@ -146,8 +146,8 @@ symbols with text shimmer disabled. Berkeley Mono stays in place.
 
 Nushell and Helix use normal application configurations and mise tool entries.
 Zsh remains the login shell and Neovim remains the default editor.
-[Shared place names](../../cli/places/README.md) connect both prompts, Yazi
-navigation, and cmux or Herdr workspaces.
+Zsh's native directory hashes provide the existing `~df`, `~an`, `~lst`, and
+`~lsh` shortcuts; Starship renders the current directory directly.
 
 ## Sources
 
