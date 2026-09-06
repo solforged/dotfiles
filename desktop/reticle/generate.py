@@ -144,6 +144,76 @@ def lua(value, indent=0):
     return "\n".join(lines) + "\n" + " " * indent + "}"
 
 
+def helix(p):
+    roles = {
+        "attribute": "amber", "type": "purple", "constructor": "purple",
+        "constant": "orange", "constant.builtin": "purple",
+        "string": "fg", "string.regexp": "cyan", "string.special": "cyan",
+        "comment": "comment", "variable": "fg", "variable.builtin": "purple",
+        "variable.parameter": "fg", "punctuation": "gray", "operator": "pink",
+        "keyword": "pink", "function": "blue", "tag": "pink", "namespace": "blue",
+        "special": "amber", "markup.heading": "amber", "markup.list": "pink",
+        "markup.link.url": "blue", "markup.link.text": "cyan",
+        "markup.raw": "fg", "markup.quote": "comment",
+        "diff.plus": "green", "diff.minus": "red", "diff.delta": "blue",
+        "warning": "amber", "error": "red", "info": "blue", "hint": "cyan",
+        "ui.linenr": "comment", "ui.linenr.selected": "amber",
+        "ui.text.directory": "blue", "ui.text.inactive": "comment",
+        "ui.virtual.indent-guide": "border", "ui.virtual.whitespace": "border",
+        "ui.virtual.inlay-hint": "comment", "ui.virtual.jump-label": "amber",
+    }
+    lines = [f"# {NOTICE}"]
+    lines += [f'"{scope}" = "{color}"' for scope, color in roles.items()]
+    surfaces = {
+        "ui.background": ("fg", "bg"), "ui.text": ("fg", "bg"),
+        "ui.selection": ("fg", "ui_sel"), "ui.selection.primary": ("fg", "ui_sel"),
+        "ui.cursor": ("cursor_fg", "cursor"), "ui.cursor.primary": ("cursor_fg", "cursor"),
+        "ui.cursor.match": ("amber", "bg_hl"),
+        "ui.statusline": ("fg", "bg_alt"), "ui.statusline.inactive": ("comment", "bg_alt"),
+        "ui.statusline.normal": ("bg", "amber"), "ui.statusline.insert": ("bg", "green"),
+        "ui.statusline.select": ("bg", "blue"),
+        "ui.bufferline": ("comment", "bg_alt"), "ui.bufferline.active": ("amber", "surface"),
+        "ui.bufferline.background": ("fg", "bg_alt"),
+        "ui.popup": ("fg", "bg_alt"), "ui.popup.info": ("fg", "bg_alt"),
+        "ui.help": ("fg", "bg_alt"), "ui.menu": ("fg", "bg_alt"),
+        "ui.menu.selected": ("amber", "ui_sel"), "ui.text.focus": ("amber", "ui_sel"),
+        "ui.text.info": ("fg", "bg_alt"), "ui.window": ("border", "bg"),
+        "ui.highlight": ("fg", "ui_sel"), "ui.gutter": ("comment", "bg"),
+    }
+    lines += [f'"{scope}" = {{ fg = "{fg}", bg = "{bg}" }}' for scope, (fg, bg) in surfaces.items()]
+    for kind, color in (("error", "red"), ("warning", "amber"), ("info", "blue"), ("hint", "cyan")):
+        lines.append(f'"diagnostic.{kind}" = {{ underline = {{ color = "{color}", style = "curl" }} }}')
+    lines += ['"markup.bold" = { modifiers = ["bold"] }',
+              '"markup.italic" = { modifiers = ["italic"] }', "", "[palette]"]
+    lines += [f'{key} = "{value}"' for key, value in p.items() if isinstance(value, str) and value.startswith("#")]
+    return "\n".join(lines) + "\n"
+
+
+def nushell(p):
+    roles = {
+        "separator": "border", "header": "amber", "row_index": "comment",
+        "bool": "purple", "int": "orange", "float": "orange", "filesize": "orange",
+        "duration": "orange", "date": "cyan", "range": "orange", "binary": "orange",
+        "string": "fg", "nothing": "comment", "record": "fg", "list": "fg",
+        "block": "fg", "closure": "fg", "cell-path": "blue",
+        "hints": "comment", "search_result": "amber",
+        "shape_and": "pink", "shape_binary": "orange", "shape_block": "blue",
+        "shape_bool": "purple", "shape_closure": "blue", "shape_custom": "fg",
+        "shape_datetime": "cyan", "shape_directory": "blue", "shape_external": "blue",
+        "shape_externalarg": "fg", "shape_external_resolved": "blue",
+        "shape_filepath": "blue", "shape_flag": "amber", "shape_float": "orange",
+        "shape_garbage": "red", "shape_glob_interpolation": "cyan", "shape_globpattern": "cyan",
+        "shape_int": "orange", "shape_internalcall": "blue", "shape_keyword": "pink",
+        "shape_list": "fg", "shape_literal": "fg", "shape_match_pattern": "cyan",
+        "shape_matching_brackets": "amber", "shape_nothing": "comment",
+        "shape_operator": "pink", "shape_or": "pink", "shape_pipe": "pink",
+        "shape_range": "orange", "shape_record": "fg", "shape_redirection": "pink",
+        "shape_signature": "fg", "shape_string": "fg", "shape_string_interpolation": "cyan",
+        "shape_table": "fg", "shape_variable": "fg", "shape_vardecl": "fg",
+    }
+    return json.dumps({key: p[color] for key, color in roles.items()}, indent=2) + "\n"
+
+
 def herdr_theme():
     # Herdr 0.8.2 cannot apply separate custom light/dark overrides.
     # Its built-in surfaces supply contrasting badge text in both appearances;
@@ -174,6 +244,8 @@ def outputs():
             "export": {"pageBg": p["bg"], "cardBg": p["bg_alt"], "infoBg": p["ui_sel"]},
         }
         result[f"agents/omp/themes/{name}.json"] = json.dumps(theme, indent=2) + "\n"
+        result[f"editors/helix/themes/{name}.toml"] = helix(p)
+        result[f"shells/nu/themes/{name}.json"] = nushell(p)
         result[f"editors/nvim/colors/{name}.lua"] = f'require("reticle").load("{variant}", "{name}")\n'
         folder = f"desktop/omarchy/themes/{name}"
         for filename, render in (("ghostty.conf", ghostty), ("alacritty.toml", alacritty),
