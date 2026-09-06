@@ -10,7 +10,7 @@ modelRoles:
 disabledProviders:
   - ollama
   - vllm
-symbolPreset: nerd
+symbolPreset: unicode
 theme:
   dark: reticle-dimmed
   light: reticle-light
@@ -57,7 +57,7 @@ commands:
 providers:
   memoryModel: llama3.2:3b
 display:
-  shimmer: kitt
+  shimmer: disabled
 bashInterceptor:
   enabled: true
 startup:
