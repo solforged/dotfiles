@@ -5,7 +5,6 @@
 [[ -r "$ZDOTDIR/config.d/options.zsh" ]] && source "$ZDOTDIR/config.d/options.zsh"
 [[ -r "$ZDOTDIR/config.d/functions.zsh" ]] && source "$ZDOTDIR/config.d/functions.zsh"
 [[ -r "$ZDOTDIR/config.d/aliases.zsh" ]] && source "$ZDOTDIR/config.d/aliases.zsh"
-[[ -r "$ZDOTDIR/config.d/places.zsh" ]] && source "$ZDOTDIR/config.d/places.zsh"
 [[ -r "$ZDOTDIR/config.d/zimfw.zsh" ]] && source "$ZDOTDIR/config.d/zimfw.zsh"
 [[ -r "$ZDOTDIR/config.d/atuin.zsh" ]] && source "$ZDOTDIR/config.d/atuin.zsh"
 [[ -r "$ZDOTDIR/config.d/keybinds.zsh" ]] && source "$ZDOTDIR/config.d/keybinds.zsh"

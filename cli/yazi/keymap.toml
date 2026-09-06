@@ -2,7 +2,6 @@
 
 [mgr]
 prepend_keymap = [
-  { on = ["g", "p"], run = "plugin places", desc = "Go to a shared place" },
   { on = "d", run = "remove", desc = "Trash selected files" },
   { on = "D", run = "noop", desc = "Disable permanent delete; use d to trash" },
 ]
