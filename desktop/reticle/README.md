@@ -63,9 +63,10 @@ The palette itself passes without relying on this setting.
 | Type                              | Purple         | RGB only      |
 | Number                            | Orange         | RGB only      |
 
-Starship uses green/red command results, blue paths and branches, and amber
-dirty Git status. Lazygit and Yazi inherit terminal colors and use reverse video
-for selection without assuming a dark background. Herdr uses the same named
+Starship uses green/red command results, blue paths and branches, and compact Git
+symbols: green staged changes, amber modifications and new files, red deletions
+and conflicts, and cyan renames. Lazygit and Yazi inherit terminal colors and
+use reverse video for selection without assuming a dark background. Herdr uses the same named
 roles on macOS and Omarchy. Herdr 0.8.2 cannot apply separate custom light/dark
 overrides, so it uses its built-in adaptive panel surfaces with shared ANSI
 foregrounds; it is not an exact Reticle background port. Neovim and OMP share syntax, diagnostic, and Git
@@ -77,7 +78,7 @@ foreground.
 ## Ports and maintenance
 
 `palettes.json` holds the colors; `omp-roles.json` holds OMP's semantic mapping.
-`generate.py` renders Ghostty, OMP, Neovim palettes, and Omarchy's Ghostty,
+`generate.py` renders Ghostty, OMP, Neovim palettes, Helix, Nushell, and Omarchy's Ghostty,
 Alacritty, Foot, Kitty, and shell colors, plus the marked theme blocks in both
 Herdr configurations. All four variants have the same ports.
 Generated files are committed so application startup does not need Python.
@@ -117,12 +118,36 @@ receive format and palette consistency checks.
   `vim.g.usgc_reticle_dark = "polyimide"` before loading `reticle` to pair
   Polyimide with the automatic light variant.
 - Omarchy: select the installed theme by its directory name.
+- Helix: Dimmed is the configured default; use `:theme reticle-light` or another
+  variant during a session, or change `theme` in its configuration.
+- Nushell: Dimmed is the default; set `RETICLE_THEME` to `reticle-light`,
+  `reticle-dark`, `reticle-dimmed`, or `polyimide` before launching `nu`.
+  Helix and Nushell do not track system appearance changes automatically.
 
 Apps with their own hard-coded RGB palettes can still differ. In particular,
-Yazi's file icons and syntax previews, and tools such as bat, fzf, and Atuin
+Yazi's syntax previews, and tools such as bat, fzf, and Atuin
 have not received complete custom theme ports in this pass. ANSI output follows
 the terminal, but that does not make every built-in app color part of this
 palette.
+
+## Interface conventions
+
+The prompt separates context from command entry. Its first line has three parts:
+host, path, and branch with compact Git symbols, such as `hyperion ~df [main +!?]`.
+The second begins with `>`, which turns red after a failed command. Git status
+counts, stash indicators, and command durations are omitted. Detached commits
+use `@hash`; an active merge or rebase appears inside the branch brackets.
+
+Yazi uses flat separators and file-kind markers: `d` directory, `l` link,
+`x` executable, `-` ordinary file, and `!` broken link. The active row is amber.
+Neovim uses square floating-window borders, a flat status line, and letter-based
+file icons; Lazygit uses square borders without file icons. OMP uses Unicode
+symbols with text shimmer disabled. Berkeley Mono stays in place.
+
+Nushell and Helix use normal application configurations and mise tool entries.
+Zsh remains the login shell and Neovim remains the default editor.
+[Shared place names](../../cli/places/README.md) connect both prompts, Yazi
+navigation, and cmux or Herdr workspaces.
 
 ## Sources
 
@@ -140,3 +165,4 @@ foreground, green caret, and blue/cyan text selection, with local TUI accents.
 - [Contrast definition](https://www.w3.org/TR/WCAG22/#dfn-contrast-ratio).
 - [Lazygit selection settings](https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#highlighting-the-selected-line).
 - [Yazi theme format](https://github.com/sxyazi/yazi/blob/main/yazi-config/preset/theme-dark.toml).
+- [Starship prompt configuration](https://starship.rs/config/).

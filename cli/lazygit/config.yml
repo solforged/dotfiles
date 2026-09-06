@@ -2,6 +2,8 @@ git:
   overrideGpg: true
 # ANSI colors follow the terminal's Reticle variant, including light mode.
 gui:
+  border: single
+  showFileIcons: false
   theme:
     activeBorderColor: [yellow, bold]
     inactiveBorderColor: [black, bold]

@@ -10,9 +10,15 @@ count_cut = { fg = "red", bg = "reset", reversed = true }
 count_selected = { fg = "yellow", bg = "reset", reversed = true }
 border_style = { fg = "darkgray" }
 
+[indicator]
+current = { fg = "yellow", bg = "reset", reversed = true }
+padding = { open = " ", close = " " }
+
 [tabs]
 active = { fg = "yellow", bg = "reset", reversed = true, bold = true }
 inactive = { fg = "darkgray", bg = "reset" }
+sep_inner = { open = " ", close = " " }
+sep_outer = { open = "", close = "" }
 
 [mode]
 normal_main = { fg = "blue", bg = "reset", reversed = true, bold = true }
@@ -23,6 +29,8 @@ unset_main = { fg = "red", bg = "reset", reversed = true, bold = true }
 unset_alt = { fg = "red", bg = "reset" }
 
 [status]
+sep_left = { open = "", close = " " }
+sep_right = { open = " ", close = "" }
 progress_normal = { fg = "green", bg = "reset" }
 progress_error = { fg = "red", bg = "reset" }
 
@@ -46,6 +54,9 @@ border = { fg = "yellow" }
 
 [cmp]
 border = { fg = "yellow" }
+icon_file = "-"
+icon_folder = "d"
+icon_command = "x"
 
 [tasks]
 border = { fg = "yellow" }
@@ -54,3 +65,22 @@ hovered = { fg = "yellow", bold = true }
 [help]
 border = { fg = "yellow" }
 chord = { fg = "blue" }
+
+# File kinds, like a permissions column; filenames carry the type detail.
+[icon]
+globs = []
+dirs = []
+files = []
+exts = []
+conds = [
+  { if = "orphan", text = "!", fg = "red" },
+  { if = "link", text = "l", fg = "cyan" },
+  { if = "block", text = "b", fg = "yellow" },
+  { if = "char", text = "c", fg = "yellow" },
+  { if = "fifo", text = "p", fg = "yellow" },
+  { if = "sock", text = "s", fg = "magenta" },
+  { if = "dummy", text = "?", fg = "red" },
+  { if = "dir", text = "d", fg = "blue" },
+  { if = "exec", text = "x", fg = "green" },
+  { if = "!dir", text = "-", fg = "darkgray" },
+]
