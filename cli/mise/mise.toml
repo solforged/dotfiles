@@ -131,6 +131,7 @@ git_signing_program = ""
 "~/.config/git/config.personal" = { source = "~/src/dotfiles/cli/git/config.personal.tmpl", mode = "template" }
 "~/.config/git/allowed_signers" = { source = "~/src/dotfiles/cli/git/allowed_signers.tmpl", mode = "template" }
 "~/.config/git/ignore" = "~/src/dotfiles/cli/git/ignore"
+"~/.config/git/commit-template" = "~/src/dotfiles/cli/git/commit-template"
 "~/.ssh/config" = { source = "~/src/dotfiles/cli/ssh/config.tmpl", mode = "template" }
 "~/.config/hk/commit-message-policy.sh" = { source = "~/src/dotfiles/cli/hk/commit-message-policy.sh.tmpl", mode = "template" }
 "~/.config/hk/gitleaks-fnox.sh" = { source = "~/src/dotfiles/cli/hk/gitleaks-fnox.sh.tmpl", mode = "template" }

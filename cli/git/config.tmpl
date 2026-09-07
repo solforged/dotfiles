@@ -32,6 +32,9 @@
   # file editing, so pin it here rather than relying on shell EDITOR.
   editor = nvim
 
+[commit]
+  template = ~/.config/git/commit-template
+
 # Keep every repository's history concise, regardless of which client commits.
 [hook "commit-message-policy"]
   command = /bin/bash "$HOME/.config/hk/commit-message-policy.sh"
