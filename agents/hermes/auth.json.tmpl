@@ -1,0 +1,3 @@
+{% set fnox_profile = vars.fnox_profile -%}
+{% set hermes_auth_json = exec(command='$HOME/.local/share/mise/shims/fnox --config "$HOME/src/dotfiles/cli/fnox/config.toml" --non-interactive -P ' ~ fnox_profile ~ ' get HERMES_AUTH_JSON 2>/dev/null || true') | trim -%}
+{{ hermes_auth_json }}
