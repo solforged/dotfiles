@@ -1,16 +1,16 @@
 modelRoles:
-  smol: openai-codex/gpt-5.6-luna:medium
-  plan: openai-codex/gpt-5.6-sol:xhigh
+  smol: xai-oauth/grok-4.6:medium
+  plan: openai-codex/gpt-6-astra:high
   commit: openai-codex/gpt-5.6-luna:low
-  task: openai-codex/gpt-5.6-luna:medium
-  advisor: openai-codex/gpt-5.6-luna:xhigh
+  task: xai-oauth/grok-4.6:auto
+  advisor: openai-codex/gpt-6-astra:high
   default: openai-codex/gpt-5.6-terra
   slow: openai-codex/gpt-5.6-sol:high
   tiny: llama.cpp/qwen38-256k:auto
 disabledProviders:
   - ollama
   - vllm
-symbolPreset: unicode
+symbolPreset: nerd
 theme:
   dark: reticle-dimmed
   light: reticle-light
@@ -47,8 +47,9 @@ dev:
   autoqa: false
 task:
   isolation:
-    mode: auto
+    enabled: true
   enableEffort: true
+  maxEffort: xhigh
 commands:
   enableClaudeUser: false
   enableClaudeProject: false
@@ -70,3 +71,12 @@ composer:
 defaultThinkingLevel: auto
 spelling:
   typoDetection: false
+  autocomplete: false
+isolation:
+  backend: auto
+retry:
+  fallbackChains:
+    task:
+      - openai-codex/gpt-5.6-luna
+codexResets:
+  autoRedeem: "yes"
