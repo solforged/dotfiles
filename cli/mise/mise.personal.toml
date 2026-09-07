@@ -13,3 +13,7 @@ ssh_auth_sock = "~/.local/state/1password/agent.sock"
 "~/.omp/agent/AGENTS.md" = "~/src/dotfiles/agents/omp/AGENTS.md"
 "~/.omp/agent/themes" = { source = "~/src/dotfiles/agents/omp/themes", mode = "symlink-each" }
 "~/.omp/agent/commands" = { source = "~/src/dotfiles/agents/omp/commands", mode = "symlink-each" }
+"~/.hermes/config.yaml" = "~/src/dotfiles/agents/hermes/config.yaml"
+"~/.hermes/SOUL.md" = "~/src/dotfiles/agents/hermes/SOUL.md"
+"~/.hermes/.env" = { source = "~/src/dotfiles/agents/hermes/.env.tmpl", mode = "template" }
+"~/.hermes/auth.json" = { source = "~/src/dotfiles/agents/hermes/auth.json.tmpl", mode = "template" }
