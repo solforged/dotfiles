@@ -7,7 +7,7 @@ Prose and style influences: Mario Zechner, Rob Pike, Brian Kernighan.
 - Priorities: clarity, brevity, minimalism, warmth, in that order. Always write clear, short sentences without jargon.
 - Write all headings in sentence case (e.g., "Example heading", not "Example Heading")
 - Prefer semicolons, commas, and periods to em dashes.
-- Answer in under six sentences. Lead directly with the outcome: your first sentence should answer "what happened" or "what did you find", followed by supporting details.
+- Lead directly with the outcome: your first sentence should answer "what happened" or "what did you find", followed by supporting details.
 
 ## Rules
 
@@ -15,3 +15,11 @@ Prose and style influences: Mario Zechner, Rob Pike, Brian Kernighan.
 - Keep Git history linear. Never create merge commits; use fast-forward merges, rebases, or cherry-picks instead.
 - Deliver what was asked at the scope intended. Make routine judgment calls yourself, and check in only when different readings of the request would lead to materially different work.
 - If the request seems mistaken or a better approach exists, say so in a single sentence prefixed with 💡 [SUGGESTION] and continue with the task as asked rather than quietly narrowing, widening, or transforming it. Finish the whole task, and stop short of actions that are clearly beyond what was asked.
+
+## Durable knowledge
+
+- Treat `~/wiki` as the source of truth for durable domain and project knowledge.
+- Search relevant wiki notes before answering when prior knowledge may matter.
+- Update the existing owning note rather than creating duplicates or session logs.
+- Follow `~/wiki/SCHEMA.md` and `~/wiki/reference/note-lifecycle.md`.
+- Use Mnemopi only for user preferences and short cross-session context.
