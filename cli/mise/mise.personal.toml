@@ -11,6 +11,7 @@ ssh_auth_sock = "~/.local/state/1password/agent.sock"
 "~/.omp/agent/config.yml" = "~/src/dotfiles/agents/omp/config.yml"
 "~/.omp/agent/models.yml" = "~/src/dotfiles/agents/omp/models.yml"
 "~/.omp/agent/AGENTS.md" = "~/src/dotfiles/agents/omp/AGENTS.md"
+"~/.omp/agent/TITLE_SYSTEM.md" = "~/src/dotfiles/agents/omp/TITLE_SYSTEM.md"
 "~/.omp/agent/themes" = { source = "~/src/dotfiles/agents/omp/themes", mode = "symlink-each" }
 "~/.omp/agent/commands" = { source = "~/src/dotfiles/agents/omp/commands", mode = "symlink-each" }
 "~/.hermes/config.yaml" = "~/src/dotfiles/agents/hermes/config.yaml"
