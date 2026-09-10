@@ -50,6 +50,11 @@ description = "Re-resolve active global tool lockfiles, then install"
 dir = "{{ env.HOME }}"
 run = ["mise lock --global --bump", "mise install"]
 
+[tasks."pi:test"]
+description = "Test locally owned pi extensions without model calls"
+dir = "{{ env.HOME }}/src/pi-sol"
+run = "node --test tests/*.test.ts"
+
 [tasks."themes:generate"]
 description = "Regenerate Reticle themes from the shared palette"
 dir = "{{ env.HOME }}/src/dotfiles"
@@ -123,6 +128,10 @@ git_signing_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIErof9IMxQpX5/SSsZeJ8cH6
 git_signing_program = ""
 
 [dotfiles]
+"~/.pi/agent/extensions/workflows" = "~/src/pi-sol/extensions/workflows"
+"~/.pi/agent/extensions/web-search" = "~/src/pi-sol/extensions/web-search"
+"~/.pi/agent/extensions/snapcompact" = "~/src/pi-sol/extensions/snapcompact"
+"~/.pi/agent/roles.json" = "~/src/pi-sol/roles.json"
 "~/.config/nushell" = { source = "~/src/dotfiles/shells/nu", mode = "symlink-each" }
 "~/.config/helix" = { source = "~/src/dotfiles/editors/helix", mode = "symlink-each" }
 "~/.zshenv" = "~/src/dotfiles/shells/zsh/.zshenv"
@@ -135,6 +144,8 @@ git_signing_program = ""
 "~/.ssh/config" = { source = "~/src/dotfiles/cli/ssh/config.tmpl", mode = "template" }
 "~/.config/hk/commit-message-policy.sh" = { source = "~/src/dotfiles/cli/hk/commit-message-policy.sh.tmpl", mode = "template" }
 "~/.config/hk/gitleaks-fnox.sh" = { source = "~/src/dotfiles/cli/hk/gitleaks-fnox.sh.tmpl", mode = "template" }
+"~/.config/hk/gitleaks.toml" = { source = "~/src/dotfiles/cli/hk/gitleaks.toml.tmpl", mode = "template" }
+"~/.config/hk/gitleaks-allowlist.toml" = { source = "~/src/dotfiles/cli/hk/gitleaks-allowlist.toml.tmpl", mode = "template" }
 "~/.config/hk/fnox.toml" = { source = "~/src/dotfiles/cli/fnox/config.toml", mode = "template" }
 "~/.config/fnox/config.toml" = { source = "~/src/dotfiles/cli/fnox/config.toml", mode = "template" }
 "~/.config/atuin" = { source = "~/src/dotfiles/cli/atuin", mode = "symlink-each" }
