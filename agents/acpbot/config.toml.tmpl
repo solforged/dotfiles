@@ -1,0 +1,16 @@
+{% set fnox_profile = vars.fnox_profile -%}
+{% set telegram_bot_token = exec(command='$HOME/.local/share/mise/shims/fnox --config "$HOME/src/dotfiles/cli/fnox/config.toml" --non-interactive -P ' ~ fnox_profile ~ ' get AURELIAN_TELEGRAM_BOT_TOKEN 2>/dev/null || true') | trim -%}
+bot_token = "{{ telegram_bot_token }}"
+default_agent = "omp"
+log_level = "info"
+
+[repos]
+dotfiles = "~/src/dotfiles"
+
+[features]
+mcp = true
+tts_mode = "off"
+permission_mode = "ask"
+
+[agents]
+command_json = '{"omp":{"command":"omp","args":["acp","--approval-mode","always-ask"]}}'

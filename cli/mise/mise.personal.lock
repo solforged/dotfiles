@@ -82,6 +82,41 @@ checksum = "sha256:5bfee6a757f7dcced7cd2128d15a6d717839636ce3fa82f8df167eaaab906
 url = "https://github.com/can1357/oh-my-pi/releases/download/v18.1.16/omp-windows-x64.exe"
 url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/553389396"
 
+[[tools."github:pmdroid/acpbot"]]
+version = "0.4.0"
+backend = "github:pmdroid/acpbot"
+specifiers = ["latest"]
+
+[tools."github:pmdroid/acpbot"."platforms.linux-arm64"]
+checksum = "sha256:7b2d40915af20f096bb07a308280aa993d368f38aa16f84b7368f0f7cf487dc1"
+url = "https://github.com/pmdroid/acpbot/releases/download/v0.4.0/acpbot-v0.4.0-linux-arm64.tar.gz"
+url_api = "https://api.github.com/repos/pmdroid/acpbot/releases/assets/543819188"
+
+[tools."github:pmdroid/acpbot"."platforms.linux-arm64-musl"]
+checksum = "sha256:7b2d40915af20f096bb07a308280aa993d368f38aa16f84b7368f0f7cf487dc1"
+url = "https://github.com/pmdroid/acpbot/releases/download/v0.4.0/acpbot-v0.4.0-linux-arm64.tar.gz"
+url_api = "https://api.github.com/repos/pmdroid/acpbot/releases/assets/543819188"
+
+[tools."github:pmdroid/acpbot"."platforms.linux-x64"]
+checksum = "sha256:940c181d1c3a89e1ad6780887d21fe9a8fdd684aa22d1101d6920d3ce86eba65"
+url = "https://github.com/pmdroid/acpbot/releases/download/v0.4.0/acpbot-v0.4.0-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/pmdroid/acpbot/releases/assets/543819186"
+
+[tools."github:pmdroid/acpbot"."platforms.linux-x64-musl"]
+checksum = "sha256:940c181d1c3a89e1ad6780887d21fe9a8fdd684aa22d1101d6920d3ce86eba65"
+url = "https://github.com/pmdroid/acpbot/releases/download/v0.4.0/acpbot-v0.4.0-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/pmdroid/acpbot/releases/assets/543819186"
+
+[tools."github:pmdroid/acpbot"."platforms.macos-arm64"]
+checksum = "sha256:cab3a8c6e9247f03f92c4522b69c87b152214a75b63adc3292fae7945841226c"
+url = "https://github.com/pmdroid/acpbot/releases/download/v0.4.0/acpbot-v0.4.0-darwin-arm64.tar.gz"
+url_api = "https://api.github.com/repos/pmdroid/acpbot/releases/assets/543814085"
+
+[tools."github:pmdroid/acpbot"."platforms.macos-x64"]
+checksum = "sha256:84c0e85c6c17408c51ac7f6a414f44e22eda61cc5687be05ac5ae52cacfd06a9"
+url = "https://github.com/pmdroid/acpbot/releases/download/v0.4.0/acpbot-v0.4.0-darwin-x64.tar.gz"
+url_api = "https://api.github.com/repos/pmdroid/acpbot/releases/assets/543814083"
+
 [[tools.pi]]
 version = "0.85.1"
 backend = "aqua:earendil-works/pi"
