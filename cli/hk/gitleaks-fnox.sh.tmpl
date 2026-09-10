@@ -82,7 +82,9 @@ fi
 
 tmp=""
 cleanup() {
-  [ -n "$tmp" ] && rm -f "$tmp"
+  if [ -n "$tmp" ]; then
+    rm -f "$tmp"
+  fi
 }
 trap cleanup EXIT
 
