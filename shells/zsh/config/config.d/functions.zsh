@@ -16,7 +16,7 @@ omp() {
     if (( skip )); then
       command omp commit "$@"
     else
-      command omp commit --context "Commit messages must pass the global commit-msg policy: Conventional Commits, past-tense subject at most 72 characters with no trailing period. Body is optional. If present, write one paragraph (at most three), hard-wrapped at 72 characters. Never use bullet or numbered lists, never start a line with -, *, +, or 1., and do not emit detail lines." "$@"
+      command omp commit --context "Commit messages must pass the global commit-msg policy: Conventional Commits, with a lowercase description after type(scope): and a past-tense subject at most 72 characters with no trailing period. Body is optional. If present, write one paragraph (at most three), hard-wrapped at 72 characters. Never use bullet or numbered lists, never start a line with -, *, +, or 1., and do not emit detail lines." "$@"
     fi
   else
     command omp "$@"

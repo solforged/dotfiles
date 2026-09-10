@@ -33,6 +33,10 @@ printf '%s\n' "$message" |
         printf "commit-msg: header is %d characters; maximum is 72.\n", header_chars > "/dev/stderr"
         invalid = 1
       }
+      if ($0 !~ /^[[:lower:]]+(\([^)]*\))?!?: [[:lower:]]/) {
+        print "commit-msg: header must use Conventional Commits and start its description with a lowercase letter." > "/dev/stderr"
+        invalid = 1
+      }
       next
     }
 
