@@ -18,7 +18,7 @@ theme:
 setupVersion: 2
 hideThinkingBlock: false
 memory:
-  backend: local
+  backend: mnemopi
 autolearn:
   enabled: true
   autoContinue: true
