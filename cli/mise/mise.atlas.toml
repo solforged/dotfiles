@@ -3,6 +3,7 @@ FNOX_PROFILE = "work"
 
 [tools]
 oh-my-pi = { version = "latest", rename_exe = "omp" }
+pi = "latest"
 
 [vars]
 fnox_profile = "work"
