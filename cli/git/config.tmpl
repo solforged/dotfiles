@@ -41,8 +41,8 @@
   event = commit-msg
 
 # Global gitleaks secret scan on every commit (git 2.54+ native config hooks).
-# The wrapper prefers a repo-local .gitleaks.toml, else the fnox-managed policy.
-# Two events: the staged diff, and the commit message gitleaks never sees.
+# Host policy is ~/.config/hk/gitleaks.toml; a repo-local .gitleaks.toml is an
+# additive second scan. Two events: the staged diff, and the commit message.
 [hook "gitleaks"]
   command = /bin/bash "$HOME/.config/hk/gitleaks-fnox.sh"
   event = pre-commit

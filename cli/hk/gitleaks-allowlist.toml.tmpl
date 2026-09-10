@@ -1,0 +1,7 @@
+{# Work-vocabulary allowlist fragment. Decrypted at deploy; stays off-repo. -#}
+{% if vars.gitleaks_profile_only -%}
+{% set fnox = '$HOME/.local/share/mise/shims/fnox --non-interactive --no-defaults -P ' ~ vars.fnox_profile -%}
+{% else -%}
+{% set fnox = '$HOME/.local/share/mise/shims/fnox --non-interactive -P ' ~ vars.fnox_profile -%}
+{% endif -%}
+{{ exec(command=fnox ~ ' get GITLEAKS_INTERNAL_ALLOWLIST_TOML 2>/dev/null || true') | trim }}
