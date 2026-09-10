@@ -61,11 +61,11 @@ alias ...='cd ../..'
 # --- Listing (eza) --------------------------------------------------------------
 if command -v eza >/dev/null 2>&1; then
   _eza_defaults=(--color=auto --group-directories-first --classify=auto)
-  _eza_long_defaults=(-lh --time-style=long-iso)
-  [[ $OSTYPE == darwin* ]] && _eza_long_defaults+=(--extended)
+  _eza_long_defaults=(-l --time-style=long-iso)
 
-  ls() { command eza "${_eza_defaults[@]}" "${_eza_long_defaults[@]}" "$@"; }
-  lsa() { ls -a "$@"; }
+  ls() { command eza "${_eza_defaults[@]}" "$@"; }
+  ll() { command eza "${_eza_defaults[@]}" "${_eza_long_defaults[@]}" "$@"; }
+  la() { ll -a "$@"; }
   lt() { command eza "${_eza_defaults[@]}" -l --time-style=long-iso --tree --level=2 --icons --git "$@"; }
   lta() { lt -a "$@"; }
 fi
