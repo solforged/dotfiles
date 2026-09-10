@@ -5,6 +5,7 @@ ssh_auth_sock = "~/.local/state/1password/agent.sock"
 [tools]
 "aqua:openai/codex" = "latest"
 "github:can1357/oh-my-pi" = "latest"
+pi = "latest"
 
 [dotfiles]
 "~/.codex/AGENTS.md" = "~/src/dotfiles/agents/omp/AGENTS.md"
