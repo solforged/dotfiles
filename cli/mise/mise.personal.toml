@@ -7,6 +7,7 @@ ssh_auth_sock = "~/.local/state/1password/agent.sock"
 "github:can1357/oh-my-pi" = "latest"
 "github:pmdroid/acpbot" = "latest"
 pi = "latest"
+yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
 
 [dotfiles]
 "~/.codex/AGENTS.md" = "~/src/dotfiles/agents/omp/AGENTS.md"
