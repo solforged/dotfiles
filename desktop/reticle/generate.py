@@ -215,19 +215,21 @@ def nushell(p):
 
 
 def herdr_theme():
-    # Herdr 0.8.2 cannot apply separate custom light/dark overrides.
-    # Its built-in surfaces supply contrasting badge text in both appearances;
-    # all foreground semantics still come from the terminal's ANSI palette.
+    # Named colors follow the terminal palette; inactive tabs also apply DIM.
+    # Bright neutral labels remain legible without adding a second dim color.
     lines = ["# BEGIN GENERATED RETICLE THEME", f"# {NOTICE}", "[theme]",
-             'name = "catppuccin"', 'auto_switch = true', 'dark_name = "catppuccin"',
+             'name = "terminal"', 'auto_switch = true', 'dark_name = "terminal"',
              'light_name = "catppuccin-latte"', "", "[theme.custom]"]
     roles = {"accent": "yellow", "text": "reset", "subtext0": "darkgray",
-             "overlay0": "darkgray", "overlay1": "white", "mauve": "magenta",
+             "overlay0": "white", "overlay1": "white", "mauve": "magenta",
              "green": "green", "yellow": "yellow", "red": "red", "blue": "blue",
-             "teal": "cyan", "peach": "yellow", "sidebar_bg": "reset",
+             "teal": "cyan", "peach": "yellow", "panel_bg": "reset", "sidebar_bg": "reset",
              "active_row_bg": "reset", "selection_bg": "reset",
-             "surface0": "reset", "surface1": "reset"}
+             "surface0": "reset", "surface1": "reset", "surface_dim": "black"}
     lines += [f'{key} = "{color}"' for key, color in roles.items()]
+    # Accent badges need a light foreground when the palette switches to light.
+    lines += ["", "[theme.custom.light]",
+              f'surface_dim = "{PALETTES["light"]["bg"]}"']
     return "\n".join(lines) + "\n# END GENERATED RETICLE THEME"
 
 
