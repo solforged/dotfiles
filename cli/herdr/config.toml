@@ -5,12 +5,14 @@ onboarding = false
 [theme]
 name = "terminal"
 auto_switch = true
+dark_name = "terminal"
+light_name = "catppuccin-latte"
 
 [theme.custom]
 accent = "yellow"
 text = "reset"
 subtext0 = "darkgray"
-overlay0 = "darkgray"
+overlay0 = "white"
 overlay1 = "white"
 mauve = "magenta"
 green = "green"
@@ -19,11 +21,16 @@ red = "red"
 blue = "blue"
 teal = "cyan"
 peach = "yellow"
+panel_bg = "reset"
 sidebar_bg = "reset"
 active_row_bg = "reset"
 selection_bg = "reset"
 surface0 = "reset"
 surface1 = "reset"
+surface_dim = "black"
+
+[theme.custom.light]
+surface_dim = "#ffffff"
 # END GENERATED RETICLE THEME
 
 [terminal]
