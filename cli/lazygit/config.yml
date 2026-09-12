@@ -16,7 +16,8 @@ gui:
     markedBaseCommitFgColor: [yellow]
     markedBaseCommitBgColor: [default]
     unstagedChangesColor: [yellow]
-    defaultFgColor: [default]
+    # Reserve green for additions; Reticle's default terminal text is green.
+    defaultFgColor: [white]
 customCommands:
   - key: X
     description: Force (skip hooks)

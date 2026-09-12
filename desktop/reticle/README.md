@@ -66,10 +66,13 @@ The palette itself passes without relying on this setting.
 Starship uses green/red command results, blue paths and branches, and compact Git
 symbols: green staged changes, amber modifications and new files, red deletions
 and conflicts, and cyan renames. Lazygit and Yazi inherit terminal colors and
-use reverse video for selection without assuming a dark background. Herdr uses the same named
-roles on macOS and Omarchy. Herdr 0.8.2 cannot apply separate custom light/dark
-overrides, so it uses its built-in adaptive panel surfaces with shared ANSI
-foregrounds; it is not an exact Reticle background port. Neovim and OMP share syntax, diagnostic, and Git
+use reverse video for selection without assuming a dark background. Lazygit uses
+neutral text so unchanged diff context stays distinct from green additions.
+Herdr uses shared ANSI foregrounds and transparent surfaces on macOS and Omarchy.
+Inactive tab labels use bright neutral text because Herdr also dims unnamed tabs;
+active tabs retain amber badges. Herdr 0.9's light-mode override keeps badge
+text readable when the terminal palette switches to light.
+Neovim and OMP share syntax, diagnostic, and Git
 roles; OMP now selects the Reticle themes instead of its built-in Titanium/Light
 pair. OMP uses a neutral selected-row background because selected rows can
 contain multiple foreground colors; terminal text selection has an explicit
