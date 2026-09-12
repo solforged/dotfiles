@@ -43,44 +43,44 @@ url = "https://github.com/openai/codex/releases/download/rust-v0.154.0/codex-pac
 url_api = "https://api.github.com/repos/openai/codex/releases/assets/553706571"
 
 [[tools."github:can1357/oh-my-pi"]]
-version = "18.1.16"
+version = "18.1.17"
 backend = "github:can1357/oh-my-pi"
 specifiers = ["latest"]
 
 [tools."github:can1357/oh-my-pi"."platforms.linux-arm64"]
-checksum = "sha256:d8612389c7af3cf3b69609c9149bff3cf07dcb65774b231d9dc4966b176b9720"
-url = "https://github.com/can1357/oh-my-pi/releases/download/v18.1.16/omp-linux-arm64"
-url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/553389400"
+checksum = "sha256:58ab1b8f75d202cf3767e19901c834d2435898a189d5993be6d5cae6736716e1"
+url = "https://github.com/can1357/oh-my-pi/releases/download/v18.1.17/omp-linux-arm64"
+url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/555681812"
 
 [tools."github:can1357/oh-my-pi"."platforms.linux-arm64-musl"]
-checksum = "sha256:f219439bc19ad95d0ee9caa595bae16ab309015b3b2561fe184cc9b7207b6736"
-url = "https://github.com/can1357/oh-my-pi/releases/download/v18.1.16/omp-linux-musl-arm64"
-url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/553389389"
+checksum = "sha256:304b95000209425f4294a8ee0ca8214c69275dec5e8295c080bcb4aeae28b68e"
+url = "https://github.com/can1357/oh-my-pi/releases/download/v18.1.17/omp-linux-musl-arm64"
+url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/555681808"
 
 [tools."github:can1357/oh-my-pi"."platforms.linux-x64"]
-checksum = "sha256:efebefb74359d20362e07341f01a65fc0a259e7bc79454ef08b0ebf5232ab897"
-url = "https://github.com/can1357/oh-my-pi/releases/download/v18.1.16/omp-linux-x64"
-url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/553389401"
+checksum = "sha256:040c254ddeb30f6d592be67d1469dc67fcac14e933fa04dbf690f42820ffd820"
+url = "https://github.com/can1357/oh-my-pi/releases/download/v18.1.17/omp-linux-x64"
+url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/555681800"
 
 [tools."github:can1357/oh-my-pi"."platforms.linux-x64-musl"]
-checksum = "sha256:73eeef0bf5a42b80bb5e6f1251ddbe9096f0630093c78a671ec7f41ca6dcbf5d"
-url = "https://github.com/can1357/oh-my-pi/releases/download/v18.1.16/omp-linux-musl-x64"
-url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/553389392"
+checksum = "sha256:6f8db6439b9a5c5eb9b7b6257d7de648034e9178322fac15d0abda6ad0940134"
+url = "https://github.com/can1357/oh-my-pi/releases/download/v18.1.17/omp-linux-musl-x64"
+url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/555681819"
 
 [tools."github:can1357/oh-my-pi"."platforms.macos-arm64"]
-checksum = "sha256:99eed6d45d984d2f13d76832f78782b9aa07862921ab4e98e2d8e31ca8129795"
-url = "https://github.com/can1357/oh-my-pi/releases/download/v18.1.16/omp-darwin-arm64"
-url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/553389394"
+checksum = "sha256:1c310974d4be8de4e5b7285e9c52647321b412c219790fe0243cf804d5c9d5cc"
+url = "https://github.com/can1357/oh-my-pi/releases/download/v18.1.17/omp-darwin-arm64"
+url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/555681811"
 
 [tools."github:can1357/oh-my-pi"."platforms.macos-x64"]
-checksum = "sha256:78b11d4a9f5884e18589d2a8b10e328f696d5b7da1f6fe46f289bb80f55ffddf"
-url = "https://github.com/can1357/oh-my-pi/releases/download/v18.1.16/omp-darwin-x64"
-url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/553389399"
+checksum = "sha256:6299ea1c91ebe80de07b98280bb45c7b8df7892a20ecf4f819cf660ca7e7cee0"
+url = "https://github.com/can1357/oh-my-pi/releases/download/v18.1.17/omp-darwin-x64"
+url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/555681813"
 
 [tools."github:can1357/oh-my-pi"."platforms.windows-x64"]
-checksum = "sha256:5bfee6a757f7dcced7cd2128d15a6d717839636ce3fa82f8df167eaaab906be1"
-url = "https://github.com/can1357/oh-my-pi/releases/download/v18.1.16/omp-windows-x64.exe"
-url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/553389396"
+checksum = "sha256:5af22031e2f417b8cbbb09d248a8d5116c929df4fbbd0a1ad21dc1c88b9235dd"
+url = "https://github.com/can1357/oh-my-pi/releases/download/v18.1.17/omp-windows-x64.exe"
+url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/555681802"
 
 [[tools."github:pmdroid/acpbot"]]
 version = "0.4.0"
@@ -156,3 +156,51 @@ url_api = "https://api.github.com/repos/earendil-works/pi/releases/assets/545797
 checksum = "sha256:002fa95b90d521245b9985d8f168caebc237ad56e7e30b319807dee1b2e17e1c"
 url = "https://github.com/earendil-works/pi/releases/download/v0.85.1/pi-windows-x64.zip"
 url_api = "https://api.github.com/repos/earendil-works/pi/releases/assets/545797560"
+
+[[tools.yt-dlp]]
+version = "2026.08.19"
+backend = "github:yt-dlp/yt-dlp"
+specifiers = ["latest"]
+
+[tools.yt-dlp."platforms.linux-arm64"]
+checksum = "sha256:4e27ad43f3a34bacffd078694eb3edbb4e3b378e7da44edab2be02e98555516e"
+url = "https://github.com/yt-dlp/yt-dlp/releases/download/2026.08.19/yt-dlp_linux_aarch64.zip"
+url_api = "https://api.github.com/repos/yt-dlp/yt-dlp/releases/assets/521488873"
+provenance = "github-attestations"
+
+[tools.yt-dlp."platforms.linux-arm64-musl"]
+checksum = "sha256:46087f4965f48612d056c6e4b00a0898e8230ba90d709a0a751c7cc5735a1da3"
+url = "https://github.com/yt-dlp/yt-dlp/releases/download/2026.08.19/yt-dlp_musllinux_aarch64.zip"
+url_api = "https://api.github.com/repos/yt-dlp/yt-dlp/releases/assets/521488908"
+provenance = "github-attestations"
+
+[tools.yt-dlp."platforms.linux-x64"]
+checksum = "sha256:32e72032766bef9199d99d15beb69fd52e46df8f8b06f0d8745db59e04d339e9"
+url = "https://github.com/yt-dlp/yt-dlp/releases/download/2026.08.19/yt-dlp_linux.zip"
+url_api = "https://api.github.com/repos/yt-dlp/yt-dlp/releases/assets/521488862"
+provenance = "github-attestations"
+
+[tools.yt-dlp."platforms.linux-x64-musl"]
+checksum = "sha256:a8a9761628be455368db73ab54a2858da22342084f300f7e0d50bdcbef2acf82"
+url = "https://github.com/yt-dlp/yt-dlp/releases/download/2026.08.19/yt-dlp_musllinux.zip"
+url_api = "https://api.github.com/repos/yt-dlp/yt-dlp/releases/assets/521488901"
+provenance = "github-attestations"
+
+[tools.yt-dlp."platforms.macos-arm64"]
+checksum = "sha256:07e54b0865303c864006925913bce2604f8ee8cc6f18699bac9c309f9328a6d8"
+url = "https://github.com/yt-dlp/yt-dlp/releases/download/2026.08.19/yt-dlp_macos.zip"
+url_api = "https://api.github.com/repos/yt-dlp/yt-dlp/releases/assets/521488891"
+provenance = "github-attestations"
+provenance_verified = true
+
+[tools.yt-dlp."platforms.macos-x64"]
+checksum = "sha256:07e54b0865303c864006925913bce2604f8ee8cc6f18699bac9c309f9328a6d8"
+url = "https://github.com/yt-dlp/yt-dlp/releases/download/2026.08.19/yt-dlp_macos.zip"
+url_api = "https://api.github.com/repos/yt-dlp/yt-dlp/releases/assets/521488891"
+provenance = "github-attestations"
+
+[tools.yt-dlp."platforms.windows-x64"]
+checksum = "sha256:dc7c11f014af67f23d9fd989868048abedbce01709ff642a29eb3f7578b802f7"
+url = "https://github.com/yt-dlp/yt-dlp/releases/download/2026.08.19/yt-dlp_win_x86.zip"
+url_api = "https://api.github.com/repos/yt-dlp/yt-dlp/releases/assets/521488967"
+provenance = "github-attestations"
