@@ -3,11 +3,13 @@ alias grep='grep --color=auto'
 alias e='nvim'
 alias gg='lazygit'
 
-alias b='brew'
-alias bi='brew install'
-alias bz='brew uninstall --zap'
-alias bs='brew search'
-alias ci='brew install --cask'
+if [[ "$OSTYPE" == darwin* ]]; then
+  alias b='brew'
+  alias bi='brew install'
+  alias bz='brew uninstall --zap'
+  alias bs='brew search'
+  alias ci='brew install --cask'
+fi
 
 alias cdd="cd $DOTFILES_DIR"
 alias cdw="cd $LLM_WIKI_DIR"

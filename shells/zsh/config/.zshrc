@@ -9,11 +9,8 @@
 [[ -r "$ZDOTDIR/config.d/atuin.zsh" ]] && source "$ZDOTDIR/config.d/atuin.zsh"
 [[ -r "$ZDOTDIR/config.d/keybinds.zsh" ]] && source "$ZDOTDIR/config.d/keybinds.zsh"
 
-# Prompt and language runtimes
+# Prompt
 [[ -r "$ZDOTDIR/config.d/starship.zsh" ]] && source "$ZDOTDIR/config.d/starship.zsh"
-[[ -r "$ZDOTDIR/config.d/javascript.zsh" ]] && source "$ZDOTDIR/config.d/javascript.zsh"
-[[ -r "$ZDOTDIR/config.d/go.zsh" ]] && source "$ZDOTDIR/config.d/go.zsh"
-[[ -r "$ZDOTDIR/config.d/rust.zsh" ]] && source "$ZDOTDIR/config.d/rust.zsh"
 
 # Environment and secrets activation
 if command -v mise >/dev/null 2>&1; then

@@ -52,6 +52,11 @@ export MOOR="${MOOR:---no-linenumbers}"
 
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+export GOPATH="${GOPATH:-$XDG_DATA_HOME/go}"
+export GOBIN="${GOBIN:-$GOPATH/bin}"
+export CARGO_HOME="${CARGO_HOME:-$XDG_DATA_HOME/cargo}"
+export RUSTUP_HOME="${RUSTUP_HOME:-$XDG_DATA_HOME/rustup}"
+path=("$GOBIN" "$CARGO_HOME/bin" $path)
 export npm_config_cache="${npm_config_cache:-$XDG_CACHE_HOME/npm}"
 export TASKRC="${TASKRC:-$XDG_CONFIG_HOME/task/taskrc}"
 export TASKDATA="${TASKDATA:-$XDG_DATA_HOME/task}"

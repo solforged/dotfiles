@@ -19,7 +19,25 @@ normalize_message() {
   ' "$1" | git stripspace
 }
 
+# Drop agent/tooling Co-authored-by trailers so they never become part of
+# the recorded message. stripspace then removes a dangling blank left by
+# an emptied trailer block.
+strip_co_authored_by() {
+  awk '
+    {
+      line = $0
+      sub(/\r$/, "", line)
+      if (line ~ /^[[:space:]]*[Cc][Oo]-[Aa]uthored-[Bb]y:/) {
+        next
+      }
+      print line
+    }
+  ' | git stripspace
+}
+
 message="$(normalize_message "$message_file")"
+message="$(printf '%s\n' "$message" | strip_co_authored_by)"
+printf '%s\n' "$message" >"$message_file"
 rebase_head="$(git rev-parse -q --verify REBASE_HEAD 2>/dev/null || true)"
 if [ -n "$rebase_head" ] && [ "$message" = "$(git log -1 --format=%B "$rebase_head" | git stripspace)" ]; then
   exit 0
