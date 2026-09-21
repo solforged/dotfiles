@@ -1,8 +1,7 @@
-# Synced from Omarchy's default bash environment
-# (/usr/share/omarchy/default/bash/aliases and default/bash/fns/*).
+# Portable Omarchy-derived defaults for macOS and Linux.
 # Sourced before the personal config.d files so local overrides win.
-# Kept textually close to upstream to make future re-syncs easy;
-# platform-specific pieces are guarded inline.
+# This is a kept subset, not a faithful upstream sync; OS-specific
+# pieces stay gated with OSTYPE or command -v.
 
 # --- Tools --------------------------------------------------------------------
 command -v omarchy-agent >/dev/null 2>&1 && alias a='omarchy-agent --inline'
@@ -10,7 +9,6 @@ alias c='opencode --auto'
 alias cx='printf "\033[2J\033[3J\033[H" && claude --permission-mode auto'
 alias cy='codex --approve-for-me'
 command -v docker &>/dev/null && alias d='docker'
-alias r='rails'
 command -v herdr &>/dev/null && alias h='herdr'
 alias mup='MISE_MINIMUM_RELEASE_AGE=0 mise up'
 n() {
