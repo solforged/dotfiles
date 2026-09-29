@@ -13,7 +13,7 @@ url = "https://github.com/apple/container/releases/download/1.4.1/container-1.4.
 url_api = "https://api.github.com/repos/apple/container/releases/assets/551745110"
 
 [[tools."pipx:beets"]]
-version = "2.14.0"
+version = "2.14.1"
 backend = "pipx:beets"
 specifiers = ["latest"]
 

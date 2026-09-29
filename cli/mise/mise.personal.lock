@@ -3,124 +3,175 @@
 lockfile_version = 1
 
 [[tools."aqua:openai/codex"]]
-version = "0.154.0"
+version = "0.157.1"
 backend = "aqua:openai/codex"
 specifiers = ["latest"]
 
 [tools."aqua:openai/codex"."platforms.linux-arm64"]
-checksum = "sha256:97d93e11df72d3c26772db019e6ea8bb72c246500d46b98c760839f3240355e6"
-url = "https://github.com/openai/codex/releases/download/rust-v0.154.0/codex-package-aarch64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/openai/codex/releases/assets/553706520"
+checksum = "sha256:499fe70d70f4e4904b6a5a4ec1b1edf6c4a1a47a075ea7e2ec2b5262ba47b471"
+url = "https://github.com/openai/codex/releases/download/rust-v0.157.1/codex-package-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/openai/codex/releases/assets/589602711"
 
 [tools."aqua:openai/codex"."platforms.linux-arm64-musl"]
-checksum = "sha256:97d93e11df72d3c26772db019e6ea8bb72c246500d46b98c760839f3240355e6"
-url = "https://github.com/openai/codex/releases/download/rust-v0.154.0/codex-package-aarch64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/openai/codex/releases/assets/553706520"
+checksum = "sha256:499fe70d70f4e4904b6a5a4ec1b1edf6c4a1a47a075ea7e2ec2b5262ba47b471"
+url = "https://github.com/openai/codex/releases/download/rust-v0.157.1/codex-package-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/openai/codex/releases/assets/589602711"
 
 [tools."aqua:openai/codex"."platforms.linux-x64"]
-checksum = "sha256:fc6e3e3b85f2cf7d664520ee5c66a7fe4aa12bae7d46834f47e2f165fd0d6f78"
-url = "https://github.com/openai/codex/releases/download/rust-v0.154.0/codex-package-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/openai/codex/releases/assets/553706441"
+checksum = "sha256:0e211868c9fd73cb49ad35ac675b5eafdf6b9f453df8a493df980c59a590fe5f"
+url = "https://github.com/openai/codex/releases/download/rust-v0.157.1/codex-package-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/openai/codex/releases/assets/589593045"
 
 [tools."aqua:openai/codex"."platforms.linux-x64-musl"]
-checksum = "sha256:fc6e3e3b85f2cf7d664520ee5c66a7fe4aa12bae7d46834f47e2f165fd0d6f78"
-url = "https://github.com/openai/codex/releases/download/rust-v0.154.0/codex-package-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/openai/codex/releases/assets/553706441"
+checksum = "sha256:0e211868c9fd73cb49ad35ac675b5eafdf6b9f453df8a493df980c59a590fe5f"
+url = "https://github.com/openai/codex/releases/download/rust-v0.157.1/codex-package-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/openai/codex/releases/assets/589593045"
 
 [tools."aqua:openai/codex"."platforms.macos-arm64"]
-checksum = "sha256:427ca74c027049e0cd1a330d611e7f8d1fe0f1eb6a6d85ac16f61bcf2cb4a485"
-url = "https://github.com/openai/codex/releases/download/rust-v0.154.0/codex-package-aarch64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/openai/codex/releases/assets/553706558"
+checksum = "sha256:6cda538d19c2f4d9dce965369aa22011afa9dce8c7a73c234b66eb3611ea4aab"
+url = "https://github.com/openai/codex/releases/download/rust-v0.157.1/codex-package-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/openai/codex/releases/assets/589607687"
 
 [tools."aqua:openai/codex"."platforms.macos-x64"]
-checksum = "sha256:8052c6accbe0361bfbd424a10aa5f2226636ed8afb6dcbd5e6437993e57b16d8"
-url = "https://github.com/openai/codex/releases/download/rust-v0.154.0/codex-package-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/openai/codex/releases/assets/553706471"
+checksum = "sha256:d2285a56c7d1f74923e708b18308870e367479a4423784ed488578af89d6af77"
+url = "https://github.com/openai/codex/releases/download/rust-v0.157.1/codex-package-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/openai/codex/releases/assets/589598502"
 
 [tools."aqua:openai/codex"."platforms.windows-x64"]
-checksum = "sha256:94cc5b3632769504c809f6c0364b693c0dfddc5c30c8361095d2263a07ac45a4"
-url = "https://github.com/openai/codex/releases/download/rust-v0.154.0/codex-package-x86_64-pc-windows-msvc.tar.gz"
-url_api = "https://api.github.com/repos/openai/codex/releases/assets/553706571"
+checksum = "sha256:cd245d8be33fd35a80a5f946e27649e39e566afdf4049668d3a4c71770f65d69"
+url = "https://github.com/openai/codex/releases/download/rust-v0.157.1/codex-package-x86_64-pc-windows-msvc.tar.gz"
+url_api = "https://api.github.com/repos/openai/codex/releases/assets/589595622"
 
 [[tools."github:can1357/oh-my-pi"]]
-version = "18.1.17"
+version = "18.3.5"
 backend = "github:can1357/oh-my-pi"
 specifiers = ["latest"]
 
 [tools."github:can1357/oh-my-pi"."platforms.linux-arm64"]
-checksum = "sha256:58ab1b8f75d202cf3767e19901c834d2435898a189d5993be6d5cae6736716e1"
-url = "https://github.com/can1357/oh-my-pi/releases/download/v18.1.17/omp-linux-arm64"
-url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/555681812"
+checksum = "sha256:54c65b46af9dec489ab0b632fa7eff9a2056a3ced4cdad3e3de25c5ac2f743ca"
+url = "https://github.com/can1357/oh-my-pi/releases/download/v18.3.5/omp-linux-arm64"
+url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/592995510"
 
 [tools."github:can1357/oh-my-pi"."platforms.linux-arm64-musl"]
-checksum = "sha256:304b95000209425f4294a8ee0ca8214c69275dec5e8295c080bcb4aeae28b68e"
-url = "https://github.com/can1357/oh-my-pi/releases/download/v18.1.17/omp-linux-musl-arm64"
-url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/555681808"
+checksum = "sha256:b3e2150278ee598584895dadd09f9a3d6dceaf65c473e6606d60de4de6e23f03"
+url = "https://github.com/can1357/oh-my-pi/releases/download/v18.3.5/omp-linux-musl-arm64"
+url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/592995508"
 
 [tools."github:can1357/oh-my-pi"."platforms.linux-x64"]
-checksum = "sha256:040c254ddeb30f6d592be67d1469dc67fcac14e933fa04dbf690f42820ffd820"
-url = "https://github.com/can1357/oh-my-pi/releases/download/v18.1.17/omp-linux-x64"
-url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/555681800"
+checksum = "sha256:2221e3806ffbabeda62b0c505a06db187c2649d00c1f7b5cf0d09187264bf6eb"
+url = "https://github.com/can1357/oh-my-pi/releases/download/v18.3.5/omp-linux-x64"
+url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/592995500"
 
 [tools."github:can1357/oh-my-pi"."platforms.linux-x64-musl"]
-checksum = "sha256:6f8db6439b9a5c5eb9b7b6257d7de648034e9178322fac15d0abda6ad0940134"
-url = "https://github.com/can1357/oh-my-pi/releases/download/v18.1.17/omp-linux-musl-x64"
-url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/555681819"
+checksum = "sha256:ba4449efb830fca7cab85a65500f4f6c390d8cd07584ac6b6fd57af44320b7b9"
+url = "https://github.com/can1357/oh-my-pi/releases/download/v18.3.5/omp-linux-musl-x64"
+url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/592995497"
 
 [tools."github:can1357/oh-my-pi"."platforms.macos-arm64"]
-checksum = "sha256:1c310974d4be8de4e5b7285e9c52647321b412c219790fe0243cf804d5c9d5cc"
-url = "https://github.com/can1357/oh-my-pi/releases/download/v18.1.17/omp-darwin-arm64"
-url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/555681811"
+checksum = "sha256:3ad34e91a474ea239674b593a5ff1544727a22f7afd3c8a8729260128a5febd1"
+url = "https://github.com/can1357/oh-my-pi/releases/download/v18.3.5/omp-darwin-arm64"
+url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/592995503"
 
 [tools."github:can1357/oh-my-pi"."platforms.macos-x64"]
-checksum = "sha256:6299ea1c91ebe80de07b98280bb45c7b8df7892a20ecf4f819cf660ca7e7cee0"
-url = "https://github.com/can1357/oh-my-pi/releases/download/v18.1.17/omp-darwin-x64"
-url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/555681813"
+checksum = "sha256:b0c08f1df0d887e4c256aabbec3893479687ba800906863e30f84926419c6c32"
+url = "https://github.com/can1357/oh-my-pi/releases/download/v18.3.5/omp-darwin-x64"
+url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/592995499"
 
 [tools."github:can1357/oh-my-pi"."platforms.windows-x64"]
-checksum = "sha256:5af22031e2f417b8cbbb09d248a8d5116c929df4fbbd0a1ad21dc1c88b9235dd"
-url = "https://github.com/can1357/oh-my-pi/releases/download/v18.1.17/omp-windows-x64.exe"
-url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/555681802"
+checksum = "sha256:34504ca248c04efe1e74f0414ee52e0997f66edf5f17d6d35e84c3b39f0f8beb"
+url = "https://github.com/can1357/oh-my-pi/releases/download/v18.3.5/omp-windows-x64.exe"
+url_api = "https://api.github.com/repos/can1357/oh-my-pi/releases/assets/592995505"
+
+[[tools.hey-cli]]
+version = "1.7.0"
+backend = "github:basecamp/hey-cli"
+specifiers = ["latest"]
+
+[[tools.hey-cli]]
+version = "1.6.0"
+backend = "github:basecamp/hey-cli"
+
+[tools.hey-cli."platforms.linux-arm64"]
+checksum = "sha256:404b8fbec592f21cc8faf924407e066763c135532009bb307eaa71600d8e383c"
+url = "https://github.com/basecamp/hey-cli/releases/download/v1.6.0/hey_1.6.0_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/basecamp/hey-cli/releases/assets/573730793"
+provenance = "github-attestations"
+
+[tools.hey-cli."platforms.linux-arm64-musl"]
+checksum = "sha256:404b8fbec592f21cc8faf924407e066763c135532009bb307eaa71600d8e383c"
+url = "https://github.com/basecamp/hey-cli/releases/download/v1.6.0/hey_1.6.0_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/basecamp/hey-cli/releases/assets/573730793"
+provenance = "github-attestations"
+
+[tools.hey-cli."platforms.linux-x64"]
+checksum = "sha256:21a201ddbd20c59cd06fa962be9bfc3c9a21301a0826b3d7bc033b2a8bf718d7"
+url = "https://github.com/basecamp/hey-cli/releases/download/v1.6.0/hey_1.6.0_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/basecamp/hey-cli/releases/assets/573730763"
+provenance = "github-attestations"
+
+[tools.hey-cli."platforms.linux-x64-musl"]
+checksum = "sha256:21a201ddbd20c59cd06fa962be9bfc3c9a21301a0826b3d7bc033b2a8bf718d7"
+url = "https://github.com/basecamp/hey-cli/releases/download/v1.6.0/hey_1.6.0_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/basecamp/hey-cli/releases/assets/573730763"
+provenance = "github-attestations"
+
+[tools.hey-cli."platforms.macos-arm64"]
+checksum = "sha256:a3e4f55dda24b92b9d4aedf372bff0f4b6c6f7efd3ea86621894198af1cdd6b1"
+url = "https://github.com/basecamp/hey-cli/releases/download/v1.6.0/hey_1.6.0_darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/basecamp/hey-cli/releases/assets/573730797"
+provenance = "github-attestations"
+
+[tools.hey-cli."platforms.macos-x64"]
+checksum = "sha256:e1be42519904f64f4bdf34694dbe494f5e6187ba6add19056d4219197a80ffe1"
+url = "https://github.com/basecamp/hey-cli/releases/download/v1.6.0/hey_1.6.0_darwin_amd64.tar.gz"
+url_api = "https://api.github.com/repos/basecamp/hey-cli/releases/assets/573730765"
+provenance = "github-attestations"
+
+[tools.hey-cli."platforms.windows-x64"]
+checksum = "sha256:be01c5644f31792d5b0601b54e034d06dcf2aae94648ca05428a9af394dbbc7e"
+url = "https://github.com/basecamp/hey-cli/releases/download/v1.6.0/hey_1.6.0_windows_amd64.zip"
+url_api = "https://api.github.com/repos/basecamp/hey-cli/releases/assets/573730805"
+provenance = "github-attestations"
 
 [[tools.pi]]
-version = "0.85.1"
+version = "0.87.1"
 backend = "aqua:earendil-works/pi"
 specifiers = ["latest"]
 
 [tools.pi."platforms.linux-arm64"]
-checksum = "sha256:042d20ae885ee4f3b102815f3280b962c377b2e9fb44de4037908cc530eae4d4"
-url = "https://github.com/earendil-works/pi/releases/download/v0.85.1/pi-linux-arm64.tar.gz"
-url_api = "https://api.github.com/repos/earendil-works/pi/releases/assets/545797549"
+checksum = "sha256:364b4a9f8491450b27a4857d4e3c780dbaf696790821c176a873e860cbbc3b89"
+url = "https://github.com/earendil-works/pi/releases/download/v0.87.1/pi-linux-arm64.tar.gz"
+url_api = "https://api.github.com/repos/earendil-works/pi/releases/assets/582094202"
 
 [tools.pi."platforms.linux-arm64-musl"]
-checksum = "sha256:042d20ae885ee4f3b102815f3280b962c377b2e9fb44de4037908cc530eae4d4"
-url = "https://github.com/earendil-works/pi/releases/download/v0.85.1/pi-linux-arm64.tar.gz"
-url_api = "https://api.github.com/repos/earendil-works/pi/releases/assets/545797549"
+checksum = "sha256:364b4a9f8491450b27a4857d4e3c780dbaf696790821c176a873e860cbbc3b89"
+url = "https://github.com/earendil-works/pi/releases/download/v0.87.1/pi-linux-arm64.tar.gz"
+url_api = "https://api.github.com/repos/earendil-works/pi/releases/assets/582094202"
 
 [tools.pi."platforms.linux-x64"]
-checksum = "sha256:494e498f47d74d21f40b3386f6a5e921a3d49531a169cab55bbdaca0ea1fe25a"
-url = "https://github.com/earendil-works/pi/releases/download/v0.85.1/pi-linux-x64.tar.gz"
-url_api = "https://api.github.com/repos/earendil-works/pi/releases/assets/545797547"
+checksum = "sha256:80d78dd62d50049a006b981d994c61255bcc10e730b0c278d4ea0a755909764c"
+url = "https://github.com/earendil-works/pi/releases/download/v0.87.1/pi-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/earendil-works/pi/releases/assets/582094203"
 
 [tools.pi."platforms.linux-x64-musl"]
-checksum = "sha256:494e498f47d74d21f40b3386f6a5e921a3d49531a169cab55bbdaca0ea1fe25a"
-url = "https://github.com/earendil-works/pi/releases/download/v0.85.1/pi-linux-x64.tar.gz"
-url_api = "https://api.github.com/repos/earendil-works/pi/releases/assets/545797547"
+checksum = "sha256:80d78dd62d50049a006b981d994c61255bcc10e730b0c278d4ea0a755909764c"
+url = "https://github.com/earendil-works/pi/releases/download/v0.87.1/pi-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/earendil-works/pi/releases/assets/582094203"
 
 [tools.pi."platforms.macos-arm64"]
-checksum = "sha256:d5f70e3c0cf7398eac239fd0261ee074d98b7ba7f6b43fe3617f052ed5b79d06"
-url = "https://github.com/earendil-works/pi/releases/download/v0.85.1/pi-darwin-arm64.tar.gz"
-url_api = "https://api.github.com/repos/earendil-works/pi/releases/assets/545797550"
+checksum = "sha256:4f8d288b78c9768d3a4ac6f61f06cd34394b82ac17d5b42d1e44a437add401b7"
+url = "https://github.com/earendil-works/pi/releases/download/v0.87.1/pi-darwin-arm64.tar.gz"
+url_api = "https://api.github.com/repos/earendil-works/pi/releases/assets/582094198"
 
 [tools.pi."platforms.macos-x64"]
-checksum = "sha256:adb918b845625f184d8bea408d55eacaf21aa87238793c0f5b4f3b9737bce62b"
-url = "https://github.com/earendil-works/pi/releases/download/v0.85.1/pi-darwin-x64.tar.gz"
-url_api = "https://api.github.com/repos/earendil-works/pi/releases/assets/545797548"
+checksum = "sha256:01d8ee28d7114fec4f4eeedbb7561f790853040e9bfbdeebe79437ab66ea51f5"
+url = "https://github.com/earendil-works/pi/releases/download/v0.87.1/pi-darwin-x64.tar.gz"
+url_api = "https://api.github.com/repos/earendil-works/pi/releases/assets/582094201"
 
 [tools.pi."platforms.windows-x64"]
-checksum = "sha256:002fa95b90d521245b9985d8f168caebc237ad56e7e30b319807dee1b2e17e1c"
-url = "https://github.com/earendil-works/pi/releases/download/v0.85.1/pi-windows-x64.zip"
-url_api = "https://api.github.com/repos/earendil-works/pi/releases/assets/545797560"
+checksum = "sha256:aab2ba67baf8ff97a52d05b62d88e9e65a840c6ea8fa1029a28d62d210d4e5fc"
+url = "https://github.com/earendil-works/pi/releases/download/v0.87.1/pi-windows-x64.zip"
+url_api = "https://api.github.com/repos/earendil-works/pi/releases/assets/582094243"
 
 [[tools.yt-dlp]]
 version = "2026.08.19"
