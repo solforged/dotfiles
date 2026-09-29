@@ -32,7 +32,7 @@ mnemopi:
 astGrep:
   enabled: true
 speechgen:
-  enabled: true
+  enabled: false
 generate_image:
   enabled: true
 computer:
@@ -44,7 +44,7 @@ vault:
 github:
   enabled: true
 security:
-  enabled: true
+  enabled: false
 dev:
   autoqa: false
 task:
@@ -78,10 +78,7 @@ isolation:
   backend: auto
 retry:
   fallbackChains:
-    task:
-      - openai-codex/gpt-5.6-luna
-    default:
-      - xai-oauth/grok-4.6
+    {}
 codexResets:
   autoRedeem: "yes"
 sharpshooter:
