@@ -6,6 +6,7 @@ ssh_auth_sock = "~/.local/state/1password/agent.sock"
 "aqua:openai/codex" = "latest"
 "github:can1357/oh-my-pi" = "latest"
 "github:pmdroid/acpbot" = "latest"
+hey-cli = "latest"
 pi = "latest"
 yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
 
