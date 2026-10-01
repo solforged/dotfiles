@@ -11,11 +11,3 @@ specifiers = ["latest"]
 checksum = "sha256:c0d2716afefbb194c93fae662e9cae7cc186bcbcf746816608ec673dd648a6a4"
 url = "https://github.com/apple/container/releases/download/1.4.1/container-1.4.1-installer-signed.pkg"
 url_api = "https://api.github.com/repos/apple/container/releases/assets/551745110"
-
-[[tools."pipx:beets"]]
-version = "2.14.1"
-backend = "pipx:beets"
-specifiers = ["latest"]
-
-[tools."pipx:beets".options]
-extras = "chroma,embedart,fetchart,lastgenre,lyrics"
