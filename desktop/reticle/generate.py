@@ -3,7 +3,6 @@
 
 import argparse
 import json
-import re
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -214,25 +213,6 @@ def nushell(p):
     return json.dumps({key: p[color] for key, color in roles.items()}, indent=2) + "\n"
 
 
-def herdr_theme():
-    # Named colors follow the terminal palette; inactive tabs also apply DIM.
-    # Bright neutral labels remain legible without adding a second dim color.
-    lines = ["# BEGIN GENERATED RETICLE THEME", f"# {NOTICE}", "[theme]",
-             'name = "terminal"', 'auto_switch = true', 'dark_name = "terminal"',
-             'light_name = "catppuccin-latte"', "", "[theme.custom]"]
-    roles = {"accent": "yellow", "text": "reset", "subtext0": "darkgray",
-             "overlay0": "white", "overlay1": "white", "mauve": "magenta",
-             "green": "green", "yellow": "yellow", "red": "red", "blue": "blue",
-             "teal": "cyan", "peach": "yellow", "panel_bg": "reset", "sidebar_bg": "reset",
-             "active_row_bg": "reset", "selection_bg": "reset",
-             "surface0": "reset", "surface1": "reset", "surface_dim": "black"}
-    lines += [f'{key} = "{color}"' for key, color in roles.items()]
-    # Accent badges need a light foreground when the palette switches to light.
-    lines += ["", "[theme.custom.light]",
-              f'surface_dim = "{PALETTES["light"]["bg"]}"']
-    return "\n".join(lines) + "\n# END GENERATED RETICLE THEME"
-
-
 def outputs():
     result = {}
     for variant, p in PALETTES.items():
@@ -260,12 +240,6 @@ def outputs():
         # Keep the existing icon family for both appearances.
         result[f"{folder}/icons.theme"] = (ROOT / "desktop/omarchy/themes/reticle-dark/icons.theme").read_text()
     result["editors/nvim/lua/reticle/palettes.lua"] = f"-- {NOTICE}\nreturn " + lua(PALETTES) + "\n"
-    for name in ("cli/herdr/config.toml", "cli/herdr/config.omarchy.toml"):
-        source = (ROOT / name).read_text()
-        pattern = r"# BEGIN GENERATED RETICLE THEME.*?# END GENERATED RETICLE THEME"
-        if len(re.findall(pattern, source, re.S)) != 1:
-            raise SystemExit(f"Missing or duplicated theme markers in {name}")
-        result[name] = re.sub(pattern, lambda _: herdr_theme(), source, flags=re.S)
     return result
 
 
