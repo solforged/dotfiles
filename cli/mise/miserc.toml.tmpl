@@ -2,13 +2,13 @@
 # Generated from dotfiles for host: {{ host }}
 auto_env = true
 {% if host == "hyperion" -%}
-env = ["base", "personal", "hyperion"]
+env = ["base", "personal", "beets", "hyperion"]
 {% elif host == "sigil" -%}
 env = ["base", "personal", "sigil"]
 {% elif host == "atlas" -%}
 env = ["base", "atlas"]
 {% elif host == "amarna" -%}
-env = ["base", "personal", "amarna"]
+env = ["base", "personal", "beets", "amarna"]
 {% else -%}
 env = ["base", "personal"]
 {% endif -%}

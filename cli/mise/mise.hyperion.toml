@@ -1,7 +1,6 @@
 # Hyperion-specific macOS desktop applications, packages, tools, and services.
 
 [bootstrap.packages]
-"brew:chromaprint" = "latest"
 "brew:coreutils" = "latest"
 "brew:ffmpeg" = "latest"
 "brew:rsync" = "latest"
@@ -32,11 +31,7 @@
 
 [tools]
 "aqua:apple/container" = "latest"
-"pipx:beets" = { version = "latest", extras = "chroma,embedart,fetchart,lastgenre,lyrics" }
 # "npm:remnote-mcp-server" = "latest"
-
-[dotfiles]
-"~/.config/beets" = { source = "~/src/dotfiles/cli/beets", mode = "symlink-each" }
 
 # [tasks."remnote:enable"]
 # description = "Install login LaunchAgent for remnote-mcp-server"

@@ -1,0 +1,12 @@
+# Beets music library: the CLI, the chromaprint fingerprinter its chroma
+# plugin calls, and its config. Hosts opt in by listing "beets" in miserc.
+
+[bootstrap.packages]
+"brew:chromaprint" = { os = "macos" }
+"pacman:chromaprint" = { os = "linux" }
+
+[tools]
+"pipx:beets" = { version = "latest", extras = "chroma,embedart,fetchart,lastgenre,lyrics" }
+
+[dotfiles]
+"~/.config/beets" = { source = "~/src/dotfiles/cli/beets", mode = "symlink-each" }
