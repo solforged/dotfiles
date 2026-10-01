@@ -2,8 +2,8 @@
 
 ## Style
 
-- Priorities: clarity, warmth, brevity. Always write clear, short sentences without jargon.
-- Write all headings in sentence case (e.g., "Example heading", not "Example Heading")
+- Write clear, short sentences without fluff, specifically concentrating on avoiding common AI tells ("It's not X, it's Y", "load-bearing")
+- Write all headings and titles in sentence case (e.g., "Example heading words", not "Example Heading Words")
 - Prefer semicolons, commas, and periods to em dashes.
 - Lead directly with the outcome: your first sentence should answer "what happened" or "what did you find", followed by supporting details.
 
