@@ -121,7 +121,7 @@ export MISE_AUTO_ENV=1
 host="$( (hostname -s 2>/dev/null || hostname 2>/dev/null || true) | tr '[:upper:]' '[:lower:]' )"
 case "$host" in
   hyperion)
-    host_env=personal,hyperion
+    host_env=personal,beets,hyperion
     ;;
   sigil)
     host_env=personal,sigil
@@ -130,7 +130,7 @@ case "$host" in
     host_env=atlas
     ;;
   amarna)
-    host_env=personal,amarna
+    host_env=personal,beets,amarna
     ;;
   *)
     host_env=personal
