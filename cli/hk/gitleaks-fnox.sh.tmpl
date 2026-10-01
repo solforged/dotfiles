@@ -4,12 +4,7 @@
 # pattern resolve at deployment, before a rebase can load an old mise config.
 set -euo pipefail
 {% set gitleaks_path = exec(command='mise which gitleaks') | trim -%}
-{% if vars.gitleaks_profile_only -%}
-{% set fnox = '$HOME/.local/share/mise/shims/fnox --non-interactive --no-defaults -P ' ~ vars.fnox_profile -%}
-{% else -%}
-{% set fnox = '$HOME/.local/share/mise/shims/fnox --non-interactive -P ' ~ vars.fnox_profile -%}
-{% endif -%}
-{% set work_remote_regex = exec(command=fnox ~ ' get GITLEAKS_WORK_REMOTE_REGEX 2>/dev/null || true') | trim -%}
+{% set work_remote_regex = exec(command='$HOME/.local/share/mise/shims/rage --decrypt --identity "$HOME/.config/fnox/age-identity.txt" "$HOME/src/dotfiles/cli/hk/gitleaks-work-remote.age" 2>/dev/null || true') | trim -%}
 
 gitleaks="{{ gitleaks_path }}"
 policy_file="$HOME/.config/hk/gitleaks.toml"
@@ -66,11 +61,11 @@ require_file() {
 toplevel="$(git rev-parse --show-toplevel 2>/dev/null || true)"
 
 # Detect work repositories by origin URL. The pattern that names the internal
-# forges is baked at deploy from the fnox profile, never committed here,
-# because this template is published. No pattern means no repository is a
-# work repository. Work repos skip the identity denylist (internal vocabulary
-# is legitimate there) and use only gitleaks built-in detection, plus any
-# repo-local .gitleaks.toml.
+# forges is decrypted at deploy from cli/hk/gitleaks-work-remote.age, never
+# committed in plaintext, because this template is published. No pattern means
+# no repository is a work repository. Work repos skip the identity denylist
+# (internal vocabulary is legitimate there) and use only gitleaks built-in
+# detection, plus any repo-local .gitleaks.toml.
 is_work_repo=0
 if [ -n "$toplevel" ] && [ -n "$work_remote_regex" ]; then
   remote_url="$(git -C "$toplevel" remote get-url origin 2>/dev/null || true)"

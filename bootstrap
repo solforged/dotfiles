@@ -108,6 +108,32 @@ ensure_mise() {
   mise_bin="$HOME/.local/bin/mise"
 }
 
+# Secrets and encrypted files decrypt with the fnox age identity. A machine
+# without one unlocks the shared setup identity with its passphrase.
+ensure_age_identity() {
+  local identity="$HOME/.config/fnox/age-identity.txt"
+  local wrapped="$repo_dir/cli/fnox/setup-identity.age"
+  local attempt
+
+  [ -s "$identity" ] && return
+
+  mkdir -p "$(dirname "$identity")"
+  identity_tmp="$(mktemp "$identity.XXXXXX")"
+  trap 'rm -f "$identity_tmp"' EXIT
+  say "unlocking the dotfiles setup key; enter its passphrase"
+  for attempt in 1 2 3; do
+    if "$mise_bin" -C "$HOME" exec aqua:str4d/rage -- \
+      rage --decrypt --output "$identity_tmp" "$wrapped" <&3 2>&3; then
+      chmod 0600 "$identity_tmp"
+      mv "$identity_tmp" "$identity"
+      trap - EXIT
+      return
+    fi
+    [ "$attempt" = 3 ] || say "could not unlock the setup key; try again"
+  done
+  die "could not unlock $wrapped"
+}
+
 if [ "$os" = "Darwin" ]; then
   ensure_developer_tools
 fi
@@ -117,6 +143,7 @@ export MISE_AUTO_ENV=1
 
 "$mise_bin" version >/dev/null 2>&1 || die "mise is installed but cannot run"
 "$mise_bin" trust --all --yes --cd "$mise_dir" </dev/null
+ensure_age_identity
 
 host="$( (hostname -s 2>/dev/null || hostname 2>/dev/null || true) | tr '[:upper:]' '[:lower:]' )"
 case "$host" in

@@ -1,7 +1,3 @@
-{# Host gitleaks policy. Decrypted at deploy; the rendered file stays off-repo. -#}
-{% if vars.gitleaks_profile_only -%}
-{% set fnox = '$HOME/.local/share/mise/shims/fnox --non-interactive --no-defaults -P ' ~ vars.fnox_profile -%}
-{% else -%}
-{% set fnox = '$HOME/.local/share/mise/shims/fnox --non-interactive -P ' ~ vars.fnox_profile -%}
-{% endif -%}
-{{ exec(command=fnox ~ ' get GITLEAKS_CONFIG_TOML 2>/dev/null || true') | trim }}
+{# Host gitleaks policy, decrypted at deploy from gitleaks.toml.age. Edit the
+   plaintext, then run `mise run age:encrypt <file> cli/hk/gitleaks.toml.age`. -#}
+{{ exec(command='$HOME/.local/share/mise/shims/rage --decrypt --identity "$HOME/.config/fnox/age-identity.txt" "$HOME/src/dotfiles/cli/hk/gitleaks.toml.age" 2>/dev/null || true') | trim }}
