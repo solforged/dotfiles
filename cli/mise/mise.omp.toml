@@ -1,0 +1,13 @@
+# Oh My Pi coding agent and its shared prompts and settings.
+
+[tools]
+"github:can1357/oh-my-pi" = "latest"
+
+[dotfiles]
+"~/.omp/agent/config.yml" = "~/src/dotfiles/agents/omp/config.yml"
+"~/.omp/agent/models.yml" = "~/src/dotfiles/agents/omp/models.yml"
+"~/.omp/agent/AGENTS.md" = "~/src/dotfiles/agents/omp/AGENTS.md"
+"~/.omp/agent/TITLE_SYSTEM.md" = "~/src/dotfiles/agents/omp/TITLE_SYSTEM.md"
+"~/.omp/agent/APPEND_SYSTEM.md" = { mode = "absent" }
+"~/.omp/agent/themes" = { source = "~/src/dotfiles/agents/omp/themes", mode = "symlink-each" }
+"~/.omp/agent/commands" = { source = "~/src/dotfiles/agents/omp/commands", mode = "symlink-each" }
