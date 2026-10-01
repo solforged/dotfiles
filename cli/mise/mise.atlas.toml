@@ -1,9 +1,26 @@
+# Atlas is the work machine. It installs no personal agents: work-internal
+# builds come from the private overlay below.
+
 [env]
 FNOX_PROFILE = "work"
 
-[tools]
-oh-my-pi = { version = "latest", rename_exe = "omp" }
-pi = "latest"
-
 [vars]
 fnox_profile = "work"
+
+# The private work overlay is a separate Enterprise GitHub checkout at
+# ~/src/dotfiles/overlays/work, which this repository ignores. When it has a
+# mise.toml, it loads as the conf.d folder ~/.config/mise/conf.d/work: that
+# file always loads, relative dotfile sources resolve inside the overlay, and
+# it ranks below every config.<name>.toml. Removing the checkout drops the link.
+[bootstrap.hooks.post-dotfiles]
+run = '''
+overlay="$HOME/src/dotfiles/overlays/work"
+link="$HOME/.config/mise/conf.d/work"
+if [ -f "$overlay/mise.toml" ]; then
+  mkdir -p "$(dirname "$link")"
+  ln -sfn "$overlay" "$link"
+  mise trust --all --yes --cd "$overlay"
+elif [ -L "$link" ]; then
+  rm "$link"
+fi
+'''

@@ -19,6 +19,14 @@ Write into a layer with `mise -C ~/src/dotfiles/cli/mise use -e <name> <tool>`;
 plain `mise use -g` writes to `mise.macos.toml` on macOS and to Omarchy's own
 `config.toml` on Linux.
 
+The work overlay is a private Enterprise GitHub repository cloned to
+`overlays/work`, which `.gitignore` excludes. Nothing work-internal belongs in
+this repository. On atlas, a hook links the overlay to
+`~/.config/mise/conf.d/work` when it has a `mise.toml`; that file loads on
+every run, its relative dotfile sources resolve inside the overlay, and it
+ranks below every `config.<name>.toml`. Run `mise bootstrap` once more after
+the first link so the overlay's tools and dotfiles load.
+
 Every machine decrypts with `~/.config/fnox/age-identity.txt`. On a new
 machine, `bootstrap` creates it by unlocking `cli/fnox/setup-identity.age`
 with its passphrase. Private files that are not fnox secrets, such as the
