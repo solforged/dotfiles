@@ -22,3 +22,17 @@ hash -d df="${DOTFILES_DIR:-$HOME/src/dotfiles}"
 hash -d an="$HOME/work/analysis"
 hash -d lst="${XDG_STATE_HOME:-$HOME/.local/state}"
 hash -d lsh="${XDG_DATA_HOME:-$HOME/.local/share}"
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias decompress="tar -xzf"
+
+alias g='git'
+alias gcm='git commit -m'
+alias gcam='git commit -a -m'
+alias gcad='git commit -a --amend'
+
+command -v docker &>/dev/null && alias d='docker'
+command -v herdr &>/dev/null && alias h='herdr'
+alias cx='printf "\033[2J\033[3J\033[H" && claude --permission-mode auto'
+alias mup='MISE_MINIMUM_RELEASE_AGE=0 mise up'

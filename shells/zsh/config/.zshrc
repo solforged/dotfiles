@@ -1,9 +1,9 @@
-# Synced upstream environment (tools, shortcuts, and platform helpers)
-[[ -r "$ZDOTDIR/config.d/omarchy.zsh" ]] && source "$ZDOTDIR/config.d/omarchy.zsh"
-
 # Shell options, functions, aliases, and keybindings
 [[ -r "$ZDOTDIR/config.d/options.zsh" ]] && source "$ZDOTDIR/config.d/options.zsh"
 [[ -r "$ZDOTDIR/config.d/functions.zsh" ]] && source "$ZDOTDIR/config.d/functions.zsh"
+[[ -r "$ZDOTDIR/config.d/ssh.zsh" ]] && source "$ZDOTDIR/config.d/ssh.zsh"
+[[ -r "$ZDOTDIR/config.d/herdr.zsh" ]] && source "$ZDOTDIR/config.d/herdr.zsh"
+[[ -r "$ZDOTDIR/config.d/linux.zsh" ]] && source "$ZDOTDIR/config.d/linux.zsh"
 [[ -r "$ZDOTDIR/config.d/aliases.zsh" ]] && source "$ZDOTDIR/config.d/aliases.zsh"
 [[ -r "$ZDOTDIR/config.d/zimfw.zsh" ]] && source "$ZDOTDIR/config.d/zimfw.zsh"
 [[ -r "$ZDOTDIR/config.d/atuin.zsh" ]] && source "$ZDOTDIR/config.d/atuin.zsh"
