@@ -1,7 +1,29 @@
 # Reticle theme audit
 
-Reticle Dimmed is the default dark appearance; Reticle Light follows the system
-light appearance. Polyimide and Reticle Dark remain selectable.
+GitHub dark default and GitHub light default are the temporary application
+defaults. Reticle and Polyimide assets remain available for manual selection.
+
+| Application | Dark | Light |
+| ----------- | ---- | ----- |
+| Ghostty / cmux | `GitHub Dark Default` | `GitHub Light Default` |
+| Herdr | GitHub default custom palette | GitHub default custom light palette |
+| Neovim on macOS | `github_dark_default` | `github_light_default` |
+| OMP | `dark-github` | `light-github` |
+| Zed | `GitHub Dark` | `GitHub Light` |
+| Helix | `github_dark` | `github_light` |
+| Nushell | `github-dark-default` | `github-light-default` |
+
+Ghostty/cmux, Herdr, macOS Neovim, OMP, and Zed follow system or terminal
+appearance. Helix and Nushell default to dark; use `:theme github_light` in
+Helix or set `NU_THEME=github-light-default` before launching Nushell for light
+terminals. Lazygit and Yazi inherit the terminal palette; Lazygit's ordinary
+text uses the terminal's default foreground.
+
+Zed's `github-theme` extension names its Primer default palettes `GitHub Dark`
+and `GitHub Light`; it installs automatically. Linux Neovim remains owned by
+Omarchy's selected theme rather than the macOS appearance hook.
+
+The audit below describes the retained Reticle ports, not the active defaults.
 
 ## Findings and changes
 
@@ -68,22 +90,19 @@ symbols: green staged changes, amber modifications and new files, red deletions
 and conflicts, and cyan renames. Lazygit and Yazi inherit terminal colors and
 use reverse video for selection without assuming a dark background. Lazygit uses
 neutral text so unchanged diff context stays distinct from green additions.
-Herdr uses shared ANSI foregrounds and transparent surfaces on macOS and Omarchy.
-Inactive tab labels use bright neutral text because Herdr also dims unnamed tabs;
-active tabs retain amber badges. Herdr 0.9's light-mode override keeps badge
-text readable when the terminal palette switches to light.
-Neovim and OMP share syntax, diagnostic, and Git
-roles; OMP now selects the Reticle themes instead of its built-in Titanium/Light
-pair. OMP uses a neutral selected-row background because selected rows can
-contain multiple foreground colors; terminal text selection has an explicit
-foreground.
+Reticle's Neovim and OMP ports share syntax, diagnostic, and Git roles. The OMP
+ports use a neutral selected-row background because selected rows can contain
+multiple foreground colors; terminal text selection has an explicit foreground.
+Herdr now uses independent GitHub default RGB palettes in both configurations,
+not generated Reticle overrides.
 
 ## Ports and maintenance
 
 `palettes.json` holds the colors; `omp-roles.json` holds OMP's semantic mapping.
-`generate.py` renders Ghostty, OMP, Neovim palettes, Helix, Nushell, and Omarchy's Ghostty,
-Alacritty, Foot, Kitty, and shell colors, plus the marked theme blocks in both
-Herdr configurations. All four variants have the same ports.
+`generate.py` renders Ghostty, OMP, Neovim palettes, Helix, Nushell, and Omarchy's
+Ghostty, Alacritty, Foot, Kitty, and shell colors. All four retained variants
+have the same ports. It does not change active application selections or Herdr
+configuration; regenerating Reticle assets cannot undo the GitHub switch.
 Generated files are committed so application startup does not need Python.
 
 ```sh
@@ -115,16 +134,15 @@ receive format and palette consistency checks.
 - Ghostty/cmux: change the dark half of `theme` to `POLYIMIDE-GH`,
   `RETICLE-DARK-GH`, or `RETICLE-DIMMED-GH`, then reload configuration.
 - OMP: use `/settings` to select `polyimide`, `reticle-dark`, `reticle-dimmed`,
-  or `reticle-light`; its configured automatic pair is Dimmed/Light.
-- Neovim: `:colorscheme polyimide` or `:colorscheme reticle-dimmed` selects a
-  variant; `:colorscheme reticle` restores automatic Dimmed/Light selection. Set
-  `vim.g.usgc_reticle_dark = "polyimide"` before loading `reticle` to pair
-  Polyimide with the automatic light variant.
+  or `reticle-light`; its configured automatic pair remains GitHub dark/light.
+- Neovim: `:colorscheme polyimide` or `:colorscheme reticle-dimmed` manually
+  selects a retained variant; `:colorscheme reticle` selects the retained
+  automatic Dimmed/Light palette. The macOS default is the GitHub pair.
 - Omarchy: select the installed theme by its directory name.
-- Helix: Dimmed is the configured default; use `:theme reticle-light` or another
-  variant during a session, or change `theme` in its configuration.
-- Nushell: Dimmed is the default; set `RETICLE_THEME` to `reticle-light`,
-  `reticle-dark`, `reticle-dimmed`, or `polyimide` before launching `nu`.
+- Helix: GitHub Dark is the configured default; use `:theme reticle-light` or
+  another retained variant during a session.
+- Nushell: set `NU_THEME` to a retained theme's file stem before launching `nu`,
+  such as `reticle-light`, `reticle-dark`, `reticle-dimmed`, or `polyimide`.
   Helix and Nushell do not track system appearance changes automatically.
 
 Apps with their own hard-coded RGB palettes can still differ. In particular,
@@ -169,3 +187,9 @@ foreground, green caret, and blue/cyan text selection, with local TUI accents.
 - [Lazygit selection settings](https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#highlighting-the-selected-line).
 - [Yazi theme format](https://github.com/sxyazi/yazi/blob/main/yazi-config/preset/theme-dark.toml).
 - [Starship prompt configuration](https://starship.rs/config/).
+- [GitHub Neovim defaults](https://github.com/projekt0n/github-nvim-theme).
+- [Zed GitHub default palettes](https://github.com/PyaeSoneAungRgn/github-zed-theme).
+- Nushell's static JSON ports use the colors from the official community
+  [GitHub dark default](https://github.com/nushell/nu_scripts/blob/main/themes/nu-themes/github-dark-default.nu)
+  and [GitHub light default](https://github.com/nushell/nu_scripts/blob/main/themes/nu-themes/github-light-default.nu)
+  ports, without changing terminal colors or adding dynamic value coloring.
