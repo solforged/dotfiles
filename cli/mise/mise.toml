@@ -125,7 +125,8 @@ gitleaks_profile_only = ""
 ssh_auth_sock = ""
 onepassword_agent_sock = "~/.local/state/1password/agent.sock"
 git_signing_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIErof9IMxQpX5/SSsZeJ8cH6h6WYOiiIBURVUZFkd4r GitHub"
-git_signing_program = ""
+# Leave git_signing_program unset here: auto_env loads mise.macos.toml below
+# every listed environment, so a base default would override its value.
 
 [dotfiles]
 "~/.pi/agent/extensions/workflows" = "~/src/pi-sol/extensions/workflows"
