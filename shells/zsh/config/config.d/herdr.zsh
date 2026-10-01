@@ -1,0 +1,150 @@
+# Herdr layouts: hdl (editor, agent, terminal), hds (editor, diff, terminal,
+# omp), hdlm (hdl per subdirectory), and hsl (one command in N panes).
+# Echo a split ratio as a float
+# Usage: _herdr_ratio <numerator> <denominator>
+_herdr_ratio() {
+  awk -v a="$1" -v b="$2" 'BEGIN { printf "%.4f", a / b }'
+}
+
+# Split a herdr pane and echo the id of the new pane
+# Usage: _herdr_split <pane_id> <right|down> <ratio> <cwd>
+_herdr_split() {
+  herdr pane split "$1" --direction "$2" --ratio "$3" --cwd "$4" --no-focus |
+    jq -r '.result.pane.pane_id'
+}
+
+# Create a Herdr Dev Layout with editor, ai, and terminal
+# Usage: hdl <agent> [<second_agent>]
+hdl() {
+  [[ -z $1 ]] && { echo "Usage: hdl <agent> [<second_agent>]"; return 1; }
+  [[ -z $HERDR_PANE_ID ]] && { echo "You must start herdr to use hdl."; return 1; }
+
+  local current_dir="${PWD}"
+  local editor_pane ai_pane ai2_pane
+  local ai="$1"
+  local ai2="${2:-}"
+
+  # Use HERDR_PANE_ID for the pane we're running in (stable even if focus moves)
+  editor_pane="$HERDR_PANE_ID"
+
+  # Name the current tab after the base directory name
+  herdr tab rename "$HERDR_TAB_ID" "$(basename "$current_dir")" >/dev/null
+
+  # Split tab vertically - top 85%, bottom 15%
+  _herdr_split "$editor_pane" down 0.85 "$current_dir" >/dev/null
+
+  # Split editor pane horizontally - AI on right 30%
+  ai_pane=$(_herdr_split "$editor_pane" right 0.7 "$current_dir")
+
+  # If second AI provided, split the AI pane vertically
+  if [[ -n $ai2 ]]; then
+    ai2_pane=$(_herdr_split "$ai_pane" down 0.5 "$current_dir")
+    herdr pane run "$ai2_pane" "$ai2" >/dev/null
+  fi
+
+  # Run ai in the right pane
+  herdr pane run "$ai_pane" "$ai" >/dev/null
+
+  # Run nvim in the left pane
+  herdr pane run "$editor_pane" "$EDITOR ." >/dev/null
+}
+
+# Create a Herdr Dev Square layout with editor, diff watch, terminal, and omp
+# Usage: hds
+hds() {
+  [[ -n $1 ]] && { echo "Usage: hds"; return 1; }
+  [[ -z $HERDR_PANE_ID ]] && { echo "You must start herdr to use hds."; return 1; }
+
+  local current_dir="${PWD}"
+  local editor_pane diff_pane terminal_pane agent_pane
+
+  editor_pane="$HERDR_PANE_ID"
+
+  herdr tab rename "$HERDR_TAB_ID" "$(basename "$current_dir")" >/dev/null
+
+  terminal_pane=$(_herdr_split "$editor_pane" down 0.5 "$current_dir")
+  diff_pane=$(_herdr_split "$editor_pane" right 0.5 "$current_dir")
+  agent_pane=$(_herdr_split "$terminal_pane" right 0.5 "$current_dir")
+
+  herdr pane run "$editor_pane" "nvim ." >/dev/null
+  herdr pane run "$diff_pane" "hunk diff --watch" >/dev/null
+  herdr pane run "$agent_pane" "omp" >/dev/null
+}
+
+# Create multiple hdl tabs with one per subdirectory in the current directory
+# Usage: hdlm <agent> [<second_agent>]
+hdlm() {
+  [[ -z $1 ]] && { echo "Usage: hdlm <agent> [<second_agent>]"; return 1; }
+  [[ -z $HERDR_PANE_ID ]] && { echo "You must start herdr to use hdlm."; return 1; }
+
+  local ai="$1"
+  local ai2="${2:-}"
+  local base_dir="$PWD"
+  local first=true
+  local hdl_command dir dirpath pane_id
+
+  # Rename the workspace to the current directory name
+  herdr workspace rename "$HERDR_WORKSPACE_ID" "$(basename "$base_dir")" >/dev/null
+
+  for dir in "$base_dir"/*/; do
+    [[ -d $dir ]] || continue
+    dirpath="${dir%/}"
+
+    hdl_command="hdl ${(q)ai}"
+    [[ -n $ai2 ]] && hdl_command+=" ${(q)ai2}"
+
+    if $first; then
+      # Reuse the current tab for the first project
+      hdl_command="cd ${(q)dirpath} && $hdl_command"
+      herdr pane run "$HERDR_PANE_ID" "$hdl_command" >/dev/null
+      first=false
+    else
+      pane_id=$(herdr tab create --workspace "$HERDR_WORKSPACE_ID" --cwd "$dirpath" --no-focus |
+        jq -r '.result.root_pane.pane_id')
+      herdr pane run "$pane_id" "$hdl_command" >/dev/null
+    fi
+  done
+}
+
+# Create a multi-pane swarm layout with the same command started in each pane (great for AI)
+# Usage: hsl <pane_count> <command>
+hsl() {
+  [[ -z $1 || -z $2 ]] && { echo "Usage: hsl <pane_count> <command>"; return 1; }
+  [[ -z $HERDR_PANE_ID ]] && { echo "You must start herdr to use hsl."; return 1; }
+
+  local count="$1"
+  local cmd="$2"
+  local current_dir="${PWD}"
+  local -a columns panes
+  local cols k col index rows j last pane
+
+  herdr tab rename "$HERDR_TAB_ID" "$(basename "$current_dir")" >/dev/null
+
+  # Tile into a grid: ceil(sqrt(count)) columns, rows spread across them
+  cols=1
+  while (( cols * cols < count )); do ((cols++)); done
+
+  # Even columns come from splitting the rightmost one off at 1/(n-k+1) each time,
+  # which keeps the array in left-to-right order
+  columns=("$HERDR_PANE_ID")
+  for (( k = 1; k < cols; k++ )); do
+    columns+=("$(_herdr_split "${columns[-1]}" right "$(_herdr_ratio 1 $((cols - k + 1)))" "$current_dir")")
+  done
+
+  # Split each column into its share of rows, again evenly and top-to-bottom
+  for (( index = 1; index <= cols; index++ )); do
+    col="${columns[index]}"
+    rows=$(( count / cols ))
+    (( index <= count % cols )) && (( rows++ ))
+    panes+=("$col")
+    last="$col"
+    for (( j = 1; j < rows; j++ )); do
+      last=$(_herdr_split "$last" down "$(_herdr_ratio 1 $((rows - j + 1)))" "$current_dir")
+      panes+=("$last")
+    done
+  done
+
+  for pane in "${panes[@]}"; do
+    herdr pane run "$pane" "$cmd" >/dev/null
+  done
+}
