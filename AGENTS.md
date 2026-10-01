@@ -16,6 +16,13 @@ layer with `mise -C ~/src/dotfiles/cli/mise use -e <name> <tool>`; plain
 `config.toml` on Linux. `mise.seed.toml` is never selected: the
 `agents:seed` task applies its entries only to missing targets.
 
+Every machine decrypts with `~/.config/fnox/age-identity.txt`. On a new
+machine, `bootstrap` creates it by unlocking `cli/fnox/setup-identity.age`
+with its passphrase. Private files that are not fnox secrets, such as the
+gitleaks policy in `cli/hk/*.age`, are age-encrypted to the recipients in
+`cli/fnox/config.toml`; write them with `mise run age:encrypt <in> <out>`.
+After changing recipients, run `fnox reencrypt` and re-encrypt every `*.age`.
+
 Commit messages are enforced by `cli/hk/commit-message-policy.sh.tmpl`.
 Conventional Commits scoped to the top directory, such as `fix(zsh)`.
 Subject at most 72 characters, past tense, no trailing period. Body is

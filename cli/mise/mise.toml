@@ -50,6 +50,19 @@ description = "Re-resolve active global tool lockfiles, then install"
 dir = "{{ env.HOME }}"
 run = ["mise lock --global --bump", "mise install"]
 
+[tasks."age:encrypt"]
+description = "Encrypt a file to every age recipient in the fnox config"
+usage = '''
+arg "<input>" help="Plaintext file to encrypt"
+arg "<output>" help="Encrypted .age file to write"
+'''
+run = '''
+set -eu
+python3 -c 'import sys, tomllib; print("\n".join(tomllib.load(open(sys.argv[1], "rb"))["providers"]["age"]["recipients"]))' \
+  "$HOME/src/dotfiles/cli/fnox/config.toml" |
+  rage --encrypt --recipients-file - --output "$usage_output" "$usage_input"
+'''
+
 [tasks."pi:test"]
 description = "Test locally owned pi extensions without model calls"
 dir = "{{ env.HOME }}/src/pi-sol"
@@ -121,7 +134,6 @@ git_user_email = "sol@sowilo.io"
 git_include_if_personal = true
 git_include_personal_globally = false
 fnox_profile = "default"
-gitleaks_profile_only = ""
 ssh_auth_sock = ""
 onepassword_agent_sock = "~/.local/state/1password/agent.sock"
 git_signing_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIErof9IMxQpX5/SSsZeJ8cH6h6WYOiiIBURVUZFkd4r GitHub"
