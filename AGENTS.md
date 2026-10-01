@@ -1,20 +1,23 @@
 # AGENTS.md
 
 Personal dotfiles for macOS and Omarchy, managed with `mise` for tool
-versions and deployment and `fnox` for secrets, plus an optional work overlay in
-`overlays/`. Deployment lives in the `[dotfiles]` tables of `cli/mise/*.toml`,
-so a new file is not installed until it has an entry there.
+versions and deployment and `fnox` for secrets. Deployment lives in the
+`[dotfiles]` tables of `cli/mise/*.toml`, so a new file is not installed until
+it has an entry there.
 
 Each `cli/mise/mise.<name>.toml` deploys as `~/.config/mise/config.<name>.toml`
 and loads when `<name>` is in the host's `env` list. `auto_env` also loads
 `mise.macos.toml` or `mise.linux.toml`, always below every listed name, so
-`mise.toml` must not set values those files provide. Application modules such
-as `mise.beets.toml` hold one app's packages, tools, and dotfiles; select them
-per host in both `cli/mise/miserc.toml.tmpl` and `bootstrap`. Write into a
-layer with `mise -C ~/src/dotfiles/cli/mise use -e <name> <tool>`; plain
-`mise use -g` writes to `mise.macos.toml` on macOS and to Omarchy's own
-`config.toml` on Linux. `mise.seed.toml` is never selected: the
-`agents:seed` task applies its entries only to missing targets.
+`mise.toml` must not set values those files provide. Modules such as
+`mise.omp.toml`, `mise.hermes.toml`, `mise.pi.toml`, `mise.claude.toml`, and
+`mise.beets.toml` hold one app's packages, tools, dotfiles, and first-run
+seed hooks. `cli/mise/miserc.toml.tmpl` is the only host-to-module map;
+`bootstrap` renders it first. Hyperion, amarna, and sigil are personal; atlas
+is the work machine and gets no personal agents. To retire a module, drop it
+from the map and run `mise bootstrap unapply <name>` before deleting its file.
+Write into a layer with `mise -C ~/src/dotfiles/cli/mise use -e <name> <tool>`;
+plain `mise use -g` writes to `mise.macos.toml` on macOS and to Omarchy's own
+`config.toml` on Linux.
 
 Every machine decrypts with `~/.config/fnox/age-identity.txt`. On a new
 machine, `bootstrap` creates it by unlocking `cli/fnox/setup-identity.age`

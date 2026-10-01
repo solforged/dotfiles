@@ -1,14 +1,18 @@
 {% set host = exec(command='(hostname -s 2>/dev/null || hostname 2>/dev/null || true) | tr "[:upper:]" "[:lower:]"') | trim -%}
+{#- The only host-to-module map: bootstrap renders this file before its
+    first run. Later names override earlier ones; keep the host file last. -#}
+{% set personal = ["base", "personal", "omp", "hermes", "pi", "claude"] -%}
+{% if host == "hyperion" -%}
+{% set modules = personal | concat(with=["beets", "hyperion"]) -%}
+{% elif host == "amarna" -%}
+{% set modules = personal | concat(with=["beets", "amarna"]) -%}
+{% elif host == "sigil" -%}
+{% set modules = personal | concat(with="sigil") -%}
+{% elif host == "atlas" -%}
+{% set modules = ["base", "atlas"] -%}
+{% else -%}
+{% set modules = personal -%}
+{% endif -%}
 # Generated from dotfiles for host: {{ host }}
 auto_env = true
-{% if host == "hyperion" -%}
-env = ["base", "personal", "beets", "hyperion"]
-{% elif host == "sigil" -%}
-env = ["base", "personal", "sigil"]
-{% elif host == "atlas" -%}
-env = ["base", "atlas"]
-{% elif host == "amarna" -%}
-env = ["base", "personal", "beets", "amarna"]
-{% else -%}
-env = ["base", "personal"]
-{% endif -%}
+env = {{ modules | json_encode() }}

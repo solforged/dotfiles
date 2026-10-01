@@ -1,0 +1,15 @@
+# Hermes agent. Its own installer owns the runtime under ~/.hermes; this
+# module keeps the persona in sync and seeds the config on first install.
+
+[dotfiles]
+"~/.hermes/SOUL.md" = "~/src/dotfiles/agents/hermes/SOUL.md"
+
+# Hermes rewrites config.yaml and creates .env and auth.json during setup,
+# so the repository copy is only a starting point.
+[bootstrap.hooks.post-dotfiles]
+run = '''
+if [ ! -e "$HOME/.hermes/config.yaml" ]; then
+  mkdir -p "$HOME/.hermes"
+  cp "$HOME/src/dotfiles/agents/hermes/config.yaml" "$HOME/.hermes/config.yaml"
+fi
+'''

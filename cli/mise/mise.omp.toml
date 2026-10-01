@@ -1,0 +1,24 @@
+# Oh My Pi coding agent, its shared prompts and settings, and acpbot, the
+# Telegram ACP bridge that drives it.
+
+[tools]
+"github:can1357/oh-my-pi" = "latest"
+"github:pmdroid/acpbot" = "latest"
+
+[dotfiles]
+"~/.omp/agent/config.yml" = "~/src/dotfiles/agents/omp/config.yml"
+"~/.omp/agent/models.yml" = "~/src/dotfiles/agents/omp/models.yml"
+"~/.omp/agent/AGENTS.md" = "~/src/dotfiles/agents/omp/AGENTS.md"
+"~/.omp/agent/TITLE_SYSTEM.md" = "~/src/dotfiles/agents/omp/TITLE_SYSTEM.md"
+"~/.omp/agent/APPEND_SYSTEM.md" = { mode = "absent" }
+"~/.omp/agent/themes" = { source = "~/src/dotfiles/agents/omp/themes", mode = "symlink-each" }
+"~/.omp/agent/commands" = { source = "~/src/dotfiles/agents/omp/commands", mode = "symlink-each" }
+
+# acpbot rewrites its config and holds the bot token, so seed it only once.
+[bootstrap.hooks.post-dotfiles]
+run = '''
+if [ ! -e "$HOME/.config/acpbot/config.toml" ]; then
+  mkdir -p "$HOME/.config/acpbot"
+  install -m 0600 "$HOME/src/dotfiles/agents/acpbot/config.toml" "$HOME/.config/acpbot/config.toml"
+fi
+'''

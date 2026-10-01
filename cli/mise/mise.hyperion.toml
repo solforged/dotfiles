@@ -33,6 +33,19 @@
 "aqua:apple/container" = "latest"
 # "npm:remnote-mcp-server" = "latest"
 
+# Pi extensions from the local-only ~/src/pi-sol checkout. Move these into
+# mise.pi.toml with a [bootstrap.repos] entry once pi-sol has a remote.
+[dotfiles]
+"~/.pi/agent/extensions/workflows" = "~/src/pi-sol/extensions/workflows"
+"~/.pi/agent/extensions/web-search" = "~/src/pi-sol/extensions/web-search"
+"~/.pi/agent/extensions/snapcompact" = "~/src/pi-sol/extensions/snapcompact"
+"~/.pi/agent/roles.json" = "~/src/pi-sol/roles.json"
+
+[tasks."pi:test"]
+description = "Test locally owned pi extensions without model calls"
+dir = "{{ env.HOME }}/src/pi-sol"
+run = "node --test tests/*.test.ts"
+
 # [tasks."remnote:enable"]
 # description = "Install login LaunchAgent for remnote-mcp-server"
 # run = [

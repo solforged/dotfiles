@@ -1,0 +1,15 @@
+# First-run seed; acpbot owns the live file. Paste the Telegram bot token here.
+bot_token = ""
+default_agent = "omp"
+log_level = "info"
+
+[repos]
+dotfiles = "~/src/dotfiles"
+
+[features]
+mcp = true
+tts_mode = "off"
+permission_mode = "ask"
+
+[agents]
+command_json = '{"omp":{"command":"omp","args":["acp","--approval-mode","always-ask"]}}'

@@ -1,42 +1,14 @@
+# Settings shared by personally owned machines. Agents live in their own
+# modules (mise.omp.toml, mise.hermes.toml, mise.pi.toml, mise.claude.toml).
+
 [vars]
 git_include_personal_globally = true
 ssh_auth_sock = "~/.local/state/1password/agent.sock"
 
 [tools]
-"aqua:openai/codex" = "latest"
-"github:can1357/oh-my-pi" = "latest"
-"github:pmdroid/acpbot" = "latest"
 hey-cli = "latest"
-pi = "latest"
 yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
 
 [dotfiles]
-"~/.codex/AGENTS.md" = "~/src/dotfiles/agents/omp/AGENTS.md"
-"~/.omp/agent/config.yml" = "~/src/dotfiles/agents/omp/config.yml"
-"~/.omp/agent/models.yml" = "~/src/dotfiles/agents/omp/models.yml"
-"~/.omp/agent/AGENTS.md" = "~/src/dotfiles/agents/omp/AGENTS.md"
-"~/.omp/agent/TITLE_SYSTEM.md" = "~/src/dotfiles/agents/omp/TITLE_SYSTEM.md"
-"~/.omp/agent/APPEND_SYSTEM.md" = { mode = "absent" }
-"~/.omp/agent/themes" = { source = "~/src/dotfiles/agents/omp/themes", mode = "symlink-each" }
-"~/.omp/agent/commands" = { source = "~/src/dotfiles/agents/omp/commands", mode = "symlink-each" }
-"~/.hermes/SOUL.md" = "~/src/dotfiles/agents/hermes/SOUL.md"
-
-# Hermes and acpbot rewrite their own config, so mise.seed.toml holds those
-# files and this task writes each one only while it is still missing.
-[tasks."agents:seed"]
-description = "Create Hermes and acpbot configs from seeds when missing"
-run = '''
-set -eu
-for target in \
-  "$HOME/.hermes/config.yaml" \
-  "$HOME/.hermes/.env" \
-  "$HOME/.hermes/auth.json" \
-  "$HOME/.config/acpbot/config.toml"; do
-  if [ ! -e "$target" ]; then
-    mise -E "${MISE_ENV:+$MISE_ENV,}seed" dot apply --yes "$target"
-  fi
-done
-'''
-
-[tasks.bootstrap]
-depends = ["agents:seed"]
+# Retired: the Codex CLI. Remove its prompt link everywhere it was applied.
+"~/.codex/AGENTS.md" = { mode = "absent" }
