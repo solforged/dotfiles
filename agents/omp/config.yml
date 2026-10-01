@@ -1,20 +1,20 @@
 modelRoles:
-  smol: xai-oauth/grok-4.6:medium
+  smol: openai-codex/gpt-6-luna:auto
   plan: openai-codex/gpt-6-astra:high
   commit: openai-codex/gpt-5.6-luna:low
-  task: xai-oauth/grok-4.6:auto
-  advisor: openai-codex/gpt-6-astra:high
-  default: openai-codex/gpt-5.6-sol
-  slow: openai-codex/gpt-5.6-sol:high
-  tiny: openai-codex/gpt-5.6-luna:auto
-  vision: openai-codex/gpt-5.6-terra:high
+  task: openai-codex/gpt-6.1-sol:auto
+  slow: openai-codex/gpt-6-astra:high
+  tiny: openai-codex/gpt-6-luna:auto
+  vision: openai-codex/gpt-6.1-sol:auto
+  memory: local/llama3.2:3b
+  default: openai-codex/gpt-6.1-sol
 disabledProviders:
   - ollama
   - vllm
 symbolPreset: nerd
 theme:
-  dark: reticle-dimmed
-  light: reticle-light
+  dark: dark-github
+  light: light-github
 setupVersion: 2
 hideThinkingBlock: false
 memory:
@@ -57,10 +57,9 @@ commands:
   enableClaudeProject: false
   enableOpencodeUser: false
   enableOpencodeProject: false
-providers:
-  memoryModel: llama3.2:3b
 display:
   shimmer: disabled
+  subagentLivePreview: false
 bashInterceptor:
   enabled: true
 startup:
@@ -69,11 +68,11 @@ terminal:
   showProgress: true
 autocompleteMaxVisible: 15
 composer:
-  shape: claude
+  shape: band
 defaultThinkingLevel: auto
 spelling:
   typoDetection: false
-  autocomplete: false
+  autocomplete: "off"
 isolation:
   backend: auto
 retry:
@@ -83,3 +82,11 @@ codexResets:
   autoRedeem: "yes"
 sharpshooter:
   model: ""
+tui:
+  titleSpinner: braille
+  codexResetFireworks: true
+  titleState: false
+statusLine:
+  separator: powerline
+  contextLine: annotated
+  compactThinkingLevel: false
