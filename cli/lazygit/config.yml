@@ -1,6 +1,6 @@
 git:
   overrideGpg: true
-# ANSI colors follow the terminal's Reticle variant, including light mode.
+# ANSI colors follow the terminal's GitHub default palette, including light mode.
 gui:
   border: single
   showFileIcons: false
@@ -16,8 +16,7 @@ gui:
     markedBaseCommitFgColor: [yellow]
     markedBaseCommitBgColor: [default]
     unstagedChangesColor: [yellow]
-    # Reserve green for additions; Reticle's default terminal text is green.
-    defaultFgColor: [white]
+    defaultFgColor: [default]
 customCommands:
   - key: X
     description: Force (skip hooks)
