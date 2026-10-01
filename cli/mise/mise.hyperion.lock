@@ -3,11 +3,11 @@
 lockfile_version = 1
 
 [[tools."aqua:apple/container"]]
-version = "1.4.1"
+version = "1.5.0"
 backend = "aqua:apple/container"
 specifiers = ["latest"]
 
 [tools."aqua:apple/container"."platforms.macos-arm64"]
-checksum = "sha256:c0d2716afefbb194c93fae662e9cae7cc186bcbcf746816608ec673dd648a6a4"
-url = "https://github.com/apple/container/releases/download/1.4.1/container-1.4.1-installer-signed.pkg"
-url_api = "https://api.github.com/repos/apple/container/releases/assets/551745110"
+checksum = "sha256:a24808cb202318fa1c3bbee0c6c6887fe1225fe899d7b687a0ddd939bd6573f8"
+url = "https://github.com/apple/container/releases/download/1.5.0/container-1.5.0-installer-signed.pkg"
+url_api = "https://api.github.com/repos/apple/container/releases/assets/597136570"
