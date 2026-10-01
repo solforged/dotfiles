@@ -63,11 +63,6 @@ python3 -c 'import sys, tomllib; print("\n".join(tomllib.load(open(sys.argv[1], 
   rage --encrypt --recipients-file - --output "$usage_output" "$usage_input"
 '''
 
-[tasks."pi:test"]
-description = "Test locally owned pi extensions without model calls"
-dir = "{{ env.HOME }}/src/pi-sol"
-run = "node --test tests/*.test.ts"
-
 [tasks."themes:generate"]
 description = "Regenerate Reticle themes from the shared palette"
 dir = "{{ env.HOME }}/src/dotfiles"
@@ -141,10 +136,6 @@ git_signing_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIErof9IMxQpX5/SSsZeJ8cH6
 # every listed environment, so a base default would override its value.
 
 [dotfiles]
-"~/.pi/agent/extensions/workflows" = "~/src/pi-sol/extensions/workflows"
-"~/.pi/agent/extensions/web-search" = "~/src/pi-sol/extensions/web-search"
-"~/.pi/agent/extensions/snapcompact" = "~/src/pi-sol/extensions/snapcompact"
-"~/.pi/agent/roles.json" = "~/src/pi-sol/roles.json"
 "~/.config/nushell" = { source = "~/src/dotfiles/shells/nu", mode = "symlink-each" }
 "~/.config/helix" = { source = "~/src/dotfiles/editors/helix", mode = "symlink-each" }
 "~/.zshenv" = "~/src/dotfiles/shells/zsh/.zshenv"

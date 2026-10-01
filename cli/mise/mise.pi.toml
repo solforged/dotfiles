@@ -1,0 +1,5 @@
+# Pi coding agent. Its local extensions come from ~/src/pi-sol, which has no
+# remote yet, so mise.hyperion.toml links them where that checkout exists.
+
+[tools]
+pi = "latest"

@@ -139,32 +139,14 @@ if [ "$os" = "Darwin" ]; then
 fi
 ensure_checkout
 ensure_mise
-export MISE_AUTO_ENV=1
 
 "$mise_bin" version >/dev/null 2>&1 || die "mise is installed but cannot run"
 "$mise_bin" trust --all --yes --cd "$mise_dir" </dev/null
 ensure_age_identity
 
-host="$( (hostname -s 2>/dev/null || hostname 2>/dev/null || true) | tr '[:upper:]' '[:lower:]' )"
-case "$host" in
-  hyperion)
-    host_env=personal,beets,hyperion
-    ;;
-  sigil)
-    host_env=personal,sigil
-    ;;
-  atlas)
-    host_env=atlas
-    ;;
-  amarna)
-    host_env=personal,beets,amarna
-    ;;
-  *)
-    host_env=personal
-    ;;
-esac
-
-export MISE_ENV="base,$host_env"
+# miserc.toml holds the host's module list; render it so this run and every
+# later mise command select the same environments.
+"$mise_bin" --cd "$mise_dir" dot apply --yes "$HOME/.config/mise/miserc.toml" </dev/null
 
 cd "$mise_dir"
 exec "$mise_bin" bootstrap "$@" <&3
