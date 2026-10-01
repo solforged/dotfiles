@@ -1,4 +1,3 @@
--- Kept as a fallback scheme; `reticle` is the active one.
 return {
   {
     "folke/tokyonight.nvim",
