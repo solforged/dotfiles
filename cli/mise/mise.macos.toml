@@ -81,6 +81,8 @@ PMPrintingExpandedStateForPrint2 = true
 
 [bootstrap.macos.defaults."com.apple.screencapture"]
 "disable-shadow" = true
+# Show the floating preview after taking a screenshot.
+"show-thumbnail" = true
 type = "png"
 
 [bootstrap.macos.defaults."com.apple.ActivityMonitor"]
