@@ -9,7 +9,7 @@
 "spm:nicklockwood/SwiftFormat" = "latest"
 
 [bootstrap.hooks.post-defaults]
-run = '[ "$(uname -s)" != "Darwin" ] || killall Dock || true'
+run = 'killall Dock || true'
 
 # Weekly prune of stale Rust build artifacts (task in mise.toml).
 [bootstrap.macos.launchd.agents.cargo-sweep]
