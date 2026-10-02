@@ -4,7 +4,9 @@ md() {
 
 # omp commit uses its own prompt and will not read AGENTS.md. Inject the
 # global commit-msg policy unless the caller already passed --context.
+# OMP_LAUNCHER names a wrapper to run instead of omp, such as a sandbox.
 omp() {
+  local bin=${OMP_LAUNCHER:-omp}
   if [[ "$1" == "commit" ]]; then
     shift
     local skip=0 arg
@@ -14,12 +16,12 @@ omp() {
       esac
     done
     if (( skip )); then
-      command omp commit "$@"
+      command "$bin" commit "$@"
     else
-      command omp commit --context "Commit messages must pass the global commit-msg policy: Conventional Commits, with a lowercase description after type(scope): and a past-tense subject with no trailing period. Body is optional. If present, use a paragraph or a bullet list (at most three paragraphs)." "$@"
+      command "$bin" commit --context "Commit messages must pass the global commit-msg policy: Conventional Commits, with a lowercase description after type(scope): and a past-tense subject with no trailing period. Body is optional. If present, use a paragraph or a bullet list (at most three paragraphs)." "$@"
     fi
   else
-    command omp "$@"
+    command "$bin" "$@"
   fi
 }
 
