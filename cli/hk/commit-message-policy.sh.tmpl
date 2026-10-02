@@ -20,7 +20,7 @@ normalize_message() {
 }
 
 message="$(normalize_message "$message_file")"
-rebase_head="$(git rev-parse -q --verify REBASE_HEAD 2>/dev/null || true)"
+rebase_head="$(git rev-parse -q --verify 'REBASE_HEAD^{commit}' 2>/dev/null || true)"
 if [ -n "$rebase_head" ] && [ "$message" = "$(git log -1 --format=%B "$rebase_head" | git stripspace)" ]; then
   exit 0
 fi

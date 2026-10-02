@@ -21,7 +21,7 @@ fi
 # Replaying an unchanged historical message must not make a new global policy
 # retroactively reject a rebase. Any reword still goes through the scanner.
 if [ -n "$msg_file" ] && [ -f "$msg_file" ]; then
-  rebase_head="$(git rev-parse -q --verify REBASE_HEAD 2>/dev/null || true)"
+  rebase_head="$(git rev-parse -q --verify 'REBASE_HEAD^{commit}' 2>/dev/null || true)"
   message="$(sed -e '/^#.*>8/,$d' -e '/^#/d' "$msg_file" | git stripspace)"
   if [ -n "$rebase_head" ]; then
     rebase_message="$(git log -1 --format=%B "$rebase_head" | git stripspace)"
