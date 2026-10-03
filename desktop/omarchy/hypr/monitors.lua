@@ -6,7 +6,7 @@ hl.monitor({ output = "", mode = "preferred", position = "auto", scale = omarchy
 
 -- acer x32 x2: native 4k at its maximum 240 hz, with variable refresh rate always on.
 hl.monitor({
-  output = "DP-1",
+  output = "DP-3",
   mode = "3840x2160@240",
   position = "auto",
   scale = omarchy_monitor_scale,
