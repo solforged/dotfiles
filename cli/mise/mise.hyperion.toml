@@ -46,11 +46,8 @@ description = "Test locally owned pi extensions without model calls"
 dir = "{{ env.HOME }}/src/pi-sol"
 run = "node --test tests/*.test.ts"
 
-# Unattended GitHub key for signing and push, so agents never wait on a
-# 1Password approval. Other hosts keep the 1Password key.
 [vars]
-github_key = "~/.ssh/github"
-github_key_pub = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJhK+KaTssKEnfGu7L1mPgvycDLyAIZIqlJ089Wi7kWd sol@hyperion github"
+ssh_key = "~/.ssh/id_ed25519"
 
 # [tasks."remnote:enable"]
 # description = "Install login LaunchAgent for remnote-mcp-server"

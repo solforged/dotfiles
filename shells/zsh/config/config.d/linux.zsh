@@ -23,7 +23,7 @@ sff() {
 rsw() {
   (( $# != 2 )) && echo "Usage: rsw <source> <destination>" && return 1
   local src="${1%/}" dest="$2"
-  # Reuse one SSH connection per login, so 1Password only prompts once.
+  # Reuse one SSH connection per watcher instead of reconnecting for every sync.
   local sockets="${XDG_RUNTIME_DIR:-$HOME/.ssh/sockets}"
   mkdir -p "$sockets"
   local rsh="ssh -o ControlMaster=auto -o ControlPath=$sockets/rsw-%r@%h:%p -o ControlPersist=yes"

@@ -69,11 +69,6 @@ export MISE_EXPERIMENTAL=1
 export DOTFILES_DIR="$HOME/src/dotfiles"
 export LLM_WIKI_DIR="$HOME/wiki"
 
-# Prefer 1Password's agent over macOS's empty launchd-provided agent.
-if [[ -S "$XDG_STATE_HOME/1password/agent.sock" ]]; then
-  export SSH_AUTH_SOCK="$XDG_STATE_HOME/1password/agent.sock"
-fi
-
 # Source local env overrides (provided by overlay modules)
 if [[ -r "$ZDOTDIR/env.local.zsh" ]]; then
   source "$ZDOTDIR/env.local.zsh"

@@ -43,13 +43,13 @@ the shared base and deploys as `config.base.toml`, which leaves
 | Module                                 | Contents                                                 |
 | -------------------------------------- | -------------------------------------------------------- |
 | `base` (`mise.toml`)                   | Shared CLI tools, runtimes, dotfiles, and tasks          |
-| `macos`                                | Homebrew packages, 1Password signing, and macOS defaults |
+| `macos`                                | Homebrew packages and macOS defaults                     |
 | `personal`                             | Settings for personally owned machines                   |
 | `omp`                                  | Oh My Pi coding agent                                    |
 | `pi`                                   | Pi coding agent                                          |
 | `claude`                               | Claude Code CLI                                          |
 | `beets`                                | Beets music library and chromaprint                      |
-| `hyperion`, `amarna`, `sigil`, `atlas` | Per-host packages, services, and overrides               |
+| `hyperion`, `amarna`, `atlas`          | Per-host packages, services, and overrides               |
 
 `auto_env` also loads the operating system module (`mise.macos.toml` on macOS)
 below every listed name, so `mise.toml` must not set a value that module
@@ -65,7 +65,6 @@ names override earlier ones, and the host module comes last.
 | ---------------- | --------------------------------------- |
 | hyperion (macOS) | base, personal, agents, beets, hyperion |
 | amarna (Omarchy) | base, personal, agents, beets, amarna   |
-| sigil            | base, personal, agents, sigil           |
 | atlas (work)     | base, atlas                             |
 | any other        | base, personal, agents                  |
 
@@ -80,6 +79,17 @@ which `.gitignore` excludes. On atlas, a hook links it to
 `mise bootstrap` once more after the first link so its tools and dotfiles load.
 Nothing work-internal belongs in this repository.
 
+### SSH keys
+
+Each personal host has its own `~/.ssh/id_ed25519` for GitHub push, commit
+signing, and SSH between hosts. Keys never leave their host and have no
+passphrase, so agents can push and sign while nobody is at the keyboard. On a
+new host, run `mise run ssh:enroll`: it creates the key, registers it on GitHub
+for authentication and signing, and prints the line to add to `ssh_public_keys`
+in `cli/mise/mise.toml`. Then set `ssh_key = "~/.ssh/id_ed25519"` in the host
+module to turn on signing. To retire a host, delete its two GitHub keys and mark
+its line in `ssh_public_keys` as retired so old signatures still verify.
+
 ## Layout
 
 | Path                   | Contents                                                        |
@@ -88,7 +98,7 @@ Nothing work-internal belongs in this repository.
 | `cli/mise/`            | Modules, lockfiles, and the host map                            |
 | `cli/fnox/`            | fnox config, age recipients, and the wrapped setup identity     |
 | `cli/hk/`              | Git hook scripts and the encrypted gitleaks policy              |
-| `cli/git/`, `cli/ssh/` | Git and SSH config templates                                    |
+| `cli/git/`, `cli/ssh/` | Git config templates and SSH config                             |
 | `cli/*`                | Other CLI configs, including lazygit, yazi, gh, herdr, and task |
 | `shells/`              | zsh, Nushell, and Starship                                      |
 | `editors/`             | Neovim, Helix, and Zed                                          |
@@ -108,6 +118,7 @@ Nothing work-internal belongs in this repository.
 | Install Berkeley Mono            | `mise run fonts:install-berkeley`                        |
 | Regenerate Reticle themes        | `mise run themes:generate`                               |
 | Check theme contrast             | `mise run themes:check`                                  |
+| Enroll this host's SSH key       | `mise run ssh:enroll`                                    |
 
 Plain `mise use -g` writes to `mise.macos.toml` on macOS and to Omarchy's own
 `config.toml` on Linux, so use `-e` to target a module.
