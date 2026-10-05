@@ -1,11 +1,18 @@
+{% set github_key = vars.github_key | default(value="") -%}
 Host github.com
   HostName github.com
   User git
-{% if vars.onepassword_agent_sock != "" -%}
+{%- if github_key != "" %}
+  IdentityFile {{ github_key }}
+  IdentitiesOnly yes
+  IdentityAgent none
+{%- else %}
+{%- if vars.onepassword_agent_sock != "" %}
   IdentityAgent "{{ vars.onepassword_agent_sock }}"
-{% endif -%}
+{%- endif %}
   IdentitiesOnly no
   AddKeysToAgent yes
+{%- endif %}
   IgnoreUnknown UseKeychain
   ServerAliveInterval 60
   ServerAliveCountMax 3

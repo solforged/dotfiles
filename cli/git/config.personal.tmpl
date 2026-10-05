@@ -1,8 +1,14 @@
 {% set signing_program = vars.git_signing_program | default(value="") -%}
+{% set github_key = vars.github_key | default(value="") -%}
+{% if github_key != "" -%}
+{% set signing_program = "" -%}
+{% endif -%}
 [user]
   name = {{ vars.git_user_name }}
   email = {{ vars.git_user_email }}
-{%- if vars.git_signing_key != "" %}
+{%- if github_key != "" %}
+  signingkey = {{ github_key }}
+{%- elif vars.git_signing_key != "" %}
   signingkey = {{ vars.git_signing_key }}
 {%- endif %}
 
