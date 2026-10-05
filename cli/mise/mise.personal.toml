@@ -3,7 +3,6 @@
 
 [vars]
 git_include_personal_globally = true
-ssh_auth_sock = "~/.local/state/1password/agent.sock"
 
 [tools]
 hey-cli = "latest"

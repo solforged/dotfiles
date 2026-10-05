@@ -129,11 +129,39 @@ git_user_email = "sol@sowilo.io"
 git_include_if_personal = true
 git_include_personal_globally = false
 fnox_profile = "default"
-ssh_auth_sock = ""
-onepassword_agent_sock = "~/.local/state/1password/agent.sock"
-git_signing_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIErof9IMxQpX5/SSsZeJ8cH6h6WYOiiIBURVUZFkd4r GitHub"
-# Leave git_signing_program unset here: auto_env loads mise.macos.toml below
-# every listed environment, so a base default would override its value.
+# Each enrolled host signs and connects with its own ~/.ssh/id_ed25519, made
+# by `mise run ssh:enroll` and never copied off the host. A host opts in with
+# ssh_key in its module. allowed_signers lists every key here, including
+# retired ones, so old signatures keep verifying.
+ssh_public_keys = """
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJhK+KaTssKEnfGu7L1mPgvycDLyAIZIqlJ089Wi7kWd hyperion
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIErof9IMxQpX5/SSsZeJ8cH6h6WYOiiIBURVUZFkd4r 1password (retired)
+"""
+
+[tasks."ssh:enroll"]
+description = "Create this host's SSH key and register it on GitHub for push and signing"
+run = '''
+set -eu
+key="$HOME/.ssh/id_ed25519"
+host="$(hostname -s | tr '[:upper:]' '[:lower:]')"
+if [ ! -f "$key" ]; then
+  mkdir -p "$HOME/.ssh"
+  chmod 700 "$HOME/.ssh"
+  ssh-keygen -q -t ed25519 -N '' -C "$host" -f "$key"
+fi
+if ! gh auth status 2>&1 | grep -q "admin:ssh_signing_key"; then
+  gh auth refresh -h github.com -s admin:public_key,admin:ssh_signing_key
+fi
+body="$(cut -d' ' -f2 "$key.pub")"
+gh api user/keys --jq '.[].key' | grep -q "$body" ||
+  gh ssh-key add "$key.pub" --type authentication --title "$host"
+gh api user/ssh_signing_keys --jq '.[].key' | grep -q "$body" ||
+  gh ssh-key add "$key.pub" --type signing --title "$host"
+printf '%s\n' \
+  "Registered $key.pub on GitHub. To finish, add this line to ssh_public_keys" \
+  "in cli/mise/mise.toml and set ssh_key = \"~/.ssh/id_ed25519\" in mise.$host.toml:" \
+  "$(cut -d' ' -f1,2 "$key.pub") $host"
+'''
 
 [dotfiles]
 "~/.config/nushell" = { source = "~/src/dotfiles/shells/nu", mode = "symlink-each" }
@@ -145,7 +173,7 @@ git_signing_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIErof9IMxQpX5/SSsZeJ8cH6
 "~/.config/git/allowed_signers" = { source = "~/src/dotfiles/cli/git/allowed_signers.tmpl", mode = "template" }
 "~/.config/git/ignore" = "~/src/dotfiles/cli/git/ignore"
 "~/.config/git/commit-template" = "~/src/dotfiles/cli/git/commit-template"
-"~/.ssh/config" = { source = "~/src/dotfiles/cli/ssh/config.tmpl", mode = "template" }
+"~/.ssh/config" = "~/src/dotfiles/cli/ssh/config"
 "~/.config/hk/commit-message-policy.sh" = { source = "~/src/dotfiles/cli/hk/commit-message-policy.sh.tmpl", mode = "template" }
 "~/.config/hk/gitleaks-fnox.sh" = { source = "~/src/dotfiles/cli/hk/gitleaks-fnox.sh.tmpl", mode = "template" }
 "~/.config/hk/gitleaks.toml" = { source = "~/src/dotfiles/cli/hk/gitleaks.toml.tmpl", mode = "template" }

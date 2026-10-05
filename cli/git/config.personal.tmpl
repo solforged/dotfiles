@@ -1,32 +1,19 @@
-{% set signing_program = vars.git_signing_program | default(value="") -%}
-{% set github_key = vars.github_key | default(value="") -%}
-{% if github_key != "" -%}
-{% set signing_program = "" -%}
-{% endif -%}
+{% set ssh_key = vars.ssh_key | default(value="") -%}
 [user]
   name = {{ vars.git_user_name }}
   email = {{ vars.git_user_email }}
-{%- if github_key != "" %}
-  signingkey = {{ github_key }}
-{%- elif vars.git_signing_key != "" %}
-  signingkey = {{ vars.git_signing_key }}
+{%- if ssh_key != "" %}
+  signingkey = {{ ssh_key }}
 {%- endif %}
 
 [gpg]
   format = ssh
-{%- if signing_program != "" or vars.git_signing_key != "" %}
 
 [gpg "ssh"]
-{%- endif %}
-{%- if signing_program != "" %}
-  program = {{ signing_program }}
-{%- endif %}
-{%- if vars.git_signing_key != "" %}
   allowedSignersFile = ~/.config/git/allowed_signers
-{%- endif %}
 
 [commit]
-  gpgsign = {% if vars.git_signing_key != "" %}true{% else %}false{% endif %}
+  gpgsign = {% if ssh_key != "" %}true{% else %}false{% endif %}
 
 [tag]
-  gpgsign = {% if vars.git_signing_key != "" %}true{% else %}false{% endif %}
+  gpgsign = {% if ssh_key != "" %}true{% else %}false{% endif %}

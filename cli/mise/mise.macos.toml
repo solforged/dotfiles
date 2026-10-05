@@ -8,17 +8,6 @@
 "aqua:realm/SwiftLint" = "latest"
 "spm:nicklockwood/SwiftFormat" = "latest"
 
-[vars]
-git_signing_program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
-
-[bootstrap.hooks.post-dotfiles]
-run = '''
-if [ "$(uname -s)" = "Darwin" ] && [ -x "/Applications/1Password.app/Contents/MacOS/op-ssh-sign" ]; then
-  mkdir -p "$HOME/.local/state/1password"
-  ln -sfn "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock" "$HOME/.local/state/1password/agent.sock"
-fi
-'''
-
 [bootstrap.hooks.post-defaults]
 run = '[ "$(uname -s)" != "Darwin" ] || killall Dock || true'
 

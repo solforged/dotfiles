@@ -77,30 +77,5 @@ working_directory = "~"
 restart = "on-failure"
 restart_sec = "5s"
 
-[bootstrap.hooks.post-dotfiles]
-run = '''
-state_home="${XDG_STATE_HOME:-$HOME/.local/state}"
-agent_dir="$state_home/1password"
-
-if [ -e "$HOME/.1password" ] && [ ! -L "$HOME/.1password" ]; then
-  if [ -e "$agent_dir" ]; then
-    printf '%s\n' "1Password agent migration: both $HOME/.1password and $agent_dir exist" >&2
-    exit 1
-  fi
-  mkdir -p "$state_home"
-  mv "$HOME/.1password" "$agent_dir"
-fi
-
-mkdir -p "$agent_dir"
-if [ ! -e "$HOME/.1password" ] && [ ! -L "$HOME/.1password" ]; then
-  ln -s "$agent_dir" "$HOME/.1password"
-fi
-'''
-
-[vars]
-git_signing_program = "/opt/1Password/op-ssh-sign"
-onepassword_agent_sock = "~/.local/state/1password/agent.sock"
-ssh_auth_sock = "~/.local/state/1password/agent.sock"
-
 [tools]
 "pipx:streamrip" = "latest"

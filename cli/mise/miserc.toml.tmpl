@@ -6,8 +6,6 @@
 {% set modules = personal | concat(with=["beets", "hyperion"]) -%}
 {% elif host == "amarna" -%}
 {% set modules = personal | concat(with=["beets", "amarna"]) -%}
-{% elif host == "sigil" -%}
-{% set modules = personal | concat(with="sigil") -%}
 {% elif host == "atlas" -%}
 {% set modules = ["base", "atlas"] -%}
 {% else -%}
