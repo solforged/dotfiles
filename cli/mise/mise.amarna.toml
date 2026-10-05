@@ -77,5 +77,8 @@ working_directory = "~"
 restart = "on-failure"
 restart_sec = "5s"
 
+[vars]
+ssh_key = "~/.ssh/id_ed25519"
+
 [tools]
 "pipx:streamrip" = "latest"

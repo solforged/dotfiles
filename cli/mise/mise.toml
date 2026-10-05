@@ -135,6 +135,7 @@ fnox_profile = "default"
 # retired ones, so old signatures keep verifying.
 ssh_public_keys = """
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJhK+KaTssKEnfGu7L1mPgvycDLyAIZIqlJ089Wi7kWd hyperion
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGJ1b34vIwDUfuIkKUrcFD/oji8cVPHD0pJQgBwn4ZII amarna
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIErof9IMxQpX5/SSsZeJ8cH6h6WYOiiIBURVUZFkd4r 1password (retired)
 """
 
