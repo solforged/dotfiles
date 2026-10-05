@@ -1,3 +1,6 @@
 {% if vars.git_signing_key != "" -%}
 {{ vars.git_user_email }} {{ vars.git_signing_key }}
 {% endif -%}
+{% if vars.github_key_pub | default(value="") != "" -%}
+{{ vars.git_user_email }} {{ vars.github_key_pub }}
+{% endif -%}
