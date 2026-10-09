@@ -6,6 +6,7 @@ git_include_personal_globally = true
 
 [tools]
 hey-cli = "latest"
+jj = "latest"
 yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
 
 [dotfiles]
