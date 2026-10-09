@@ -1688,11 +1688,6 @@ version = "0.23.5"
 backend = "cargo:eza"
 specifiers = ["latest"]
 
-[[tools."cargo:himalaya"]]
-version = "2.1.0"
-backend = "cargo:himalaya"
-specifiers = ["latest"]
-
 [[tools."conda:clang-format"]]
 version = "23.1.2"
 backend = "conda:clang-format"
