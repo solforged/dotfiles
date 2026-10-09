@@ -7,9 +7,9 @@ $env.config.table.mode = "basic"
 $env.config.table.index_mode = "never"
 $env.config.use_kitty_protocol = true
 $env.config.history.file_format = "sqlite"
-# GitHub dark default; set NU_THEME=github-light-default for light terminals.
+# Nord dark by default; set NU_THEME=nord-light for light terminals.
 $env.config.color_config = (open ($nu.default-config-dir | path join "themes"
-    $"($env.NU_THEME? | default 'github-dark-default').json"))
+    $"($env.NU_THEME? | default 'nord-dark').json"))
 $env.config.ls.use_ls_colors = false
 
 alias e = nvim

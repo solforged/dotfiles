@@ -154,7 +154,7 @@ Commits here use the top-level directory as scope, such as `fix(zsh)`.
 
 ## Themes
 
-Applications currently default to the GitHub dark and light palettes. The
-Reticle and Polyimide ports remain available; see
-[`desktop/reticle/README.md`](desktop/reticle/README.md) for the palette, the
-generator, and how to select a variant.
+Applications default to Nord dark and Nord-inspired light palettes, with Frost
+blue accents and quiet Polar Night / Snow Storm surfaces. Reticle and Polyimide
+remain available; see [`desktop/reticle/README.md`](desktop/reticle/README.md)
+for application selections, palette notes, and the retained theme generator.

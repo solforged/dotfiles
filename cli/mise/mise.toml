@@ -69,9 +69,9 @@ dir = "{{ env.HOME }}/src/dotfiles"
 run = "python3 desktop/reticle/generate.py"
 
 [tasks."themes:check"]
-description = "Check Reticle contrast and generated theme consistency"
+description = "Check Nord palettes and retained Reticle theme consistency"
 dir = "{{ env.HOME }}/src/dotfiles"
-run = "python3 desktop/reticle/generate.py --check"
+run = ["python3 desktop/nord/check.py", "python3 desktop/reticle/generate.py --check"]
 
 [tasks."fonts:install-berkeley"]
 description = "Decrypt, install, and select the bundled Berkeley Mono Variable font"
