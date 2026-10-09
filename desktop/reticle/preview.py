@@ -65,7 +65,7 @@ def draw(variant):
 
 def main():
     if not sys.stdin.isatty():
-        raise SystemExit("Run in a terminal, preferably a fresh cmux workspace.")
+        raise SystemExit("Run in a terminal.")
     settings = termios.tcgetattr(sys.stdin)
     try:
         tty.setcbreak(sys.stdin)

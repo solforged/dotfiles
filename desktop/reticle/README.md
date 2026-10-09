@@ -5,7 +5,7 @@ and Polyimide assets remain available for manual selection.
 
 | Application     | Dark                       | Light                           |
 | --------------- | -------------------------- | ------------------------------- |
-| Ghostty / cmux  | `Nord`                     | `Nord Light`                    |
+| Ghostty         | `Nord`                     | `Nord Light`                    |
 | Herdr           | Nord custom palette        | Snow Storm custom light palette |
 | Neovim on macOS | `nord` (`background=dark`) | `nord` (`background=light`)     |
 | OMP             | `nord-dark`                | `nord-light`                    |
@@ -13,7 +13,7 @@ and Polyimide assets remain available for manual selection.
 | Helix           | `nord`                     | `nord_light`                    |
 | Nushell         | `nord-dark`                | `nord-light`                    |
 
-Ghostty/cmux, Herdr, macOS Neovim, OMP, and Zed follow system or terminal
+Ghostty, Herdr, macOS Neovim, OMP, and Zed follow system or terminal
 appearance. Helix and Nushell default to dark; use `:theme nord_light` in Helix
 or set `NU_THEME=nord-light` before launching Nushell for light terminals.
 Lazygit and Yazi inherit the terminal palette; Lazygit's ordinary text uses the
@@ -133,9 +133,9 @@ mise run themes:check
 python3 desktop/reticle/preview.py
 ```
 
-Run the preview in a fresh terminal, preferably a cmux workspace. Keys 1–4
-switch variants; q restores the terminal's configured colors. The preview is a
-palette specimen, not a substitute for checking the real apps.
+Run the preview in a fresh terminal. Keys 1–4 switch variants; q restores the
+terminal's configured colors. The preview is a palette specimen, not a
+substitute for checking the real apps.
 
 The check fails on stale generated files or contrast below 4.5:1 for text on the
 base, popup, selected-row, and diff backgrounds, plus selection and cursor
@@ -153,7 +153,7 @@ receive format and palette consistency checks.
 
 ## Selecting a variant
 
-- Ghostty/cmux: change the dark half of `theme` to `POLYIMIDE-GH`,
+- Ghostty: change the dark half of `theme` to `POLYIMIDE-GH`,
   `RETICLE-DARK-GH`, or `RETICLE-DIMMED-GH`, then reload configuration.
 - OMP: use `/settings` to select `polyimide`, `reticle-dark`, `reticle-dimmed`,
   or `reticle-light`; its configured automatic pair remains Nord dark/light.
