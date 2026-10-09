@@ -183,7 +183,6 @@ printf '%s\n' \
 "~/.config/atuin" = { source = "~/src/dotfiles/cli/atuin", mode = "symlink-each" }
 "~/.config/brew" = { source = "~/src/dotfiles/cli/brew", mode = "symlink-each" }
 "~/.config/cliamp/config.toml" = { source = "~/src/dotfiles/cli/cliamp/config.toml.tmpl", mode = "template" }
-"~/.config/cmux" = { source = "~/src/dotfiles/desktop/cmux", mode = "symlink-each" }
 "~/.config/dprint" = { source = "~/src/dotfiles/cli/dprint", mode = "symlink-each" }
 "~/.config/gh" = { source = "~/src/dotfiles/cli/gh", mode = "symlink-each" }
 "~/.config/ghostty" = { source = "~/src/dotfiles/desktop/ghostty", mode = "symlink-each" }

@@ -1,5 +1,5 @@
 
-# Subject ≤72 chars: type(scope): Past-tense summary (no period)
+# Subject: type(scope): past-tense summary (no period)
 #
-# Body is optional. One paragraph, hard-wrapped at 72. No lists.
+# Body is optional. One paragraph or a list.
 # Enforced by commit-message-policy.

@@ -102,7 +102,7 @@ its line in `ssh_public_keys` as retired so old signatures still verify.
 | `cli/*`                | Other CLI configs, including lazygit, yazi, gh, herdr, and task |
 | `shells/`              | zsh, Nushell, and Starship                                      |
 | `editors/`             | Neovim, Helix, and Zed                                          |
-| `desktop/`             | Ghostty, cmux, Omarchy, fontconfig, and the Reticle themes      |
+| `desktop/`             | Ghostty, Omarchy, fontconfig, and the Reticle themes            |
 | `agents/`              | omp configuration                                               |
 | `assets/fonts/`        | Encrypted Berkeley Mono font                                    |
 

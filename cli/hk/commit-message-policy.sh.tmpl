@@ -28,11 +28,6 @@ fi
 printf '%s\n' "$message" |
   awk '
     NR == 1 {
-      header_chars = length($0)
-      if (header_chars > 72) {
-        printf "commit-msg: header is %d characters; maximum is 72.\n", header_chars > "/dev/stderr"
-        invalid = 1
-      }
       if ($0 !~ /^[[:lower:]]+(\([^)]*\))?!?: [[:lower:]]/) {
         print "commit-msg: header must use Conventional Commits and start its description with a lowercase letter." > "/dev/stderr"
         invalid = 1
@@ -49,15 +44,6 @@ printf '%s\n' "$message" |
       body_chars += length($0)
       body_lines++
 
-      line_chars = length($0)
-      if (line_chars > 72) {
-        printf "commit-msg: body line %d is %d characters; maximum is 72.\n", NR, line_chars > "/dev/stderr"
-        invalid = 1
-      }
-      if ($0 ~ /^[[:space:]]*([-*+] |[0-9]+[.)][[:space:]]+)/) {
-        printf "commit-msg: body line %d looks like a list; use paragraph form.\n", NR > "/dev/stderr"
-        invalid = 1
-      }
       if ($0 == "") {
         in_paragraph = 0
       } else if (!in_paragraph) {
