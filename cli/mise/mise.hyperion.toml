@@ -40,6 +40,9 @@
 "~/.pi/agent/extensions/web-search" = "~/src/pi-sol/extensions/web-search"
 "~/.pi/agent/extensions/snapcompact" = "~/src/pi-sol/extensions/snapcompact"
 "~/.pi/agent/roles.json" = "~/src/pi-sol/roles.json"
+# Tern replaces settings.json with a renamed temp file on every save, which
+# would break a symlink. Copy it; `mise dot add --changed` captures UI edits.
+"~/Library/Application Support/Tern/settings.json" = { source = "~/src/dotfiles/desktop/tern/settings.json", mode = "copy" }
 
 [tasks."pi:test"]
 description = "Test locally owned pi extensions without model calls"
