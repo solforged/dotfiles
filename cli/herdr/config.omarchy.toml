@@ -109,6 +109,10 @@ prompt_new_tab_name = false
 mouse_capture = true
 agent_panel_sort = "spaces"
 
+# Pi session names are temporary pane metadata, not persistent tab labels.
+[ui.sidebar.agents.rows_by_agent]
+pi = [["state_icon", "machine", "workspace", "tab"], ["agent", "pane"]]
+
 [ui.toast]
 delivery = "terminal"
 
