@@ -13,8 +13,8 @@ disabledProviders:
   - vllm
 symbolPreset: nerd
 theme:
-  dark: dark-github
-  light: light-github
+  dark: nord-dark
+  light: nord-light
 setupVersion: 2
 hideThinkingBlock: false
 memory:

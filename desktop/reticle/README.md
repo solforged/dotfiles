@@ -1,27 +1,48 @@
 # Reticle theme audit
 
-GitHub dark default and GitHub light default are the temporary application
-defaults. Reticle and Polyimide assets remain available for manual selection.
+Nord dark and Nord-inspired light palettes are the application defaults. Reticle
+and Polyimide assets remain available for manual selection.
 
-| Application | Dark | Light |
-| ----------- | ---- | ----- |
-| Ghostty / cmux | `GitHub Dark Default` | `GitHub Light Default` |
-| Herdr | GitHub default custom palette | GitHub default custom light palette |
-| Neovim on macOS | `github_dark_default` | `github_light_default` |
-| OMP | `dark-github` | `light-github` |
-| Zed | `GitHub Dark` | `GitHub Light` |
-| Helix | `github_dark` | `github_light` |
-| Nushell | `github-dark-default` | `github-light-default` |
+| Application     | Dark                       | Light                           |
+| --------------- | -------------------------- | ------------------------------- |
+| Ghostty / cmux  | `Nord`                     | `Nord Light`                    |
+| Herdr           | Nord custom palette        | Snow Storm custom light palette |
+| Neovim on macOS | `nord` (`background=dark`) | `nord` (`background=light`)     |
+| OMP             | `nord-dark`                | `nord-light`                    |
+| Zed             | `Nord Dark`                | `Nord Light`                    |
+| Helix           | `nord`                     | `nord_light`                    |
+| Nushell         | `nord-dark`                | `nord-light`                    |
 
 Ghostty/cmux, Herdr, macOS Neovim, OMP, and Zed follow system or terminal
-appearance. Helix and Nushell default to dark; use `:theme github_light` in
-Helix or set `NU_THEME=github-light-default` before launching Nushell for light
-terminals. Lazygit and Yazi inherit the terminal palette; Lazygit's ordinary
-text uses the terminal's default foreground.
+appearance. Helix and Nushell default to dark; use `:theme nord_light` in Helix
+or set `NU_THEME=nord-light` before launching Nushell for light terminals.
+Lazygit and Yazi inherit the terminal palette; Lazygit's ordinary text uses the
+terminal's default foreground.
 
-Zed's `github-theme` extension names its Primer default palettes `GitHub Dark`
-and `GitHub Light`; it installs automatically. Linux Neovim remains owned by
-Omarchy's selected theme rather than the macOS appearance hook.
+Zed's `nord` extension installs automatically. Neovim uses
+`shaunsingh/nord.nvim` with opaque backgrounds, contrasting popups, and no
+syntax italics. Linux Neovim remains owned by Omarchy's selected theme rather
+than the macOS appearance hook.
+
+The local Herdr, OMP, and Nushell ports share Frost blue/cyan accents, green
+strings and success states, and purple numbers. OMP and Herdr use neutral slate
+selected rows rather than saturated blue fills. Dark secondary text is brighter
+than Nord's original low-contrast comment gray. Their light adaptations use Snow
+Storm surfaces and darker Frost/Aurora text accents; Nord itself is a dark
+palette, so upstream light ports are not exact matches. Built-in Ghostty and
+editor ports retain their own Nord mappings. Berkeley Mono and existing layout
+settings stay unchanged.
+
+New theme files are covered by the existing mise `symlink-each` entries. Apply
+with `mise bootstrap dotfiles apply`, restart CLI tools, and reload terminal
+configuration; Neovim installs its pinned Nord plugin on the next launch.
+
+`mise run themes:check` checks the local Nord palettes for role consistency and
+light text contrast (at least 4.5:1 on base, panel, selection, and diff
+surfaces), then checks the retained generated Reticle ports. Native app ports
+and Nord dark syntax accents are not covered by that light contrast guarantee.
+The local Nord JSON assets are hand-maintained, not outputs of the Reticle
+generator.
 
 The audit below describes the retained Reticle ports, not the active defaults.
 
@@ -85,25 +106,26 @@ The palette itself passes without relying on this setting.
 | Type                              | Purple         | RGB only      |
 | Number                            | Orange         | RGB only      |
 
-Starship uses green/red command results, blue paths and branches, and compact Git
-symbols: green staged changes, amber modifications and new files, red deletions
-and conflicts, and cyan renames. Lazygit and Yazi inherit terminal colors and
-use reverse video for selection without assuming a dark background. Lazygit uses
-neutral text so unchanged diff context stays distinct from green additions.
-Reticle's Neovim and OMP ports share syntax, diagnostic, and Git roles. The OMP
-ports use a neutral selected-row background because selected rows can contain
-multiple foreground colors; terminal text selection has an explicit foreground.
-Herdr now uses independent GitHub default RGB palettes in both configurations,
-not generated Reticle overrides.
+Starship uses green/red command results, blue paths and branches, and compact
+Git symbols: green staged changes, amber modifications and new files, red
+deletions and conflicts, and cyan renames. Lazygit and Yazi inherit terminal
+colors and use reverse video for selection without assuming a dark background.
+Lazygit uses neutral text so unchanged diff context stays distinct from green
+additions. Reticle's Neovim and OMP ports share syntax, diagnostic, and Git
+roles. The OMP ports use a neutral selected-row background because selected rows
+can contain multiple foreground colors; terminal text selection has an explicit
+foreground. Herdr uses independent Nord RGB palettes in both configurations, not
+generated Reticle overrides.
 
 ## Ports and maintenance
 
 `palettes.json` holds the colors; `omp-roles.json` holds OMP's semantic mapping.
-`generate.py` renders Ghostty, OMP, Neovim palettes, Helix, Nushell, and Omarchy's
-Ghostty, Alacritty, Foot, Kitty, and shell colors. All four retained variants
-have the same ports. It does not change active application selections or Herdr
-configuration; regenerating Reticle assets cannot undo the GitHub switch.
-Generated files are committed so application startup does not need Python.
+`generate.py` renders Ghostty, OMP, Neovim palettes, Helix, Nushell, and
+Omarchy's Ghostty, Alacritty, Foot, Kitty, and shell colors. All four retained
+variants have the same ports. It does not change active application selections
+or Herdr configuration; regenerating Reticle assets cannot undo the Nord
+selections. Generated files are committed so application startup does not need
+Python.
 
 ```sh
 mise run themes:generate
@@ -134,41 +156,41 @@ receive format and palette consistency checks.
 - Ghostty/cmux: change the dark half of `theme` to `POLYIMIDE-GH`,
   `RETICLE-DARK-GH`, or `RETICLE-DIMMED-GH`, then reload configuration.
 - OMP: use `/settings` to select `polyimide`, `reticle-dark`, `reticle-dimmed`,
-  or `reticle-light`; its configured automatic pair remains GitHub dark/light.
+  or `reticle-light`; its configured automatic pair remains Nord dark/light.
 - Neovim: `:colorscheme polyimide` or `:colorscheme reticle-dimmed` manually
   selects a retained variant; `:colorscheme reticle` selects the retained
-  automatic Dimmed/Light palette. The macOS default is the GitHub pair.
+  automatic Dimmed/Light palette. The macOS default is Nord.
 - Omarchy: select the installed theme by its directory name.
-- Helix: GitHub Dark is the configured default; use `:theme reticle-light` or
-  another retained variant during a session.
+- Helix: Nord is the configured default; use `:theme reticle-light` or another
+  retained variant during a session.
 - Nushell: set `NU_THEME` to a retained theme's file stem before launching `nu`,
   such as `reticle-light`, `reticle-dark`, `reticle-dimmed`, or `polyimide`.
   Helix and Nushell do not track system appearance changes automatically.
 
 Apps with their own hard-coded RGB palettes can still differ. In particular,
-Yazi's syntax previews, and tools such as bat, fzf, and Atuin
-have not received complete custom theme ports in this pass. ANSI output follows
-the terminal, but that does not make every built-in app color part of this
-palette.
+Yazi's syntax previews, and tools such as bat, fzf, and Atuin have not received
+complete custom theme ports in this pass. ANSI output follows the terminal, but
+that does not make every built-in app color part of this palette.
 
 ## Interface conventions
 
 The prompt separates context from command entry. Its first line has three parts:
-host, path, and branch with compact Git symbols, such as `hyperion ~/src/dotfiles [main +!?]`.
-The second begins with `>`, which turns red after a failed command. Git status
-counts, stash indicators, and command durations are omitted. Detached commits
-use `@hash`; an active merge or rebase appears inside the branch brackets.
+host, path, and branch with compact Git symbols, such as
+`hyperion ~/src/dotfiles [main +!?]`. The second begins with `>`, which turns
+red after a failed command. Git status counts, stash indicators, and command
+durations are omitted. Detached commits use `@hash`; an active merge or rebase
+appears inside the branch brackets.
 
-Yazi uses flat separators and file-kind markers: `d` directory, `l` link,
-`x` executable, `-` ordinary file, and `!` broken link. The active row is amber.
+Yazi uses flat separators and file-kind markers: `d` directory, `l` link, `x`
+executable, `-` ordinary file, and `!` broken link. The active row is amber.
 Neovim uses square floating-window borders, a flat status line, and letter-based
 file icons; Lazygit uses square borders without file icons. OMP uses Unicode
 symbols with text shimmer disabled. Berkeley Mono stays in place.
 
 Nushell and Helix use normal application configurations and mise tool entries.
-Zsh remains the login shell and Neovim remains the default editor.
-Zsh's native directory hashes provide the existing `~df`, `~an`, `~lst`, and
-`~lsh` shortcuts; Starship renders the current directory directly.
+Zsh remains the login shell and Neovim remains the default editor. Zsh's native
+directory hashes provide the existing `~df`, `~an`, `~lst`, and `~lsh`
+shortcuts; Starship renders the current directory directly.
 
 ## Sources
 
@@ -187,9 +209,11 @@ foreground, green caret, and blue/cyan text selection, with local TUI accents.
 - [Lazygit selection settings](https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#highlighting-the-selected-line).
 - [Yazi theme format](https://github.com/sxyazi/yazi/blob/main/yazi-config/preset/theme-dark.toml).
 - [Starship prompt configuration](https://starship.rs/config/).
-- [GitHub Neovim defaults](https://github.com/projekt0n/github-nvim-theme).
-- [Zed GitHub default palettes](https://github.com/PyaeSoneAungRgn/github-zed-theme).
-- Nushell's static JSON ports use the colors from the official community
-  [GitHub dark default](https://github.com/nushell/nu_scripts/blob/main/themes/nu-themes/github-dark-default.nu)
-  and [GitHub light default](https://github.com/nushell/nu_scripts/blob/main/themes/nu-themes/github-light-default.nu)
-  ports, without changing terminal colors or adding dynamic value coloring.
+- [Nord colors and palettes](https://www.nordtheme.com/docs/colors-and-palettes/).
+- [Nord Neovim port](https://github.com/shaunsingh/nord.nvim), supporting both
+  `background` values with the `nord` colorscheme.
+- [Zed Nord Themes](https://github.com/mikasius/zed-nord-theme).
+- [Nushell community Nord port](https://github.com/nushell/nu_scripts/blob/main/themes/nu-themes/nord.nu).
+  The local JSON ports use static values, conventional Nord syntax roles, and
+  readable secondary text without changing terminal colors or adding dynamic
+  value coloring.

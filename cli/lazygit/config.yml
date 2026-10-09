@@ -1,6 +1,6 @@
 git:
   overrideGpg: true
-# ANSI colors follow the terminal's GitHub default palette, including light mode.
+# ANSI colors follow the terminal's Nord palette, including light mode.
 gui:
   border: single
   showFileIcons: false
