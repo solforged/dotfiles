@@ -76,6 +76,11 @@ agent_panel_sort = "spaces"
 
 status_indicators = "symbols"
 show_agent_labels_on_pane_borders = true
+
+# Pi session names are temporary pane metadata, not persistent tab labels.
+[ui.sidebar.agents.rows_by_agent]
+pi = [["state_icon", "machine", "workspace", "tab"], ["agent", "pane"]]
+
 [ui.toast]
 delivery = "terminal"
 
