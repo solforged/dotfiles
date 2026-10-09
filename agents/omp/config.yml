@@ -1,13 +1,13 @@
 modelRoles:
-  smol: openai-codex/gpt-6-luna:auto
+  smol: anthropic/claude-haiku-5-5:high
   plan: openai-codex/gpt-6-astra:high
   commit: openai-codex/gpt-5.6-luna:low
   task: openai-codex/gpt-6.1-sol:auto
   slow: openai-codex/gpt-6-astra:high
   tiny: openai-codex/gpt-6-luna:auto
   vision: openai-codex/gpt-6.1-sol:auto
-  memory: local/llama3.2:3b
-  default: openai-codex/gpt-6.1-sol
+  memory: openai-codex/gpt-6-luna:high
+  default: anthropic/claude-opus-5-5:medium
 disabledProviders:
   - ollama
   - vllm
@@ -28,7 +28,7 @@ mnemopi:
   proactiveLinking: true
   noEmbeddings: false
   scoping: per-project-tagged
-  llmMode: none
+  llmMode: smol
 astGrep:
   enabled: true
 speechgen:
@@ -69,6 +69,7 @@ terminal:
 autocompleteMaxVisible: 15
 composer:
   shape: band
+  tokenRate: true
 defaultThinkingLevel: auto
 spelling:
   typoDetection: false
@@ -90,3 +91,7 @@ statusLine:
   separator: powerline
   contextLine: annotated
   compactThinkingLevel: false
+compaction:
+  idleEnabled: true
+shellMinimizer:
+  sourceOutlineLevel: aggressive
