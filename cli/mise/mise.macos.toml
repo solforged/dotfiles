@@ -11,6 +11,18 @@
 [bootstrap.hooks.post-defaults]
 run = '[ "$(uname -s)" != "Darwin" ] || killall Dock || true'
 
+# Weekly prune of stale Rust build artifacts (task in mise.toml).
+[bootstrap.macos.launchd.agents.cargo-sweep]
+program = "~/.local/bin/mise"
+args = ["run", "--quiet", "cargo:sweep"]
+working_directory = "~"
+start_calendar_interval = { weekday = 0, hour = 11, minute = 0 }
+process_type = "Background"
+nice = 10
+environment = { PATH = "/usr/bin:/bin:/usr/sbin:/sbin" }
+stdout_path = "~/Library/Logs/cargo-sweep.log"
+stderr_path = "~/Library/Logs/cargo-sweep.log"
+
 [bootstrap.macos.dock]
 autohide = true
 magnification = false
