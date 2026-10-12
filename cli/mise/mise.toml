@@ -10,6 +10,9 @@ github.credential_command = "gh auth token"
 _.path = ["{{ env.HOME }}/.local/share/nvim/mason/bin"]
 RUSTUP_HOME = "{{ env.HOME }}/.local/share/rustup"
 CARGO_HOME = "{{ env.HOME }}/.local/share/cargo"
+# Share compiled dependencies across target dirs; set here so it only applies
+# where mise also puts sccache on PATH.
+RUSTC_WRAPPER = "sccache"
 
 # Resolved versions live in the lockfiles. Leaf tools follow latest while
 # runtimes retain compatibility guardrails.
@@ -43,6 +46,8 @@ node = "26"
 bun = "1"
 go = "1.27"
 rust = "1"
+"aqua:mozilla/sccache" = "latest"
+"cargo:cargo-sweep" = "latest"
 
 [tasks."tools:bump"]
 description = "Re-resolve active global tool lockfiles, then install"
@@ -122,6 +127,25 @@ if command -v omarchy >/dev/null 2>&1; then
 fi
 '''
 
+[tasks."cargo:sweep"]
+description = "Prune stale Rust build artifacts from project and scratch target dirs"
+dir = "{{ env.HOME }}"
+run = '''
+set -eu
+# Artifacts untouched for 14 days in project target dirs.
+for root in "$HOME/src" "$HOME/Library/Caches/tessera"; do
+  if [ -d "$root" ]; then cargo sweep --recursive --time 14 "$root"; fi
+done
+# Scratch target dirs agents leave in /tmp: delete whole dirs idle 3+ days.
+find /tmp/ -maxdepth 3 -type f -name CACHEDIR.TAG 2>/dev/null | while read -r tag; do
+  dir="$(dirname "$tag")"
+  if [ -z "$(find "$dir" -mtime -3 -print -quit 2>/dev/null)" ]; then
+    echo "removing $dir"
+    rm -rf "$dir"
+  fi
+done
+'''
+
 [vars]
 git_user_name = "solforged"
 git_user_email = "sol@sowilo.io"
@@ -167,6 +191,7 @@ printf '%s\n' \
 "~/.config/nushell" = { source = "~/src/dotfiles/shells/nu", mode = "symlink-each" }
 "~/.config/helix" = { source = "~/src/dotfiles/editors/helix", mode = "symlink-each" }
 "~/.zshenv" = "~/src/dotfiles/shells/zsh/.zshenv"
+"~/.local/share/cargo/config.toml" = "~/src/dotfiles/cli/cargo/config.toml"
 "~/.hushlogin" = "~/src/dotfiles/shells/hushlogin"
 "~/.config/git/config" = { source = "~/src/dotfiles/cli/git/config.tmpl", mode = "template" }
 "~/.config/git/config.personal" = { source = "~/src/dotfiles/cli/git/config.personal.tmpl", mode = "template" }
