@@ -40,7 +40,7 @@ helix = "latest"
 "conda:clang-format" = "latest"
 "github:zimfw/zimfw" = { version = "latest", asset_pattern = "zimfw.zsh", bin = "zimfw" }
 fnox = "latest"
-python = "3.14"
+python = "3.15"
 uv = "latest"
 node = "26"
 bun = "1"
@@ -200,6 +200,7 @@ printf '%s\n' \
 "~/.config/git/commit-template" = "~/src/dotfiles/cli/git/commit-template"
 "~/.ssh/config" = "~/src/dotfiles/cli/ssh/config"
 "~/.config/hk/commit-message-policy.sh" = { source = "~/src/dotfiles/cli/hk/commit-message-policy.sh.tmpl", mode = "template" }
+"~/.config/hk/strip-cursor-attribution.sh" = "~/src/dotfiles/cli/hk/strip-cursor-attribution.sh"
 "~/.config/hk/gitleaks-fnox.sh" = { source = "~/src/dotfiles/cli/hk/gitleaks-fnox.sh.tmpl", mode = "template" }
 "~/.config/hk/gitleaks.toml" = { source = "~/src/dotfiles/cli/hk/gitleaks.toml.tmpl", mode = "template" }
 "~/.config/hk/gitleaks-allowlist.toml" = { source = "~/src/dotfiles/cli/hk/gitleaks-allowlist.toml.tmpl", mode = "template" }
@@ -225,7 +226,6 @@ printf '%s\n' \
 "~/.config/mise/mise.*.lock" = "~/src/dotfiles/cli/mise/mise.*.lock"
 "~/.config/nvim" = { source = "~/src/dotfiles/editors/nvim", mode = "symlink-each" }
 "~/.config/task" = { source = "~/src/dotfiles/cli/task", mode = "symlink-each" }
-"~/.config/hk/strip-cursor-attribution.sh" = "~/src/dotfiles/cli/hk/strip-cursor-attribution.sh"
 "~/.config/zed" = { source = "~/src/dotfiles/editors/zed", mode = "symlink-each" }
 "~/.config/starship.toml" = "~/src/dotfiles/shells/starship.toml"
 "~/.config/yazi" = { source = "~/src/dotfiles/cli/yazi", mode = "symlink-each" }
