@@ -35,6 +35,11 @@
 [commit]
   template = ~/.config/git/commit-template
 
+# Strip Cursor agent attribution trailers; runs before the policy reads the body.
+[hook "strip-cursor-attribution"]
+  command = /bin/bash "$HOME/.config/hk/strip-cursor-attribution.sh"
+  event = commit-msg
+
 # Keep every repository's history concise, regardless of which client commits.
 [hook "commit-message-policy"]
   command = /bin/bash "$HOME/.config/hk/commit-message-policy.sh"

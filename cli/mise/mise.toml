@@ -200,6 +200,7 @@ printf '%s\n' \
 "~/.config/mise/mise.*.lock" = "~/src/dotfiles/cli/mise/mise.*.lock"
 "~/.config/nvim" = { source = "~/src/dotfiles/editors/nvim", mode = "symlink-each" }
 "~/.config/task" = { source = "~/src/dotfiles/cli/task", mode = "symlink-each" }
+"~/.config/hk/strip-cursor-attribution.sh" = "~/src/dotfiles/cli/hk/strip-cursor-attribution.sh"
 "~/.config/zed" = { source = "~/src/dotfiles/editors/zed", mode = "symlink-each" }
 "~/.config/starship.toml" = "~/src/dotfiles/shells/starship.toml"
 "~/.config/yazi" = { source = "~/src/dotfiles/cli/yazi", mode = "symlink-each" }
