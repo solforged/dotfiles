@@ -9,11 +9,19 @@ android-cli = { version = "latest", bin = "android", version_list_url = "https:/
 android-sdk = "latest"
 hey-cli = "latest"
 jj = "latest"
+vale = "latest"
 yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
 
 [env]
 _.path = { path = "{{env.ANDROID_HOME}}/platform-tools", tools = true }
 
+[tasks."vale:sync"]
+description = "Download the Vale packages named in the global .vale.ini"
+dir = "{{ env.HOME }}"
+run = "vale sync"
+
 [dotfiles]
+"~/.config/vale/.vale.ini" = "~/src/dotfiles/cli/vale/vale.ini"
+"~/.local/share/vale/styles/Voice" = { source = "~/src/dotfiles/cli/vale/styles/Voice", mode = "symlink-each" }
 # Retired: the Codex CLI. Remove its prompt link everywhere it was applied.
 "~/.codex/AGENTS.md" = { mode = "absent" }
