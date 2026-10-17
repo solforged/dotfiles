@@ -2,10 +2,10 @@
 # plugin calls, and its config. Hosts opt in by listing "beets" in miserc.
 
 [bootstrap.packages]
-"brew:chromaprint" = { os = "macos" }
 "pacman:chromaprint" = { os = "linux" }
 
 [tools]
+"github:acoustid/chromaprint" = { version = "latest", os = ["macos"] }
 "pipx:beets" = { version = "latest", extras = "chroma,embedart,fetchart,lastgenre,lyrics" }
 
 [dotfiles]

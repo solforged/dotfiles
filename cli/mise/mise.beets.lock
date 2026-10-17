@@ -2,6 +2,46 @@
 
 lockfile_version = 1
 
+[[tools."github:acoustid/chromaprint"]]
+version = "1.6.2"
+backend = "github:acoustid/chromaprint"
+specifiers = ["latest"]
+
+[tools."github:acoustid/chromaprint"."platforms.linux-arm64"]
+checksum = "sha256:3aa1498126ed272d805bc9d081c77965c9e1e1a0891bb112c13b56ef2ad47bad"
+url = "https://github.com/acoustid/chromaprint/releases/download/v1.6.2/chromaprint-fpcalc-1.6.2-linux-arm64.tar.gz"
+url_api = "https://api.github.com/repos/acoustid/chromaprint/releases/assets/643433334"
+
+[tools."github:acoustid/chromaprint"."platforms.linux-arm64-musl"]
+checksum = "sha256:3aa1498126ed272d805bc9d081c77965c9e1e1a0891bb112c13b56ef2ad47bad"
+url = "https://github.com/acoustid/chromaprint/releases/download/v1.6.2/chromaprint-fpcalc-1.6.2-linux-arm64.tar.gz"
+url_api = "https://api.github.com/repos/acoustid/chromaprint/releases/assets/643433334"
+
+[tools."github:acoustid/chromaprint"."platforms.linux-x64"]
+checksum = "sha256:c968ad4a0821592a79b158fb2e1f46cbe0a22a0a1dbc0743c67d68e75d15d2bb"
+url = "https://github.com/acoustid/chromaprint/releases/download/v1.6.2/chromaprint-fpcalc-1.6.2-linux-x86_64.tar.gz"
+url_api = "https://api.github.com/repos/acoustid/chromaprint/releases/assets/643433340"
+
+[tools."github:acoustid/chromaprint"."platforms.linux-x64-musl"]
+checksum = "sha256:c968ad4a0821592a79b158fb2e1f46cbe0a22a0a1dbc0743c67d68e75d15d2bb"
+url = "https://github.com/acoustid/chromaprint/releases/download/v1.6.2/chromaprint-fpcalc-1.6.2-linux-x86_64.tar.gz"
+url_api = "https://api.github.com/repos/acoustid/chromaprint/releases/assets/643433340"
+
+[tools."github:acoustid/chromaprint"."platforms.macos-arm64"]
+checksum = "sha256:f3bc56cb42d89a01237bb3f3629329e4ec75f7c1b0217acf6e9bf952ac47979b"
+url = "https://github.com/acoustid/chromaprint/releases/download/v1.6.2/chromaprint-fpcalc-1.6.2-macos-arm64.tar.gz"
+url_api = "https://api.github.com/repos/acoustid/chromaprint/releases/assets/643433341"
+
+[tools."github:acoustid/chromaprint"."platforms.macos-x64"]
+checksum = "sha256:5f7b21964163e9e1719ca76d89e71873e2bdba87e9c01d1bcb06da67132da2bb"
+url = "https://github.com/acoustid/chromaprint/releases/download/v1.6.2/chromaprint-fpcalc-1.6.2-macos-x86_64.tar.gz"
+url_api = "https://api.github.com/repos/acoustid/chromaprint/releases/assets/643433338"
+
+[tools."github:acoustid/chromaprint"."platforms.windows-x64"]
+checksum = "sha256:b74369726676670af3ab0eadff45f960cf969fdf4a87a971ba37eaf8d530e874"
+url = "https://github.com/acoustid/chromaprint/releases/download/v1.6.2/chromaprint-fpcalc-1.6.2-windows-x86_64.zip"
+url_api = "https://api.github.com/repos/acoustid/chromaprint/releases/assets/643433333"
+
 [[tools."pipx:beets"]]
 version = "2.14.1"
 backend = "pipx:beets"
