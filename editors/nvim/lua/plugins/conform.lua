@@ -6,7 +6,6 @@ return {
       opts.formatters_by_ft.json = { "dprint" }
       opts.formatters_by_ft.jsonc = { "dprint" }
       opts.formatters_by_ft.markdown = { "dprint" }
-      opts.formatters_by_ft.swift = { "swiftformat" }
       opts.formatters_by_ft.objc = { "clang-format" }
       opts.formatters_by_ft.objcpp = { "clang-format" }
 
