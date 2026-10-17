@@ -52,9 +52,26 @@ export MOOR="${MOOR:---no-linenumbers}"
 
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
-export npm_config_cache="${npm_config_cache:-$XDG_CACHE_HOME/npm}"
 export TASKRC="${TASKRC:-$XDG_CONFIG_HOME/task/taskrc}"
 export TASKDATA="${TASKDATA:-$XDG_DATA_HOME/task}"
+
+# Tool homes. They live here rather than in .zshrc so scripts and agents get
+# them too; launchd-env.zsh copies them into launchd for GUI apps and agents.
+export CARGO_HOME="${CARGO_HOME:-$XDG_DATA_HOME/cargo}"
+export RUSTUP_HOME="${RUSTUP_HOME:-$XDG_DATA_HOME/rustup}"
+export GOPATH="${GOPATH:-$XDG_DATA_HOME/go}"
+export GOBIN="${GOBIN:-$GOPATH/bin}"
+export BUN_INSTALL="${BUN_INSTALL:-$XDG_DATA_HOME/bun}"
+export npm_config_cache="${npm_config_cache:-$XDG_CACHE_HOME/npm}"
+export GRADLE_USER_HOME="${GRADLE_USER_HOME:-$XDG_DATA_HOME/gradle}"
+export PUB_CACHE="${PUB_CACHE:-$XDG_CACHE_HOME/pub-cache}"
+export GEM_SPEC_CACHE="${GEM_SPEC_CACHE:-$XDG_CACHE_HOME/gem}"
+export MPLCONFIGDIR="${MPLCONFIGDIR:-$XDG_CONFIG_HOME/matplotlib}"
+# Codex keeps its login and history in CODEX_HOME, so a host opts in by moving
+# ~/.codex to $XDG_DATA_HOME/codex.
+if [[ -z "${CODEX_HOME:-}" && -d "$XDG_DATA_HOME/codex" ]]; then
+  export CODEX_HOME="$XDG_DATA_HOME/codex"
+fi
 
 if [[ "$OSTYPE" == darwin* && -z "${NODE_OPTIONS:-}" ]]; then
   # macOS 27 aborts on a second process.title assignment.
