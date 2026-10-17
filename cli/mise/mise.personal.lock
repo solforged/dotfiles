@@ -3,29 +3,29 @@
 lockfile_version = 1
 
 [[tools.android-cli]]
-version = "1.0.16500706"
+version = "1.0.16625370"
 backend = "http:android-cli"
 specifiers = ["latest"]
 
 [tools.android-cli."platforms.linux-x64"]
-checksum = "sha256:54b6e2d382444b91511fcc7ab34ddec6561f257d6d1cdce16bb91af6789b6de2"
-url = "https://dl.google.com/android/cli/1.0.16500706/linux_x86_64/android"
+checksum = "sha256:c8f88b14aa00e44a542dd3597cbdcb015e55511e33c2dd69920f41f5b086e228"
+url = "https://dl.google.com/android/cli/1.0.16625370/linux_x86_64/android"
 
 [tools.android-cli."platforms.linux-x64-musl"]
-checksum = "sha256:54b6e2d382444b91511fcc7ab34ddec6561f257d6d1cdce16bb91af6789b6de2"
-url = "https://dl.google.com/android/cli/1.0.16500706/linux_x86_64/android"
+checksum = "sha256:c8f88b14aa00e44a542dd3597cbdcb015e55511e33c2dd69920f41f5b086e228"
+url = "https://dl.google.com/android/cli/1.0.16625370/linux_x86_64/android"
 
 [tools.android-cli."platforms.macos-arm64"]
-checksum = "blake3:6f797d370ee2494da825fe27690a1ab8ab46181088c7db2457402a0192d9e82c"
-url = "https://dl.google.com/android/cli/1.0.16500706/darwin_arm64/android"
+checksum = "blake3:2468342db134c20d0710e682ca96ee8883234be221df41d2244a8463a41977bd"
+url = "https://dl.google.com/android/cli/1.0.16625370/darwin_arm64/android"
 
 [tools.android-cli."platforms.macos-x64"]
-checksum = "sha256:003a4b7d8e2f282010afdc47a9856dc66a3ed688204549e762d868abbd87c624"
-url = "https://dl.google.com/android/cli/1.0.16500706/darwin_x86_64/android"
+checksum = "sha256:0a2788260a88b78191f23155ce21be0b4b2d7f0801243b555dfe482a47ef79dd"
+url = "https://dl.google.com/android/cli/1.0.16625370/darwin_x86_64/android"
 
 [tools.android-cli."platforms.windows-x64"]
-checksum = "sha256:310da5938016bea43dd617806a4fac16f97303a890f7586f392ac0f9a897a175"
-url = "https://dl.google.com/android/cli/1.0.16500706/windows_x86_64/android.exe"
+checksum = "sha256:c5470650f1a2bfe2c40ceee0e788acab92654434753a62e563bba115963d3c7f"
+url = "https://dl.google.com/android/cli/1.0.16625370/windows_x86_64/android.exe"
 
 [[tools.android-sdk]]
 version = "23.0"
@@ -53,51 +53,76 @@ url = "https://dl.google.com/android/repository/commandlinetools-mac_x86_64-1611
 [tools.android-sdk."platforms.windows-x64"]
 url = "https://dl.google.com/android/repository/commandlinetools-win-16111833_latest.zip"
 
+[[tools.flutter]]
+version = "3.47.7"
+backend = "http:flutter"
+specifiers = ["latest"]
+
+[tools.flutter."platforms.linux-x64"]
+checksum = "sha256:af7455f540df951184c7953fbe3cf884766e7541dacf8571f9f582db03dd6230"
+url = "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.47.7-stable.tar.xz"
+
+[tools.flutter."platforms.linux-x64-musl"]
+checksum = "sha256:af7455f540df951184c7953fbe3cf884766e7541dacf8571f9f582db03dd6230"
+url = "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.47.7-stable.tar.xz"
+
+[tools.flutter."platforms.macos-arm64"]
+checksum = "blake3:affd1fabdb93403964966029e05081c8d22f4badc7a4b73f2a02ecbe497cabf2"
+url = "https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos_arm64_3.47.7-stable.zip"
+
+[tools.flutter."platforms.macos-x64"]
+checksum = "sha256:17d39b000a5d0681e3f7b61a105a36f6f31dd41ab9073f625fd466f38035f901"
+url = "https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos_3.47.7-stable.zip"
+
+[tools.flutter."platforms.windows-x64"]
+checksum = "sha256:c2c875da25a1a1448d18ee4e8f398b2f6fce888b4775d8f9130538e16d826cb4"
+url = "https://storage.googleapis.com/flutter_infra_release/releases/stable/windows/flutter_windows_3.47.7-stable.zip"
+
 [[tools.hey-cli]]
-version = "1.8.1"
+version = "1.9.0"
 backend = "github:basecamp/hey-cli"
 specifiers = ["latest"]
 
 [tools.hey-cli."platforms.linux-arm64"]
-checksum = "sha256:4af272c865fd1886a3ba1ec7729be470901060586ddb36a76d48655cab47d77c"
-url = "https://github.com/basecamp/hey-cli/releases/download/v1.8.1/hey_1.8.1_linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/basecamp/hey-cli/releases/assets/631665041"
+checksum = "sha256:d0669184472be3895b4d9c2997da15e3994188ab47b4406e8e34cd5d48a66f27"
+url = "https://github.com/basecamp/hey-cli/releases/download/v1.9.0/hey_1.9.0_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/basecamp/hey-cli/releases/assets/641524537"
 provenance = "github-attestations"
 
 [tools.hey-cli."platforms.linux-arm64-musl"]
-checksum = "sha256:4af272c865fd1886a3ba1ec7729be470901060586ddb36a76d48655cab47d77c"
-url = "https://github.com/basecamp/hey-cli/releases/download/v1.8.1/hey_1.8.1_linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/basecamp/hey-cli/releases/assets/631665041"
+checksum = "sha256:d0669184472be3895b4d9c2997da15e3994188ab47b4406e8e34cd5d48a66f27"
+url = "https://github.com/basecamp/hey-cli/releases/download/v1.9.0/hey_1.9.0_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/basecamp/hey-cli/releases/assets/641524537"
 provenance = "github-attestations"
 
 [tools.hey-cli."platforms.linux-x64"]
-checksum = "sha256:6cf5d54bd91ff5c2f66749f5a73482407c0c3ab70781a600e73e42162caf231d"
-url = "https://github.com/basecamp/hey-cli/releases/download/v1.8.1/hey_1.8.1_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/basecamp/hey-cli/releases/assets/631664945"
+checksum = "sha256:76a13485dd934bef7cf9bfc2968cf5b9fbcbf38e1ed92c77a1ca4ed16ebccff3"
+url = "https://github.com/basecamp/hey-cli/releases/download/v1.9.0/hey_1.9.0_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/basecamp/hey-cli/releases/assets/641524540"
 provenance = "github-attestations"
 
 [tools.hey-cli."platforms.linux-x64-musl"]
-checksum = "sha256:6cf5d54bd91ff5c2f66749f5a73482407c0c3ab70781a600e73e42162caf231d"
-url = "https://github.com/basecamp/hey-cli/releases/download/v1.8.1/hey_1.8.1_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/basecamp/hey-cli/releases/assets/631664945"
+checksum = "sha256:76a13485dd934bef7cf9bfc2968cf5b9fbcbf38e1ed92c77a1ca4ed16ebccff3"
+url = "https://github.com/basecamp/hey-cli/releases/download/v1.9.0/hey_1.9.0_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/basecamp/hey-cli/releases/assets/641524540"
 provenance = "github-attestations"
 
 [tools.hey-cli."platforms.macos-arm64"]
-checksum = "sha256:e66991c60639136c0e3b7075298188b3d2ab14bef7133048e8332f609325b066"
-url = "https://github.com/basecamp/hey-cli/releases/download/v1.8.1/hey_1.8.1_darwin_arm64.tar.gz"
-url_api = "https://api.github.com/repos/basecamp/hey-cli/releases/assets/631664977"
+checksum = "sha256:a6a2a52292d4b7bd979334214fbaab6d24bef6c70bf15a848c9a8726552d5d5c"
+url = "https://github.com/basecamp/hey-cli/releases/download/v1.9.0/hey_1.9.0_darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/basecamp/hey-cli/releases/assets/641524539"
 provenance = "github-attestations"
 
 [tools.hey-cli."platforms.macos-x64"]
-checksum = "sha256:e3f880c4f090e344e3dbe4c94b9ffb49c68c81c531631e9719310874616b9b91"
-url = "https://github.com/basecamp/hey-cli/releases/download/v1.8.1/hey_1.8.1_darwin_amd64.tar.gz"
-url_api = "https://api.github.com/repos/basecamp/hey-cli/releases/assets/631664985"
+checksum = "sha256:8607b9c17aa49974df7a98ec351e46cc589b56cd90726cfc17c7e8ecefafbe69"
+url = "https://github.com/basecamp/hey-cli/releases/download/v1.9.0/hey_1.9.0_darwin_amd64.tar.gz"
+url_api = "https://api.github.com/repos/basecamp/hey-cli/releases/assets/641524538"
 provenance = "github-attestations"
 
 [tools.hey-cli."platforms.windows-x64"]
-checksum = "sha256:c2cdfc2fcf2a8bfe060b00c5bf5c020b5c5cdeb9223203079efa087bb96df468"
-url = "https://github.com/basecamp/hey-cli/releases/download/v1.8.1/hey_1.8.1_windows_amd64.zip"
-url_api = "https://api.github.com/repos/basecamp/hey-cli/releases/assets/631664941"
+checksum = "sha256:57bb3eff45cbfa3aea6991ea01a0737966f26e3e71f12a27fdb4d4cabf89e0fc"
+url = "https://github.com/basecamp/hey-cli/releases/download/v1.9.0/hey_1.9.0_windows_amd64.zip"
+url_api = "https://api.github.com/repos/basecamp/hey-cli/releases/assets/641524595"
 provenance = "github-attestations"
 
 [[tools.jj]]
