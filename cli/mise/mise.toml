@@ -230,3 +230,4 @@ printf '%s\n' \
 "~/.config/starship.toml" = "~/src/dotfiles/shells/starship.toml"
 "~/.config/yazi" = { source = "~/src/dotfiles/cli/yazi", mode = "symlink-each" }
 "~/.config/zsh" = { source = "~/src/dotfiles/shells/zsh/config", mode = "symlink-each" }
+"~/.local/bin/webs" = "~/src/dotfiles/cli/bin/webs"

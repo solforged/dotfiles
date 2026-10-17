@@ -99,7 +99,7 @@ its line in `ssh_public_keys` as retired so old signatures still verify.
 | `cli/fnox/`            | fnox config, age recipients, and the wrapped setup identity     |
 | `cli/hk/`              | Git hook scripts and the encrypted gitleaks policy              |
 | `cli/git/`, `cli/ssh/` | Git config templates and SSH config                             |
-| `cli/*`                | Other CLI configs, including lazygit, yazi, gh, herdr, and task |
+| `cli/bin/`             | Small commands deployed to `~/.local/bin`                       |
 | `shells/`              | zsh, Nushell, and Starship                                      |
 | `editors/`             | Neovim, Helix, and Zed                                          |
 | `desktop/`             | Ghostty, Omarchy, fontconfig, and the Reticle themes            |
@@ -111,7 +111,7 @@ its line in `ssh_public_keys` as retired so old signatures still verify.
 | Goal                             | Command                                                  |
 | -------------------------------- | -------------------------------------------------------- |
 | Re-apply everything              | `mise bootstrap`                                         |
-| Re-apply dotfiles only           | `mise bootstrap dotfiles apply`                          |
+| Kill leftover web servers        | `webs` or `ws`                                           |
 | Add a tool to a module           | `mise -C ~/src/dotfiles/cli/mise use -e <module> <tool>` |
 | Update locked tool versions      | `mise run tools:bump`                                    |
 | Encrypt a file for every machine | `mise run age:encrypt <input> <output>`                  |

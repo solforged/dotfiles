@@ -1,0 +1,662 @@
+#!/usr/bin/env python3
+"""List and kill leftover dev web servers.
+
+webs                 pick servers and kill the selection
+webs list            print the table
+webs kill PORT...    stop the listeners on those ports
+webs PORT...         same as kill
+
+Default list is static servers and dev servers (http.server, astro, vite,
+and the like), including ones an agent started from a Tern tab and then
+detached. System listeners, browsers, and app processes such as tessera stay
+hidden unless --all is set. A server still owned by a live Tern pane is
+marked tab: and sorted last.
+"""
+
+from __future__ import annotations
+
+import json
+import os
+import re
+import shutil
+import signal
+import subprocess
+import sys
+import time
+
+DEV_SERVER = re.compile(
+    r"http\.server"
+    r"|astro(?:\.mjs)?(?:\s+dev)?"
+    r"|\bvite\b"
+    r"|webpack-dev-server"
+    r"|webpack\s+serve"
+    r"|next-server"
+    r"|\bnuxt\b"
+    r"|live-server"
+    r"|\bminiserve\b"
+    r"|\bphp\b.*\s-S\b"
+    r"|\bzola\b.*\bserve\b"
+    r"|\bhugo\b.*\bserver\b"
+    r"|\bmdbook\b.*\bserve\b"
+    r"|\btrunk\b.*\bserve\b"
+    r"|\bnpx\b.*\bserve\b"
+    r"|\bbun\b.*\b(?:dev|serve)\b"
+    r"|\bdeno\b.*\b(?:dev|serve)\b"
+    r"|\bjekyll\b"
+    r"|\beleventy\b"
+    r"|\bparcel\b"
+    r"|\bdocusaurus\b"
+    r"|\bmkdocs\b"
+)
+
+# Listeners that are not the leftover preview servers this command is for.
+DENY = re.compile(
+    r"rapportd|ControlCenter|sharingd|identityservicesd|distnoted|trustd"
+    r"|1Password|Google Chrome|Brave Browser|Chromium|chrome-mac"
+    r"|Cursor|Code Helper|sccache"
+)
+
+BROKER = "__omp_worker_daemon_broker"
+LOOPBACK = {"127.0.0.1", "::1", "localhost"}
+USAGE = """\
+usage: webs [list|kill] [PORT...] [--all] [--json] [--force]
+
+  webs              pick leftover dev servers and kill the selection
+  webs list         print them
+  webs kill PORT    stop the listener on PORT
+  webs PORT         same as kill
+
+--all includes other user listeners (tessera, and so on) except system
+daemons and browsers. --force sends SIGKILL when SIGTERM leaves the process
+running. --json prints the list as JSON.
+"""
+
+
+class Row:
+    def __init__(self, port, pid, age_s, host, where, pane, directory, server, cmd):
+        self.port = port
+        self.pid = pid
+        self.age_s = age_s
+        self.host = host
+        self.where = where
+        self.pane = pane
+        self.directory = directory
+        self.server = server
+        self.cmd = cmd
+
+
+def die(msg, code=1):
+    print(f"webs: {msg}", file=sys.stderr)
+    raise SystemExit(code)
+
+
+def run(argv, timeout=10):
+    return subprocess.run(
+        argv,
+        capture_output=True,
+        text=True,
+        timeout=timeout,
+        check=False,
+    )
+
+
+def tern_bin():
+    found = shutil.which("tern")
+    if found:
+        return found
+    mac = "/Applications/Tern.app/Contents/MacOS/tern"
+    if os.path.isfile(mac) and os.access(mac, os.X_OK):
+        return mac
+    return None
+
+
+def process_table():
+    attempts = (
+        ["ps", "-axww", "-o", "pid=,ppid=,etime=,tty=,command="],
+        ["ps", "-axww", "-o", "pid=,ppid=,etime=,tty=,args="],
+    )
+    last = ""
+    for argv in attempts:
+        try:
+            proc = run(argv)
+        except (OSError, subprocess.TimeoutExpired) as err:
+            last = str(err)
+            continue
+        if proc.returncode == 0 and proc.stdout:
+            rows = {}
+            for line in proc.stdout.splitlines():
+                parts = line.split(None, 4)
+                if len(parts) < 5 or not parts[0].isdigit():
+                    continue
+                pid = int(parts[0])
+                ppid = int(parts[1]) if parts[1].isdigit() else 0
+                rows[pid] = {
+                    "ppid": ppid,
+                    "etime": parts[2],
+                    "tty": parts[3],
+                    "cmd": parts[4],
+                }
+            if rows:
+                return rows
+        last = proc.stderr.strip() or f"ps exited {proc.returncode}"
+    die(f"could not read the process table ({last})")
+
+
+def listeners():
+    user = os.environ.get("USER") or str(os.getuid())
+    try:
+        proc = run(["lsof", "-nP", "-a", "-u", user, "-iTCP", "-sTCP:LISTEN", "-FpcPn"])
+    except (OSError, subprocess.TimeoutExpired) as err:
+        die(f"lsof failed ({err})")
+    if proc.returncode not in (0, 1):
+        # lsof exits 1 when nothing matches.
+        err = proc.stderr.strip() or f"exit {proc.returncode}"
+        die(f"lsof failed ({err})")
+    found = []
+    pid = None
+    cmd = ""
+    for line in proc.stdout.splitlines():
+        if not line:
+            continue
+        kind, value = line[0], line[1:]
+        if kind == "p":
+            pid = int(value) if value.isdigit() else None
+            cmd = ""
+        elif kind == "c":
+            cmd = value
+        elif kind == "n" and pid is not None:
+            host, port = parse_addr(value)
+            if port is None:
+                continue
+            found.append({"pid": pid, "lsof_cmd": cmd, "host": host, "port": port})
+    return found
+
+
+def parse_addr(name):
+    if name.startswith("["):
+        host, sep, port = name[1:].rpartition("]:")
+        if not sep or not port.isdigit():
+            return name, None
+        return host, int(port)
+    host, sep, port = name.rpartition(":")
+    if not sep or not port.isdigit():
+        return name, None
+    return host, int(port)
+
+
+def parse_etime(text):
+    raw = text.strip()
+    days = 0
+    if "-" in raw:
+        day, raw = raw.split("-", 1)
+        days = int(day)
+    parts = [int(part) for part in raw.split(":") if part != ""]
+    if len(parts) == 3:
+        hours, minutes, seconds = parts
+    elif len(parts) == 2:
+        hours, minutes, seconds = 0, parts[0], parts[1]
+    elif len(parts) == 1:
+        hours, minutes, seconds = 0, 0, parts[0]
+    else:
+        return 0
+    return days * 86400 + hours * 3600 + minutes * 60 + seconds
+
+
+def fmt_age(seconds):
+    if seconds >= 86400:
+        return f"{seconds // 86400}d"
+    if seconds >= 3600:
+        return f"{seconds // 3600}h"
+    if seconds >= 60:
+        return f"{seconds // 60}m"
+    return f"{seconds}s"
+
+
+def denied(cmd):
+    if not cmd:
+        return False
+    base = os.path.basename(cmd.split()[0])
+    if base in {"omp", "adb", "sccache", "rapportd"}:
+        return True
+    return DENY.search(cmd) is not None
+
+
+def is_dev_server(cmd):
+    return DEV_SERVER.search(cmd) is not None
+
+
+def short_server(cmd):
+    if "http.server" in cmd:
+        name = "http.server"
+    elif re.search(r"astro(?:\.mjs)?", cmd):
+        name = "astro dev"
+    elif "vite" in cmd:
+        name = "vite"
+    elif "next-server" in cmd or re.search(r"\bnext\b", cmd):
+        name = "next"
+    elif "nuxt" in cmd:
+        name = "nuxt"
+    elif "webpack" in cmd:
+        name = "webpack"
+    elif "live-server" in cmd:
+        name = "live-server"
+    elif "miniserve" in cmd:
+        name = "miniserve"
+    else:
+        parts = cmd.split()
+        base = os.path.basename(parts[0]) if parts else "?"
+        if base in {"node", "python", "python3", "Python", "bun", "deno"} and len(parts) > 1:
+            name = os.path.basename(parts[1])
+        else:
+            name = base
+    return name
+
+
+def served_dir(cmd, cwd):
+    match = re.search(r"--directory(?:=|\s+)(.*?)(?:\s+--\S|$)", cmd)
+    if not match:
+        match = re.search(r"--dir(?:=|\s+)(.*?)(?:\s+--\S|$)", cmd)
+    path = match.group(1).strip() if match else (cwd or "")
+    return path.rstrip("/")
+
+
+def shorten(path, width):
+    home = os.path.expanduser("~")
+    if path == home or path.startswith(home + os.sep):
+        path = "~" + path[len(home) :]
+    if len(path) <= width:
+        return path
+    if width <= 1:
+        return "…"
+    return "…" + path[-(width - 1) :]
+
+
+def cwds(pids):
+    if not pids:
+        return {}
+    spec = ",".join(str(pid) for pid in pids)
+    try:
+        proc = run(["lsof", "-a", "-p", spec, "-d", "cwd", "-Fn"])
+    except (OSError, subprocess.TimeoutExpired):
+        return {}
+    found = {}
+    pid = None
+    for line in proc.stdout.splitlines():
+        if not line:
+            continue
+        kind, value = line[0], line[1:]
+        if kind == "p" and value.isdigit():
+            pid = int(value)
+        elif kind == "n" and pid is not None and pid not in found:
+            found[pid] = value
+    return found
+
+
+def live_panes():
+    tern = tern_bin()
+    if not tern:
+        return []
+    try:
+        listed = run([tern, "ls", "--json"], timeout=3)
+    except (OSError, subprocess.TimeoutExpired):
+        return []
+    if listed.returncode != 0 or not listed.stdout.strip():
+        return []
+    try:
+        data = json.loads(listed.stdout)
+    except json.JSONDecodeError:
+        return []
+    panes = []
+    for session in data.get("sessions") or []:
+        for tab in session.get("tabs") or []:
+            for block in tab.get("blocks") or []:
+                if not block.get("program"):
+                    continue
+                try:
+                    proc = run([tern, "process", str(block["id"]), "--json"], timeout=3)
+                except (OSError, subprocess.TimeoutExpired):
+                    continue
+                if proc.returncode != 0 or not proc.stdout.strip():
+                    continue
+                try:
+                    info = json.loads(proc.stdout)
+                except json.JSONDecodeError:
+                    continue
+                roots = []
+                for key in ("child", "foreground"):
+                    node = info.get(key) or {}
+                    if isinstance(node, dict) and node.get("pid"):
+                        roots.append(int(node["pid"]))
+                if roots:
+                    panes.append({"title": block.get("title") or "", "roots": roots})
+    return panes
+
+
+def ancestry(pid, ppid_of):
+    seen = set()
+    cur = pid
+    chain = []
+    while cur and cur not in seen:
+        seen.add(cur)
+        chain.append(cur)
+        cur = ppid_of.get(cur, 0)
+        if cur in (0, 1):
+            chain.append(cur)
+            break
+    return chain
+
+
+def classify(pid, procs, panes):
+    chain = ancestry(pid, {item: procs[item]["ppid"] for item in procs})
+    roots = {}
+    for pane in panes:
+        for root in pane["roots"]:
+            roots[root] = pane["title"]
+    for ancestor in chain[1:]:
+        title = roots.get(ancestor)
+        if title:
+            return "tab", title
+    for ancestor in chain[1:]:
+        cmd = procs.get(ancestor, {}).get("cmd", "")
+        if BROKER in cmd:
+            return "agent", ""
+    return "gone", ""
+
+
+def collect(show_all):
+    socks = listeners()
+    procs = process_table()
+    panes = live_panes()
+    dirs = cwds(sorted({sock["pid"] for sock in socks}))
+    rows = []
+    seen = set()
+    for sock in socks:
+        key = (sock["pid"], sock["port"])
+        if key in seen:
+            continue
+        seen.add(key)
+        info = procs.get(sock["pid"], {})
+        cmd = info.get("cmd") or sock["lsof_cmd"]
+        if denied(cmd):
+            continue
+        where, pane = classify(sock["pid"], procs, panes)
+        if not show_all and not is_dev_server(cmd) and where != "tab":
+            continue
+        directory = served_dir(cmd, dirs.get(sock["pid"], ""))
+        server = short_server(cmd)
+        if sock["host"] not in LOOPBACK:
+            server = f"{server} ({sock['host']})"
+        rows.append(
+            Row(
+                port=sock["port"],
+                pid=sock["pid"],
+                age_s=parse_etime(info.get("etime", "0")),
+                host=sock["host"],
+                where=where,
+                pane=pane,
+                directory=directory,
+                server=server,
+                cmd=cmd,
+            )
+        )
+    rows.sort(key=lambda row: (row.where == "tab", -row.age_s, row.port))
+    return rows
+
+
+def where_label(row):
+    if row.where == "tab" and row.pane:
+        title = row.pane if len(row.pane) <= 18 else row.pane[:17] + "…"
+        return f"tab:{title}"
+    return row.where
+
+
+def columns(rows, for_tty):
+    where_w = max(5, *(len(where_label(row)) for row in rows))
+    if for_tty:
+        term = shutil.get_terminal_size((100, 24)).columns
+        fixed = 5 + 2 + 4 + 2 + 7 + 2 + where_w + 2 + 2 + 16
+        cap = max(24, term - fixed)
+    else:
+        cap = 10_000
+    dir_w = 12
+    for row in rows:
+        dir_w = max(dir_w, min(len(shorten(row.directory, 10_000)), cap))
+    return where_w, dir_w
+
+
+def format_row(row, where_w, dir_w):
+    return (
+        f"{row.port:>5}  {fmt_age(row.age_s):>4}  {row.pid:<7}  "
+        f"{where_label(row):<{where_w}}  {shorten(row.directory, dir_w):<{dir_w}}  "
+        f"{row.server}"
+    )
+
+
+def header(where_w, dir_w):
+    return (
+        f"{'PORT':>5}  {'AGE':>4}  {'PID':<7}  "
+        f"{'WHERE':<{where_w}}  {'DIRECTORY':<{dir_w}}  SERVER"
+    )
+
+
+def print_table(rows):
+    if not rows:
+        print("no leftover web servers")
+        return
+    where_w, dir_w = columns(rows, sys.stdout.isatty())
+    print(header(where_w, dir_w))
+    for row in rows:
+        print(format_row(row, where_w, dir_w))
+
+
+def as_json(rows):
+    payload = [
+        {
+            "port": row.port,
+            "pid": row.pid,
+            "age": fmt_age(row.age_s),
+            "age_s": row.age_s,
+            "addr": row.host,
+            "where": row.where,
+            "pane": row.pane or None,
+            "dir": row.directory,
+            "server": row.server,
+            "cmd": row.cmd,
+        }
+        for row in rows
+    ]
+    print(json.dumps(payload, indent=2))
+
+
+def parse_pick(line):
+    parts = line.split()
+    if len(parts) < 3 or not parts[0].isdigit() or not parts[2].isdigit():
+        return None
+    return int(parts[0]), int(parts[2])
+
+
+def pick(rows):
+    if not rows:
+        print("no leftover web servers")
+        return []
+    fzf = shutil.which("fzf")
+    if not sys.stdout.isatty() or not fzf:
+        print_table(rows)
+        if sys.stdout.isatty() and not fzf:
+            print("fzf not found; webs kill PORT…", file=sys.stderr)
+        return []
+    where_w, dir_w = columns(rows, True)
+    lines = [format_row(row, where_w, dir_w) for row in rows]
+    proc = subprocess.run(
+        [
+            fzf,
+            "--multi",
+            "--reverse",
+            "--prompt=kill> ",
+            "--header=enter kill · tab mark more · ctrl-a all · esc cancel",
+            "--bind=ctrl-a:select-all",
+            "--info=inline",
+        ],
+        input="\n".join(lines) + "\n",
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    if proc.returncode != 0:
+        return []
+    chosen = []
+    for line in proc.stdout.splitlines():
+        parsed = parse_pick(line)
+        if parsed:
+            chosen.append(parsed)
+    return chosen
+
+
+def still_alive(pid):
+    try:
+        os.kill(pid, 0)
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+    return True
+
+
+def stop(pid, force):
+    if pid <= 1:
+        return "refused"
+    try:
+        os.kill(pid, signal.SIGTERM)
+    except ProcessLookupError:
+        return "gone"
+    except PermissionError:
+        return "denied"
+    deadline = time.monotonic() + 1.0
+    while time.monotonic() < deadline:
+        if not still_alive(pid):
+            return "killed"
+        time.sleep(0.05)
+    if not force:
+        return "stuck"
+    try:
+        os.kill(pid, signal.SIGKILL)
+    except ProcessLookupError:
+        return "killed"
+    except PermissionError:
+        return "denied"
+    time.sleep(0.1)
+    return "killed" if not still_alive(pid) else "stuck"
+
+
+def kill_ports(rows, ports, force):
+    if not ports:
+        die("name a port, or run webs to pick")
+    wanted = []
+    for text in ports:
+        if not text.isdigit():
+            die(f"not a port: {text}")
+        wanted.append(int(text))
+    by_port = {}
+    for row in rows:
+        by_port.setdefault(row.port, []).append(row)
+    missing = [port for port in wanted if port not in by_port]
+    targets = {}
+    for port in wanted:
+        for row in by_port.get(port, []):
+            targets.setdefault(row.pid, []).append(row)
+    failed = False
+    for pid, group in targets.items():
+        result = stop(pid, force)
+        listed = ", ".join(str(row.port) for row in group)
+        server = group[0].server
+        if result == "killed":
+            print(f"killed {listed} (pid {pid}, {server})")
+        elif result == "gone":
+            print(f"{listed} already gone (pid {pid})")
+        elif result == "denied":
+            print(f"could not signal {listed} (pid {pid})", file=sys.stderr)
+            failed = True
+        elif result == "refused":
+            print(f"refusing to signal pid {pid}", file=sys.stderr)
+            failed = True
+        else:
+            hint = f"webs kill --force {group[0].port}"
+            print(f"{listed} still running (pid {pid}); {hint}", file=sys.stderr)
+            failed = True
+    for port in missing:
+        print(f"no dev server on {port}", file=sys.stderr)
+        failed = True
+    if failed:
+        raise SystemExit(1)
+
+
+def parse_args(argv):
+    force = False
+    show_all = False
+    as_json_flag = False
+    rest = []
+    for arg in argv:
+        if arg in {"-h", "--help", "help"}:
+            print(USAGE, end="")
+            raise SystemExit(0)
+        if arg in {"--force", "-f"}:
+            force = True
+        elif arg in {"--all", "-a"}:
+            show_all = True
+        elif arg == "--json":
+            as_json_flag = True
+        elif arg.startswith("-") and not arg[1:].isdigit():
+            die(f"unknown flag: {arg}")
+        else:
+            rest.append(arg)
+    verb = "pick"
+    ports = []
+    if rest and rest[0] in {"list", "ls", "kill"}:
+        verb = "kill" if rest[0] == "kill" else "list"
+        rest = rest[1:]
+    if rest and all(item.isdigit() for item in rest):
+        if verb == "list":
+            die("list does not take ports")
+        verb = "kill"
+        ports = rest
+    elif rest:
+        die(f"unexpected argument: {rest[0]}")
+    if verb == "kill" and as_json_flag:
+        die("--json is for list")
+    return verb, ports, force, show_all, as_json_flag
+
+
+def main(argv):
+    verb, ports, force, show_all, as_json_flag = parse_args(argv[1:])
+    rows = collect(show_all)
+    if verb == "list" or as_json_flag:
+        if as_json_flag:
+            as_json(rows)
+        else:
+            print_table(rows)
+        return
+    if verb == "pick":
+        chosen = pick(rows)
+        if not chosen:
+            return
+        by_pid = {}
+        for port, pid in chosen:
+            by_pid.setdefault(pid, []).append(port)
+        # Re-resolve against the rows we showed so a crafted fzf line cannot
+        # name an arbitrary pid.
+        allowed = {(row.port, row.pid) for row in rows}
+        picked_ports = []
+        for port, pid in chosen:
+            if (port, pid) not in allowed:
+                die(f"refusing to signal pid {pid}")
+            picked_ports.append(str(port))
+        kill_ports(rows, picked_ports, force)
+        return
+    kill_ports(rows, ports, force)
+
+
+if __name__ == "__main__":
+    try:
+        main(sys.argv)
+    except KeyboardInterrupt:
+        raise SystemExit(130)
