@@ -28,4 +28,3 @@ auto-format = false
 name = "swift"
 language-servers = ["sourcekit-lsp"]
 auto-format = false
-formatter = { command = "swiftformat", args = ["stdin", "--stdin-path", "%{buffer_name}", "--quiet"] }

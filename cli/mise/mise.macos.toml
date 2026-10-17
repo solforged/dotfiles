@@ -5,8 +5,6 @@
 
 [tools]
 "aqua:ogulcancelik/herdr" = "latest"
-"aqua:realm/SwiftLint" = "latest"
-"spm:nicklockwood/SwiftFormat" = "latest"
 
 [bootstrap.hooks.post-defaults]
 run = 'killall Dock || true'
