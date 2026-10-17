@@ -66,6 +66,16 @@ from `#6fa886` to `#8ac69e`. Diff highlights were adjusted so text does not
 disappear against the tinted background. Structural borders remain quieter than
 text.
 
+A later Dimmed audit found ANSI green identical to body text, so diff context
+and additions matched in Git and Lazygit. Its green is now `#a8d977`, and cyan
+moves to `#6cc4d6` to separate it from body text. Changed and deleted diff lines
+are tinted more strongly, and changed text inside them is blue rather than
+green. ANSI black uses the border gray, so Lazygit's inactive borders show
+without Ghostty's `minimum-contrast`. Helix now colors strings amber, as Neovim
+and OMP do, tints selections without replacing syntax colors, and draws
+secondary cursors in gray. The check now covers text on the selection
+background.
+
 | Variant        | Background | Body text | Text contrast | Comment contrast |
 | -------------- | ---------- | --------- | ------------- | ---------------- |
 | Reticle Dark   | `#000000`  | `#64b580` | 8.46:1        | 6.86:1           |

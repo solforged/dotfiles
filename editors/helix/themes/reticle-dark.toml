@@ -4,7 +4,7 @@
 "constructor" = "purple"
 "constant" = "orange"
 "constant.builtin" = "purple"
-"string" = "fg"
+"string" = "amber"
 "string.regexp" = "cyan"
 "string.special" = "cyan"
 "comment" = "comment"
@@ -22,7 +22,7 @@
 "markup.list" = "pink"
 "markup.link.url" = "blue"
 "markup.link.text" = "cyan"
-"markup.raw" = "fg"
+"markup.raw" = "amber"
 "markup.quote" = "comment"
 "diff.plus" = "green"
 "diff.minus" = "red"
@@ -41,9 +41,7 @@
 "ui.virtual.jump-label" = "amber"
 "ui.background" = { fg = "fg", bg = "bg" }
 "ui.text" = { fg = "fg", bg = "bg" }
-"ui.selection" = { fg = "fg", bg = "ui_sel" }
-"ui.selection.primary" = { fg = "fg", bg = "ui_sel" }
-"ui.cursor" = { fg = "cursor_fg", bg = "cursor" }
+"ui.cursor" = { fg = "cursor_fg", bg = "comment" }
 "ui.cursor.primary" = { fg = "cursor_fg", bg = "cursor" }
 "ui.cursor.match" = { fg = "amber", bg = "bg_hl" }
 "ui.statusline" = { fg = "fg", bg = "bg_alt" }
@@ -64,6 +62,8 @@
 "ui.window" = { fg = "border", bg = "bg" }
 "ui.highlight" = { fg = "fg", bg = "ui_sel" }
 "ui.gutter" = { fg = "comment", bg = "bg" }
+"ui.selection" = { bg = "sel_bg" }
+"ui.selection.primary" = { bg = "sel_bg" }
 "diagnostic.error" = { underline = { color = "red", style = "curl" } }
 "diagnostic.warning" = { underline = { color = "amber", style = "curl" } }
 "diagnostic.info" = { underline = { color = "blue", style = "curl" } }

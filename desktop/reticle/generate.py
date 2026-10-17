@@ -39,9 +39,9 @@ def audit():
     failures = []
     for name, p in PALETTES.items():
         text = "fg fg_bright comment gray dim red green amber amber_dim orange purple pink blue cyan".split()
-        backgrounds = "bg bg_alt bg_hl surface ui_sel diff_add diff_change diff_delete diff_text".split()
+        backgrounds = "bg bg_alt bg_hl surface ui_sel sel_bg diff_add diff_change diff_delete diff_text".split()
         pairs = [(fg, bg) for fg in text for bg in backgrounds]
-        pairs += [("sel_fg", "sel_bg"), ("cursor_fg", "cursor")]
+        pairs += [("sel_fg", "sel_bg"), ("cursor_fg", "cursor"), ("cursor_fg", "comment")]
         for fg, bg in pairs:
             ratio = contrast(p[fg], p[bg])
             if ratio < 4.5:
@@ -147,13 +147,13 @@ def helix(p):
     roles = {
         "attribute": "amber", "type": "purple", "constructor": "purple",
         "constant": "orange", "constant.builtin": "purple",
-        "string": "fg", "string.regexp": "cyan", "string.special": "cyan",
+        "string": "amber", "string.regexp": "cyan", "string.special": "cyan",
         "comment": "comment", "variable": "fg", "variable.builtin": "purple",
         "variable.parameter": "fg", "punctuation": "gray", "operator": "pink",
         "keyword": "pink", "function": "blue", "tag": "pink", "namespace": "blue",
         "special": "amber", "markup.heading": "amber", "markup.list": "pink",
         "markup.link.url": "blue", "markup.link.text": "cyan",
-        "markup.raw": "fg", "markup.quote": "comment",
+        "markup.raw": "amber", "markup.quote": "comment",
         "diff.plus": "green", "diff.minus": "red", "diff.delta": "blue",
         "warning": "amber", "error": "red", "info": "blue", "hint": "cyan",
         "ui.linenr": "comment", "ui.linenr.selected": "amber",
@@ -165,8 +165,7 @@ def helix(p):
     lines += [f'"{scope}" = "{color}"' for scope, color in roles.items()]
     surfaces = {
         "ui.background": ("fg", "bg"), "ui.text": ("fg", "bg"),
-        "ui.selection": ("fg", "ui_sel"), "ui.selection.primary": ("fg", "ui_sel"),
-        "ui.cursor": ("cursor_fg", "cursor"), "ui.cursor.primary": ("cursor_fg", "cursor"),
+        "ui.cursor": ("cursor_fg", "comment"), "ui.cursor.primary": ("cursor_fg", "cursor"),
         "ui.cursor.match": ("amber", "bg_hl"),
         "ui.statusline": ("fg", "bg_alt"), "ui.statusline.inactive": ("comment", "bg_alt"),
         "ui.statusline.normal": ("bg", "amber"), "ui.statusline.insert": ("bg", "green"),
@@ -180,6 +179,8 @@ def helix(p):
         "ui.highlight": ("fg", "ui_sel"), "ui.gutter": ("comment", "bg"),
     }
     lines += [f'"{scope}" = {{ fg = "{fg}", bg = "{bg}" }}' for scope, (fg, bg) in surfaces.items()]
+    # Selection tints only the background so syntax colors stay visible.
+    lines += [f'"{scope}" = {{ bg = "sel_bg" }}' for scope in ("ui.selection", "ui.selection.primary")]
     for kind, color in (("error", "red"), ("warning", "amber"), ("info", "blue"), ("hint", "cyan")):
         lines.append(f'"diagnostic.{kind}" = {{ underline = {{ color = "{color}", style = "curl" }} }}')
     lines += ['"markup.bold" = { modifiers = ["bold"] }',
