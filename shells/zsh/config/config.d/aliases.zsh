@@ -2,6 +2,7 @@ alias grep='grep --color=auto'
 
 alias e='nvim'
 alias gg='lazygit'
+alias ws='webs'
 
 alias b='brew'
 alias bi='brew install'
