@@ -45,6 +45,82 @@ run = "tailscale serve --bg --https=443 http://127.0.0.1:8081"
 "pacman:task" = "latest"
 "pacman:zsh" = "latest"
 "pacman:ttf-ibm-plex" = "latest"
+# Desktop apps
+"pacman:1password-beta" = "latest"
+"pacman:1password-cli" = "latest"
+"pacman:brave-bin" = "latest"
+"pacman:calibre" = "latest"
+"pacman:claude-desktop" = "latest"
+"pacman:ghostty" = "latest"
+"pacman:kdeconnect" = "latest"
+"pacman:kdenlive" = "latest"
+"pacman:obs-studio" = "latest"
+"pacman:qbittorrent" = "latest"
+"pacman:signal-desktop" = "latest"
+"pacman:telegram-desktop" = "latest"
+"pacman:voxtype-bin" = "latest"
+"pacman:xournalpp" = "latest"
+"pacman:zed" = "latest"
+"aur:filebot" = "latest"
+# Omarchy extras
+"pacman:omarchy-dev" = "latest"
+"pacman:omarchy-settings-dev" = "latest"
+"pacman:omazed" = "latest"
+# Local inference on the NVIDIA GPU
+"pacman:cuda" = "latest"
+"pacman:ggml" = "latest"
+"pacman:llama-cpp" = "latest"
+"pacman:nccl" = "latest"
+"pacman:ollama-cuda" = "latest"
+# agent-vm and other libvirt guests
+"pacman:cloud-image-utils" = "latest"
+"pacman:dnsmasq" = "latest"
+"pacman:edk2-ovmf" = "latest"
+"pacman:libvirt" = "latest"
+"pacman:qemu-base" = "latest"
+"pacman:virt-install" = "latest"
+# Games
+"pacman:gamescope" = "latest"
+"pacman:lib32-vulkan-radeon" = "latest"
+"pacman:lutris" = "latest"
+"pacman:steam" = "latest"
+"pacman:umu-launcher" = "latest"
+"pacman:wine-gecko" = "latest"
+"pacman:wine-mono" = "latest"
+"pacman:wine-staging" = "latest"
+"pacman:winetricks" = "latest"
+# Hardware, security, and filesystems
+"pacman:apfsprogs" = "latest"
+"pacman:fprintd" = "latest"
+"pacman:fwupd" = "latest"
+"pacman:libfido2" = "latest"
+"pacman:libfprint" = "latest"
+"pacman:linux-apfs-rw-dkms" = "latest"
+"pacman:pam-u2f" = "latest"
+"pacman:sbctl" = "latest"
+"pacman:supergfxctl" = "latest"
+"pacman:tailscale" = "latest"
+"aur:mediatek-mt7927-dkms" = "latest"
+"aur:powerstat" = "latest"
+# Toolchains, libraries, and CLIs without a mise backend
+"pacman:clang" = "latest"
+"pacman:dotnet-runtime-9.0" = "latest"
+"pacman:ex-vi-compat" = "latest"
+"pacman:libappindicator" = "latest"
+"pacman:libqalculate" = "latest"
+"pacman:llvm" = "latest"
+"pacman:mosh" = "latest"
+"pacman:python-protobuf" = "latest"
+"pacman:qt5-wayland" = "latest"
+"pacman:sshpass" = "latest"
+"pacman:trash-cli" = "latest"
+"pacman:xmlstarlet" = "latest"
+# Superseded by [tools]: rust through rustup, and cmake, ninja, and
+# lazydocker from aqua.
+"pacman:rust" = { state = "absent" }
+"pacman:cmake" = { state = "absent" }
+"pacman:ninja" = { state = "absent" }
+"pacman:lazydocker" = { state = "absent" }
 
 [dotfiles]
 # Preserve Omarchy's interaction model while layering portable preferences.
@@ -132,6 +208,9 @@ ssh_key = "~/.ssh/id_ed25519"
 # Every cua-driver release is a GitHub prerelease in the trycua monorepo;
 # `cua-driver update` still calls the newest one stable.
 "github:trycua/cua" = { version = "latest", version_prefix = "cua-driver-rs-v", prerelease = true, asset_pattern = "cua-driver-rs-*-linux-x86_64-binary.tar.gz" }
+cmake = "latest"
+ninja = "latest"
+lazydocker = "latest"
 
 # The CDN keeps only the current release, so older pins stop resolving.
 [tools."http:moshi-hook"]
