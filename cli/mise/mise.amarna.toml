@@ -76,6 +76,54 @@ working_directory = "~"
 restart = "on-failure"
 restart_sec = "5s"
 
+# Two llama-server windows over one Qwen3.8 27B Q8 MTP blob. Both fit the GPU
+# together (~33GB + ~45GB); do not also start `ollama serve`. The 64k unit is
+# installed but stays stopped; the 256k unit backs Hermes and the tailnet
+# endpoint from `qwen:expose`.
+[bootstrap.linux.systemd.units.qwen-mtp]
+description = "Qwen3.8 27B Q8 MTP llama-server 64k for OMP"
+after = ["network-online.target"]
+type = "simple"
+exec_start = """\
+  /usr/lib/ollama/llama-server \
+  --model {{ env.HOME }}/.ollama/models/blobs/sha256-31756fca94beca71ea4b8706d6fdc896dab2a3c6376ab0c1863b98512a24f8d6 \
+  -ngl 999 -c 65536 -np 1 -fa on --spec-type draft-mtp --spec-draft-n-max 2 \
+  --alias qwen38-64k --jinja --reasoning auto --reasoning-format deepseek \
+  --reasoning-preserve --host 127.0.0.1 --port 8080 --no-webui --offline"""
+environment = { GGML_BACKEND_PATH = "/usr/lib/ollama/cuda_v13/libggml-cuda.so", LD_LIBRARY_PATH = "/usr/lib/ollama:/usr/lib/ollama/cuda_v13", CUDA_VISIBLE_DEVICES = "0" }
+restart = "on-failure"
+restart_sec = "3"
+start = false
+wanted_by = []
+
+[bootstrap.linux.systemd.units.qwen-mtp-256k]
+description = "Qwen3.8 27B Q8 MTP llama-server 256k for OMP"
+after = ["network-online.target", "dev.mise.qwen-mtp.service"]
+type = "simple"
+exec_start = """\
+  /usr/lib/ollama/llama-server \
+  --model {{ env.HOME }}/.ollama/models/blobs/sha256-31756fca94beca71ea4b8706d6fdc896dab2a3c6376ab0c1863b98512a24f8d6 \
+  -ngl 999 -c 262144 -np 1 -fa on --spec-type draft-mtp --spec-draft-n-max 2 \
+  --alias qwen38-256k --jinja --reasoning auto --reasoning-format deepseek \
+  --reasoning-preserve --host 127.0.0.1 --port 8081 --no-webui --offline"""
+environment = { GGML_BACKEND_PATH = "/usr/lib/ollama/cuda_v13/libggml-cuda.so", LD_LIBRARY_PATH = "/usr/lib/ollama:/usr/lib/ollama/cuda_v13", CUDA_VISIBLE_DEVICES = "0" }
+restart = "on-failure"
+restart_sec = "3"
+
+# Replaces voxtype-bin's packaged voxtype.service, which adds -q and orders
+# after PipeWire and ydotool. Running `voxtype setup systemd` again would
+# write a second unit and start a second daemon.
+[bootstrap.linux.systemd.units.voxtype]
+description = "Voxtype push-to-talk voice-to-text daemon"
+part_of = ["graphical-session.target"]
+after = ["graphical-session.target"]
+type = "simple"
+exec_start = "/usr/bin/voxtype daemon"
+environment = { XDG_RUNTIME_DIR = "%t" }
+restart = "on-failure"
+restart_sec = "5"
+wanted_by = ["graphical-session.target"]
+
 [vars]
 ssh_key = "~/.ssh/id_ed25519"
 
