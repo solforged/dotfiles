@@ -2,33 +2,26 @@
 # dependencies required by the portable dotfiles layered over its defaults.
 
 [tasks."moshi:hook"]
-# binary, pairing, and agent hooks only. `service install` writes
-# ~/.config/systemd/user/moshi-hook.service and fights
+# Pairing and agent hooks only; the binary is the http:moshi-hook tool. Hook
+# files record its versioned install path, so run this again after upgrading
+# moshi-hook, when `moshi-hook doctor` reports hooks out of date.
+# `service install` writes ~/.config/systemd/user/moshi-hook.service and fights
 # [bootstrap.linux.systemd.units.moshi-hook] for the same socket.
-description = "Install, pair, and configure the Moshi agent hook"
+description = "Pair and configure the Moshi agent hook"
 dir = "{{ env.HOME }}"
 run = '''
 set -eu
 
-: "${MOSHI_PAIRING_TOKEN:?set MOSHI_PAIRING_TOKEN to the token from Moshi Settings → Hooks}"
-
-installer="$(mktemp "${TMPDIR:-/tmp}/moshi-hook-install.XXXXXX")"
-trap 'rm -f "$installer"' EXIT HUP INT TERM
-
-curl --proto '=https' --tlsv1.2 --fail --show-error --silent --location \
-  https://getmoshi.app/install.sh --output "$installer"
-/bin/sh "$installer"
-
-"$HOME/.local/bin/moshi-hook" pair --token "$MOSHI_PAIRING_TOKEN"
-"$HOME/.local/bin/moshi-hook" install
+hook="$HOME/.local/bin/moshi-hook"
+# Pair only on a new host: export the token from Moshi Settings → Hooks.
+if [ -n "${MOSHI_PAIRING_TOKEN:-}" ]; then
+  "$hook" pair --token "$MOSHI_PAIRING_TOKEN"
+fi
+"$hook" install
 if [ -e "$HOME/.config/systemd/user/moshi-hook.service" ]; then
-  "$HOME/.local/bin/moshi-hook" service uninstall
+  "$hook" service uninstall
 fi
 '''
-
-[tasks."qwen:install"]
-description = "install qwen's vllm runtime"
-run = "uv tool install --force --python 3.12 --torch-backend=cu130 'vllm>=0.19.0'"
 
 [tasks."qwen:serve"]
 description = "serve qwen3.8 27b fp8 for local coding"
@@ -61,6 +54,10 @@ run = "tailscale serve --bg --https=443 http://127.0.0.1:8081"
 "~/.config/omarchy/shell.json" = "~/src/dotfiles/desktop/omarchy/shell.json"
 "~/.config/omarchy/plugins/sol.lock" = { source = "~/src/dotfiles/desktop/omarchy/plugins/sol.lock", mode = "symlink-each" }
 "~/.config/autostart/1password.desktop" = "~/src/dotfiles/desktop/autostart/1password.desktop"
+# The installer's paths, for the unit below and non-login SSH sessions from
+# the Moshi app, which do not see mise shims.
+"~/.local/bin/moshi-hook" = "~/.local/share/mise/shims/moshi-hook"
+"~/.local/bin/moshi" = "~/.local/share/mise/shims/moshi"
 
 [bootstrap.user]
 login_shell = "/usr/bin/zsh"
@@ -129,3 +126,17 @@ ssh_key = "~/.ssh/id_ed25519"
 
 [tools]
 "pipx:streamrip" = "latest"
+"pipx:trafilatura" = "latest"
+# vLLM's CUDA 13 torch comes from PyTorch's index, which uv picks with this.
+"pipx:vllm" = { version = "latest", python = "3.12", install_env = { UV_TORCH_BACKEND = "cu130" } }
+# Every cua-driver release is a GitHub prerelease in the trycua monorepo;
+# `cua-driver update` still calls the newest one stable.
+"github:trycua/cua" = { version = "latest", version_prefix = "cua-driver-rs-v", prerelease = true, asset_pattern = "cua-driver-rs-*-linux-x86_64-binary.tar.gz" }
+
+# The CDN keeps only the current release, so older pins stop resolving.
+[tools."http:moshi-hook"]
+version = "latest"
+url = "https://cdn.getmoshi.app/hook/v{{ version }}/moshi-hook_Linux_x86_64.tar.gz"
+checksum_url = "https://cdn.getmoshi.app/hook/v{{ version }}/checksums.txt"
+version_list_url = "https://cdn.getmoshi.app/hook/latest/version.txt"
+postinstall = 'ln -sfn moshi-hook "$MISE_TOOL_INSTALL_PATH/moshi"'
