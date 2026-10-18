@@ -130,6 +130,9 @@ run = "tailscale serve --bg --https=443 http://127.0.0.1:8081"
 "~/.config/omarchy/shell.json" = "~/src/dotfiles/desktop/omarchy/shell.json"
 "~/.config/omarchy/plugins/sol.lock" = { source = "~/src/dotfiles/desktop/omarchy/plugins/sol.lock", mode = "symlink-each" }
 "~/.config/autostart/1password.desktop" = "~/src/dotfiles/desktop/autostart/1password.desktop"
+"~/.local/bin/media-import" = "~/src/dotfiles/cli/bin/media-import"
+# Runs Obsidian on electron43 instead of the package's default Electron.
+"~/.local/bin/obsidian" = "~/src/dotfiles/desktop/omarchy/bin/obsidian"
 # The installer's paths, for the unit below and non-login SSH sessions from
 # the Moshi app, which do not see mise shims.
 "~/.local/bin/moshi-hook" = "~/.local/share/mise/shims/moshi-hook"
