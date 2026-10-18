@@ -67,15 +67,10 @@ python3 -c 'import sys, tomllib; print("\n".join(tomllib.load(open(sys.argv[1], 
   rage --encrypt --recipients-file - --output "$usage_output" "$usage_input"
 '''
 
-[tasks."themes:generate"]
-description = "Regenerate Reticle themes from the shared palette"
-dir = "{{ env.HOME }}/src/dotfiles"
-run = "python3 desktop/reticle/generate.py"
-
 [tasks."themes:check"]
-description = "Check Nord palettes and retained Reticle theme consistency"
+description = "Check the local Nord palettes for role consistency and contrast"
 dir = "{{ env.HOME }}/src/dotfiles"
-run = ["python3 desktop/nord/check.py", "python3 desktop/reticle/generate.py --check"]
+run = "python3 desktop/nord/check.py"
 
 [tasks."fonts:install-berkeley"]
 description = "Decrypt, install, and select the bundled Berkeley Mono Variable font"

@@ -102,7 +102,7 @@ its line in `ssh_public_keys` as retired so old signatures still verify.
 | `cli/bin/`             | Small commands deployed to `~/.local/bin`                       |
 | `shells/`              | zsh, Nushell, and Starship                                      |
 | `editors/`             | Neovim, Helix, and Zed                                          |
-| `desktop/`             | Ghostty, Omarchy, fontconfig, and the Reticle themes            |
+| `desktop/`             | Ghostty, Omarchy, fontconfig, and the Nord defaults             |
 | `agents/`              | omp configuration                                               |
 | `assets/fonts/`        | Encrypted Berkeley Mono font                                    |
 
@@ -116,8 +116,7 @@ its line in `ssh_public_keys` as retired so old signatures still verify.
 | Update locked tool versions      | `mise run tools:bump`                                    |
 | Encrypt a file for every machine | `mise run age:encrypt <input> <output>`                  |
 | Install Berkeley Mono            | `mise run fonts:install-berkeley`                        |
-| Regenerate Reticle themes        | `mise run themes:generate`                               |
-| Check theme contrast             | `mise run themes:check`                                  |
+| Check Nord theme contrast        | `mise run themes:check`                                  |
 | Enroll this host's SSH key       | `mise run ssh:enroll`                                    |
 
 Plain `mise use -g` writes to `mise.macos.toml` on macOS and to Omarchy's own
@@ -155,6 +154,8 @@ Commits here use the top-level directory as scope, such as `fix(zsh)`.
 ## Themes
 
 Applications default to Nord dark and Nord-inspired light palettes, with Frost
-blue accents and quiet Polar Night / Snow Storm surfaces. Reticle and Polyimide
-remain available; see [`desktop/reticle/README.md`](desktop/reticle/README.md)
-for application selections, palette notes, and the retained theme generator.
+blue accents and quiet Polar Night / Snow Storm surfaces; see
+[`desktop/nord/README.md`](desktop/nord/README.md) for each application's
+selection. Reticle and Polyimide live in
+[solforged/reticle](https://github.com/solforged/reticle); a host that lists
+the `reticle` module clones and links them.
