@@ -137,6 +137,17 @@ run = "tailscale serve --bg --https=443 http://127.0.0.1:8081"
 # the Moshi app, which do not see mise shims.
 "~/.local/bin/moshi-hook" = "~/.local/share/mise/shims/moshi-hook"
 "~/.local/bin/moshi" = "~/.local/share/mise/shims/moshi"
+# Apps rewrite these files, so merge owns only the keys in each source.
+"~/.config/opencode/opencode.json/shared" = { source = "~/src/dotfiles/agents/opencode/opencode.json", merge = true }
+"~/.config/opencode/tui.json/shared" = { source = "~/src/dotfiles/agents/opencode/tui.json", merge = true }
+"~/.config/moshi/config.toml/shared" = { source = "~/src/dotfiles/cli/moshi/config.toml", merge = true }
+"~/.config/voxtype/config.toml/shared" = { source = "~/src/dotfiles/desktop/voxtype/config.toml", merge = true }
+"~/.config/streamrip/config.toml/shared" = { source = "~/src/dotfiles/cli/streamrip/config.toml", merge = true }
+"~/.config/tern/settings.json/shared" = { source = "~/src/dotfiles/desktop/tern/settings.json", merge = true }
+# xdg-mime and xdg-user-dirs-update rewrite these; `mise dot add --changed`
+# captures their edits.
+"~/.config/mimeapps.list" = { source = "~/src/dotfiles/desktop/omarchy/mimeapps.list", mode = "copy" }
+"~/.config/user-dirs.dirs" = { source = "~/src/dotfiles/desktop/omarchy/user-dirs.dirs", mode = "copy" }
 
 [bootstrap.user]
 login_shell = "/usr/bin/zsh"
