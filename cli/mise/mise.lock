@@ -994,56 +994,6 @@ checksum = "sha256:d29144deff3a68aa93ced33dddf84b7fdc26070add4aa0f4513094c8332af
 url = "https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_windows_x64.zip"
 url_api = "https://api.github.com/repos/gitleaks/gitleaks/releases/assets/378333178"
 
-[[tools."aqua:jdx/hk"]]
-version = "2.7.0"
-backend = "aqua:jdx/hk"
-specifiers = ["latest"]
-
-[tools."aqua:jdx/hk"."platforms.linux-arm64"]
-checksum = "sha256:a64c8cead6f9a47e6bf4d639122ca3eeba60480763076330ba230a8cb7821520"
-url = "https://github.com/jdx/hk/releases/download/v2.7.0/hk-aarch64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/jdx/hk/releases/assets/646980276"
-
-[tools."aqua:jdx/hk"."platforms.linux-arm64-musl"]
-checksum = "sha256:a64c8cead6f9a47e6bf4d639122ca3eeba60480763076330ba230a8cb7821520"
-url = "https://github.com/jdx/hk/releases/download/v2.7.0/hk-aarch64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/jdx/hk/releases/assets/646980276"
-
-[tools."aqua:jdx/hk"."platforms.linux-x64"]
-checksum = "sha256:2d5819ee2bc3e5b424d90fb05928c05297bfa4d36490628b075b8f8afe14b7b1"
-url = "https://github.com/jdx/hk/releases/download/v2.7.0/hk-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/jdx/hk/releases/assets/646980316"
-
-[tools."aqua:jdx/hk"."platforms.linux-x64-baseline"]
-checksum = "sha256:2d5819ee2bc3e5b424d90fb05928c05297bfa4d36490628b075b8f8afe14b7b1"
-url = "https://github.com/jdx/hk/releases/download/v2.7.0/hk-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/jdx/hk/releases/assets/646980316"
-
-[tools."aqua:jdx/hk"."platforms.linux-x64-musl"]
-checksum = "sha256:2d5819ee2bc3e5b424d90fb05928c05297bfa4d36490628b075b8f8afe14b7b1"
-url = "https://github.com/jdx/hk/releases/download/v2.7.0/hk-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/jdx/hk/releases/assets/646980316"
-
-[tools."aqua:jdx/hk"."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:2d5819ee2bc3e5b424d90fb05928c05297bfa4d36490628b075b8f8afe14b7b1"
-url = "https://github.com/jdx/hk/releases/download/v2.7.0/hk-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/jdx/hk/releases/assets/646980316"
-
-[tools."aqua:jdx/hk"."platforms.macos-arm64"]
-checksum = "sha256:3b98dd45e493a421de5b327c87b3e0fdfac39383e11b6a2b48b43bbc5a9ce0d6"
-url = "https://github.com/jdx/hk/releases/download/v2.7.0/hk-aarch64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/jdx/hk/releases/assets/646980274"
-
-[tools."aqua:jdx/hk"."platforms.windows-x64"]
-checksum = "sha256:69fa61c4ef0ea7d25ccb2804b52c31e91be8f7c9cc1176aabe8ea780f3c5b0bb"
-url = "https://github.com/jdx/hk/releases/download/v2.7.0/hk-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/jdx/hk/releases/assets/646980285"
-
-[tools."aqua:jdx/hk"."platforms.windows-x64-baseline"]
-checksum = "sha256:69fa61c4ef0ea7d25ccb2804b52c31e91be8f7c9cc1176aabe8ea780f3c5b0bb"
-url = "https://github.com/jdx/hk/releases/download/v2.7.0/hk-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/jdx/hk/releases/assets/646980285"
-
 [[tools."aqua:jesseduffield/lazygit"]]
 version = "0.66.2"
 backend = "aqua:jesseduffield/lazygit"
@@ -1963,75 +1913,64 @@ conda_deps = [
 ]
 
 [[tools.fnox]]
-version = "1.40.0"
-backend = "github:jdx/fnox"
+version = "1.41.0"
+backend = "packslip:github.com/jdx/fnox"
 specifiers = ["latest"]
 
 [tools.fnox."platforms.linux-arm64"]
-checksum = "sha256:ad5255ab8408dc2d551c823247c64c021f2df10f6ebb52adda069021bc27c80a"
-url = "https://github.com/jdx/fnox/releases/download/v1.40.0/fnox-aarch64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/647629347"
-provenance = "github-attestations"
+checksum = "sha256:ce073b8075e39f3ab01e5ab0c6e97003625b4c5e1996583a145eb9fc0b76cda2"
+url = "https://github.com/jdx/fnox/releases/download/v1.41.0/fnox-aarch64-unknown-linux-gnu.tar.gz"
+signer = "sigstore-oidc:https://github.com/jdx/fnox/.github/workflows/release.yml"
 
 [tools.fnox."platforms.linux-arm64-musl"]
-checksum = "sha256:cbaaea943d9042557a0c87276dea3161fa2a19d61f212731020ff691681c7071"
-url = "https://github.com/jdx/fnox/releases/download/v1.40.0/fnox-aarch64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/647629341"
-provenance = "github-attestations"
+checksum = "sha256:c63cb6ac2ea2d4a0f9948ad57aff4ef22d4defcdb11d55451655bd0f65a363e4"
+url = "https://github.com/jdx/fnox/releases/download/v1.41.0/fnox-aarch64-unknown-linux-musl.tar.gz"
+signer = "sigstore-oidc:https://github.com/jdx/fnox/.github/workflows/release.yml"
 
 [tools.fnox."platforms.linux-x64"]
-checksum = "sha256:9de4a80c4b43fb788f2878550d6a73a5178892a438b5611e30905e6ea11b9e28"
-url = "https://github.com/jdx/fnox/releases/download/v1.40.0/fnox-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/647629429"
-provenance = "github-attestations"
+checksum = "sha256:a9297e0c3d7a079745b25509344fd3ea471d7af5bec1d293c8feaab312cb494a"
+url = "https://github.com/jdx/fnox/releases/download/v1.41.0/fnox-x86_64-unknown-linux-gnu.tar.gz"
+signer = "sigstore-oidc:https://github.com/jdx/fnox/.github/workflows/release.yml"
 
 [tools.fnox."platforms.linux-x64-baseline"]
-checksum = "sha256:9de4a80c4b43fb788f2878550d6a73a5178892a438b5611e30905e6ea11b9e28"
-url = "https://github.com/jdx/fnox/releases/download/v1.40.0/fnox-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/647629429"
-provenance = "github-attestations"
+checksum = "sha256:a9297e0c3d7a079745b25509344fd3ea471d7af5bec1d293c8feaab312cb494a"
+url = "https://github.com/jdx/fnox/releases/download/v1.41.0/fnox-x86_64-unknown-linux-gnu.tar.gz"
+signer = "sigstore-oidc:https://github.com/jdx/fnox/.github/workflows/release.yml"
 
 [tools.fnox."platforms.linux-x64-musl"]
-checksum = "sha256:6905a05b154cd7784825e88b3cfbda5c30c9fc33e496440e21130f590e3f39ce"
-url = "https://github.com/jdx/fnox/releases/download/v1.40.0/fnox-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/647629434"
-provenance = "github-attestations"
+checksum = "sha256:326d77bb95782ea3f6ccd5cc7b67b940296ea327b8ba3950c975bf9d3bb548cb"
+url = "https://github.com/jdx/fnox/releases/download/v1.41.0/fnox-x86_64-unknown-linux-musl.tar.gz"
+signer = "sigstore-oidc:https://github.com/jdx/fnox/.github/workflows/release.yml"
 
 [tools.fnox."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:6905a05b154cd7784825e88b3cfbda5c30c9fc33e496440e21130f590e3f39ce"
-url = "https://github.com/jdx/fnox/releases/download/v1.40.0/fnox-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/647629434"
-provenance = "github-attestations"
+checksum = "sha256:326d77bb95782ea3f6ccd5cc7b67b940296ea327b8ba3950c975bf9d3bb548cb"
+url = "https://github.com/jdx/fnox/releases/download/v1.41.0/fnox-x86_64-unknown-linux-musl.tar.gz"
+signer = "sigstore-oidc:https://github.com/jdx/fnox/.github/workflows/release.yml"
 
 [tools.fnox."platforms.macos-arm64"]
-checksum = "sha256:61da8b5f240d456d72cc7e1976c9302f73a4b6a6cd322ef9279a8516ea89f2d1"
-url = "https://github.com/jdx/fnox/releases/download/v1.40.0/fnox-aarch64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/647629343"
-provenance = "github-attestations"
+checksum = "sha256:fb647bd423858750ae49d93a5a5b4fe797f3e870091c9632728d46ec3835082a"
+url = "https://github.com/jdx/fnox/releases/download/v1.41.0/fnox-aarch64-apple-darwin.tar.gz"
+signer = "sigstore-oidc:https://github.com/jdx/fnox/.github/workflows/release.yml"
 
 [tools.fnox."platforms.macos-x64"]
-checksum = "sha256:d3d340b2f1425baf8a016ca9555c643e33a911c9575a1498aa3a28119daf7d02"
-url = "https://github.com/jdx/fnox/releases/download/v1.40.0/fnox-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/647629344"
-provenance = "github-attestations"
+checksum = "sha256:1a383f204ff64ac8ed1648eba32c25aab1674aac8b426aa5fdc963a441a27630"
+url = "https://github.com/jdx/fnox/releases/download/v1.41.0/fnox-x86_64-apple-darwin.tar.gz"
+signer = "sigstore-oidc:https://github.com/jdx/fnox/.github/workflows/release.yml"
 
 [tools.fnox."platforms.macos-x64-baseline"]
-checksum = "sha256:d3d340b2f1425baf8a016ca9555c643e33a911c9575a1498aa3a28119daf7d02"
-url = "https://github.com/jdx/fnox/releases/download/v1.40.0/fnox-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/647629344"
-provenance = "github-attestations"
+checksum = "sha256:1a383f204ff64ac8ed1648eba32c25aab1674aac8b426aa5fdc963a441a27630"
+url = "https://github.com/jdx/fnox/releases/download/v1.41.0/fnox-x86_64-apple-darwin.tar.gz"
+signer = "sigstore-oidc:https://github.com/jdx/fnox/.github/workflows/release.yml"
 
 [tools.fnox."platforms.windows-x64"]
-checksum = "sha256:f1248a630b363f774902bcf20bfec92b97e52564d5a9f04ad73635c1fd9bfa04"
-url = "https://github.com/jdx/fnox/releases/download/v1.40.0/fnox-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/647629411"
-provenance = "github-attestations"
+checksum = "sha256:a192a8858b5cc968b21bddea1901585c9b5cc131991442cac15e52e873cda3ab"
+url = "https://github.com/jdx/fnox/releases/download/v1.41.0/fnox-x86_64-pc-windows-msvc.zip"
+signer = "sigstore-oidc:https://github.com/jdx/fnox/.github/workflows/release.yml"
 
 [tools.fnox."platforms.windows-x64-baseline"]
-checksum = "sha256:f1248a630b363f774902bcf20bfec92b97e52564d5a9f04ad73635c1fd9bfa04"
-url = "https://github.com/jdx/fnox/releases/download/v1.40.0/fnox-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/jdx/fnox/releases/assets/647629411"
-provenance = "github-attestations"
+checksum = "sha256:a192a8858b5cc968b21bddea1901585c9b5cc131991442cac15e52e873cda3ab"
+url = "https://github.com/jdx/fnox/releases/download/v1.41.0/fnox-x86_64-pc-windows-msvc.zip"
+signer = "sigstore-oidc:https://github.com/jdx/fnox/.github/workflows/release.yml"
 
 [[tools."github:zimfw/zimfw"]]
 version = "1.20.1"
@@ -2204,6 +2143,56 @@ url_api = "https://api.github.com/repos/helix-editor/helix/releases/assets/27414
 checksum = "sha256:5c8325ced8bacd8418d62706f669e96d9c3578a9237526e34d546900cbc049b6"
 url = "https://github.com/helix-editor/helix/releases/download/25.07.1/helix-25.07.1-x86_64-windows.zip"
 url_api = "https://api.github.com/repos/helix-editor/helix/releases/assets/274144377"
+
+[[tools.hk]]
+version = "2.7.1"
+backend = "packslip:github.com/jdx/hk"
+specifiers = ["latest"]
+
+[tools.hk."platforms.linux-arm64"]
+checksum = "sha256:e37810d8e8bd461ef92c1f0103cb8b415f58d18e689d59d8f5239dd8893676b9"
+url = "https://github.com/jdx/hk/releases/download/v2.7.1/hk-aarch64-unknown-linux-gnu.tar.gz"
+signer = "sigstore-oidc:https://github.com/jdx/hk/.github/workflows/release.yml"
+
+[tools.hk."platforms.linux-arm64-musl"]
+checksum = "sha256:1217340e610e126baa69bc5f0543f0eb2c0c3ff08e98b9c3bc173e2a3d29aef2"
+url = "https://github.com/jdx/hk/releases/download/v2.7.1/hk-aarch64-unknown-linux-musl.tar.gz"
+signer = "sigstore-oidc:https://github.com/jdx/hk/.github/workflows/release.yml"
+
+[tools.hk."platforms.linux-x64"]
+checksum = "sha256:f6efe9b7febc22cb0ec071ab727ead597752dedb6a36c4d1a7fef94f6d2d8fbf"
+url = "https://github.com/jdx/hk/releases/download/v2.7.1/hk-x86_64-unknown-linux-gnu.tar.gz"
+signer = "sigstore-oidc:https://github.com/jdx/hk/.github/workflows/release.yml"
+
+[tools.hk."platforms.linux-x64-baseline"]
+checksum = "sha256:f6efe9b7febc22cb0ec071ab727ead597752dedb6a36c4d1a7fef94f6d2d8fbf"
+url = "https://github.com/jdx/hk/releases/download/v2.7.1/hk-x86_64-unknown-linux-gnu.tar.gz"
+signer = "sigstore-oidc:https://github.com/jdx/hk/.github/workflows/release.yml"
+
+[tools.hk."platforms.linux-x64-musl"]
+checksum = "sha256:7a92cc1b7ecc2dd59f15bb90a0ab564def47cc63923fd64e6d04c0ae35ce98d0"
+url = "https://github.com/jdx/hk/releases/download/v2.7.1/hk-x86_64-unknown-linux-musl.tar.gz"
+signer = "sigstore-oidc:https://github.com/jdx/hk/.github/workflows/release.yml"
+
+[tools.hk."platforms.linux-x64-musl-baseline"]
+checksum = "sha256:7a92cc1b7ecc2dd59f15bb90a0ab564def47cc63923fd64e6d04c0ae35ce98d0"
+url = "https://github.com/jdx/hk/releases/download/v2.7.1/hk-x86_64-unknown-linux-musl.tar.gz"
+signer = "sigstore-oidc:https://github.com/jdx/hk/.github/workflows/release.yml"
+
+[tools.hk."platforms.macos-arm64"]
+checksum = "sha256:18914b99e1fdcc0415ba77c8d01b1f4df73b109ed90b3f418053e2f3eaf84cbd"
+url = "https://github.com/jdx/hk/releases/download/v2.7.1/hk-aarch64-apple-darwin.tar.gz"
+signer = "sigstore-oidc:https://github.com/jdx/hk/.github/workflows/release.yml"
+
+[tools.hk."platforms.windows-x64"]
+checksum = "sha256:d0b6e0d1aa253f1ceb4170f5fe14a78526f1ecd9d09b8c0b6d51dda2c90c4981"
+url = "https://github.com/jdx/hk/releases/download/v2.7.1/hk-x86_64-pc-windows-msvc.zip"
+signer = "sigstore-oidc:https://github.com/jdx/hk/.github/workflows/release.yml"
+
+[tools.hk."platforms.windows-x64-baseline"]
+checksum = "sha256:d0b6e0d1aa253f1ceb4170f5fe14a78526f1ecd9d09b8c0b6d51dda2c90c4981"
+url = "https://github.com/jdx/hk/releases/download/v2.7.1/hk-x86_64-pc-windows-msvc.zip"
+signer = "sigstore-oidc:https://github.com/jdx/hk/.github/workflows/release.yml"
 
 [[tools.node]]
 version = "26.12.0"
