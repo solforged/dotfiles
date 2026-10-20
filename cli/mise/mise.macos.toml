@@ -3,9 +3,6 @@
 [bootstrap.packages]
 "brew:git" = "latest"
 
-[tools]
-"aqua:ogulcancelik/herdr" = "latest"
-
 [bootstrap.hooks.post-defaults]
 run = 'killall Dock || true'
 
