@@ -67,11 +67,6 @@ python3 -c 'import sys, tomllib; print("\n".join(tomllib.load(open(sys.argv[1], 
   rage --encrypt --recipients-file - --output "$usage_output" "$usage_input"
 '''
 
-[tasks."themes:check"]
-description = "Check the local Nord palettes for role consistency and contrast"
-dir = "{{ env.HOME }}/src/dotfiles"
-run = "python3 desktop/nord/check.py"
-
 [tasks."fonts:install-berkeley"]
 description = "Decrypt, install, and select the bundled Berkeley Mono Variable font"
 dir = "{{ env.HOME }}/src/dotfiles"

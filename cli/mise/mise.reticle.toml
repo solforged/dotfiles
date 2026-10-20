@@ -6,8 +6,8 @@
 [bootstrap.repos]
 "~/src/reticle" = { url = "git@github.com:solforged/reticle.git" }
 
-# Per-file wildcards: the base, omp, and editor entries own these directories
-# with symlink-each, and a second entry for the same target would replace them.
+# Per-file wildcards: the base and editor entries own these directories with
+# symlink-each, and a second entry for the same target would replace them.
 [dotfiles]
 "~/.config/ghostty/themes/*-GH" = "~/src/reticle/ghostty/*-GH"
 "~/.omp/agent/themes/*.json" = "~/src/reticle/omp/*.json"

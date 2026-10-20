@@ -9,5 +9,4 @@
 "~/.omp/agent/AGENTS.md" = "~/src/dotfiles/agents/omp/AGENTS.md"
 "~/.omp/agent/TITLE_SYSTEM.md" = "~/src/dotfiles/agents/omp/TITLE_SYSTEM.md"
 "~/.omp/agent/APPEND_SYSTEM.md" = { mode = "absent" }
-"~/.omp/agent/themes" = { source = "~/src/dotfiles/agents/omp/themes", mode = "symlink-each" }
 "~/.omp/agent/commands" = { source = "~/src/dotfiles/agents/omp/commands", mode = "symlink-each" }
