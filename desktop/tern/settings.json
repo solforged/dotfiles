@@ -1,9 +1,18 @@
 {
   "theme": "System",
   "copy_on_select": true,
+  "ui_font": "IBM Plex Sans",
   "opacity": 90,
   "prompt_style": "tern",
+  "prompt_parts": {
+    "frame": "rounded",
+    "char": "lambda",
+    "dir": "full"
+  },
   "msaa": "2x",
+  "file_tree": {
+    "preview_click": true
+  },
   "git": {
     "pull_mode": "Rebase",
     "sign_commits_by_default": true,
@@ -15,5 +24,8 @@
   },
   "carly": {
     "model": "@default"
+  },
+  "keybinds": {
+    "f16": "clawdi"
   }
 }
