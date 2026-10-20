@@ -1,6 +1,5 @@
 {
   "theme": "System",
-  "theme_dark": "dark-arctic",
   "copy_on_select": true,
   "opacity": 90,
   "prompt_style": "tern",
