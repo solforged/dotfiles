@@ -158,4 +158,7 @@ blue accents and quiet Polar Night / Snow Storm surfaces; see
 [`desktop/nord/README.md`](desktop/nord/README.md) for each application's
 selection. Reticle and Polyimide live in
 [solforged/reticle](https://github.com/solforged/reticle); a host that lists
-the `reticle` module clones and links them.
+the `reticle` module clones and links them. Solforge lives in
+[solforged/solforge-theme](https://github.com/solforged/solforge-theme); the
+`solforge` module clones it and links its omp themes, and amarna's host file
+links the Omarchy themes and the Hermes skin.

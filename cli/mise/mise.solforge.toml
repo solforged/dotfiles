@@ -1,0 +1,12 @@
+# Solforge themes from github.com/solforged/solforge-theme. Add "solforge" to a
+# host's modules in miserc.toml.tmpl to clone the repository and link its omp
+# themes beside the Nord defaults, which stay selected. Omarchy themes and the
+# Hermes skin are linked from the host files that use them.
+
+[bootstrap.repos]
+"~/src/solforge-theme" = { url = "git@github.com:solforged/solforge-theme.git" }
+
+# A per-file wildcard: the omp module owns the themes directory with
+# symlink-each, and mise.reticle.toml already uses the `*.json` key.
+[dotfiles]
+"~/.omp/agent/themes/solforge-*.json" = "~/src/solforge-theme/omp/solforge-*.json"

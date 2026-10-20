@@ -148,6 +148,11 @@ run = "tailscale serve --bg --https=443 http://127.0.0.1:8081"
 # captures their edits.
 "~/.config/mimeapps.list" = { source = "~/src/dotfiles/desktop/omarchy/mimeapps.list", mode = "copy" }
 "~/.config/user-dirs.dirs" = { source = "~/src/dotfiles/desktop/omarchy/user-dirs.dirs", mode = "copy" }
+# Solforge Omarchy themes and Tunon Hermes skin, from the clone made by
+# mise.solforge.toml.
+"~/.config/omarchy/themes/solforge-dark" = "~/src/solforge-theme/omarchy-solforge-dark-theme"
+"~/.config/omarchy/themes/solforge-light" = "~/src/solforge-theme/omarchy-solforge-light-theme"
+"~/.hermes/skins/tunon.yaml" = "~/src/solforge-theme/hermes/tunon.yaml"
 
 [bootstrap.user]
 login_shell = "/usr/bin/zsh"
