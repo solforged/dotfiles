@@ -3,9 +3,9 @@
     first run. Later names override earlier ones; keep the host file last. -#}
 {% set personal = ["base", "personal", "omp", "pi", "claude"] -%}
 {% if host == "hyperion" -%}
-{% set modules = personal | concat(with=["beets", "solforge", "hyperion"]) -%}
+{% set modules = [...personal, "beets", "solforge", "hyperion"] -%}
 {% elif host == "amarna" -%}
-{% set modules = personal | concat(with=["beets", "reticle", "solforge", "amarna"]) -%}
+{% set modules = [...personal, "beets", "reticle", "solforge", "amarna"] -%}
 {% elif host == "atlas" -%}
 {% set modules = ["base", "atlas"] -%}
 {% else -%}
