@@ -152,7 +152,7 @@ Commits here use the top-level directory as scope, such as `fix(zsh)`.
 
 ## Themes
 
-omp, Ghostty, Zed, Helix and Nushell use Solforge, from
+omp, Ghostty, Zed, Helix, Neovim (on macOS) and Nushell use Solforge, from
 [solforged/solforge-theme](https://github.com/solforged/solforge-theme). The
 `solforge` module clones it and links the themes, including btop's; btop
 rewrites its own `btop.conf`, so select `solforge-dark` in btop's options menu.

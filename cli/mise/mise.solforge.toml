@@ -16,3 +16,4 @@
 "~/.config/helix/themes/solforge-*.toml" = "~/src/solforge-theme/helix/solforge-*.toml"
 "~/.config/nushell/themes/solforge-*.json" = "~/src/solforge-theme/nushell/solforge-*.json"
 "~/.config/btop/themes/solforge-*.theme" = "~/src/solforge-theme/btop/solforge-*.theme"
+"~/.config/nvim/colors/solforge.lua" = "~/src/solforge-theme/nvim/colors/solforge.lua"
