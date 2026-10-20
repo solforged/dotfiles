@@ -7,9 +7,12 @@ $env.config.table.mode = "basic"
 $env.config.table.index_mode = "never"
 $env.config.use_kitty_protocol = true
 $env.config.history.file_format = "sqlite"
-# Nord dark by default; set NU_THEME=nord-light for light terminals.
-$env.config.color_config = (open ($nu.default-config-dir | path join "themes"
-    $"($env.NU_THEME? | default 'nord-dark').json"))
+# Solforge dark where the solforge module links it, else Nord dark. Set
+# NU_THEME=solforge-light (or nord-light) for light terminals.
+let themes = $nu.default-config-dir | path join "themes"
+let theme = $env.NU_THEME? | default (
+    if ($themes | path join "solforge-dark.json" | path exists) { "solforge-dark" } else { "nord-dark" })
+$env.config.color_config = (open ($themes | path join $"($theme).json"))
 $env.config.ls.use_ls_colors = false
 
 alias e = nvim

@@ -152,10 +152,14 @@ Commits here use the top-level directory as scope, such as `fix(zsh)`.
 
 ## Themes
 
-Applications default to their built-in or bundled Nord dark and Nord Light
-themes. Reticle and Polyimide live in
+omp, Ghostty, Zed, Helix and Nushell use Solforge, from
+[solforged/solforge-theme](https://github.com/solforged/solforge-theme). The
+`solforge` module clones it and links the themes, including btop's; btop
+rewrites its own `btop.conf`, so select `solforge-dark` in btop's options menu.
+amarna's host file links the Omarchy themes and the Hermes skin. On a host
+without the module, Nushell falls back to Nord dark and the other apps to their
+defaults. Other applications use their built-in or bundled Nord dark and Nord
+Light themes.
+Reticle and Polyimide live in
 [solforged/reticle](https://github.com/solforged/reticle); a host that lists
-the `reticle` module clones and links them. Solforge lives in
-[solforged/solforge-theme](https://github.com/solforged/solforge-theme); the
-`solforge` module clones it and links its omp themes, and amarna's host file
-links the Omarchy themes and the Hermes skin.
+the `reticle` module clones and links them.

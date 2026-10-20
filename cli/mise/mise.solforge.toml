@@ -1,12 +1,18 @@
 # Solforge themes from github.com/solforged/solforge-theme. Add "solforge" to a
-# host's modules in miserc.toml.tmpl to clone the repository and link its omp
-# themes beside the Nord defaults, which stay selected. Omarchy themes and the
-# Hermes skin are linked from the host files that use them.
+# host's modules in miserc.toml.tmpl to clone the repository and link its omp,
+# Ghostty, Zed, Helix, Nushell and btop themes. The shared configs select them;
+# hosts without this module fall back to Nord or the app's default. Omarchy
+# themes and the Hermes skin are linked from the host files that use them.
 
 [bootstrap.repos]
 "~/src/solforge-theme" = { url = "git@github.com:solforged/solforge-theme.git" }
 
-# A per-file wildcard: the omp module owns the themes directory with
-# symlink-each, and mise.reticle.toml already uses the `*.json` key.
+# Per-file entries: other modules link these parent directories, and
+# mise.reticle.toml already uses the `*.json` and `*.toml` keys.
 [dotfiles]
 "~/.omp/agent/themes/solforge-*.json" = "~/src/solforge-theme/omp/solforge-*.json"
+"~/.config/ghostty/themes/solforge-*" = "~/src/solforge-theme/ghostty/solforge-*"
+"~/.config/zed/themes/solforge.json" = "~/src/solforge-theme/zed/solforge.json"
+"~/.config/helix/themes/solforge-*.toml" = "~/src/solforge-theme/helix/solforge-*.toml"
+"~/.config/nushell/themes/solforge-*.json" = "~/src/solforge-theme/nushell/solforge-*.json"
+"~/.config/btop/themes/solforge-*.theme" = "~/src/solforge-theme/btop/solforge-*.theme"

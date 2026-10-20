@@ -1,4 +1,4 @@
-theme = "nord"
+theme = "solforge-dark"
 
 [editor]
 line-number = "absolute"
