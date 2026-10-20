@@ -1,7 +1,11 @@
 # Oh My Pi coding agent and its shared prompts and settings.
 
+# Skip the base release-age cooldown so auto_update picks up new builds.
+[settings]
+minimum_release_age_excludes = ["github:can1357/oh-my-pi"]
+
 [tools]
-"github:can1357/oh-my-pi" = "latest"
+"github:can1357/oh-my-pi" = { version = "latest", auto_update = true }
 
 [dotfiles]
 "~/.omp/agent/config.yml" = "~/src/dotfiles/agents/omp/config.yml"

@@ -3,7 +3,7 @@ dotfiles.root = "~/src/dotfiles"
 dotfiles.default_mode = "symlink"
 experimental = true
 lockfile = true
-minimum_release_age = "0s"
+minimum_release_age = "1d"
 github.credential_command = "gh auth token"
 
 [env]

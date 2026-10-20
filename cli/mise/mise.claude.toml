@@ -1,4 +1,8 @@
 # Claude Code CLI.
 
+# Skip the base release-age cooldown so auto_update picks up new builds.
+[settings]
+minimum_release_age_excludes = ["claude"]
+
 [tools]
-claude = "latest"
+claude = { version = "latest", auto_update = true }
