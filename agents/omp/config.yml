@@ -57,6 +57,9 @@ commands:
 display:
   shimmer: disabled
   subagentLivePreview: false
+theme:
+  dark: solforge-dark
+  light: solforge-light
 bashInterceptor:
   enabled: true
 startup:
